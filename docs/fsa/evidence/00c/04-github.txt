@@ -1,0 +1,59 @@
+FSA-00C independent execution transcript
+CWD: /home/user/flashcard-Android
+
+UTC: 2026-10-25T22:20:59.248480+00:00
+$ gh api repos/Drmusab/flashcard-Android --jq '{full_name,fork,default_branch,parent:.parent.full_name,source:.source.full_name}'
+{"default_branch":"main","fork":true,"full_name":"Drmusab/flashcard-Android","parent":"ankidroid/Anki-Android","source":"ankidroid/Anki-Android"}
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.913560+00:00
+$ git ls-remote --symref https://github.com/ankidroid/Anki-Android.git HEAD refs/heads/main
+ref: refs/heads/main	HEAD
+fe6577031a7c2a875981f963c36aea5c5fe529bf	HEAD
+fe6577031a7c2a875981f963c36aea5c5fe529bf	refs/heads/main
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:21:00.419619+00:00
+$ git ls-remote --heads origin
+2ad3dc8ce960e426007190c903c2df4f4eb4a742	refs/heads/arena/e0f873f3-flashcard-android
+f8212252540fe104663e935d4c582e9ad499ec89	refs/heads/main
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:21:00.753444+00:00
+$ gh api repos/Drmusab/flashcard-Android/compare/a7121c11c6e11d9c6ba34518784156fba1701e29...f8212252540fe104663e935d4c582e9ad499ec89 --jq '{status,ahead_by,behind_by,total_commits,merge_base:.merge_base_commit.sha,commits:[.commits[]|{sha,message:.commit.message}],files:[.files[]|{filename,status,additions,deletions}]}'
+{"ahead_by":2,"behind_by":0,"commits":[{"message":"docs(fsa): FSA-00B fork baseline build \u0026 verification report\n\nBaseline a7121c11 verified at source level (Gradle 9.8.0 / AGP 9.4.1 /\nKotlin 2.4.20 / compileSdk 37 / JetBrains-21 daemon). Build, test, and\ndevice execution BLOCKED in sandbox (no JDK/SDK/emulator; Gradle, Google,\nMaven, foojay hosts unreachable) - no evidence fabricated. Includes\nidentity/coexistence audit, device matrix, Windows re-run runbook, and\nresidual blocker register. Gate Lock recommendation: BLOCKED.\nNo source, identity, or scheduler changes; main untouched.\n\nCo-authored-by: arena-agent \u003c297053741+arena-agent@users.noreply.github.com\u003e","sha":"2ad3dc8ce960e426007190c903c2df4f4eb4a742"},{"message":"Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android\n\ndocs(fsa): FSA-00B fork baseline build \u0026 verification report","sha":"f8212252540fe104663e935d4c582e9ad499ec89"}],"files":[{"additions":463,"deletions":0,"filename":"docs/fsa/FSA-00B-fork-baseline-build-verification.md","status":"added"}],"merge_base":"a7121c11c6e11d9c6ba34518784156fba1701e29","status":"ahead","total_commits":2}
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:21:01.527231+00:00
+$ gh pr list --repo Drmusab/flashcard-Android --state all --limit 100 --json number,title,headRefName,baseRefName,url
+[{"baseRefName":"main","headRefName":"arena/e0f873f3-flashcard-android","number":1,"title":"docs(fsa): FSA-00B fork baseline build & verification report","url":"https://github.com/Drmusab/flashcard-Android/pull/1"}]
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:21:01.959433+00:00
+$ gh issue list --repo Drmusab/flashcard-Android --state all --search 'FSA-00A' --json number,title,url
+the 'Drmusab/flashcard-Android' repository has disabled issues
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:21:02.412867+00:00
+$ gh run list --repo Drmusab/flashcard-Android --commit f8212252540fe104663e935d4c582e9ad499ec89 --limit 30 --json databaseId,workflowName,status,conclusion,headSha,url
+unknown flag: --commit
+
+Usage:  gh run list [flags]
+
+Flags:
+  -b, --branch string     Filter runs by branch
+  -q, --jq expression     Filter JSON output using a jq expression
+      --json fields       Output JSON with the specified fields
+  -L, --limit int         Maximum number of runs to fetch (default 20)
+  -t, --template string   Format JSON output using a Go template; see "gh help formatting"
+  -u, --user string       Filter runs by user who triggered the run
+  -w, --workflow string   Filter runs by workflow
+  
+
+EXIT_CODE=1

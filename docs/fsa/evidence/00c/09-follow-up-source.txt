@@ -1,0 +1,166 @@
+
+UTC: 2026-10-25T22:22:40.217194+00:00
+$ nl -ba AnkiDroid/src/main/java/com/ichi2/anki/scheduling/Fsrs.kt
+     1	// SPDX-License-Identifier: GPL-3.0-or-later
+     2	
+     3	package com.ichi2.anki.scheduling
+     4	
+     5	import net.ankiweb.rsdroid.BuildConfig as BackendBuildConfig
+     6	
+     7	/**
+     8	 * Functionality for [FSRS](https://github.com/open-spaced-repetition/)
+     9	 */
+    10	object Fsrs {
+    11	    val version = FsrsVersion(BackendBuildConfig.FSRS_VERSION)
+    12	
+    13	    /**
+    14	     * A user-facing string for the FSRS version.
+    15	     *
+    16	     * The underlying library version is not typically known to Anki users
+    17	     *
+    18	     * `null` is unexpected
+    19	     */
+    20	    val displayVersion: String?
+    21	        get() = version.displayString
+    22	}
+    23	
+    24	@JvmInline
+    25	value class FsrsVersion(
+    26	    val libraryVersion: String,
+    27	) {
+    28	    val displayString: String? get() =
+    29	        when (libraryVersion) {
+    30	            "0.6.4" -> "FSRS 4.5"
+    31	            "1.4.3", "2.0.3" -> "FSRS 5"
+    32	            "4.1.1", "5.1.0", "5.2.0", "6.3.0", "6.6.2" -> "FSRS 6"
+    33	            else -> null
+    34	        }
+    35	}
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.220025+00:00
+$ nl -ba anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt | sed -n '180,197p'
+   180	     * @throws StorageNotConfiguredException if no collection path has been set
+   181	     * ([PREF_COLLECTION_PATH] is unset): a default is chosen during startup by
+   182	     * `ensureCollectionPathSet` (app module)
+   183	     * @throws SystemStorageException if startup failed to choose a default collection path
+   184	     * ([systemStorageFailure])
+   185	     */
+   186	    fun getCurrentAnkiDroidDirectory(preferences: SharedPreferences): File {
+   187	        val collectionDirectory = preferences.getString(PREF_COLLECTION_PATH, null)
+   188	        return if (isInstrumentationTest) {
+   189	            // create an "androidTest" directory inside the current collection directory which contains the test data
+   190	            // "/AnkiDroid/androidTest" would be a new collection path
+   191	            File(collectionDirectory ?: throw collectionPathUnset(), "androidTest")
+   192	        } else {
+   193	            ankiDroidDirectoryOverride
+   194	                ?: File(collectionDirectory ?: throw collectionPathUnset())
+   195	        }
+   196	    }
+   197	
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.223451+00:00
+$ nl -ba .github/workflows/README.md | sed -n '8,24p'
+     8	
+     9	We run checks on all Pull Requests (PRs). We recommend that when appropriate, developers run the 
+    10	following scripts before submitting a PR.
+    11	
+    12	Alternately, you may run the actions on your fork of `Anki-Android`.
+    13	
+    14	| **Job**                                                                                                    | **Command**                                                          | **Comments**                                                                                                                                             |
+    15	|------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+    16	| [Lint (Kotlin)](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/lint.yml)            | `./gradlew lintAll ktLintCheck lint-rules:test --daemon`             | Android lint rules, formatting and tests for lint rules                                                                                                  |
+    17	| [Lint (JavaScript)](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/lint.yml)        | See script                                                           | Prettier, lint & code formatting                                                                                                                         |
+    18	| [Build Logic](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/lint.yml)              | `./gradlew -p buildSrc test` and `tools/validate-version-code.sh`    | Version-code bump checks                                                                                                                                 |
+    19	| [Unit Tests](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/tests_unit.yml)         | `./gradlew jacocoUnitTestReport --daemon`                            | Unit tests for the Android Project                                                                                                                       |
+    20	| [Emulator Tests](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/tests_emulator.yml) | `TEST_RELEASE_BUILD=true ./gradlew jacocoAndroidTestReport --daemon` | Emulator tests for the Android Project.<br/>CI runs `bash .github/disable_art_metrics.sh` and `adb shell settings put global hide_error_dialogs 1` first.<br/>Then runs `ReleaseSmokeTest` from `:baselineprofile` with `TEST_RELEASE_BUILD=false` |
+    21	| [CodeQL](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/codeql.yml)                 | N/A                                                                  | GitHub-only check.<br/>[Docs](https://codeql.github.com/)                                                                                                |
+    22	
+    23	## Other Workflows
+    24	
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.226620+00:00
+$ nl -ba buildSrc/src/main/kotlin/ankidroid.jvm.library.gradle.kts | sed -n '24,52p'
+    24	// Skip self-application for `:lint-rules`, which provides the checks.
+    25	if (path != ":lint-rules") {
+    26	    pluginManager.apply("com.android.lint")
+    27	    dependencies {
+    28	        "lintChecks"(project(":lint-rules"))
+    29	    }
+    30	    configure<com.android.build.api.dsl.Lint> {
+    31	        // Only relevant to lint implementations; :lint-rules is excluded above.
+    32	        disable += "UElementAsPsi"
+    33	
+    34	        // Workaround for internal lint rule: `CannotEnableHidden`
+    35	        // we want to enable this in `:AnkiDroid` with `checkDependencies = true`
+    36	
+    37	        // > Any issues that are specifically disabled in a library cannot be
+    38	        // > re-enabled in a dependent project. To fix this you need to also
+    39	        // > enable the issue in the library project.
+    40	        //
+    41	        // > (This also applies for issues that are off by default; they cannot
+    42	        // > just be enabled in a dependent project; they must also be enabled
+    43	        // > in all the libraries the project depends on.)
+    44	        enable += "LogConditional"
+    45	
+    46	        // WrongThread is off in this non-Android lint client. lint-release.xml sets it
+    47	        // informational, and checkDependencies rejects raising a disabled library issue.
+    48	        // Informational both enables it and keeps :common:lint from failing the build.
+    49	        // ThreadConstraint is already enabled here.
+    50	        informational += "WrongThread"
+    51	    }
+    52	}
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.229953+00:00
+$ git grep -n -E 'fullBackupContent|dataExtractionRules|backupAgent|restoreAnyVersion' HEAD -- '*AndroidManifest.xml'
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:22:40.237793+00:00
+$ gh release list --repo Drmusab/flashcard-Android --limit 30
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.701068+00:00
+$ git ls-tree -r --name-only a7121c11c6e11d9c6ba34518784156fba1701e29 | grep -i -E 'fsa|00a|discovery'
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:22:40.709127+00:00
+$ git grep -n -E 'collectionPath|backupFolder|backupDir|backupPath|restoreBackup' HEAD -- 'AnkiDroid/src/main/*' 'anki-common/src/main/*' | head -60
+HEAD:AnkiDroid/src/main/generated/baselineProfiles/baseline-prof.txt:7797:SPLcom/ichi2/anki/CollectionManager;->collectionPathInValidFolder()Lcom/ichi2/anki/libanki/CollectionFiles;
+HEAD:AnkiDroid/src/main/java/com/ichi2/anki/DeckPicker.kt:2069:                        CollectionManager.collectionPathInValidFolder().requireDiskBasedCollection().colDb
+HEAD:AnkiDroid/src/main/java/com/ichi2/anki/multiprofile/ProfileManager.kt:465:     * TODO: extract a `ProfilePreferences` accessor (e.g. `prefsForProfile(profileId).collectionPath`)
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/CollectionManager.kt:414:                val collectionPath = collectionFilesTestOverride ?: collectionPathInValidFolder()
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/CollectionManager.kt:417:                        collectionFiles = collectionPath,
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/CollectionManager.kt:439:    fun collectionPathInValidFolder(): CollectionFiles {
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/CollectionManager.kt:568:                importCollectionPackage(backend!!, collectionPathInValidFolder(), colpkgPath)
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt:191:            File(collectionDirectory ?: throw collectionPathUnset(), "androidTest")
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt:194:                ?: File(collectionDirectory ?: throw collectionPathUnset())
+HEAD:anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt:203:    private fun collectionPathUnset(): Exception = systemStorageFailure ?: StorageNotConfiguredException()
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.759647+00:00
+$ git grep -n -i -E 'acra/report|analytics' HEAD -- AnkiDroid/build.gradle.kts
+HEAD:AnkiDroid/build.gradle.kts:103:        buildConfigField("String", "ACRA_URL", "\"https://ankidroid.org/acra/report\"")
+HEAD:AnkiDroid/build.gradle.kts:141:        // (ANALYTICS_API_KEY) or the ANALYTICS_API_KEY env var; falls back to
+HEAD:AnkiDroid/build.gradle.kts:144:        // The dummy key is rejected by GA's ingest, so analytics requests from
+HEAD:AnkiDroid/build.gradle.kts:150:        // https://developers.google.com/analytics/devguides/collection/protocol/ga4/sending-events#api_secret
+HEAD:AnkiDroid/build.gradle.kts:162:            properties.getProperty("ANALYTICS_API_KEY")?.takeIf { it.isNotEmpty() }
+HEAD:AnkiDroid/build.gradle.kts:163:                ?: System.getenv("ANALYTICS_API_KEY")?.takeIf { it.isNotEmpty() } ?: "DUMMY_API_XXX"
+HEAD:AnkiDroid/build.gradle.kts:755:    implementation(libs.google.analytics.kt)
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:40.763980+00:00
+$ git diff --exit-code HEAD -- .
+
+EXIT_CODE=0

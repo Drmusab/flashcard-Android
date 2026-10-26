@@ -1,0 +1,81 @@
+FSA-00C independent execution transcript
+CWD: /home/user/flashcard-Android
+
+UTC: 2026-10-25T22:20:59.092284+00:00
+$ git status --short
+?? docs/fsa/evidence/
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.112285+00:00
+$ git rev-parse HEAD
+f8212252540fe104663e935d4c582e9ad499ec89
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.115473+00:00
+$ git branch --show-current
+arena/8214a12a-flashcard-android
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.118528+00:00
+$ git branch -a
+* arena/8214a12a-flashcard-android
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.121889+00:00
+$ git remote -v
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.125076+00:00
+$ git log -10 --oneline
+f821225 Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.129076+00:00
+$ git rev-parse --is-shallow-repository
+true
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.134275+00:00
+$ git cat-file -t a7121c11c6e11d9c6ba34518784156fba1701e29
+fatal: git cat-file: could not get object info
+
+EXIT_CODE=128
+
+UTC: 2026-10-25T22:20:59.138091+00:00
+$ git worktree list
+/home/user/flashcard-Android  f821225 [arena/8214a12a-flashcard-android]
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.141155+00:00
+$ git replace -l
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.143954+00:00
+$ test ! -f .git/info/grafts
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.145467+00:00
+$ git ls-files | grep -Ei '(fsa|00a|discovery|architecture|AGENTS\.md)'
+docs/fsa/FSA-00B-fork-baseline-build-verification.md
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.151231+00:00
+$ find /home/user -maxdepth 4 -type f \( -iname '*00A*' -o -iname '*discovery*' \)
+
+EXIT_CODE=0

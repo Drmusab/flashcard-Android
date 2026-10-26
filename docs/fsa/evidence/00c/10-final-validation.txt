@@ -1,0 +1,119 @@
+
+UTC: 2026-10-25T22:27:18.831628+00:00
+$ python3 - <<'CHECK'
+from pathlib import Path
+import re, subprocess, tomllib
+root=Path('.')
+p=Path('docs/fsa')
+expected={
+'FSA-00C-ENTRY-AND-EVIDENCE.md','FSA-00C-BUILD-VERIFICATION.md',
+'FSA-00C-DEVICE-VERIFICATION.md','FSA-00C-ARCHITECTURE-AUDIT.md',
+'FSA-00C-RESIDUAL-RISKS.md','FSA-00-FINAL-LOCK.md','FSA-01-HANDOFF.md'}
+for name in expected:
+    text=(p/name).read_text()
+    assert 'f8212252540fe104663e935d4c582e9ad499ec89' in text,name
+    for link in re.findall(r'\]\(([^)]+)\)',text):
+        if '://' not in link:
+            target=(p/link.split('#')[0])
+            assert target.exists(), (name,link)
+final=(p/'FSA-00-FINAL-LOCK.md').read_text()
+for prefix,n in [('AUDIT-00C-',18),('VER-00C-',30)]:
+    ids=re.findall(r'\| ('+prefix+r'\d\d)\b',final)
+    assert ids == [f'{prefix}{i:02}' for i in range(1,n+1)], (prefix,ids)
+ver=[line for line in final.splitlines() if line.startswith('| VER-00C-')]
+assert sum('**PASS**' in line for line in ver)==12
+assert sum('**BLOCKED**' in line for line in ver)==18
+versions=tomllib.loads(Path('gradle/libs.versions.toml').read_text())['versions']
+for key,value in [('androidGradlePlugin','9.4.1'),('kotlin','2.4.20'),('compileSdk','37'),('compileSdkMinor','0'),('targetSdk','36'),('minSdk','24'),('apiMinSdk','16'),('ankiBackend','0.1.72-anki26.09.3')]:
+    assert versions[key]==value,(key,versions.get(key))
+old=Path('docs/fsa/FSA-00B-fork-baseline-build-verification.md')
+assert old.read_bytes()==subprocess.check_output(['git','show',f'HEAD:{old}'])
+subprocess.run(['git','diff','--exit-code','HEAD','--','.'],check=True)
+added=subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines()
+assert all(x.startswith('docs/fsa/') for x in added),added
+assert all(Path(x).name in expected or x.startswith('docs/fsa/evidence/00c/') for x in added),added
+for name in expected:
+    text=(p/name).read_text()
+    assert not any(line.rstrip()!=line for line in text.splitlines()),name
+print('PASS: seven audit documents; local file links; frozen SHA references; all 18 audit IDs and 30 verification IDs exactly once/in order.')
+print('PASS: verification tally 12 scoped PASS / 18 BLOCKED; catalog pins; historical FSA-00B unchanged; no tracked file changes; new files restricted to audit documentation/evidence; no trailing whitespace.')
+print('Documentation/source-consistency checks only, NOT Gradle tests or Android runtime verification.')
+CHECK
+PASS: seven audit documents; local file links; frozen SHA references; all 18 audit IDs and 30 verification IDs exactly once/in order.
+PASS: verification tally 12 scoped PASS / 18 BLOCKED; catalog pins; historical FSA-00B unchanged; no tracked file changes; new files restricted to audit documentation/evidence; no trailing whitespace.
+Documentation/source-consistency checks only, NOT Gradle tests or Android runtime verification.
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.932507+00:00
+$ git diff --check
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.942920+00:00
+$ git status --short
+?? docs/fsa/FSA-00-FINAL-LOCK.md
+?? docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+?? docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+?? docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+?? docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+?? docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+?? docs/fsa/FSA-01-HANDOFF.md
+?? docs/fsa/evidence/
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.963610+00:00
+$ git diff --name-status HEAD
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.973162+00:00
+$ git rev-parse HEAD
+f8212252540fe104663e935d4c582e9ad499ec89
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.976594+00:00
+$ git branch --show-current
+arena/8214a12a-flashcard-android
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.979852+00:00
+$ git diff --exit-code a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD -- . ':(exclude)docs/fsa/FSA-00B-fork-baseline-build-verification.md'
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.983480+00:00
+$ git diff --exit-code HEAD -- docs/fsa/FSA-00B-fork-baseline-build-verification.md
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:18.989018+00:00
+$ git ls-files --others --exclude-standard
+docs/fsa/FSA-00-FINAL-LOCK.md
+docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+docs/fsa/FSA-01-HANDOFF.md
+docs/fsa/evidence/00c/01-repository.txt
+docs/fsa/evidence/00c/02-environment.txt
+docs/fsa/evidence/00c/03-gradle-attempts.txt
+docs/fsa/evidence/00c/04-github.txt
+docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+docs/fsa/evidence/00c/06-network.txt
+docs/fsa/evidence/00c/07-integrity-and-scans.txt
+docs/fsa/evidence/00c/08-source-excerpts.txt
+docs/fsa/evidence/00c/09-follow-up-source.txt
+docs/fsa/evidence/00c/10-final-validation.txt
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:27:19.001586+00:00
+$ du -ch docs/fsa/FSA-00C-*.md docs/fsa/FSA-00-FINAL-LOCK.md docs/fsa/FSA-01-HANDOFF.md docs/fsa/evidence/00c/*.txt | tail -1
+236K	total
+
+EXIT_CODE=0
