@@ -1,0 +1,93 @@
+
+UTC: 2026-10-25T22:22:19.364753+00:00
+$ sha256sum gradle/wrapper/gradle-wrapper.properties gradle/wrapper/gradle-wrapper.jar gradle/libs.versions.toml gradle/gradle-daemon-jvm.properties gradle.properties settings.gradle.kts AnkiDroid/build.gradle.kts AnkiDroid/src/main/AndroidManifest.xml tools/fallback-release-keystore.jks
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.371627+00:00
+$ git grep -n -i -E 'PcAnki|AnkiConnect|RatingCommit|Study-Agent|StudyAgent|Remote.*(ReviewQueue|CardQueue)|BackendRegistry|CustomStudyAdapter' HEAD -- '*.kt' '*.kts' '*.java' '*.toml' '*.xml' '*.js' '*.ts' '*.py'
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:22:19.679580+00:00
+$ git ls-files '*Scheduler*' '*FSRS*' '*Fsrs*' '*fsrs*' '*lint*baseline*' '*verification-metadata*' '*lockfile*'
+AnkiDroid/src/main/java/com/ichi2/anki/dialogs/SchedulerUpgradeDialog.kt
+AnkiDroid/src/main/java/com/ichi2/anki/scheduling/Fsrs.kt
+AnkiDroid/src/main/java/com/ichi2/anki/servicelayer/SchedulerService.kt
+AnkiDroid/src/main/java/com/ichi2/anki/utils/ext/Scheduler.kt
+AnkiDroid/src/test/java/com/ichi2/anki/DeckPickerSchedulerUpgradeTest.kt
+AnkiDroid/src/test/java/com/ichi2/anki/scheduling/FsrsTest.kt
+anki-common/src/main/kotlin/com/ichi2/anki/common/utils/ext/Scheduler.kt
+libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt
+libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt
+libanki/src/test/java/com/ichi2/anki/libanki/SchedulerTest.kt
+widgets/src/main/java/com/ichi2/widget/WidgetNotificationScheduler.kt
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.686678+00:00
+$ git grep -n -E 'buildToolsVersion|dependencySubstitution|mavenLocal\(|repositoriesMode|local_backend|https?://' HEAD -- '*gradle.kts' | grep -E 'buildToolsVersion|dependencySubstitution|mavenLocal|repositoriesMode|local_backend|maven\(|url =|setUrl'
+HEAD:AnkiDroid/build.gradle.kts:28:    maven { url = uri("https://jitpack.io") }
+HEAD:AnkiDroid/build.gradle.kts:796:    if (localProperties["local_backend"] == "true") {
+HEAD:api/build.gradle.kts:65:                    url = "https://github.com/ankidroid/Anki-Android/tree/main/api"
+HEAD:api/build.gradle.kts:75:                        url = "https://github.com/ankidroid/Anki-Android"
+HEAD:settings.gradle.kts:21:    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+HEAD:settings.gradle.kts:25:        maven(url = "https://jitpack.io")
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.694405+00:00
+$ git grep -n -E 'FSRS|fsrs' HEAD -- libanki/src/main | head -65
+HEAD:libanki/src/main/java/com/ichi2/anki/libanki/Card.kt:17:private typealias FSRSMemoryState = anki.cards.FsrsMemoryState
+HEAD:libanki/src/main/java/com/ichi2/anki/libanki/Card.kt:99:    var memoryState: FSRSMemoryState? = null
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.699225+00:00
+$ rg -n 'checkCalling|PERMISSION|knownRogueClient' AnkiDroid/src/main/java/com/ichi2/anki/provider/CardContentProvider.kt
+184:        private val PERMISSION = FlashCardsContract.getPermission(BuildConfig.APPLICATION_ID)
+250:     * @see knownRogueClient
+256:     * @see knownRogueClient
+1489:            context!!.checkCallingOrSelfPermission(PERMISSION) == PackageManager.PERMISSION_GRANTED
+1491:            context!!.checkCallingPermission(PERMISSION) == PackageManager.PERMISSION_GRANTED
+1495:     * Calling package might be rogue if it has not declared #READ_WRITE_PERMISSION in its manifest */
+1496:    private fun knownRogueClient(): Boolean = !context!!.arePermissionsDefinedInManifest(callingPackage!!, PERMISSION)
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.704126+00:00
+$ rg -n 'isInstrumentationTest|testCollection|tmp|cacheDir|createTemp' anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt
+10:import com.ichi2.anki.common.utils.android.isInstrumentationTest
+188:        return if (isInstrumentationTest) {
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.708803+00:00
+$ rg -n 'robolectricSdkDownload|jacocoUnitTestReport|ktlintCheck|lintAll|buildSrc test|java-version|distribution:' .github/workflows/{lint,tests_unit,tests_emulator}.yml
+.github/workflows/tests_emulator.yml:149:          distribution: "jetbrains"
+.github/workflows/tests_emulator.yml:150:          java-version: "21"  # also change jitpack.yml
+.github/workflows/tests_unit.yml:155:          distribution: "jetbrains"
+.github/workflows/tests_unit.yml:156:          java-version: "21"  # also change jitpack.yml
+.github/workflows/tests_unit.yml:177:          command: ./gradlew robolectricSdkDownload --daemon
+.github/workflows/tests_unit.yml:181:        run: ./gradlew jacocoUnitTestReport --daemon
+.github/workflows/lint.yml:36:          distribution: "jetbrains"
+.github/workflows/lint.yml:37:          java-version: "21"
+.github/workflows/lint.yml:53:        run: ./gradlew -p buildSrc test --daemon
+.github/workflows/lint.yml:71:        # "lintAll" opts in all modules in 1 flavor to lint, pinning :AnkiDroid to lintFullDebug
+.github/workflows/lint.yml:73:        run: ./gradlew lintAll ktlintCheck lint-rules:test --daemon
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:22:19.715084+00:00
+$ find . -type f \( -name '*lint*baseline*.xml' -o -name '*.apk' -o -name 'TEST-*.xml' \)
+
+EXIT_CODE=0

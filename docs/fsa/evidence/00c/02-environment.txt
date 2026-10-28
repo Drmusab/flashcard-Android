@@ -1,0 +1,106 @@
+FSA-00C independent execution transcript
+CWD: /home/user/flashcard-Android
+
+UTC: 2026-10-25T22:20:59.156520+00:00
+$ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-10-25T22:20:59Z
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.159815+00:00
+$ uname -sm
+Linux x86_64
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.165766+00:00
+$ cat /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.168304+00:00
+$ nproc
+2
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.173802+00:00
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       270Mi       3.5Gi       1.0Mi       256Mi       3.6Gi
+Swap:             0B          0B          0B
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.183228+00:00
+$ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        21G  937M   20G   5% /
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.188499+00:00
+$ cat /sys/fs/cgroup/memory.max /sys/fs/cgroup/cpu.max
+cat: /sys/fs/cgroup/memory.max: No such file or directory
+cat: /sys/fs/cgroup/cpu.max: No such file or directory
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.191190+00:00
+$ printf 'JAVA_HOME=%s\nANDROID_HOME=%s\nANDROID_SDK_ROOT=%s\nGRADLE_USER_HOME=%s\n' "$JAVA_HOME" "$ANDROID_HOME" "$ANDROID_SDK_ROOT" "$GRADLE_USER_HOME"
+JAVA_HOME=
+ANDROID_HOME=
+ANDROID_SDK_ROOT=
+GRADLE_USER_HOME=
+
+EXIT_CODE=0
+
+UTC: 2026-10-25T22:20:59.192848+00:00
+$ command -v java javac gradle adb sdkmanager emulator apkanalyzer aapt2 apksigner
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.194532+00:00
+$ ls -ld /usr/lib/jvm /opt/android-sdk /opt/android /home/user/Android/Sdk /home/user/.android /home/user/.gradle local.properties /dev/kvm
+ls: cannot access '/usr/lib/jvm': No such file or directory
+ls: cannot access '/opt/android-sdk': No such file or directory
+ls: cannot access '/opt/android': No such file or directory
+ls: cannot access '/home/user/Android/Sdk': No such file or directory
+ls: cannot access '/home/user/.android': No such file or directory
+ls: cannot access '/home/user/.gradle': No such file or directory
+ls: cannot access 'local.properties': No such file or directory
+ls: cannot access '/dev/kvm': No such file or directory
+
+EXIT_CODE=2
+
+UTC: 2026-10-25T22:20:59.198341+00:00
+$ find /opt /usr/lib/jvm /home/user -maxdepth 4 -type f \( -name java -o -name adb -o -name sdkmanager -o -name emulator \)
+find: ‘/usr/lib/jvm’: No such file or directory
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.203359+00:00
+$ java -version
+/bin/bash: line 1: java: command not found
+
+EXIT_CODE=127
+
+UTC: 2026-10-25T22:20:59.205062+00:00
+$ adb devices -l
+/bin/bash: line 1: adb: command not found
+
+EXIT_CODE=127
+
+UTC: 2026-10-25T22:20:59.206611+00:00
+$ find . -type f \( -name '*.apk' -o -name 'TEST-*.xml' -o -name 'robolectric-deps.properties' \)
+
+EXIT_CODE=0

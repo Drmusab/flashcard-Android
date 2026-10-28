@@ -1,0 +1,79 @@
+FSA-00C independent execution transcript
+CWD: /home/user/flashcard-Android
+
+UTC: 2026-10-25T22:20:59.220083+00:00
+$ ./gradlew --version
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.224346+00:00
+$ ./gradlew robolectricSdkDownload
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.228360+00:00
+$ ./gradlew :AnkiDroid:assembleFullDebug
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.232398+00:00
+$ ./gradlew :AnkiDroid:testFullDebugUnitTest
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.236410+00:00
+$ ./gradlew jacocoUnitTestReport
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.240397+00:00
+$ ./gradlew lintAll ktlintCheck lint-rules:test
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1
+
+UTC: 2026-10-25T22:20:59.244406+00:00
+$ ./gradlew -p buildSrc test
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+
+EXIT_CODE=1

@@ -1,0 +1,49 @@
+
+UTC: 2026-10-25T22:21:35.289890+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to services.gradle.org:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.380630+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://dl.google.com/android/repository/repository2-1.xml
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to dl.google.com:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.471490+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/9.4.1/gradle-9.4.1.pom
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to dl.google.com:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.547372+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://repo.maven.apache.org/maven2/io/github/david-allison/anki-android-backend/0.1.72-anki26.09.3/anki-android-backend-0.1.72-anki26.09.3.pom
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to repo.maven.apache.org:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.633891+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://plugins.gradle.org/m2/
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to plugins.gradle.org:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.686493+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://jitpack.io
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to jitpack.io:443 
+http_code=000
+
+EXIT_CODE=35
+
+UTC: 2026-10-25T22:21:35.747101+00:00
+$ curl -I --connect-timeout 4 --max-time 8 -sS -o /dev/null -w 'http_code=%{http_code}\n' https://api.foojay.io/disco/v3.0/ids/0d1a1acdc708062093673f65aa9aba4b/redirect
+curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to api.foojay.io:443 
+http_code=000
+
+EXIT_CODE=35
