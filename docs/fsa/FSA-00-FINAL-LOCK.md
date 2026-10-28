@@ -1,5 +1,7 @@
 # FSA-00C — Independent baseline audit and final gate decision
 
+> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+
 > **FSA-00: BLOCKED — NOT LOCKED.**
 > Source equivalence and source-level architecture checks pass. Mandatory build,
 > test, artifact, device and data-isolation evidence does not exist. FSA-00A

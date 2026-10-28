@@ -1,5 +1,7 @@
 # FSA-00C — Residual risks and blocker-resolution plan
 
+> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+
 **As of:** 2026-10-25 UTC, source `f8212252540fe104663e935d4c582e9ad499ec89`.
 Owners below are required roles, not claims of assignment/acceptance. Evidence IDs resolve in the [entry report](FSA-00C-ENTRY-AND-EVIDENCE.md).
 

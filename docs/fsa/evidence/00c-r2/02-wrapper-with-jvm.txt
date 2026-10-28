@@ -1,0 +1,337 @@
+# FSA-00C R2 — supplementary deep probe with available Temurin 21.0.8 runtime
+# NOTE: JVM is Eclipse Adoptium Temurin 21.0.8 (jdk4py 21.0.8.2, PyPI), NOT the pinned JetBrains JBR 21 daemon. No project file modified.
+# Date: 2026-10-28T12:04:24Z
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:04:24Z
+LABEL: java -version
+COMMAND: java -version 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode)
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:04:24Z
+LABEL: ./gradlew --version
+COMMAND: ./gradlew --version 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:10Z
+LABEL: ./gradlew robolectricSdkDownload
+COMMAND: ./gradlew robolectricSdkDownload 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:18Z
+LABEL: ./gradlew :AnkiDroid:assembleFullDebug
+COMMAND: ./gradlew :AnkiDroid:assembleFullDebug 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:25Z
+LABEL: ./gradlew :AnkiDroid:testFullDebugUnitTest
+COMMAND: ./gradlew :AnkiDroid:testFullDebugUnitTest 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:33Z
+LABEL: ./gradlew jacocoUnitTestReport
+COMMAND: ./gradlew jacocoUnitTestReport 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:40Z
+LABEL: ./gradlew lintAll ktlintCheck lint-rules:test
+COMMAND: ./gradlew lintAll ktlintCheck lint-rules:test 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:05:48Z
+LABEL: ./gradlew -p buildSrc test
+COMMAND: ./gradlew -p buildSrc test 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: /home/user/.audit-tools/jdk/jdk4py/java-runtime
+------------------------------------------------------------------------
+Fetching distribution (retrying 3 times, with an initial back off of 1000 ms).
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 1/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 2/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 3/4 failed. Reason: Remote host terminated the handshake
+Downloading https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+
+Attempt 4/4 failed. Reason: Remote host terminated the handshake
+Exception in thread "main" javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+	at java.base/sun.security.ssl.SSLSocketImpl.handleEOF(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.base/java.net.HttpURLConnection.getResponseCode(Unknown Source)
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(Unknown Source)
+	at org.gradle.wrapper.Download.download(SourceFile:1)
+	at org.gradle.wrapper.Install.forceFetch(SourceFile)
+	at org.gradle.wrapper.Install.lambda$createDist$0(SourceFile:9)
+	at org.gradle.wrapper.Install.createDist(SourceFile:24)
+	at org.gradle.wrapper.GradleWrapperMain.lambda$prepareWrapper$0(SourceFile:2)
+	at org.gradle.wrapper.GradleWrapperMain.main(SourceFile:2)
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+EXIT_CODE: 1
+

@@ -1,0 +1,806 @@
+FSA-00C R2 — independent source audit at HEAD 99d339e48c93d7b9c63113cb702574981e5cff30
+Generated: 2026-10-28T12:13:19Z
+All excerpts read directly from the working tree (production tree identical to reference a7121c11). Public fallback password literals are redacted; see source lines for configuration.
+
+------------------------------------------------------------------------
+LABEL: Reviewer.kt answerCardInner (native commit under undoableOp)
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt  LINES: 1575-1608
+------------------------------------------------------------------------
+  1575 |     /**
+  1576 |      * Answer the current card, update the scheduler and checks if the timebox limit has been reached
+  1577 |      * and, if so, displays a dialog to the user
+  1578 |      * @param rating The user's rating for the card
+  1579 |      */
+  1580 |     override suspend fun answerCardInner(rating: Rating) {
+  1581 |         val state = queueState!!
+  1582 |         val cardId = currentCard!!.id
+  1583 |         Timber.d("answerCardInner: $cardId $rating")
+  1584 |         var wasLeech = false
+  1585 |         undoableOp(this) {
+  1586 |             sched.answerCard(state, rating).also {
+  1587 |                 wasLeech = sched.stateIsLeech(state.states.again)
+  1588 |             }
+  1589 |         }.also {
+  1590 |             previousCardId = cardId
+  1591 |             if (rating == Rating.AGAIN && wasLeech) {
+  1592 |                 state.topCard.load(getColUnsafe)
+  1593 |                 val leechMessage: String =
+  1594 |                     if (state.topCard.queue.buriedOrSuspended()) {
+  1595 |                         resources.getString(CommonString.leech_suspend_notification)
+  1596 |                     } else {
+  1597 |                         resources.getString(CommonString.leech_notification)
+  1598 |                     }
+  1599 |                 showSnackbar(leechMessage, Snackbar.LENGTH_SHORT)
+  1600 |             }
+  1601 |         }
+  1602 | 
+  1603 |         // showing the timebox reached dialog if the timebox is reached
+  1604 |         val timebox = withCol { timeboxReached() }
+  1605 |         if (timebox != null) {
+  1606 |             dealWithTimeBox(timebox)
+  1607 |         }
+  1608 |     }
+------------------------------------------------------------------------
+LABEL: AbstractFlashcardViewer.kt answerCard / legacy base implementation
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/AbstractFlashcardViewer.kt  LINES: 862-892
+------------------------------------------------------------------------
+   862 |     }
+   863 | 
+   864 |     open fun answerCard(rating: Rating) =
+   865 |         preventSimultaneousExecutions(ANSWER_CARD) {
+   866 |             launchCatchingTask {
+   867 |                 if (inAnswer) {
+   868 |                     return@launchCatchingTask
+   869 |                 }
+   870 |                 isSelecting = false
+   871 |                 if (previousAnswerIndicator == null) {
+   872 |                     // workaround for a broken ReviewerKeyboardInputTest
+   873 |                     return@launchCatchingTask
+   874 |                 }
+   875 |                 // Temporarily sets the answer indicator dots appearing below the toolbar
+   876 |                 previousAnswerIndicator?.displayAnswerIndicator(rating)
+   877 |                 stopCardMediaPlayer()
+   878 |                 currentEase = rating
+   879 | 
+   880 |                 answerCardInner(rating)
+   881 |                 updateCardAndRedraw()
+   882 |             }
+   883 |         }
+   884 | 
+   885 |     open suspend fun answerCardInner(rating: Rating) {
+   886 |         // Legacy tests assume they can call answerCard() even outside of Reviewer
+   887 |         withCol {
+   888 |             sched.answerCard(currentCard!!, rating)
+   889 |         }
+   890 |     }
+   891 | 
+   892 |     // Set the content view to the one provided and initialize accessors.
+------------------------------------------------------------------------
+LABEL: ReviewerViewModel.kt answerCard entry / action serialization
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt  LINES: 188-205
+------------------------------------------------------------------------
+   188 |     fun onShowAnswer() {
+   189 |         executeAction(ViewerAction.SHOW_ANSWER)
+   190 |     }
+   191 | 
+   192 |     fun answerCard(rating: Rating) {
+   193 |         val action =
+   194 |             when (rating) {
+   195 |                 Rating.AGAIN -> ViewerAction.ANSWER_AGAIN
+   196 |                 Rating.HARD -> ViewerAction.ANSWER_HARD
+   197 |                 Rating.GOOD -> ViewerAction.ANSWER_GOOD
+   198 |                 Rating.EASY -> ViewerAction.ANSWER_EASY
+   199 |                 Rating.UNRECOGNIZED -> return
+   200 |             }
+   201 |         executeAction(action)
+   202 |     }
+   203 | 
+   204 |     suspend fun getCardId() = currentCard.await().id
+   205 | 
+------------------------------------------------------------------------
+LABEL: ReviewerViewModel.kt answerCardInternal (single native commit)
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt  LINES: 527-552
+------------------------------------------------------------------------
+   527 |     private suspend fun answerCardInternal(rating: Rating) {
+   528 |         Timber.v("ReviewerViewModel::answerCard")
+   529 |         mutationSignal.await()
+   530 |         val state = queueState.await() ?: return
+   531 |         val card = currentCard.await()
+   532 |         val answer =
+   533 |             withCol {
+   534 |                 sched.answerCard(
+   535 |                     card = card,
+   536 |                     states = state.states,
+   537 |                     rating,
+   538 |                 )
+   539 |             }
+   540 | 
+   541 |         undoableOp(handler = this) { sched.answerCard(answer) }
+   542 |         answerFeedbackFlow.emit(rating)
+   543 |         savedStateHandle[KEY_PREVIOUS_CARD_ID] = card.id
+   544 | 
+   545 |         val wasLeech = withCol { sched.stateIsLeech(answer.newState) }
+   546 |         if (wasLeech) {
+   547 |             withCol { card.load(this) }
+   548 |             val isSuspended = card.queue.code < 0
+   549 |             onLeech(isSuspended)
+   550 |         }
+   551 |         updateCurrentCard()
+   552 |     }
+------------------------------------------------------------------------
+LABEL: ReviewerViewModel.kt undo / previous-card state
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt  LINES: 395-410
+------------------------------------------------------------------------
+   395 |         }
+   396 |         actionFeedbackFlow.emit(TR.studyingNoteSuspended())
+   397 |         updateCurrentCard()
+   398 |     }
+   399 | 
+   400 |     private suspend fun undo() {
+   401 |         Timber.v("ReviewerViewModel::undo")
+   402 |         actionFeedbackFlow.emit(tryUndo())
+   403 |     }
+   404 | 
+   405 |     private suspend fun redo() {
+   406 |         Timber.v("ReviewerViewModel::redo")
+   407 |         actionFeedbackFlow.emit(tryRedo())
+   408 |     }
+   409 | 
+   410 |     private suspend fun userAction(
+------------------------------------------------------------------------
+LABEL: utils/ext/Scheduler.kt (answer builder, not a backend commit)
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/utils/ext/Scheduler.kt  LINES: 1-30
+------------------------------------------------------------------------
+     1 | // SPDX-License-Identifier: GPL-3.0-or-later
+     2 | 
+     3 | package com.ichi2.anki.utils.ext
+     4 | 
+     5 | import anki.scheduler.CardAnswer
+     6 | import anki.scheduler.CardAnswer.Rating
+     7 | import anki.scheduler.SchedulingStates
+     8 | import com.ichi2.anki.libanki.Card
+     9 | import com.ichi2.anki.libanki.sched.Scheduler
+    10 | 
+    11 | fun Scheduler.answerCard(
+    12 |     card: Card,
+    13 |     states: SchedulingStates,
+    14 |     rating: Rating,
+    15 | ): CardAnswer =
+    16 |     buildAnswer(card, states, rating).also {
+    17 |         numberOfAnswersRecorded += 1
+    18 |     }
+------------------------------------------------------------------------
+LABEL: libanki Scheduler.kt answerCard overloads -> col.backend
+FILE: libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt  LINES: 126-175
+------------------------------------------------------------------------
+   126 | 
+   127 |     private val queuedCards: QueuedCards
+   128 |         get() = col.backend.getQueuedCards(fetchLimit = 1, intradayLearningOnly = false)
+   129 | 
+   130 |     open fun answerCard(
+   131 |         info: CurrentQueueState,
+   132 |         rating: Rating,
+   133 |     ): OpChanges =
+   134 |         col.backend.answerCard(buildAnswer(info.topCard, info.states, rating)).also {
+   135 |             numberOfAnswersRecorded += 1
+   136 |         }
+   137 | 
+   138 |     /** Legacy path, used by tests. */
+   139 |     open fun answerCard(
+   140 |         card: Card,
+   141 |         rating: Rating,
+   142 |     ) {
+   143 |         val states = col.backend.getSchedulingStates(card.id)
+   144 |         col.backend.answerCard(
+   145 |             buildAnswer(card = card, states = states, rating = rating),
+   146 |         )
+   147 |         numberOfAnswersRecorded += 1
+   148 |         // tests assume the card was mutated
+   149 |         card.load(col)
+   150 |     }
+   151 | 
+   152 |     /** True if new state marks the card as a leech. */
+   153 |     @LibAnkiAlias("state_is_leech")
+   154 |     fun stateIsLeech(state: SchedulingState): Boolean = col.backend.stateIsLeech(state)
+   155 | 
+   156 |     fun buildAnswer(
+   157 |         card: Card,
+   158 |         states: SchedulingStates,
+   159 |         rating: Rating,
+   160 |     ): CardAnswer =
+   161 |         cardAnswer {
+   162 |             cardId = card.id
+   163 |             currentState = states.current
+   164 |             newState = stateFromEase(states, rating)
+   165 |             this.rating = rating
+   166 |             answeredAtMillis = time.intTimeMS()
+   167 |             millisecondsTaken = card.timeTaken(col)
+   168 |         }
+   169 | 
+   170 |     /** Update card to provided state, and remove it from queue. */
+   171 |     @LibAnkiAlias("answer_card")
+   172 |     fun answerCard(input: CardAnswer): OpChanges = col.backend.answerCard(input)
+   173 | 
+   174 |     /**
+   175 |      * @return Number of new, rev and lrn card to review in selected deck. Sum of elements of counts.
+------------------------------------------------------------------------
+LABEL: anki-common undoableOp / change notification
+FILE: anki-common/src/main/kotlin/com/ichi2/anki/observability/OpChangesNotifier.kt  LINES: 1-45
+------------------------------------------------------------------------
+     1 | // SPDX-License-Identifier: GPL-3.0-or-later
+     2 | // SPDX-FileCopyrightText: Copyright (c) 2022 Ankitects Pty Ltd <http://apps.ankiweb.net>
+     3 | 
+     4 | package com.ichi2.anki.observability
+     5 | 
+     6 | import com.ichi2.anki.CollectionManager.withCol
+     7 | import com.ichi2.anki.libanki.Collection
+     8 | import kotlinx.coroutines.Dispatchers
+     9 | import kotlinx.coroutines.withContext
+    10 | 
+    11 | /**
+    12 |  * Wraps a routine that returns OpChanges* or similar undo info,
+    13 |  * notifying [ChangeManager] subscribers of the changes.
+    14 |  *
+    15 |  * **[block] must return an OpChanges subtype as its last expression.**
+    16 |  * [T] is inferred from [block]'s return type. If the last expression returns `Unit`
+    17 |  * (e.g. a `Timber` call), [ChangeManager.notifySubscribers] throws
+    18 |  * "unhandled change type of class 'class kotlin.Unit'" at runtime.
+    19 |  */
+    20 | suspend fun <T : Any> undoableOp(
+    21 |     handler: Any? = null,
+    22 |     block: Collection.() -> T,
+    23 | ): T =
+    24 |     withCol {
+    25 |         block()
+    26 |     }.also {
+    27 |         withContext(Dispatchers.Main) {
+    28 |             ChangeManager.notifySubscribers(it, handler)
+    29 |         }
+    30 |     }
+------------------------------------------------------------------------
+LABEL: Undo.kt native undo availability
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/Undo.kt  LINES: 1-70
+------------------------------------------------------------------------
+     1 | // SPDX-License-Identifier: GPL-3.0-or-later
+     2 | // SPDX-FileCopyrightText: Copyright (c) 2022 Ankitects Pty Ltd <https://apps.ankiweb.net>
+     3 | 
+     4 | package com.ichi2.anki
+     5 | 
+     6 | import androidx.fragment.app.Fragment
+     7 | import androidx.fragment.app.FragmentActivity
+     8 | import anki.collection.OpChangesAfterUndo
+     9 | import com.google.android.material.snackbar.Snackbar
+    10 | import com.ichi2.anki.CollectionManager.TR
+    11 | import com.ichi2.anki.libanki.redoAvailable
+    12 | import com.ichi2.anki.libanki.undoAvailable
+    13 | import com.ichi2.anki.observability.undoableOp
+    14 | import com.ichi2.anki.snackbar.showSnackbar
+    15 | 
+    16 | suspend fun tryUndo(): String {
+    17 |     val changes =
+    18 |         undoableOp {
+    19 |             if (undoAvailable()) {
+    20 |                 undo()
+    21 |             } else {
+    22 |                 OpChangesAfterUndo.getDefaultInstance()
+    23 |             }
+    24 |         }
+    25 |     return if (changes.operation.isEmpty()) {
+    26 |         TR.actionsNothingToUndo()
+    27 |     } else {
+    28 |         TR.undoActionUndone(changes.operation)
+    29 |     }
+    30 | }
+    31 | 
+    32 | suspend fun tryRedo(): String {
+    33 |     val changes =
+    34 |         undoableOp {
+    35 |             if (redoAvailable()) {
+    36 |                 redo()
+    37 |             } else {
+    38 |                 OpChangesAfterUndo.getDefaultInstance()
+    39 |             }
+    40 |         }
+    41 |     return if (changes.operation.isEmpty()) {
+    42 |         TR.actionsNothingToRedo()
+    43 |     } else {
+    44 |         TR.undoActionRedone(changes.operation)
+    45 |     }
+    46 | }
+    47 | 
+    48 | /** If there's an action pending in the review queue, undo it and show a snackbar */
+    49 | suspend fun FragmentActivity.undoAndShowSnackbar(duration: Int = Snackbar.LENGTH_SHORT) {
+    50 |     withProgress {
+    51 |         val text = tryUndo()
+    52 |         showSnackbar(text, duration)
+    53 |     }
+    54 | }
+    55 | 
+    56 | /** If there's an action pending in the review queue, undo it and show a snackbar */
+    57 | suspend fun Fragment.undoAndShowSnackbar(duration: Int = Snackbar.LENGTH_SHORT) {
+    58 |     requireActivity().undoAndShowSnackbar(duration)
+    59 | }
+    60 | 
+    61 | suspend fun FragmentActivity.redoAndShowSnackbar(duration: Int = Snackbar.LENGTH_SHORT) {
+    62 |     withProgress {
+    63 |         val text = tryRedo()
+    64 |         showSnackbar(text, duration)
+    65 |     }
+    66 | }
+------------------------------------------------------------------------
+LABEL: libanki Collection.kt undo delegation
+FILE: libanki/src/main/java/com/ichi2/anki/libanki/Collection.kt  LINES: 1262-1278
+------------------------------------------------------------------------
+  1262 |      *
+  1263 |      * Will throw if no undo operation is possible (due to legacy code
+  1264 |      * directly mutating the database).
+  1265 |      */
+  1266 |     @LibAnkiAlias("undo")
+  1267 |     fun undo(): OpChangesAfterUndo {
+  1268 |         val out = backend.undo()
+  1269 |         if (out.changes.notetype) {
+  1270 |             notetypes.clearCache()
+  1271 |         }
+  1272 |         return out
+  1273 |     }
+  1274 | 
+  1275 |     /**
+  1276 |      * Returns result of backend redo operation, or throws UndoEmpty.
+  1277 |      */
+  1278 |     @RustCleanup("document exception")
+------------------------------------------------------------------------
+LABEL: Reviewer.kt inherited native custom-scheduling JS hook
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt  LINES: 1660-1676
+------------------------------------------------------------------------
+  1660 |     private fun runStateMutationHook() {
+  1661 |         val state = queueState ?: return
+  1662 |         if (state.customSchedulingJs.isEmpty()) {
+  1663 |             statesMutated = true
+  1664 |             return
+  1665 |         }
+  1666 |         val key = customSchedulingKey
+  1667 |         val js = state.customSchedulingJs
+  1668 |         webView?.evaluateJavascript(
+  1669 |             """
+  1670 |         anki.mutateNextCardStates('$key', async (states, customData, ctx) => { $js })
+  1671 |             .catch(err => { console.log(err); window.location.href = "state-mutation-error:"; });
+  1672 | """,
+  1673 |         ) { result ->
+  1674 |             if ("null" == result) {
+  1675 |                 // eval failed, usually a syntax error
+  1676 |                 // Note, we get "null" (string) and not null
+
+=============== IDENTITY / SIGNING / STORAGE ===============
+------------------------------------------------------------------------
+LABEL: AnkiDroid/build.gradle.kts applicationId
+FILE: AnkiDroid/build.gradle.kts  LINES: 96-106
+------------------------------------------------------------------------
+    96 |     } else {
+    97 |         testBuildType = "debug"
+    98 |     }
+    99 | 
+   100 |     defaultConfig {
+   101 |         applicationId = "com.ichi2.anki"
+   102 |         buildConfigField("Boolean", "CI", (System.getenv("CI") == "true").toString())
+   103 |         buildConfigField("String", "ACRA_URL", "\"https://ankidroid.org/acra/report\"")
+   104 |         buildConfigField("String", "BACKEND_VERSION", "\"${libs.versions.ankiBackend.get()}\"")
+   105 |         buildConfigField("Boolean", "ENABLE_LEAK_CANARY", "false")
+   106 |         buildConfigField("String", "GIT_COMMIT_HASH", "\"${gitCommitHash.get()}\"")
+------------------------------------------------------------------------
+LABEL: AnkiDroid/build.gradle.kts versionCode/versionName
+FILE: AnkiDroid/build.gradle.kts  LINES: 130-138
+------------------------------------------------------------------------
+   130 |         //
+   131 |         // This ensures the correct ordering between the various types of releases (dev < alpha < beta < release) which is
+   132 |         // needed for upgrades to be offered correctly.
+   133 |         versionCode = 22600107
+   134 |         // If you change this to a new version, you probably also want to update .gradle/workflows/milestone.yml for the new version...
+   135 |         versionName = "2.26.0alpha7"
+   136 |         testApplicationId = "com.ichi2.anki.tests"
+   137 |         vectorDrawables.useSupportLibrary = true
+   138 |         testInstrumentationRunner = "com.ichi2.testutils.NewCollectionPathTestRunner"
+------------------------------------------------------------------------
+LABEL: AnkiDroid/build.gradle.kts release signing fallback
+FILE: AnkiDroid/build.gradle.kts  LINES: 167-182
+------------------------------------------------------------------------
+   167 |     signingConfigs {
+   168 |         create("release") {
+   169 |             val keystorePath = System.getenv("KEYSTOREPATH")
+   170 |             if (keystorePath != null && !keystorePath.trim().isEmpty()) {
+   171 |                 storeFile = file(keystorePath)
+   172 |                 storePassword = System.getenv("KEYSTOREPWD")?.takeIf { it.isNotEmpty() } ?: System.getenv("KSTOREPWD")
+   173 |                 keyAlias = System.getenv("KEYALIAS")
+   174 |                 keyPassword = System.getenv("KEYPWD")
+   175 |             } else {
+   176 |                 storeFile = file("$rootDir/tools/fallback-release-keystore.jks")
+   177 |                 storePassword = "<public fallback credential redacted>"
+   178 |                 keyAlias = "my-key"
+   179 |                 keyPassword = "<public fallback credential redacted>"
+   180 |             }
+   181 |         }
+   182 |     }
+------------------------------------------------------------------------
+LABEL: AnkiDroid/build.gradle.kts debug applicationIdSuffix
+FILE: AnkiDroid/build.gradle.kts  LINES: 183-192
+------------------------------------------------------------------------
+   183 |     buildTypes {
+   184 |         named("debug") {
+   185 |             versionNameSuffix = "-debug"
+   186 |             isDebuggable = true
+   187 |             applicationIdSuffix = ".debug"
+   188 |             splits.abi.isUniversalApk = true // Build universal APK for debug always
+   189 |             // Check Crash Reports page on developer wiki for info on ACRA testing
+   190 |             // buildConfigField "String", "ACRA_URL", '"https://918f7f55-f238-436c-b34f-c8b5f1331fe5-bluemix.cloudant.com/acra-ankidroid/_design/acra-storage/_update/report"'
+   191 |             if (project.rootProject.file("local.properties").exists()) {
+   192 |                 val localProperties = Properties()
+------------------------------------------------------------------------
+LABEL: api/build.gradle.kts ANKI_PACKAGE_NAME per build type
+FILE: api/build.gradle.kts  LINES: 18-32
+------------------------------------------------------------------------
+    18 | 
+    19 |     defaultConfig {
+    20 |         minSdk =
+    21 |             libs.versions.apiMinSdk
+    22 |                 .get()
+    23 |                 .toInt()
+    24 |         buildConfigField("String", "ANKI_PACKAGE_NAME", "\"com.ichi2.anki\"")
+    25 |     }
+    26 |     buildTypes {
+    27 |         debug {
+    28 |             buildConfigField("String", "ANKI_PACKAGE_NAME", "\"com.ichi2.anki.debug\"")
+    29 |         }
+    30 |         release {
+    31 |             isMinifyEnabled = false
+    32 |             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+------------------------------------------------------------------------
+LABEL: AndroidManifest.xml providers (authority placeholders)
+FILE: AnkiDroid/src/main/AndroidManifest.xml  LINES: 628-652
+------------------------------------------------------------------------
+   628 | 
+   629 | 
+   630 | 
+   631 |         <provider
+   632 |             android:name=".provider.CardContentProvider"
+   633 |             android:authorities="${applicationId}.flashcards"
+   634 |             android:enabled="true"
+   635 |             android:exported="true"
+   636 |             tools:ignore="ExportedContentProvider"
+   637 |             >
+   638 |             <meta-data android:name="com.ichi2.anki.provider.spec" android:value="2" />
+   639 |         </provider>
+   640 |         <provider
+   641 |             android:name="androidx.core.content.FileProvider"
+   642 |             android:authorities="${applicationId}.apkgfileprovider"
+   643 |             android:grantUriPermissions="true"
+   644 |             android:exported="false"
+   645 |             >
+   646 |             <meta-data
+   647 |                 android:name="android.support.FILE_PROVIDER_PATHS"
+   648 |                 android:resource="@xml/filepaths" />
+   649 |         </provider>
+   650 |     </application>
+   651 | 
+   652 | </manifest>
+------------------------------------------------------------------------
+LABEL: manifest: permissions / backup / deep links
+COMMAND: grep -n -i uses-permission\\\|allowBackup\\\|dataExtraction\\\|fullBackupContent\\\|anki://\\\|android:scheme\\\|permission.READ_WRITE AnkiDroid/src/main/AndroidManifest.xml 
+------------------------------------------------------------------------
+29:    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
+30:    <uses-permission android:name="android.permission.VIBRATE" />
+31:    <uses-permission android:name="android.permission.INTERNET" />
+32:    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33:    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+35:    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+36:    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+37:    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" android:maxSdkVersion="25" />
+38:    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+39:    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+40:    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+41:    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+43:    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+44:    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+45:    <permission android:name="${applicationId}.permission.READ_WRITE_DATABASE"
+67:            <data android:scheme="https" />
+72:            <data android:scheme="http" />
+98:        android:allowBackup="true"
+140:                    android:scheme="http"
+146:                    android:scheme="https"
+152:                    android:scheme="content"
+158:                    android:scheme="file"
+165:                    android:scheme="http"
+171:                    android:scheme="https"
+177:                    android:scheme="content"
+183:                    android:scheme="file"
+190:                    android:scheme="http"
+196:                    android:scheme="https"
+202:                    android:scheme="content"
+208:                    android:scheme="file"
+215:                    android:scheme="http"
+221:                    android:scheme="https"
+227:                    android:scheme="content"
+233:                    android:scheme="file"
+240:                    android:scheme="http"
+246:                    android:scheme="https"
+252:                    android:scheme="content"
+258:                    android:scheme="file"
+335:        <!-- `anki://x-callback-url/browser` deep link. -->
+345:                <data android:scheme="anki" android:host="x-callback-url" android:path="/browser"/>
+555:                <data android:scheme="file" />
+560:                <data android:scheme="file" />
+------------------------------------------------------------------------
+LABEL: filepaths.xml broad external-path grants
+FILE: AnkiDroid/src/main/res/xml/filepaths.xml  LINES: 1-12
+------------------------------------------------------------------------
+     1 | <?xml version="1.0" encoding="utf-8"?>
+     2 | <paths>
+     3 |     <external-cache-path path="export/" name="export-directory" />
+     4 |     <cache-path path="/" name="cache-directory" />
+     5 |     <external-path path="." name="photos" />
+     6 |     <external-files-path name="shared_decks" path="shared_decks" />
+     7 |     <external-cache-path name="temp-photos" path="temp-photos" />
+     8 | </paths>
+------------------------------------------------------------------------
+LABEL: InitialActivity.kt storage policy selection (PUBLIC preferred)
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/InitialActivity.kt  LINES: 246-320
+------------------------------------------------------------------------
+   246 | 
+   247 | /**
+   248 |  * The permissions required to access the folder where AnkiDroid data is saved.
+   249 |  *
+   250 |  * See [selectStoragePermissions].
+   251 |  */
+   252 | @Parcelize
+   253 | enum class StoragePermissionSet(
+   254 |     override val permissions: List<String>,
+   255 |     override val permissionsFragment: Class<out PermissionsFragment>,
+   256 | ) : PermissionSet {
+   257 |     LEGACY_ACCESS(Permissions.legacyStorageAccessStartupPermissions, PermissionsUntil29Fragment::class.java),
+   258 | 
+   259 |     @RequiresApi(Build.VERSION_CODES.R)
+   260 |     EXTERNAL_MANAGER(Permissions.externalManagerStorageAccessStartupPermissions, PermissionsStartingAt30Fragment::class.java),
+   261 | 
+   262 |     APP_PRIVATE(Permissions.appPrivateStartupPermissions, InternetPermissionFragment::class.java),
+   263 |     ;
+   264 | 
+   265 |     /** Who chooses the collection folder on a fresh install. */
+   266 |     @get:SuppressLint("NewApi") // a branch on EXTERNAL_MANAGER does not use its APIs
+   267 |     val storagePolicy: StoragePolicy
+   268 |         get() =
+   269 |             when (this) {
+   270 |                 LEGACY_ACCESS -> StoragePolicy.Fixed(AnkiDroidFolder.PUBLIC)
+   271 |                 EXTERNAL_MANAGER -> StoragePolicy.Fixed(AnkiDroidFolder.PUBLIC)
+   272 |                 APP_PRIVATE -> StoragePolicy.Fixed(AnkiDroidFolder.APP_PRIVATE)
+   273 |             }
+   274 | 
+   275 |     /** The folder to persist on startup, or `null` if the user has yet to choose. */
+   276 |     fun folderToPersist(context: Context): AnkiDroidFolder? = storagePolicy.folderToPersist(hasRequiredPermissions(context))
+   277 | }
+   278 | 
+   279 | /**
+   280 |  * Permissions a feature requests when it is first used. AnkiDroid runs without them.
+   281 |  *
+   282 |  * Optional: requested on a [PermissionsBottomSheet].
+   283 |  */
+   284 | @Parcelize
+   285 | enum class OptionalPermissionSet(
+   286 |     override val permissions: List<String>,
+   287 |     override val permissionsFragment: Class<out PermissionsFragment>,
+   288 | ) : PermissionSet {
+   289 |     /**
+   290 |      * For devices with API >= 33.
+   291 |      * @see NotificationsPermissionFragment
+   292 |      */
+   293 |     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+   294 |     NOTIFICATIONS(listOf(Permissions.notificationsPermission), NotificationsPermissionFragment::class.java),
+   295 | 
+   296 |     /**
+   297 |      * For devices with API < 33.
+   298 |      * There is no formal permission to request, but it is possible for the user to manually disable notifications in Settings.
+   299 |      * If they want notifications, we need to direct the user to the OS settings via the [LegacyNotificationsPermissionFragment] so they can re-enable them.
+   300 |      */
+   301 |     LEGACY_NOTIFICATIONS(listOf(LEGACY_POST_NOTIFICATIONS), LegacyNotificationsPermissionFragment::class.java),
+   302 | }
+   303 | 
+   304 | /**
+   305 |  * Returns the [StoragePermissionSet] required to access the folder where AnkiDroid data is saved.
+   306 |  * [AnkiDroidFolder.PUBLIC] is preferred, as it reduces risk of data loss.
+   307 |  * When impossible, we use the app-private directory.
+   308 |  * See https://github.com/ankidroid/Anki-Android/issues/5304 for more context.
+   309 |  */
+   310 | internal fun selectStoragePermissions(
+   311 |     canManageExternalStorage: Boolean,
+   312 |     currentFolderIsAccessibleAndLegacy: Boolean,
+   313 | ): StoragePermissionSet {
+   314 |     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q || currentFolderIsAccessibleAndLegacy) {
+   315 |         // match AnkiDroid behaviour before scoped storage - force the use of ~/AnkiDroid,
+   316 |         // since it's fast & safe up to & including 'Q'
+   317 |         // If a user upgrades their OS from Android 10 to 11 then storage speed is severely reduced
+   318 |         // and a user should use one of the below options to provide faster speeds
+   319 |         return StoragePermissionSet.LEGACY_ACCESS
+   320 |     }
+------------------------------------------------------------------------
+LABEL: SetupStorage.kt legacyAnkiDroidDirectory = shared external root
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/startup/SetupStorage.kt  LINES: 126-150
+------------------------------------------------------------------------
+   126 | @CheckResult
+   127 | fun getDefaultAnkiDroidDirectory(
+   128 |     context: Context,
+   129 |     directoryName: String = "AnkiDroid",
+   130 |     folder: AnkiDroidFolder = selectAnkiDroidFolder(context),
+   131 | ): File =
+   132 |     when (folder) {
+   133 |         AnkiDroidFolder.PUBLIC -> legacyAnkiDroidDirectory(directoryName)
+   134 |         AnkiDroidFolder.APP_PRIVATE -> File(getAppSpecificExternalAnkiDroidDirectory(context), directoryName)
+   135 |     }
+   136 | 
+   137 | /**
+   138 |  * Returns the absolute path to the AnkiDroid directory under the primary/shared external storage directory.
+   139 |  * This directory may be in emulated external storage, or can be an SD Card directory.
+   140 |  *
+   141 |  * @param directoryName  The folder name to use at the end of the returned path. Defaults to
+   142 |  *                       `"AnkiDroid"`. Non-default profiles can pass `ProfileId` here to get a
+   143 |  *                       profile-specific layout.
+   144 |  * @return Absolute path to the AnkiDroid directory in primary shared/external storage
+   145 |  */
+   146 | private fun legacyAnkiDroidDirectory(directoryName: String = "AnkiDroid"): File =
+   147 |     File(Environment.getExternalStorageDirectory(), directoryName)
+   148 | 
+   149 | /**
+   150 |  * Returns the absolute path to the AnkiDroid directory under the app-specific, primary/shared external storage
+------------------------------------------------------------------------
+LABEL: CollectionHelper.kt instrumentation path is nested under configured root
+FILE: anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt  LINES: 183-196
+------------------------------------------------------------------------
+   183 |      * @throws SystemStorageException if startup failed to choose a default collection path
+   184 |      * ([systemStorageFailure])
+   185 |      */
+   186 |     fun getCurrentAnkiDroidDirectory(preferences: SharedPreferences): File {
+   187 |         val collectionDirectory = preferences.getString(PREF_COLLECTION_PATH, null)
+   188 |         return if (isInstrumentationTest) {
+   189 |             // create an "androidTest" directory inside the current collection directory which contains the test data
+   190 |             // "/AnkiDroid/androidTest" would be a new collection path
+   191 |             File(collectionDirectory ?: throw collectionPathUnset(), "androidTest")
+   192 |         } else {
+   193 |             ankiDroidDirectoryOverride
+   194 |                 ?: File(collectionDirectory ?: throw collectionPathUnset())
+   195 |         }
+   196 |     }
+------------------------------------------------------------------------
+LABEL: instrumentation runner / TestingApplication
+COMMAND: grep -rn isInstrumentationTest\\\|NewCollectionPathTestRunner AnkiDroid/src/androidTest/java/com/ichi2/testutils/ common/android/src/main/java/com/ichi2/anki/common/utils/android/TestUtils.kt 
+------------------------------------------------------------------------
+AnkiDroid/src/androidTest/java/com/ichi2/testutils/NewCollectionPathTestRunner.kt:10: * A test runner which sets [com.ichi2.anki.common.utils.android.isInstrumentationTest] to true
+AnkiDroid/src/androidTest/java/com/ichi2/testutils/NewCollectionPathTestRunner.kt:14:class NewCollectionPathTestRunner : AndroidJUnitRunner() {
+AnkiDroid/src/androidTest/java/com/ichi2/testutils/TestingApplication.kt:7:import com.ichi2.anki.common.utils.android.isInstrumentationTest
+AnkiDroid/src/androidTest/java/com/ichi2/testutils/TestingApplication.kt:10: * An application which sets [com.ichi2.anki.common.utils.android.isInstrumentationTest] to true
+AnkiDroid/src/androidTest/java/com/ichi2/testutils/TestingApplication.kt:15:        isInstrumentationTest = true
+common/android/src/main/java/com/ichi2/anki/common/utils/android/TestUtils.kt:10:var isInstrumentationTest = false
+
+=============== CI / DOC CONTRADICTIONS / EXCLUSIONS ===============
+------------------------------------------------------------------------
+LABEL: CI: unit test canonical commands
+COMMAND: grep -n robolectricSdkDownload\\\|jacocoUnitTestReport\\\|testFullDebugUnitTest\\\|gradlew .github/workflows/tests_unit.yml 
+------------------------------------------------------------------------
+177:          command: ./gradlew robolectricSdkDownload --daemon
+181:        run: ./gradlew jacocoUnitTestReport --daemon
+191:        run: ./gradlew testFullDebugUnitTest -PemptyApplication --daemon
+199:          ./gradlew :AnkiDroid:testFullReleaseUnitTest
+228:        run: ./gradlew --stop
+------------------------------------------------------------------------
+LABEL: CI: lint / buildSrc canonical commands
+COMMAND: grep -n lintAll\\\|ktlintCheck\\\|ktLintCheck\\\|buildSrc\\\|gradlew .github/workflows/lint.yml 
+------------------------------------------------------------------------
+53:        run: ./gradlew -p buildSrc test --daemon
+68:          command: ./gradlew :AnkiDroid:compileFullDebugJavaWithJavac compileLint lint-rules:compileTestJava --daemon
+71:        # "lintAll" opts in all modules in 1 flavor to lint, pinning :AnkiDroid to lintFullDebug
+73:        run: ./gradlew lintAll ktlintCheck lint-rules:test --daemon
+85:        # Handled under the pre-commit hook: ./gradlew installGitHook
+------------------------------------------------------------------------
+LABEL: CI: setup-java distribution jetbrains 21
+COMMAND: grep -n distribution:\\\|java-version:\\\|jetbrains .github/workflows/tests_unit.yml .github/workflows/lint.yml jitpack.yml 
+------------------------------------------------------------------------
+.github/workflows/tests_unit.yml:155:          distribution: "jetbrains"
+.github/workflows/tests_unit.yml:156:          java-version: "21"  # also change jitpack.yml
+.github/workflows/lint.yml:36:          distribution: "jetbrains"
+.github/workflows/lint.yml:37:          java-version: "21"
+------------------------------------------------------------------------
+LABEL: DOC CONTRADICTION: workflows/README.md uses ktLintCheck
+COMMAND: grep -n ktlintCheck\\\|ktLintCheck\\\|lintAll .github/workflows/README.md 
+------------------------------------------------------------------------
+16:| [Lint (Kotlin)](https://github.com/ankidroid/Anki-Android/blob/main/.github/workflows/lint.yml)            | `./gradlew lintAll ktLintCheck lint-rules:test --daemon`             | Android lint rules, formatting and tests for lint rules                                                                                                  |
+------------------------------------------------------------------------
+LABEL: FSA-00B §5.2 historical wrong spelling
+COMMAND: grep -n ktLintCheck\\\|ktlintCheck docs/fsa/FSA-00B-fork-baseline-build-verification.md 
+------------------------------------------------------------------------
+189:| Lint + style | `./gradlew lintAll ktlintCheck lint-rules:test` | `.github/workflows/lint.yml:73`. ⚠️ Mission suggests `ktLintCheck` (capital L) — the real task is **`ktlintCheck`**; use the CI spelling |
+217:| `./gradlew lintAll ktLintCheck lint-rules:test` | 1 | ⛔ BLOCKED (B-01→B-03) |
+373:.\gradlew.bat lintAll ktlintCheck lint-rules:test         # note: ktlintCheck, not ktLintCheck
+404:   FullDebug unit tests, `lintAll ktlintCheck lint-rules:test`, `-p buildSrc test`)
+------------------------------------------------------------------------
+LABEL: exclusion scan: PC Anki / AnkiConnect / RatingCommit / Study-Agent / backend registry
+COMMAND: grep -rniE pcanki\|pc_anki\|ankiconnect\|ratingcommit\|study\[-_\ \]\?agent\|backendregistry\|pccustomstudy\|remote.\*review.\*queue --include=\*.kt --include=\*.java --include=\*.gradle.kts --include=\*.toml --include=\*.xml AnkiDroid libanki common compat api buildSrc gradle anki-common note-editor widgets vbpd lint-rules 
+------------------------------------------------------------------------
+[grep exit 1 — no matches]
+[empty result above = no matching symbols in production/build sources]
+------------------------------------------------------------------------
+LABEL: exclusion scan: second scheduler / FSRS reimplementation
+COMMAND: grep -rniE second.\*scheduler\|duplicate.\*fsrs\|fsrs.\*implement\|scheduleCardFromAi\|answersFromAgent --include=\*.kt AnkiDroid libanki 
+------------------------------------------------------------------------
+[grep exit 1 — no matches]
+[empty result above = no such symbols]
+------------------------------------------------------------------------
+LABEL: FSRS wrapper (version display only) / DummyScheduler
+COMMAND: grep -n FSRS_VERSION\\\|val\ version\\\|class\ DummyScheduler\\\|TODO AnkiDroid/src/main/java/com/ichi2/anki/scheduling/Fsrs.kt libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt 
+------------------------------------------------------------------------
+AnkiDroid/src/main/java/com/ichi2/anki/scheduling/Fsrs.kt:11:    val version = FsrsVersion(BackendBuildConfig.FSRS_VERSION)
+libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt:12:class DummyScheduler(
+------------------------------------------------------------------------
+LABEL: Fsrs.kt full file
+FILE: AnkiDroid/src/main/java/com/ichi2/anki/scheduling/Fsrs.kt  LINES: 1-40
+------------------------------------------------------------------------
+     1 | // SPDX-License-Identifier: GPL-3.0-or-later
+     2 | 
+     3 | package com.ichi2.anki.scheduling
+     4 | 
+     5 | import net.ankiweb.rsdroid.BuildConfig as BackendBuildConfig
+     6 | 
+     7 | /**
+     8 |  * Functionality for [FSRS](https://github.com/open-spaced-repetition/)
+     9 |  */
+    10 | object Fsrs {
+    11 |     val version = FsrsVersion(BackendBuildConfig.FSRS_VERSION)
+    12 | 
+    13 |     /**
+    14 |      * A user-facing string for the FSRS version.
+    15 |      *
+    16 |      * The underlying library version is not typically known to Anki users
+    17 |      *
+    18 |      * `null` is unexpected
+    19 |      */
+    20 |     val displayVersion: String?
+    21 |         get() = version.displayString
+    22 | }
+    23 | 
+    24 | @JvmInline
+    25 | value class FsrsVersion(
+    26 |     val libraryVersion: String,
+    27 | ) {
+    28 |     val displayString: String? get() =
+    29 |         when (libraryVersion) {
+    30 |             "0.6.4" -> "FSRS 4.5"
+    31 |             "1.4.3", "2.0.3" -> "FSRS 5"
+    32 |             "4.1.1", "5.1.0", "5.2.0", "6.3.0", "6.6.2" -> "FSRS 6"
+    33 |             else -> null
+    34 |         }
+    35 | }
+------------------------------------------------------------------------
+LABEL: DummyScheduler.kt full file
+FILE: libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt  LINES: 1-40
+------------------------------------------------------------------------
+     1 | // SPDX-License-Identifier: GPL-3.0-or-later
+     2 | // SPDX-FileCopyrightText: Copyright (c) 2011 Norbert Nagold <norbert.nagold@gmail.com>
+     3 | // SPDX-FileCopyrightText: Copyright (c) 2012 Kostas Spyropoulos <inigo.aldana@gmail.com>
+     4 | // SPDX-FileCopyrightText: Copyright (c) 2013 Houssam Salem <houssam.salem.au@gmail.com>
+     5 | 
+     6 | package com.ichi2.anki.libanki.sched
+     7 | 
+     8 | import anki.scheduler.CardAnswer.Rating
+     9 | import com.ichi2.anki.libanki.Card
+    10 | import com.ichi2.anki.libanki.Collection
+    11 | 
+    12 | class DummyScheduler(
+    13 |     col: Collection,
+    14 | ) : Scheduler(col) {
+    15 |     override val card: Card? = null
+    16 | 
+    17 |     override fun answerCard(
+    18 |         card: Card,
+    19 |         rating: Rating,
+    20 |     ): Unit = throw Exception("v1/v2 scheduler not supported")
+    21 | }
+------------------------------------------------------------------------
+LABEL: Study-Agent reference client imports anywhere in production
+COMMAND: grep -rniE study.\?agent.\?client\|VoiceCommand\|StudyVoiceTurnGate\|SpeechOrchestrator\|AudioRouteManager --include=\*.kt --include=\*.java AnkiDroid libanki common anki-common 
+------------------------------------------------------------------------
+[grep exit 1 — no matches]
+[empty result above = no Study-Agent client code imported]
