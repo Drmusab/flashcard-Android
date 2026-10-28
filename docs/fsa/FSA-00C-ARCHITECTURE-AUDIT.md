@@ -1,5 +1,7 @@
 # FSA-00C — Native Reviewer and architecture safety audit
 
+> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+
 **Audited revision:** `f8212252540fe104663e935d4c582e9ad499ec89`.
 **Result: source boundary unchanged; runtime correctness/isolation BLOCKED.**
 Evidence E05/E07/E08/E09 is indexed in the [entry report](FSA-00C-ENTRY-AND-EVIDENCE.md).

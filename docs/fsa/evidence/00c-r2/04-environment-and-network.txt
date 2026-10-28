@@ -1,0 +1,351 @@
+FSA-00C R2 — host environment, JVM provenance, SDK/device inventory and network reachability
+All outbound probes are read-only. No secret values are recorded.
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: host/date
+COMMAND: date -u; uname -a; nproc; free -h; df -h /home/user; echo '--- swap ---'; swapon --show 2>&1; echo '--- /dev/kvm ---'; ls -l /dev/kvm 2>&1
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+Wed Oct 28 12:10:20 UTC 2026
+Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Mon May 11 18:48:24 UTC 2026 x86_64 GNU/Linux
+2
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       264Mi       3.4Gi       1.0Mi       435Mi       3.6Gi
+Swap:             0B          0B          0B
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        21G  1.1G   20G   6% /
+--- swap ---
+bash: line 1: swapon: command not found
+--- /dev/kvm ---
+ls: cannot access '/dev/kvm': No such file or directory
+EXIT_CODE: 2
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: environment variables (names/values, secrets excluded)
+COMMAND: env | grep -Ei 'JAVA|ANDROID|GRADLE|SDK|HOME|PATH=' | grep -Ev 'TOKEN|KEY|SECRET|PASS' ; echo '--- explicit checks ---'; for v in JAVA_HOME ANDROID_HOME ANDROID_SDK_ROOT GRADLE_USER_HOME; do echo "$v=${!v:-<unset>}"; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+PWD=/home/user/flashcard-Android
+HOME=/home/user
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+OLDPWD=/home/user
+--- explicit checks ---
+JAVA_HOME=<unset>
+ANDROID_HOME=<unset>
+ANDROID_SDK_ROOT=<unset>
+GRADLE_USER_HOME=<unset>
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: tool inventory on PATH
+COMMAND: for c in java javac gradle adb sdkmanager avdmanager emulator apkanalyzer aapt2 apksigner keytool zipalign; do printf '%-14s' "$c"; command -v "$c" || echo 'NOT FOUND'; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+java          NOT FOUND
+javac         NOT FOUND
+gradle        NOT FOUND
+adb           NOT FOUND
+sdkmanager    NOT FOUND
+avdmanager    NOT FOUND
+emulator      NOT FOUND
+apkanalyzer   NOT FOUND
+aapt2         NOT FOUND
+apksigner     NOT FOUND
+keytool       NOT FOUND
+zipalign      NOT FOUND
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: java -version with clean env
+COMMAND: java -version 2>&1; echo "exit=$?"
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+bash: line 1: java: command not found
+exit=127
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: local SDK/JDK/Gradle caches
+COMMAND: ls -ld /usr/lib/jvm /opt/android-sdk /opt/android /root/.gradle /home/user/.gradle /home/user/.m2 /home/user/.android 2>&1; echo '--- local.properties ---'; ls -l local.properties 2>&1; echo '--- gradle wrapper dists ---'; find /home/user/.gradle/wrapper -maxdepth 4 2>/dev/null | head -30
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+ls: cannot access '/usr/lib/jvm': No such file or directory
+ls: cannot access '/opt/android-sdk': No such file or directory
+ls: cannot access '/opt/android': No such file or directory
+ls: cannot access '/root/.gradle': Permission denied
+ls: cannot access '/home/user/.m2': No such file or directory
+ls: cannot access '/home/user/.android': No such file or directory
+drwxr-xr-x 3 user user 60 Oct 28 12:04 /home/user/.gradle
+--- local.properties ---
+ls: cannot access 'local.properties': No such file or directory
+--- gradle wrapper dists ---
+/home/user/.gradle/wrapper
+/home/user/.gradle/wrapper/dists
+/home/user/.gradle/wrapper/dists/gradle-9.8.0-bin
+/home/user/.gradle/wrapper/dists/gradle-9.8.0-bin/3m7h6ceboy5k31n8kzwzuxssm
+/home/user/.gradle/wrapper/dists/gradle-9.8.0-bin/3m7h6ceboy5k31n8kzwzuxssm/gradle-9.8.0-bin.zip.lck
+/home/user/.gradle/wrapper/dists/gradle-9.8.0-bin/3m7h6ceboy5k31n8kzwzuxssm/gradle-9.8.0-bin.zip.part
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: JDK provenance: PyPI metadata and wheel digest
+COMMAND: curl -s --max-time 20 https://pypi.org/pypi/jdk4py/21.0.8.2/json | python3 -c "import json,sys; d=json.load(sys.stdin); print('name:',d['info']['name'],'version:',d['info']['version']); print('author:',d['info']['author'],'repo:',d['info']['project_urls']); [print(f['filename'], f['size'], f['digests']['sha256']) for f in d['urls'] if f['filename'].endswith('manylinux_2_17_x86_64.whl')]"; echo '--- downloaded wheel ---'; sha256sum /home/user/.audit-tools/wheels/jdk4py-21.0.8.2-py3-none-manylinux_2_17_x86_64.whl
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+name: jdk4py version: 21.0.8.2
+author: ActiveViam repo: {'Repository': 'https://github.com/activeviam/jdk4py'}
+jdk4py-21.0.8.2-py3-none-manylinux_2_17_x86_64.whl 33794570 85addfcb57c7051dad6145b9f816fc519337e9a0c705ef01edc9dc7818ee0356
+--- downloaded wheel ---
+85addfcb57c7051dad6145b9f816fc519337e9a0c705ef01edc9dc7818ee0356  /home/user/.audit-tools/wheels/jdk4py-21.0.8.2-py3-none-manylinux_2_17_x86_64.whl
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: JVM actually used for deep probe
+COMMAND: export JAVA_HOME=/home/user/.audit-tools/jdk/jdk4py/java-runtime; $JAVA_HOME/bin/java -version 2>&1; echo '--- properties ---'; $JAVA_HOME/bin/java -XshowSettings:properties -version 2>&1 | grep -E 'java.vendor|java.version|java.runtime.name|java.home|java.specification.version'; echo '--- javac present? ---'; ls $JAVA_HOME/bin/javac 2>&1; echo '--- release ---'; cat $JAVA_HOME/release
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode)
+--- properties ---
+    java.home = /home/user/.audit-tools/jdk/jdk4py/java-runtime
+    java.runtime.name = OpenJDK Runtime Environment
+    java.specification.version = 21
+    java.vendor = Eclipse Adoptium
+    java.vendor.url = https://adoptium.net/
+    java.vendor.url.bug = https://github.com/adoptium/adoptium-support/issues
+    java.vendor.version = Temurin-21.0.8+9
+    java.version = 21.0.8
+    java.version.date = 2025-07-15
+--- javac present? ---
+ls: cannot access '/home/user/.audit-tools/jdk/jdk4py/java-runtime/bin/javac': No such file or directory
+--- release ---
+JAVA_VERSION="21.0.8"
+MODULES="java.base java.compiler java.datatransfer java.xml java.prefs java.desktop java.instrument java.logging java.management java.security.sasl java.naming java.rmi java.management.rmi java.net.http java.scripting java.security.jgss java.transaction.xa java.sql java.sql.rowset java.xml.crypto java.se jdk.internal.jvmstat jdk.attach jdk.crypto.ec jdk.httpserver jdk.jcmd jdk.jdwp.agent jdk.jfr jdk.localedata jdk.management jdk.management.agent jdk.management.jfr jdk.net jdk.security.auth jdk.unsupported jdk.zipfs"
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: pinned daemon JVM criteria (source)
+COMMAND: cat -n gradle/gradle-daemon-jvm.properties; echo '--- foojay resolver pin ---'; grep -n 'foojay' settings.gradle.kts; echo '--- build JVM guard ---'; sed -n '203,207p' build.gradle.kts
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+     1	#This file is generated by updateDaemonJvm
+     2	toolchainUrl.FREE_BSD.AARCH64=https\://api.foojay.io/disco/v3.0/ids/491f83666ae7f4d6ebb28fee72ebb035/redirect
+     3	toolchainUrl.FREE_BSD.X86_64=https\://api.foojay.io/disco/v3.0/ids/0d1a1acdc708062093673f65aa9aba4b/redirect
+     4	toolchainUrl.LINUX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/491f83666ae7f4d6ebb28fee72ebb035/redirect
+     5	toolchainUrl.LINUX.X86_64=https\://api.foojay.io/disco/v3.0/ids/0d1a1acdc708062093673f65aa9aba4b/redirect
+     6	toolchainUrl.MAC_OS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/7083b89563e7ce20943037b8cd2b8cc2/redirect
+     7	toolchainUrl.MAC_OS.X86_64=https\://api.foojay.io/disco/v3.0/ids/060bbb778a1f55ea705fdebd2ccfeab9/redirect
+     8	toolchainUrl.UNIX.AARCH64=https\://api.foojay.io/disco/v3.0/ids/491f83666ae7f4d6ebb28fee72ebb035/redirect
+     9	toolchainUrl.UNIX.X86_64=https\://api.foojay.io/disco/v3.0/ids/0d1a1acdc708062093673f65aa9aba4b/redirect
+    10	toolchainUrl.WINDOWS.AARCH64=https\://api.foojay.io/disco/v3.0/ids/d09679dc60fe5aa05ef7d03efdefac20/redirect
+    11	toolchainUrl.WINDOWS.X86_64=https\://api.foojay.io/disco/v3.0/ids/ed4e3bf2f5e7c5d9aabc4cbd8acd555e/redirect
+    12	toolchainVendor=JETBRAINS
+    13	toolchainVersion=21
+--- foojay resolver pin ---
+14:    // https://github.com/gradle/foojay-toolchains
+15:    // Changelog: https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
+16:    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+--- build JVM guard ---
+val jvmVersion = Jvm.current().javaVersion?.majorVersion.parseIntOrDefault(defaultValue = 0)
+val minSdk: String = libs.versions.minSdk.get()
+val jvmVersionLowerBound = 21
+val jvmVersionUpperBound = 25
+// `updateDaemonJvm` aligns the daemon JVM, blocking it stops us from fixing the issue
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:20Z
+LABEL: network probes: allowed and blocked endpoints
+COMMAND: for u in https://github.com https://codeload.github.com https://api.github.com https://pypi.org/simple/jdk4py/ https://registry.npmjs.org https://files.pythonhosted.org https://services.gradle.org/distributions/gradle-9.8.0-bin.zip https://downloads.gradle.org/distributions/ https://dl.google.com/dl/android/maven2/ https://repo1.maven.org/maven2/ https://plugins.gradle.org/m2/ https://jitpack.io https://api.foojay.io; do out=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 8 "$u" 2>&1); rc=$?; printf 'curl_exit=%-3s http=%-4s %-80s %s\n' "$rc" "$(echo "$out" | tail -1)" "$u" ""; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+curl_exit=0   http=200  https://github.com                                                               
+curl_exit=0   http=301  https://codeload.github.com                                                      
+curl_exit=0   http=200  https://api.github.com                                                           
+curl_exit=0   http=200  https://pypi.org/simple/jdk4py/                                                  
+curl_exit=0   http=200  https://registry.npmjs.org                                                       
+curl_exit=0   http=404  https://files.pythonhosted.org                                                   
+curl_exit=35  http=000  https://services.gradle.org/distributions/gradle-9.8.0-bin.zip                   
+curl_exit=35  http=000  https://downloads.gradle.org/distributions/                                      
+curl_exit=35  http=000  https://dl.google.com/dl/android/maven2/                                         
+curl_exit=35  http=000  https://repo1.maven.org/maven2/                                                  
+curl_exit=35  http=000  https://plugins.gradle.org/m2/                                                   
+curl_exit=35  http=000  https://jitpack.io                                                               
+curl_exit=35  http=000  https://api.foojay.io                                                            
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:22Z
+LABEL: Gradle 9.8.0 official GitHub release assets
+COMMAND: gh api 'repos/gradle/gradle/releases/tags/v9.8.0' --jq '{tag: .tag_name, published: .published_at, asset_count: (.assets|length), assets: [.assets[].name]}'; echo '--- any recent release carrying -bin.zip ---'; gh api 'repos/gradle/gradle/releases?per_page=100' --jq '[.[] | select([.assets[].name] | any(endswith("-bin.zip"))) | .tag_name]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"asset_count":0,"assets":[],"published":"2026-09-24T15:04:07Z","tag":"v9.8.0"}
+--- any recent release carrying -bin.zip ---
+[]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:23Z
+LABEL: wrapper distribution pin has no checksum anchor
+COMMAND: cat -n gradle/wrapper/gradle-wrapper.properties; echo '--- distributionSha256Sum occurrences ---'; grep -rn 'distributionSha256Sum' . --exclude-dir=.git --exclude-dir=docs/fsa 2>/dev/null | head -10; echo '[empty = no pinned distribution checksum]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+     1	distributionBase=GRADLE_USER_HOME
+     2	distributionPath=wrapper/dists
+     3	distributionUrl=https\://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+     4	networkTimeout=10000
+     5	retries=3
+     6	retryBackOffMs=1000
+     7	validateDistributionUrl=true
+     8	zipStoreBase=GRADLE_USER_HOME
+     9	zipStorePath=wrapper/dists
+--- distributionSha256Sum occurrences ---
+./docs/fsa/FSA-00B-fork-baseline-build-verification.md:127:Notable: `gradle-wrapper.properties` does **not** pin `distributionSha256Sum`
+./docs/fsa/FSA-00C-BUILD-VERIFICATION.md:32:`BackendDependencies.kt` supports an existing opt-in `local_backend=true`; without `local.properties` the published pinned artifact is selected. No local backend was substituted. Repository policy enforcement is commented out (`repositoriesMode`), and the wrapper has no `distributionSha256Sum`; no tracked dependency-verification metadata/lockfile was found by E07's scan. These inherited integrity limitations were not “fixed” by changing baseline configuration. Dependency graph and artifact trust remain unverified until resolution is captured on the capable host.
+./docs/fsa/evidence/00c-r2/04-environment-and-network.txt:199:COMMAND: cat -n gradle/wrapper/gradle-wrapper.properties; echo '--- distributionSha256Sum occurrences ---'; grep -rn 'distributionSha256Sum' . --exclude-dir=.git --exclude-dir=docs/fsa 2>/dev/null | head -10; echo '[empty = no pinned distribution checksum]'
+./docs/fsa/evidence/00c-r2/04-environment-and-network.txt:211:--- distributionSha256Sum occurrences ---
+[empty = no pinned distribution checksum]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:23Z
+LABEL: repository declarations (dependency surfaces)
+COMMAND: sed -n '1,27p' settings.gradle.kts; echo '--- buildSrc repositories ---'; grep -n 'repositories\|google()\|mavenCentral\|jitpack\|gradlePluginPortal' buildSrc/build.gradle.kts | head -20; echo '--- backend artifacts ---'; grep -rn 'anki-android-backend\|local_backend\|localBackend' buildSrc AnkiDroid/build.gradle.kts 2>/dev/null | head -20
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+pluginManagement {
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+plugins {
+    // Added automatically by Android Studio for Gradle Daemon JVM Criteria
+    // https://developer.android.com/studio/releases/past-releases/as-panda-1-release-notes#daemon-jvm-criteria
+    // Version catalog references are (mostly) unsupported in settings.gradle.kts
+    // https://discuss.gradle.org/t/how-to-use-version-catalog-in-the-root-settings-gradle-kts-file/44603
+
+    // https://github.com/gradle/foojay-toolchains
+    // Changelog: https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+dependencyResolutionManagement {
+    // TODO enforce repositories declared here
+    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
+}
+--- buildSrc repositories ---
+10:repositories {
+11:    google()
+12:    mavenCentral()
+13:    gradlePluginPortal()
+--- backend artifacts ---
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/BackendDependencies.kt:11:// ../Anki-Android-Backend (when `local_backend=true` in local.properties) or as
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/BackendDependencies.kt:22: * artifacts and the published version-catalog libraries based on `local_backend` in
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/BackendDependencies.kt:30:        val useLocalBackend = localBackendEnabled()
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/BackendDependencies.kt:49:private fun Project.localBackendEnabled(): Boolean {
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/BackendDependencies.kt:53:    return properties["local_backend"] == "true"
+AnkiDroid/build.gradle.kts:796:    if (localProperties["local_backend"] == "true") {
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:23Z
+LABEL: Android SDK components required (source pins)
+COMMAND: grep -n 'compileSdk\|targetSdk\|minSdk\|buildToolsVersion' gradle/libs.versions.toml buildSrc/src/main/kotlin/ankidroid.android.app.gradle.kts 2>/dev/null | head -30; echo '--- buildToolsVersion in tracked Gradle files ---'; grep -rn 'buildToolsVersion' --include='*.gradle.kts' --include='*.gradle' . 2>/dev/null | grep -v '/docs/' | head -20; echo '[empty = AGP chooses build-tools; requires real Gradle/SDK output]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+gradle/libs.versions.toml:2:compileSdk = "37"
+gradle/libs.versions.toml:3:compileSdkMinor = "0"
+gradle/libs.versions.toml:5:# Changing minSdk means newer AnkiDroid versions will not support older devices.
+gradle/libs.versions.toml:9:# minSdk. It is critical to update those version codes when you change this.
+gradle/libs.versions.toml:10:minSdk = "24"
+gradle/libs.versions.toml:11:# The API should be as low as possible in order to enable dependencies to stay on a lower minSdk.
+gradle/libs.versions.toml:14:targetSdk = "36"  # affects SDK downloads in the ankidroid.plugins.robolectric-downloader
+buildSrc/src/main/kotlin/ankidroid.android.app.gradle.kts:18:    compileSdk = libsVersionFor("compileSdk").toInt()
+buildSrc/src/main/kotlin/ankidroid.android.app.gradle.kts:19:    compileSdkMinor = libsVersionFor("compileSdkMinor").toInt()
+buildSrc/src/main/kotlin/ankidroid.android.app.gradle.kts:22:        minSdk = libsVersionFor("minSdk").toInt()
+buildSrc/src/main/kotlin/ankidroid.android.app.gradle.kts:24:        targetSdk = libsVersionFor("targetSdk").toInt()
+--- buildToolsVersion in tracked Gradle files ---
+[empty = AGP chooses build-tools; requires real Gradle/SDK output]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:10:23Z
+LABEL: Robolectric downloader task definition
+COMMAND: find . -name '*robolectric*' -not -path './.git/*' | head -20; grep -rn 'robolectricSdkDownload' . --exclude-dir=.git --exclude-dir=docs 2>/dev/null | head -20
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+./buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts
+./.github/workflows/screenshot_compare.yml:71:        # Keep compilation here: robolectricSdkDownload only downloads SDK jars.
+./.github/workflows/screenshot_compare.yml:78:          command: ./gradlew robolectricSdkDownload compileScreenshotTests -Pscreenshot --daemon
+./.github/workflows/screenshot_store.yml:88:        # Keep compilation here: robolectricSdkDownload only downloads SDK jars.
+./.github/workflows/screenshot_store.yml:96:          command: ./gradlew robolectricSdkDownload compileScreenshotTests -Pscreenshot --daemon
+./.github/workflows/tests_unit.yml:177:          command: ./gradlew robolectricSdkDownload --daemon
+./build.gradle.kts:98:                it.dependsOn(":AnkiDroid:robolectricSdkDownload")
+./buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:12: * Once applied to your gradle project, can be executed with ./gradlew robolectricSdkDownload
+./buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:46:val robolectricSdkDownload =
+./buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:47:    tasks.register<WriteProperties>("robolectricSdkDownload") {
+./buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:63:    robolectricSdkDownload.configure {
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:15:45Z
+LABEL: host/date (CORRECTED — replaces label with exit 2 above)
+COMMAND: date -u; uname -a; echo -n 'cpus: '; nproc; free -h; df -h /home/user; echo -n 'swap: '; (swapon --show 2>/dev/null || echo 'none'); echo -n '/dev/kvm: '; if [ -e /dev/kvm ]; then echo present; else echo absent; fi
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+Wed Oct 28 12:15:45 UTC 2026
+Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Mon May 11 18:48:24 UTC 2026 x86_64 GNU/Linux
+cpus: 2
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       267Mi       3.4Gi       1.0Mi       436Mi       3.6Gi
+Swap:             0B          0B          0B
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        21G  1.1G   20G   6% /
+swap: none
+/dev/kvm: absent
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:15:45Z
+LABEL: official Gradle distribution URLs on allowed/blocked hosts
+COMMAND: for u in 'https://github.com/gradle/gradle/releases/download/v9.8.0/gradle-9.8.0-bin.zip' 'https://services.gradle.org/distributions/gradle-9.8.0-bin.zip' 'https://services.gradle.org/distributions/gradle-9.8.0-bin.zip.sha256' 'https://downloads.gradle.org/distributions/gradle-9.8.0-bin.zip'; do rc=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 8 "$u" 2>/dev/null); printf 'http=%-4s %s\n' "$rc" "$u"; done; echo '--- GitHub release asset API (v9.8.0, v9.8.2) ---'; for t in v9.8.0 v9.8.2; do echo "$t assets: $(gh api repos/gradle/gradle/releases/tags/$t --jq '[.assets[].name] | join(",")')"; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+http=404  https://github.com/gradle/gradle/releases/download/v9.8.0/gradle-9.8.0-bin.zip
+http=000  https://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+http=000  https://services.gradle.org/distributions/gradle-9.8.0-bin.zip.sha256
+http=000  https://downloads.gradle.org/distributions/gradle-9.8.0-bin.zip
+--- GitHub release asset API (v9.8.0, v9.8.2) ---
+v9.8.0 assets: 
+v9.8.2 assets: 
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:15:46Z
+LABEL: device / emulator availability
+COMMAND: for c in adb emulator avdmanager sdkmanager; do printf '%-12s' "$c"; command -v "$c" || echo 'NOT FOUND'; done; echo -n 'ANDROID_HOME-like dirs: '; find / -maxdepth 3 -type d -name 'platforms' -path '*android*' 2>/dev/null | head -5; echo '[empty = no Android SDK platforms installed]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+adb         NOT FOUND
+emulator    NOT FOUND
+avdmanager  NOT FOUND
+sdkmanager  NOT FOUND
+ANDROID_HOME-like dirs: [empty = no Android SDK platforms installed]
+EXIT_CODE: 0
+

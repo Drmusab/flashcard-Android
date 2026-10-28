@@ -1,5 +1,7 @@
 # FSA-01 handoff — WITHHELD pending FSA-00 lock
 
+> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+
 **Not an authorization to start FSA-01.** FSA-00 is **BLOCKED**, per [final decision](FSA-00-FINAL-LOCK.md). This file records the stop condition and future scope only; no Study-Agent inventory, code copying, classification or integration has been performed.
 
 ## What can be inherited now

@@ -1,5 +1,7 @@
 # FSA-00C — Entry, provenance and evidence reconciliation
 
+> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+
 **Audit date:** 2026-10-25 UTC. **Authority:** audit only; no migration.
 **Prepared with:** Arena.ai Agent Mode. No upstream contribution or remote workflow was submitted.
 **Decision:** [FSA-00 remains BLOCKED](FSA-00-FINAL-LOCK.md).

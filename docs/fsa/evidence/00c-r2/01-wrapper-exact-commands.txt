@@ -1,0 +1,120 @@
+# FSA-00C R2 — exact required commands, unmodified environment (no JAVA_HOME)
+# Host: Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Mon May 11 18:48:24 UTC 2026 x86_64 GNU/Linux
+# HEAD: 99d339e48c93d7b9c63113cb702574981e5cff30
+# Date: 2026-10-28T12:03:50Z
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: java -version
+COMMAND: java -version 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+/home/user/.audit-tools/logcmd.sh: line 13: java: command not found
+EXIT_CODE: 127
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew --version
+COMMAND: ./gradlew --version 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew robolectricSdkDownload
+COMMAND: ./gradlew robolectricSdkDownload 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew :AnkiDroid:assembleFullDebug
+COMMAND: ./gradlew :AnkiDroid:assembleFullDebug 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew :AnkiDroid:testFullDebugUnitTest
+COMMAND: ./gradlew :AnkiDroid:testFullDebugUnitTest 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew jacocoUnitTestReport
+COMMAND: ./gradlew jacocoUnitTestReport 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew lintAll ktlintCheck lint-rules:test
+COMMAND: ./gradlew lintAll ktlintCheck lint-rules:test 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:03:50Z
+LABEL: ./gradlew -p buildSrc test
+COMMAND: ./gradlew -p buildSrc test 
+CWD: /home/user/flashcard-Android
+JAVA_HOME: <unset>
+------------------------------------------------------------------------
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+EXIT_CODE: 1
+

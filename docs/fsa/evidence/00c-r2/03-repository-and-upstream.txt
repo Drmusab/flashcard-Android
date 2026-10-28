@@ -1,0 +1,344 @@
+FSA-00C R2 — repository, baseline, upstream and prerequisite evidence
+All commands executed at the audited working tree; UTC timestamps inline.
+No branch switch, reset, force-push, upstream merge, PR action or workflow dispatch.
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git status --short
+COMMAND: git status --short; echo '[empty output = clean]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+?? docs/fsa/evidence/00c-r2/
+[empty output = clean]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git rev-parse HEAD
+COMMAND: git rev-parse HEAD
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+99d339e48c93d7b9c63113cb702574981e5cff30
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git branch --show-current
+COMMAND: git branch --show-current
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+arena/657ed7e0-flashcard-android
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git branch -a
+COMMAND: git branch -a
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+* arena/657ed7e0-flashcard-android
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git remote -v
+COMMAND: git remote -v
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-00 git log -10 --oneline
+COMMAND: git log -10 --oneline
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+99d339e Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: shallow history check
+COMMAND: git rev-parse --is-shallow-repository; echo '--- .git/shallow ---'; cat .git/shallow; echo '--- visible commit count ---'; git rev-list --count HEAD; echo '--- grafts/replace ---'; ls -la .git/info/grafts .git/refs/replace 2>&1
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+true
+--- .git/shallow ---
+99d339e48c93d7b9c63113cb702574981e5cff30
+a7121c11c6e11d9c6ba34518784156fba1701e29
+--- visible commit count ---
+1
+--- grafts/replace ---
+ls: cannot access '.git/info/grafts': No such file or directory
+ls: cannot access '.git/refs/replace': No such file or directory
+EXIT_CODE: 2
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: commit object (parents)
+COMMAND: git cat-file -p HEAD | sed -n '1,8p'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+tree 779f668667b8db6ae345147ecd4fb5ff809d8c36
+parent f8212252540fe104663e935d4c582e9ad499ec89
+parent 9ee0d6b3481a4c3000f23b5236c0b3505aad98f5
+author Drmusab <114311690+Drmusab@users.noreply.github.com> 1793185645 +0300
+committer GitHub <noreply@github.com> 1793185645 +0300
+gpgsig -----BEGIN PGP SIGNATURE-----
+ 
+ wsFcBAABCAAQBQJq4ddtCRC1aQ7uu5UhlAAAwEYQABg0V6EWNYRG36UIamLxmcmv
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-01 diff name-status baseline..HEAD
+COMMAND: git diff --name-status a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+A	docs/fsa/FSA-00-FINAL-LOCK.md
+A	docs/fsa/FSA-00B-fork-baseline-build-verification.md
+A	docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+A	docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+A	docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+A	docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+A	docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+A	docs/fsa/FSA-01-HANDOFF.md
+A	docs/fsa/evidence/00c/01-repository.txt
+A	docs/fsa/evidence/00c/02-environment.txt
+A	docs/fsa/evidence/00c/03-gradle-attempts.txt
+A	docs/fsa/evidence/00c/04-github.txt
+A	docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+A	docs/fsa/evidence/00c/06-network.txt
+A	docs/fsa/evidence/00c/07-integrity-and-scans.txt
+A	docs/fsa/evidence/00c/08-source-excerpts.txt
+A	docs/fsa/evidence/00c/09-follow-up-source.txt
+A	docs/fsa/evidence/00c/10-final-validation.txt
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-01 diff EXCLUDING docs/fsa (must be empty)
+COMMAND: git diff --name-only a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD -- . ':(exclude)docs/fsa'; echo "[exit=$?; empty list above = production/build/test trees identical]"
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[exit=0; empty list above = production/build/test trees identical]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-01 subtree object identity
+COMMAND: for p in AnkiDroid buildSrc libanki gradle common compat api note-editor vbpd widgets lint-rules anki-common baselineprofile settings.gradle.kts build.gradle.kts gradle.properties; do a=$(git rev-parse a7121c11c6e11d9c6ba34518784156fba1701e29:"$p" 2>/dev/null); b=$(git rev-parse HEAD:"$p" 2>/dev/null); if [ "$a" = "$b" ]; then echo "IDENTICAL $p $a"; else echo "DIFFERS $p $a $b"; fi; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+IDENTICAL AnkiDroid c7bfa975897afd818a2627e3dfafdc2cf076a5bf
+IDENTICAL buildSrc 881f380d5f2741643a33a829e5f1aff8f59ced3e
+IDENTICAL libanki a784c26dc2bbf36aaf23827ab5b548ed20a551c1
+IDENTICAL gradle 8fa38defd2e16c272420c46eabeda864dfac7460
+IDENTICAL common 7052e8e971ea88af630f06e1f06e3853d93f3835
+IDENTICAL compat 1a65d88da10097a3fdd22a23bb0adcfafa179478
+IDENTICAL api e2aa21d9f65026f0efe3eeb78553cc1c8970f30d
+IDENTICAL note-editor 847317aa8e9a7fd1d234a77071f6df3017124824
+IDENTICAL vbpd db7c9776435eb98f41848b3358c8d7e0492273c0
+IDENTICAL widgets 9f714be30ee799a0b4e84f3c6364992d65345e2a
+IDENTICAL lint-rules b00284875dc2d611ae8cf025b6a361a09c852d92
+IDENTICAL anki-common 8c919fa2624afb4117b198f67fd9dcc33b163ca6
+IDENTICAL baselineprofile 6dbecd6915ed43ba538fb0442cd8bfe0197c0307
+IDENTICAL settings.gradle.kts a180c5218bafe71e3e52ccb5159cb4ecb7071b4f
+IDENTICAL build.gradle.kts 208ebd997a035b5be5db1249b785b4e08aaf5462
+IDENTICAL gradle.properties 53a564a8205038630ca79c6ad169933c58f20bf9
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-02 ls-remote fork HEAD/main
+COMMAND: git ls-remote https://github.com/Drmusab/flashcard-Android.git HEAD refs/heads/main
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+99d339e48c93d7b9c63113cb702574981e5cff30	HEAD
+99d339e48c93d7b9c63113cb702574981e5cff30	refs/heads/main
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:28Z
+LABEL: 00C-02 ls-remote upstream HEAD
+COMMAND: git ls-remote https://github.com/ankidroid/Anki-Android.git HEAD
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+4561666d03b7be6ac262ebf307d0f7a110e3cf09	HEAD
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:29Z
+LABEL: 00C-00/01 fetch reference baseline object (compare only)
+COMMAND: git fetch --no-tags --depth=1 origin a7121c11c6e11d9c6ba34518784156fba1701e29 2>&1; echo "baseline tree: $(git rev-parse a7121c11c6e11d9c6ba34518784156fba1701e29^{tree})"; echo "HEAD tree:     $(git rev-parse HEAD^{tree})"
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+From https://github.com/Drmusab/flashcard-Android
+ * branch            a7121c11c6e11d9c6ba34518784156fba1701e29 -> FETCH_HEAD
+baseline tree: cd3bde862b4b882caaa4fb4b6a2b9c1063ba2bb7
+HEAD tree:     779f668667b8db6ae345147ecd4fb5ff809d8c36
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:29Z
+LABEL: 00C-02 github fork metadata
+COMMAND: gh api repos/Drmusab/flashcard-Android --jq '{full_name, fork, default_branch, parent: .parent.full_name, source: .source.full_name, pushed_at, created_at}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"created_at":"2026-10-23T15:40:32Z","default_branch":"main","fork":true,"full_name":"Drmusab/flashcard-Android","parent":"ankidroid/Anki-Android","pushed_at":"2026-10-28T11:07:25Z","source":"ankidroid/Anki-Android"}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:30Z
+LABEL: 00C-02 upstream main sha (API)
+COMMAND: gh api repos/ankidroid/Anki-Android/commits/main --jq '.sha'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+4561666d03b7be6ac262ebf307d0f7a110e3cf09
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:30Z
+LABEL: 00C-01 compare baseline -> fork main
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/compare/a7121c11c6e11d9c6ba34518784156fba1701e29...99d339e48c93d7b9c63113cb702574981e5cff30' --jq '{status, ahead_by, behind_by, total_commits, merge_base: .merge_base_commit.sha, commits: [.commits[] | {sha: .sha[0:12], msg: .commit.message|split("\n")[0]}]}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"ahead_by":4,"behind_by":0,"commits":[{"msg":"docs(fsa): FSA-00B fork baseline build \u0026 verification report","sha":"2ad3dc8ce960"},{"msg":"Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android","sha":"f8212252540f"},{"msg":"docs(fsa): record independent baseline audit","sha":"9ee0d6b3481a"},{"msg":"Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android","sha":"99d339e48c93"}],"merge_base":"a7121c11c6e11d9c6ba34518784156fba1701e29","status":"ahead","total_commits":4}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:31Z
+LABEL: 00C-02 compare upstream HEAD ... fork main
+COMMAND: gh api 'repos/ankidroid/Anki-Android/compare/4561666d03b7be6ac262ebf307d0f7a110e3cf09...Drmusab:flashcard-Android:main' --jq '{status, ahead_by, behind_by, total_commits, merge_base: .merge_base_commit.sha, fork_commits: [.commits[] | {sha: .sha[0:12], msg: .commit.message|split("\n")[0]}]}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"ahead_by":4,"behind_by":88,"fork_commits":[{"msg":"docs(fsa): FSA-00B fork baseline build \u0026 verification report","sha":"2ad3dc8ce960"},{"msg":"Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android","sha":"f8212252540f"},{"msg":"docs(fsa): record independent baseline audit","sha":"9ee0d6b3481a"},{"msg":"Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android","sha":"99d339e48c93"}],"merge_base":"a7121c11c6e11d9c6ba34518784156fba1701e29","status":"diverged","total_commits":4}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:31Z
+LABEL: CI runs for exact audited HEAD
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/actions/runs?head_sha=99d339e48c93d7b9c63113cb702574981e5cff30&per_page=100' --jq '{total_count, runs: [.workflow_runs[] | {name, status, conclusion, created_at}]}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"runs":[],"total_count":0}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:32Z
+LABEL: all CI runs in fork (any sha)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/actions/runs?per_page=20' --jq '{total_count, runs: [.workflow_runs[] | {name, head_sha: .head_sha[0:12], status, conclusion}]}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"runs":[],"total_count":0}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:32Z
+LABEL: PR list (FSA-00A provenance search)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/pulls?state=all&per_page=50' --jq '[.[] | {number, title, state, merged_at, head: .head.ref}]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[{"head":"arena/8214a12a-flashcard-android","merged_at":"2026-10-28T11:07:25Z","number":2,"state":"closed","title":"docs(fsa): FSA-00C independent baseline audit — gate remains BLOCKED"},{"head":"arena/e0f873f3-flashcard-android","merged_at":"2026-10-25T21:02:56Z","number":1,"state":"closed","title":"docs(fsa): FSA-00B fork baseline build \u0026 verification report"}]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:33Z
+LABEL: PR #1 body (FSA-00A provenance search)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/pulls/1' --jq '{title, body}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"body":"## Summary\n\nAdds the FSA-00B deliverable: `docs/fsa/FSA-00B-fork-baseline-build-verification.md` — a baseline build \u0026 verification report for this fork at commit `a7121c11c6e11d9c6ba34518784156fba1701e29`, produced before any Study-Agent migration.\n\n**FSA-00 Gate Lock recommendation: BLOCKED** (see report for exit criteria).\n\n## What's in the report\n\n- **Repository/baseline identity** — HEAD verified == `a7121c11…` == `main`; clean tree; no `upstream` remote; fork parent confirmed via GitHub API.\n- **Pinned toolchain (source-verified, unchanged)** — Gradle 9.8.0, AGP 9.4.1, Kotlin 2.4.20, compileSdk 37 / targetSdk 36 / minSdk 24, JetBrains-21 Gradle daemon (foojay).\n- **Actual build/test tasks** — `:AnkiDroid:assembleFullDebug`, `:AnkiDroid:testFullDebugUnitTest`, `lintAll ktlintCheck lint-rules:test`, `-p buildSrc test`, `:AnkiDroid:connectedFullDebugAndroidTest` (CI-corroborated).\n- **Execution evidence** — all Gradle commands were attempted in the sandbox and are recorded verbatim with exit codes. Build/test/device execution is **BLOCKED** there: no JDK/Android SDK/emulator, and Gradle/Google/Maven/foojay hosts are unreachable (JDK provisioning attempt documented). No evidence fabricated; unavailable checks classified BLOCKED/UNVERIFIED.\n- **Device verification matrix (D-1…D-8)** — defined with a disposable-data procedure; not executed (BLOCKED / sync UNVERIFIED — no test account was authorized).\n- **Identity \u0026 coexistence audit** — applicationId, provider authorities, permissions, signing, deep links, storage isolation; risks R-1…R-6 (notably: release builds share `com.ichi2.anki` + fallback keystore; FullDebug can default to the shared public `/AnkiDroid` collection folder).\n- **Windows re-run runbook** and **residual blocker register (B-01…B-08)** with Gate Lock exit criteria.\n\n## Scope / non-goals\n\n- Documentation only: **no source, build, manifest, identity, or scheduler changes.**\n- No Study-Agent migration, no AnkiConnect/FSRS changes, no upstream merge, no changes to any Anki user data.\n- `feature/fsa-foundation` could not be created from the Arena-pinned session branch (documented as B-06 with the maintainer command to create it from the baseline).\n\n## Next steps (outside this PR)\n\nRun the §9 runbook on a capable Windows host (JDK 21 + SDK 37), attach logs/APK hashes and the completed device matrix to convert the gate from BLOCKED to PASS. **FSA-01 has not been started.**","title":"docs(fsa): FSA-00B fork baseline build \u0026 verification report"}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:33Z
+LABEL: PR #2 body (prior FSA-00C provenance)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/pulls/2' --jq '{title, body}'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+{"body":"\u003e [!NOTE]\n\u003e Assisted-by: Arena.ai Agent Mode — audit documentation, evidence summaries, and PR preparation.\n\n## Purpose / Description\nRecord FSA-00C independent baseline verification and architecture/safety audit at source revision `f8212252540fe104663e935d4c582e9ad499ec89`.\n\n**FSA-00 remains BLOCKED, not locked. FSA-01 production migration is not authorized.**\n\n## Approach\n- Add seven reports covering entry/evidence reconciliation, build attempts, device limitations, native Reviewer architecture, residual risks, final decision, and a withheld conditional FSA-01 handoff.\n- Preserve ten execution/source evidence transcripts, all 18 audit IDs, and all 30 verification IDs.\n- Verify production/build/test source equivalence to reference `a7121c11c6e11d9c6ba34518784156fba1701e29`; only historical FSA-00B documentation differs.\n- Record observed upstream divergence, Reviewer rating/undo boundaries, shared-storage risks, release identity/signing hazards, and concrete blocker-resolution owners/actions.\n- Preserve FSA-00B unchanged and document corrections separately. Original FSA-00A remains unavailable.\n\n## Verification\n- Documentation/source-consistency checks passed: local links, revision references, complete audit/verification ID coverage, catalog pins, and docs-only scope.\n- Markdown whitespace checks passed. Raw transcripts retain tool/source whitespace; unrestricted staged diff checking flags that whitespace, which was intentionally preserved rather than rewriting evidence.\n- All seven required Gradle invocations were attempted and exited 1 before Java startup. No JDK/Android SDK/device tools were available, and dependency endpoint probes failed at TLS.\n- No APK, passing Android tests, lint results, or runtime collection-isolation evidence is claimed. No personal collection was accessed or synchronized.\n- The verification matrix has 12 scope-limited PASS and 18 BLOCKED results; source checks do not substitute for runtime verification.\n\n## Scope / Safety\nDocumentation and evidence only: no production code, build configuration, manifest, dependency, scheduler, or signing changes. No upstream merge or Study-Agent migration. Release identity remains FSA-02 work.\n\nMain decision: `docs/fsa/FSA-00-FINAL-LOCK.md`.\n\nReports/transcripts describe the completed audit snapshot before this publication commit; this PR publishes those preserved observations.","title":"docs(fsa): FSA-00C independent baseline audit — gate remains BLOCKED"}
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:33Z
+LABEL: PR #1 and #2 comments (FSA-00A / build evidence search)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/issues/1/comments' --jq '[.[] | {user: .user.login, body: .body[0:300]}]'; gh api 'repos/Drmusab/flashcard-Android/issues/2/comments' --jq '[.[] | {user: .user.login, body: .body[0:300]}]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[{"body":"\u003c!-- codex-pull-request-review-summary --\u003e\n\u003c!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"2ad3dc8ce960e426007190c903c2df4f4eb4a742\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":null,\"has_any_findings\":null,\"has_unresolved_fi","user":"chatgpt-codex-connector[bot]"}]
+[{"body":"\u003c!-- codex-pull-request-review-summary --\u003e\n\u003c!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"9ee0d6b3481a4c3000f23b5236c0b3505aad98f5\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":null,\"has_any_findings\":null,\"has_unresolved_fi","user":"chatgpt-codex-connector[bot]"}]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:34Z
+LABEL: releases (FSA-00A artifact search)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/releases?per_page=50' --jq '[.[] | {tag_name, name, assets: [.assets[].name]}]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:35Z
+LABEL: issues (FSA-00A artifact search)
+COMMAND: gh api 'repos/Drmusab/flashcard-Android/issues?state=all&per_page=20' --jq '.' 2>&1 | head -20
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[{"active_lock_reason":null,"assignee":null,"assignees":[],"author_association":"OWNER","body":"\u003e [!NOTE]\n\u003e Assisted-by: Arena.ai Agent Mode — audit documentation, evidence summaries, and PR preparation.\n\n## Purpose / Description\nRecord FSA-00C independent baseline verification and architecture/safety audit at source revision `f8212252540fe104663e935d4c582e9ad499ec89`.\n\n**FSA-00 remains BLOCKED, not locked. FSA-01 production migration is not authorized.**\n\n## Approach\n- Add seven reports covering entry/evidence reconciliation, build attempts, device limitations, native Reviewer architecture, residual risks, final decision, and a withheld conditional FSA-01 handoff.\n- Preserve ten execution/source evidence transcripts, all 18 audit IDs, and all 30 verification IDs.\n- Verify production/build/test source equivalence to reference `a7121c11c6e11d9c6ba34518784156fba1701e29`; only historical FSA-00B documentation differs.\n- Record observed upstream divergence, Reviewer rating/undo boundaries, shared-storage risks, release identity/signing hazards, and concrete blocker-resolution owners/actions.\n- Preserve FSA-00B unchanged and document corrections separately. Original FSA-00A remains unavailable.\n\n## Verification\n- Documentation/source-consistency checks passed: local links, revision references, complete audit/verification ID coverage, catalog pins, and docs-only scope.\n- Markdown whitespace checks passed. Raw transcripts retain tool/source whitespace; unrestricted staged diff checking flags that whitespace, which was intentionally preserved rather than rewriting evidence.\n- All seven required Gradle invocations were attempted and exited 1 before Java startup. No JDK/Android SDK/device tools were available, and dependency endpoint probes failed at TLS.\n- No APK, passing Android tests, lint results, or runtime collection-isolation evidence is claimed. No personal collection was accessed or synchronized.\n- The verification matrix has 12 scope-limited PASS and 18 BLOCKED results; source checks do not substitute for runtime verification.\n\n## Scope / Safety\nDocumentation and evidence only: no production code, build configuration, manifest, dependency, scheduler, or signing changes. No upstream merge or Study-Agent migration. Release identity remains FSA-02 work.\n\nMain decision: `docs/fsa/FSA-00-FINAL-LOCK.md`.\n\nReports/transcripts describe the completed audit snapshot before this publication commit; this PR publishes those preserved observations.","closed_at":"2026-10-28T11:07:25Z","closed_by":{"avatar_url":"https://avatars.githubusercontent.com/u/114311690?v=4","events_url":"https://api.github.com/users/Drmusab/events{/privacy}","followers_url":"https://api.github.com/users/Drmusab/followers","following_url":"https://api.github.com/users/Drmusab/following{/other_user}","gists_url":"https://api.github.com/users/Drmusab/gists{/gist_id}","gravatar_id":"","html_url":"https://github.com/Drmusab","id":114311690,"login":"Drmusab","node_id":"U_kgDOBtBCCg","organizations_url":"https://api.github.com/users/Drmusab/orgs","received_events_url":"https://api.github.com/users/Drmusab/received_events","repos_url":"https://api.github.com/users/Drmusab/repos","site_admin":false,"starred_url":"https://api.github.com/users/Drmusab/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Drmusab/subscriptions","type":"User","url":"https://api.github.com/users/Drmusab","user_view_type":"public"},"comments":1,"comments_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2/comments","created_at":"2026-10-26T21:33:45Z","draft":false,"events_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2/events","html_url":"https://github.com/Drmusab/flashcard-Android/pull/2","id":6048567981,"labels":[],"labels_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2/labels{/name}","locked":false,"milestone":null,"node_id":"PR_kwDOVU7n288AAAABK4Mzfg","number":2,"performed_via_github_app":{"client_id":"Iv23lifFg4c9eT1T6hLC","created_at":"2026-06-30T23:43:21Z","description":"Connect Arena to GitHub to allow Arena's Coding Agent to do work for you in your repositories\r\n\r\n","events":["pull_request","push"],"external_url":"https://arena.ai","html_url":"https://github.com/apps/arena-ai-coding-agent","id":4187077,"name":"Arena AI Coding Agent","node_id":"A_kwDOEbSuLc4AP-PF","owner":{"avatar_url":"https://avatars.githubusercontent.com/u/297053741?v=4","events_url":"https://api.github.com/users/arena-agent/events{/privacy}","followers_url":"https://api.github.com/users/arena-agent/followers","following_url":"https://api.github.com/users/arena-agent/following{/other_user}","gists_url":"https://api.github.com/users/arena-agent/gists{/gist_id}","gravatar_id":"","html_url":"https://github.com/arena-agent","id":297053741,"login":"arena-agent","node_id":"U_kgDOEbSuLQ","organizations_url":"https://api.github.com/users/arena-agent/orgs","received_events_url":"https://api.github.com/users/arena-agent/received_events","repos_url":"https://api.github.com/users/arena-agent/repos","site_admin":false,"starred_url":"https://api.github.com/users/arena-agent/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/arena-agent/subscriptions","type":"User","url":"https://api.github.com/users/arena-agent","user_view_type":"public"},"permissions":{"actions":"read","checks":"read","contents":"write","emails":"read","issues":"read","members":"read","metadata":"read","pull_requests":"write","repository_hooks":"write","statuses":"read","workflows":"write"},"slug":"arena-ai-coding-agent","updated_at":"2026-09-01T17:53:01Z"},"pull_request":{"diff_url":"https://github.com/Drmusab/flashcard-Android/pull/2.diff","html_url":"https://github.com/Drmusab/flashcard-Android/pull/2","merged_at":"2026-10-28T11:07:25Z","patch_url":"https://github.com/Drmusab/flashcard-Android/pull/2.patch","url":"https://api.github.com/repos/Drmusab/flashcard-Android/pulls/2"},"reactions":{"+1":1,"-1":0,"confused":0,"eyes":0,"heart":0,"hooray":0,"laugh":0,"rocket":0,"total_count":1,"url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2/reactions"},"repository_url":"https://api.github.com/repos/Drmusab/flashcard-Android","state":"closed","state_reason":null,"timeline_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2/timeline","title":"docs(fsa): FSA-00C independent baseline audit — gate remains BLOCKED","updated_at":"2026-10-28T11:07:26Z","url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/2","user":{"avatar_url":"https://avatars.githubusercontent.com/u/114311690?v=4","events_url":"https://api.github.com/users/Drmusab/events{/privacy}","followers_url":"https://api.github.com/users/Drmusab/followers","following_url":"https://api.github.com/users/Drmusab/following{/other_user}","gists_url":"https://api.github.com/users/Drmusab/gists{/gist_id}","gravatar_id":"","html_url":"https://github.com/Drmusab","id":114311690,"login":"Drmusab","node_id":"U_kgDOBtBCCg","organizations_url":"https://api.github.com/users/Drmusab/orgs","received_events_url":"https://api.github.com/users/Drmusab/received_events","repos_url":"https://api.github.com/users/Drmusab/repos","site_admin":false,"starred_url":"https://api.github.com/users/Drmusab/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Drmusab/subscriptions","type":"User","url":"https://api.github.com/users/Drmusab","user_view_type":"public"}},{"active_lock_reason":null,"assignee":null,"assignees":[],"author_association":"OWNER","body":"## Summary\n\nAdds the FSA-00B deliverable: `docs/fsa/FSA-00B-fork-baseline-build-verification.md` — a baseline build \u0026 verification report for this fork at commit `a7121c11c6e11d9c6ba34518784156fba1701e29`, produced before any Study-Agent migration.\n\n**FSA-00 Gate Lock recommendation: BLOCKED** (see report for exit criteria).\n\n## What's in the report\n\n- **Repository/baseline identity** — HEAD verified == `a7121c11…` == `main`; clean tree; no `upstream` remote; fork parent confirmed via GitHub API.\n- **Pinned toolchain (source-verified, unchanged)** — Gradle 9.8.0, AGP 9.4.1, Kotlin 2.4.20, compileSdk 37 / targetSdk 36 / minSdk 24, JetBrains-21 Gradle daemon (foojay).\n- **Actual build/test tasks** — `:AnkiDroid:assembleFullDebug`, `:AnkiDroid:testFullDebugUnitTest`, `lintAll ktlintCheck lint-rules:test`, `-p buildSrc test`, `:AnkiDroid:connectedFullDebugAndroidTest` (CI-corroborated).\n- **Execution evidence** — all Gradle commands were attempted in the sandbox and are recorded verbatim with exit codes. Build/test/device execution is **BLOCKED** there: no JDK/Android SDK/emulator, and Gradle/Google/Maven/foojay hosts are unreachable (JDK provisioning attempt documented). No evidence fabricated; unavailable checks classified BLOCKED/UNVERIFIED.\n- **Device verification matrix (D-1…D-8)** — defined with a disposable-data procedure; not executed (BLOCKED / sync UNVERIFIED — no test account was authorized).\n- **Identity \u0026 coexistence audit** — applicationId, provider authorities, permissions, signing, deep links, storage isolation; risks R-1…R-6 (notably: release builds share `com.ichi2.anki` + fallback keystore; FullDebug can default to the shared public `/AnkiDroid` collection folder).\n- **Windows re-run runbook** and **residual blocker register (B-01…B-08)** with Gate Lock exit criteria.\n\n## Scope / non-goals\n\n- Documentation only: **no source, build, manifest, identity, or scheduler changes.**\n- No Study-Agent migration, no AnkiConnect/FSRS changes, no upstream merge, no changes to any Anki user data.\n- `feature/fsa-foundation` could not be created from the Arena-pinned session branch (documented as B-06 with the maintainer command to create it from the baseline).\n\n## Next steps (outside this PR)\n\nRun the §9 runbook on a capable Windows host (JDK 21 + SDK 37), attach logs/APK hashes and the completed device matrix to convert the gate from BLOCKED to PASS. **FSA-01 has not been started.**","closed_at":"2026-10-25T21:02:56Z","closed_by":{"avatar_url":"https://avatars.githubusercontent.com/u/114311690?v=4","events_url":"https://api.github.com/users/Drmusab/events{/privacy}","followers_url":"https://api.github.com/users/Drmusab/followers","following_url":"https://api.github.com/users/Drmusab/following{/other_user}","gists_url":"https://api.github.com/users/Drmusab/gists{/gist_id}","gravatar_id":"","html_url":"https://github.com/Drmusab","id":114311690,"login":"Drmusab","node_id":"U_kgDOBtBCCg","organizations_url":"https://api.github.com/users/Drmusab/orgs","received_events_url":"https://api.github.com/users/Drmusab/received_events","repos_url":"https://api.github.com/users/Drmusab/repos","site_admin":false,"starred_url":"https://api.github.com/users/Drmusab/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Drmusab/subscriptions","type":"User","url":"https://api.github.com/users/Drmusab","user_view_type":"public"},"comments":1,"comments_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1/comments","created_at":"2026-10-25T20:59:35Z","draft":false,"events_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1/events","html_url":"https://github.com/Drmusab/flashcard-Android/pull/1","id":6029261067,"labels":[],"labels_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1/labels{/name}","locked":false,"milestone":null,"node_id":"PR_kwDOVU7n288AAAABKooYPw","number":1,"performed_via_github_app":null,"pull_request":{"diff_url":"https://github.com/Drmusab/flashcard-Android/pull/1.diff","html_url":"https://github.com/Drmusab/flashcard-Android/pull/1","merged_at":"2026-10-25T21:02:56Z","patch_url":"https://github.com/Drmusab/flashcard-Android/pull/1.patch","url":"https://api.github.com/repos/Drmusab/flashcard-Android/pulls/1"},"reactions":{"+1":1,"-1":0,"confused":0,"eyes":0,"heart":0,"hooray":0,"laugh":0,"rocket":0,"total_count":1,"url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1/reactions"},"repository_url":"https://api.github.com/repos/Drmusab/flashcard-Android","state":"closed","state_reason":null,"timeline_url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1/timeline","title":"docs(fsa): FSA-00B fork baseline build \u0026 verification report","updated_at":"2026-10-25T21:02:56Z","url":"https://api.github.com/repos/Drmusab/flashcard-Android/issues/1","user":{"avatar_url":"https://avatars.githubusercontent.com/u/114311690?v=4","events_url":"https://api.github.com/users/Drmusab/events{/privacy}","followers_url":"https://api.github.com/users/Drmusab/followers","following_url":"https://api.github.com/users/Drmusab/following{/other_user}","gists_url":"https://api.github.com/users/Drmusab/gists{/gist_id}","gravatar_id":"","html_url":"https://github.com/Drmusab","id":114311690,"login":"Drmusab","node_id":"U_kgDOBtBCCg","organizations_url":"https://api.github.com/users/Drmusab/orgs","received_events_url":"https://api.github.com/users/Drmusab/received_events","repos_url":"https://api.github.com/users/Drmusab/repos","site_admin":false,"starred_url":"https://api.github.com/users/Drmusab/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/Drmusab/subscriptions","type":"User","url":"https://api.github.com/users/Drmusab","user_view_type":"public"}}]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:35Z
+LABEL: FSA-00A filename/content search in repo
+COMMAND: find . -path ./.git -prune -o -type f -print | grep -iE '00A|discovery|FSA-00' | sort; echo '--- content refs to original discovery report ---'; grep -ril 'FSA-00A' docs/fsa | sort
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+./docs/fsa/FSA-00-FINAL-LOCK.md
+./docs/fsa/FSA-00B-fork-baseline-build-verification.md
+./docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+./docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+./docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+./docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+./docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+--- content refs to original discovery report ---
+docs/fsa/FSA-00-FINAL-LOCK.md
+docs/fsa/FSA-00B-fork-baseline-build-verification.md
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+docs/fsa/FSA-01-HANDOFF.md
+docs/fsa/evidence/00c-r2/03-repository-and-upstream.txt
+docs/fsa/evidence/00c/04-github.txt
+docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:09:35Z
+LABEL: FSA-00A search in workspace /home/user (attachments)
+COMMAND: find /home/user -maxdepth 5 -type f \( -iname '*00A*' -o -iname '*discovery*' \) 2>/dev/null | head -40; echo '[empty = no attachment]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+[empty = no attachment]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:15:45Z
+LABEL: shallow history check (CORRECTED — replaces label with exit 2 above)
+COMMAND: echo -n 'is-shallow: '; git rev-parse --is-shallow-repository; echo '--- .git/shallow ---'; cat .git/shallow; echo -n 'visible commits: '; git rev-list --count HEAD; echo '--- graft/replace files ---'; for p in .git/info/grafts .git/refs/replace; do if [ -e "$p" ]; then echo "PRESENT $p"; else echo "absent  $p"; fi; done; echo '--- replace refs ---'; git replace -l
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+is-shallow: true
+--- .git/shallow ---
+99d339e48c93d7b9c63113cb702574981e5cff30
+a7121c11c6e11d9c6ba34518784156fba1701e29
+visible commits: 1
+--- graft/replace files ---
+absent  .git/info/grafts
+absent  .git/refs/replace
+--- replace refs ---
+EXIT_CODE: 0
+

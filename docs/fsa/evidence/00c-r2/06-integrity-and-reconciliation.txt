@@ -1,0 +1,194 @@
+FSA-00C R2 — integrity anchors, artifact absence, dependency-trust posture, historical report reconciliation
+Hashes are provenance aids. No APK, test result, lint report or signing certificate was produced.
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: FSA-00B section 5.4 SHA-256 anchors recomputed at current HEAD
+COMMAND: for f in gradle/wrapper/gradle-wrapper.properties gradle/wrapper/gradle-wrapper.jar gradle/libs.versions.toml gradle/gradle-daemon-jvm.properties gradle.properties settings.gradle.kts AnkiDroid/build.gradle.kts AnkiDroid/src/main/AndroidManifest.xml tools/fallback-release-keystore.jks; do sha256sum "$f"; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: FSA-00B declared anchors (verbatim from report lines 235-243)
+COMMAND: sed -n '235,243p' docs/fsa/FSA-00B-fork-baseline-build-verification.md
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+```text
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: baseline vs HEAD tree object ids
+COMMAND: echo "baseline tree: $(git rev-parse a7121c11c6e11d9c6ba34518784156fba1701e29^{tree})"; echo "HEAD tree:     $(git rev-parse HEAD^{tree})"; echo '--- per-file blob identity for pinned inputs ---'; for f in gradle/wrapper/gradle-wrapper.properties gradle/libs.versions.toml gradle/gradle-daemon-jvm.properties settings.gradle.kts build.gradle.kts AnkiDroid/build.gradle.kts AnkiDroid/src/main/AndroidManifest.xml; do a=$(git rev-parse a7121c11:"$f"); b=$(git rev-parse HEAD:"$f"); [ "$a" = "$b" ] && echo "IDENTICAL $f $a" || echo "DIFFERS $f"; done
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+baseline tree: cd3bde862b4b882caaa4fb4b6a2b9c1063ba2bb7
+HEAD tree:     779f668667b8db6ae345147ecd4fb5ff809d8c36
+--- per-file blob identity for pinned inputs ---
+IDENTICAL gradle/wrapper/gradle-wrapper.properties 5eac762ef27988995ffbcbfc740bb554d5c9e714
+IDENTICAL gradle/libs.versions.toml 7f1e9602362a09f52c563baed99006c92935b20a
+IDENTICAL gradle/gradle-daemon-jvm.properties baa28d154c68d9549b158cdb7cb6325b19a51b11
+IDENTICAL settings.gradle.kts a180c5218bafe71e3e52ccb5159cb4ecb7071b4f
+IDENTICAL build.gradle.kts 208ebd997a035b5be5db1249b785b4e08aaf5462
+IDENTICAL AnkiDroid/build.gradle.kts c8ef75c7a5c91760c189a6660b72066848025390
+IDENTICAL AnkiDroid/src/main/AndroidManifest.xml 805c40bd77329c0b09e36049f270c4b825455439
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: historical FSA-00C (prior run) documents and evidence preserved, with hashes
+COMMAND: for f in docs/fsa/FSA-00B-fork-baseline-build-verification.md docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md docs/fsa/FSA-00C-BUILD-VERIFICATION.md docs/fsa/FSA-00C-DEVICE-VERIFICATION.md docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md docs/fsa/FSA-00C-RESIDUAL-RISKS.md docs/fsa/FSA-00-FINAL-LOCK.md docs/fsa/FSA-01-HANDOFF.md; do sha256sum "$f"; done; echo '--- prior evidence transcripts ---'; sha256sum docs/fsa/evidence/00c/*.txt
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+d8718e21d7860e7c393ce5f15a8f47a79bb43323ed340039f6db0dde38bdcd64  docs/fsa/FSA-00B-fork-baseline-build-verification.md
+b88d44f4679035a288289fbc61f61648ba0e8e0e4227716af61c14b9b31acf44  docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+61c143d4f5600377a4a87683d92ce1c24f15f9fc26afbb8f01dac637a13ad51c  docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+acf2038fa91a15d01b040ba211e217ca0819755789615c68e21a6efc47bfdf24  docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+07b385e77b7ddadf239d55c4d1dc47f0743004f63ffafd2a1bab64e59e3369de  docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+5fe9ca4d9e00062983eb109cd672e62de0a80fc39ffc5d4df04cf91b8313e8dd  docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+0f66cb8417c4ced0848d0d9ce00c5bd5c9275f077c4c19392918ef0d754d8d47  docs/fsa/FSA-00-FINAL-LOCK.md
+45bbc32432e5efe126e98a7c5da617f683e4ede6b014ef66f778d0d42ae64049  docs/fsa/FSA-01-HANDOFF.md
+--- prior evidence transcripts ---
+dfa026771cccf4a44690867576e6d0fceacb60bc497f95d7120ee8913b0d0b2c  docs/fsa/evidence/00c/01-repository.txt
+0336bea79ed0a95c08950a984604c6533da30055e7de9b2c9b8dec8c010fdf1d  docs/fsa/evidence/00c/02-environment.txt
+406e07e843a7a67448e7555fa9a44a034fb320b297bc3ad8718d4dfdee3a056e  docs/fsa/evidence/00c/03-gradle-attempts.txt
+d1e89838a68331274ec3e4e2b952cd3bbea44ef5e29616ce0cde73482cc0466e  docs/fsa/evidence/00c/04-github.txt
+31dc2c42474cf0bd9ec62912bfa23db45a7bad99e35a173f5fd6ce3e425d1fbe  docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+65bacbf65b85ddc463152555f06167968f49975efbc878ecb36bd5c570a30df5  docs/fsa/evidence/00c/06-network.txt
+7fd950a2b8335d5b4207c84805b4fd7a94aeda38209517db3128db31e91c822a  docs/fsa/evidence/00c/07-integrity-and-scans.txt
+d51ecbee4be4afd5c3b5e6f1188f830a08e0a61c2814bfc232d9892f14ad20a2  docs/fsa/evidence/00c/08-source-excerpts.txt
+d17d1bf356783152f6603e188117a528b5495a36e26fa88e2fb27fa9b5400b3d  docs/fsa/evidence/00c/09-follow-up-source.txt
+14ce62f23182dd60b34c58285ac83c591a33ba826bfc8632fa50568afa7fd65d  docs/fsa/evidence/00c/10-final-validation.txt
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: STALE claims in prior FSA-00C final lock (must be corrected for new HEAD)
+COMMAND: grep -n 'f821225\|8214a12a\|fe657703\|2 ahead / 17 behind\|one added FSA-00B report\|2026-10-25' docs/fsa/FSA-00-FINAL-LOCK.md docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md docs/fsa/FSA-00C-BUILD-VERIFICATION.md docs/fsa/FSA-01-HANDOFF.md | head -40
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+docs/fsa/FSA-00-FINAL-LOCK.md:8:**Audit date:** 2026-10-25 UTC. **Authority:** FSA-00C only, no feature migration.
+docs/fsa/FSA-00-FINAL-LOCK.md:16:| HEAD | `f8212252540fe104663e935d4c582e9ad499ec89` |
+docs/fsa/FSA-00-FINAL-LOCK.md:17:| Branch | `arena/8214a12a-flashcard-android` |
+docs/fsa/FSA-00-FINAL-LOCK.md:20:| Upstream HEAD (observed snapshot) | `fe6577031a7c2a875981f963c36aea5c5fe529bf` |
+docs/fsa/FSA-00-FINAL-LOCK.md:21:| Fork divergence | **2 ahead / 17 behind** that upstream snapshot; common ancestor = reference baseline |
+docs/fsa/FSA-00-FINAL-LOCK.md:22:| Source comparison | Exactly one added FSA-00B report, 463 lines; all non-report tracked files identical to baseline |
+docs/fsa/FSA-00-FINAL-LOCK.md:110:| VER-00C-01 Current HEAD recorded | **PASS** | E01/E05/E10: `f8212252540fe104663e935d4c582e9ad499ec89` |
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:3:**Audit date:** 2026-10-25 UTC. **Authority:** audit only; no migration.
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:12:| Audited HEAD / fork main at observation | `f8212252540fe104663e935d4c582e9ad499ec89` |
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:13:| Session branch | `arena/8214a12a-flashcard-android` |
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:18:| Observed upstream main | `fe6577031a7c2a875981f963c36aea5c5fe529bf` |
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:19:| Divergence, fork relative to that upstream SHA | **2 ahead / 17 behind**, merge base `a7121c11c6e11d9c6ba34518784156fba1701e29` |
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:36:The fork-only commits are report commit `2ad3dc8ce960e426007190c903c2df4f4eb4a742` and merge `f821225…`. The 17 upstream-only commits include deck access/type refactors, custom-study dialog changes, tests, lint, translations, policy/workflow documentation and the alpha8 version bump. Their SHAs/messages are retained in E05. GitHub's comparison file list may be capped at 300 files; it is not asserted to be a complete upstream changed-file inventory. No upstream commit was imported into the working tree. Remote snapshots may advance after the recorded observation.
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md:67:1. **Revision and branch:** FSA-00B's `a7121c11…` and prior Arena branch describe its run, not this run. Current HEAD is the documentation merge `f821225…`; remote main is no longer exactly baseline. A merge of documentation proves no build success.
+docs/fsa/FSA-00C-BUILD-VERIFICATION.md:3:**Revision:** `f8212252540fe104663e935d4c582e9ad499ec89`.
+docs/fsa/FSA-00C-BUILD-VERIFICATION.md:4:**Date:** 2026-10-25 UTC. Evidence IDs resolve in [entry report](FSA-00C-ENTRY-AND-EVIDENCE.md).
+docs/fsa/FSA-01-HANDOFF.md:7:- Audited revision `f8212252540fe104663e935d4c582e9ad499ec89` has the same production/build/test source as reference `a7121c11c6e11d9c6ba34518784156fba1701e29`; only FSA-00B documentation differs.
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: APK / test-result / lint-report artifact search (whole workspace)
+COMMAND: echo '--- APKs ---'; find . -path ./.git -prune -o -name '*.apk' -print; find /home/user -maxdepth 3 -name '*.apk' -print 2>/dev/null; echo '[empty = no APK produced]'; echo '--- Gradle build outputs ---'; find . -path ./.git -prune -o -type d -name build -print | head -20; echo '--- junit XML / HTML ---'; find . -path ./.git -prune -o -path '*test-results*' -print | head -20; echo '--- lint reports ---'; find . -path ./.git -prune -o -iname 'lint-results*' -print -o -iname 'lint-baseline*' -print | head -20; echo '[empty = no executed test/lint evidence]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+--- APKs ---
+[empty = no APK produced]
+--- Gradle build outputs ---
+--- junit XML / HTML ---
+--- lint reports ---
+[empty = no executed test/lint evidence]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: dependency trust posture (inherited, not changed)
+COMMAND: echo '--- repositoriesMode enforcement ---'; grep -n 'repositoriesMode' settings.gradle.kts; echo '--- dependency verification metadata / lockfiles ---'; find . -path ./.git -prune -o \( -name 'verification-metadata.xml' -o -name '*.lockfile' -o -name 'gradle.lockfile' -o -name 'libs.versions.toml.lock' \) -print; echo '[empty = none]'; echo '--- wrapper distribution checksum ---'; grep -n 'distributionSha256Sum' gradle/wrapper/gradle-wrapper.properties; echo '[empty = no wrapper checksum]'; echo '--- declared repositories ---'; sed -n '1,27p' settings.gradle.kts; grep -n 'repositories\|google()\|mavenCentral\|jitpack\|gradlePluginPortal' buildSrc/build.gradle.kts | head -20
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+--- repositoriesMode enforcement ---
+21:    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+--- dependency verification metadata / lockfiles ---
+[empty = none]
+--- wrapper distribution checksum ---
+[empty = no wrapper checksum]
+--- declared repositories ---
+pluginManagement {
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+plugins {
+    // Added automatically by Android Studio for Gradle Daemon JVM Criteria
+    // https://developer.android.com/studio/releases/past-releases/as-panda-1-release-notes#daemon-jvm-criteria
+    // Version catalog references are (mostly) unsupported in settings.gradle.kts
+    // https://discuss.gradle.org/t/how-to-use-version-catalog-in-the-root-settings-gradle-kts-file/44603
+
+    // https://github.com/gradle/foojay-toolchains
+    // Changelog: https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+dependencyResolutionManagement {
+    // TODO enforce repositories declared here
+    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
+}
+10:repositories {
+11:    google()
+12:    mavenCentral()
+13:    gradlePluginPortal()
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:13:50Z
+LABEL: no lint rule / pin / signing / scheduler modifications by this audit
+COMMAND: git status --short; echo '--- diff of tracked non-doc files vs baseline ---'; git diff --name-only a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD -- . ':(exclude)docs/fsa'; echo '[empty = none]'
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+?? docs/fsa/evidence/00c-r2/
+--- diff of tracked non-doc files vs baseline ---
+[empty = none]
+EXIT_CODE: 0
+
+------------------------------------------------------------------------
+UTC: 2026-10-28T12:15:46Z
+LABEL: FSA-00B declared anchors (CORRECTED — all nine lines, incl. fallback keystore)
+COMMAND: sed -n '236,244p' docs/fsa/FSA-00B-fork-baseline-build-verification.md
+CWD: /home/user/flashcard-Android
+------------------------------------------------------------------------
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+EXIT_CODE: 0
+
