@@ -1,0 +1,63 @@
+=== FSA-00C R3 Gradle Attempts ===
+Date: 2026-10-29T22:22:57+00:00
+---java -version---
+/bin/bash: line 4: java: command not found
+exit:127
+--- ./gradlew --version ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew robolectricSdkDownload ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew :AnkiDroid:assembleFullDebug ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew :AnkiDroid:testFullDebugUnitTest ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew jacocoUnitTestReport ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew lintAll ktlintCheck lint-rules:test ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- ./gradlew -p buildSrc test ---
+
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+
+Please set the JAVA_HOME variable in your environment to match the
+location of your Java installation.
+
+exit:1
+--- check for test XML ---
+--- check lint reports ---
