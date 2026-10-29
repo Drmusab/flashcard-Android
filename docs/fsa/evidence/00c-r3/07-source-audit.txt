@@ -1,0 +1,263 @@
+=== FSA-00C R3 Source Audit ===
+Date: 2026-10-29T22:23:35+00:00
+---Reviewer.kt answerCardInner---
+    /**
+     * Answer the current card, update the scheduler and checks if the timebox limit has been reached
+     * and, if so, displays a dialog to the user
+     * @param rating The user's rating for the card
+     */
+    override suspend fun answerCardInner(rating: Rating) {
+        val state = queueState!!
+        val cardId = currentCard!!.id
+        Timber.d("answerCardInner: $cardId $rating")
+        var wasLeech = false
+        undoableOp(this) {
+            sched.answerCard(state, rating).also {
+                wasLeech = sched.stateIsLeech(state.states.again)
+            }
+        }.also {
+            previousCardId = cardId
+            if (rating == Rating.AGAIN && wasLeech) {
+                state.topCard.load(getColUnsafe)
+                val leechMessage: String =
+                    if (state.topCard.queue.buriedOrSuspended()) {
+                        resources.getString(CommonString.leech_suspend_notification)
+                    } else {
+                        resources.getString(CommonString.leech_notification)
+                    }
+                showSnackbar(leechMessage, Snackbar.LENGTH_SHORT)
+            }
+        }
+
+        // showing the timebox reached dialog if the timebox is reached
+        val timebox = withCol { timeboxReached() }
+        if (timebox != null) {
+            dealWithTimeBox(timebox)
+        }
+    }
+
+    private suspend fun dealWithTimeBox(timebox: Collection.TimeboxReached) {
+---AbstractFlashcardViewer answerCardInner---
+                answerCardInner(rating)
+                updateCardAndRedraw()
+            }
+        }
+
+    open suspend fun answerCardInner(rating: Rating) {
+        // Legacy tests assume they can call answerCard() even outside of Reviewer
+        withCol {
+            sched.answerCard(currentCard!!, rating)
+        }
+    }
+
+    // Set the content view to the one provided and initialize accessors.
+    protected open fun initLayout() {
+        topBarLayout = findViewById(R.id.top_bar)
+        cardFrame =
+            findViewById<FrameLayout>(R.id.flashcard).apply {
+                // Force the WebView's container onto its own GPU texture so it isn't dropped from
+                // composition when the overlapping Whiteboard sibling invalidates each touch frame.
+                // Without this, Samsung WebView (since a recent update) hides the card mid-stroke
+                // until the next full hierarchy invalidation. (#19364)
+---ReviewerViewModel answerCardInternal---
+    private suspend fun answerCardInternal(rating: Rating) {
+        Timber.v("ReviewerViewModel::answerCard")
+        mutationSignal.await()
+        val state = queueState.await() ?: return
+        val card = currentCard.await()
+        val answer =
+            withCol {
+                sched.answerCard(
+                    card = card,
+                    states = state.states,
+                    rating,
+                )
+            }
+
+        undoableOp(handler = this) { sched.answerCard(answer) }
+        answerFeedbackFlow.emit(rating)
+        savedStateHandle[KEY_PREVIOUS_CARD_ID] = card.id
+
+        val wasLeech = withCol { sched.stateIsLeech(answer.newState) }
+        if (wasLeech) {
+            withCol { card.load(this) }
+            val isSuspended = card.queue.code < 0
+            onLeech(isSuspended)
+        }
+        updateCurrentCard()
+    }
+
+    // https://github.com/ankitects/anki/blob/da907053460e2b78c31199f97bbea3cf3600f0c2/qt/aqt/reviewer.py#L954
+    private suspend fun onLeech(isSuspended: Boolean) {
+        Timber.i("ReviewerViewModel::onLeech (isSuspended = %b)", isSuspended)
+        val message = StringBuilder(TR.studyingCardWasALeech())
+        if (isSuspended) {
+            message.append(" ")
+            message.append(TR.studyingItHasBeenSuspended())
+---ReviewerViewModel undo---
+    private suspend fun undo() {
+        Timber.v("ReviewerViewModel::undo")
+        actionFeedbackFlow.emit(tryUndo())
+    }
+
+    private suspend fun redo() {
+        Timber.v("ReviewerViewModel::redo")
+        actionFeedbackFlow.emit(tryRedo())
+    }
+
+    private suspend fun userAction(
+        @Reviewer.UserAction number: Int,
+    ) {
+        eval.emit("ankidroid.userAction($number);")
+    }
+
+    fun stopAutoAdvance() {
+        Timber.v("ReviewerViewModel::stopAutoAdvance")
+        autoAdvance.cancelQuestionAndAnswerActionJobs()
+    }
+
+---Collection undo---
+1260:     * Should be called via [undoableOp], which will notify
+1268:        val out = backend.undo()
+1309:    @LibAnkiAlias("_check_backend_undo_status")
+---Check for PC adapters---
+---AnkiDroid build identity---
+101:        applicationId = "com.ichi2.anki"
+133:        versionCode = 22600107
+135:        versionName = "2.26.0alpha7"
+185:            versionNameSuffix = "-debug"
+187:            applicationIdSuffix = ".debug"
+226:                applicationIdSuffix = project.property("customSuffix").toString().replaceFirst(Regex("^\\.*"), ".")
+310:                val versionCodes = mapOf("armeabi-v7a" to 1, "x86" to 2, "arm64-v8a" to 3, "x86_64" to 4)
+316:                        //  "Warning: The greatest value Google Play allows for versionCode is 2100000000"
+317:                        //  AnkiDroid versionCodes have a budget 8 digits (through AnkiDroid 9)
+320:                        output.versionCodeOverride =
+322:                            versionCodes.getValue(abi) * 100000000 + defaultConfig.versionCode!!
+393:    // output versionName etc... to `build/outputs/release-metadata.json` for use in CI
+397:        versionName.set(androidDsl.defaultConfig.versionName)
+398:        versionCode.set(androidDsl.defaultConfig.versionCode)
+402:    val validation = VersionCodeTasks.registerValidationTask(project, androidDsl.defaultConfig.versionCode)
+437:    releaseName.set(android.defaultConfig.versionName)
+---AndroidManifest providers---
+                    />
+            </intent-filter>
+            <!-- MIME type matcher for .apkg files coming from providers like gmail which hide the file extension -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+--
+
+
+        <provider
+            android:name=".provider.CardContentProvider"
+            android:authorities="${applicationId}.flashcards"
+            android:enabled="true"
+--
+            tools:ignore="ExportedContentProvider"
+            >
+            <meta-data android:name="com.ichi2.anki.provider.spec" android:value="2" />
+        </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.apkgfileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false"
+--
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+    </application>
+
+---CollectionHelper storage---
+32:    const val PREF_COLLECTION_PATH = "deckPath"
+36:            getCollectionPath(context).length()
+45:     * The AnkiDroid directory is a user preference stored under [PREF_COLLECTION_PATH], and a sensible
+86:            initializeAnkiDroidDirectory(getCurrentAnkiDroidDirectory(context))
+122:    fun getCollectionPath(context: Context) = getCollectionPaths(context).requireDiskBasedCollection().colDb
+124:    /** A temporary override for [getCurrentAnkiDroidDirectory] */
+140:     * [PREF_COLLECTION_PATH] is set (or a [ankiDroidDirectoryOverride] is active), which mirrors
+141:     * when [getCurrentAnkiDroidDirectory] can return a directory rather than throwing.
+148:     * (profile) context's preferences as the [getCurrentAnkiDroidDirectory] call being gated
+152:    fun storageDecision(preferences: SharedPreferences): StorageDecision {
+153:        storageDecisionTestOverride?.let { return it }
+158:        return if (preferences.contains(PREF_COLLECTION_PATH)) StorageDecision.Decided else StorageDecision.Undecided
+165:     * ([PREF_COLLECTION_PATH] is unset): a default is chosen during startup by
+170:    fun getCurrentAnkiDroidDirectory(context: Context): File = getCurrentAnkiDroidDirectory(context.sharedPrefs())
+172:    fun getCollectionPaths(context: Context): CollectionFiles = CollectionFiles.FolderBasedCollection(getCurrentAnkiDroidDirectory(context))
+175:    fun getMediaDirectory(context: Context) = getCollectionPaths(context).requireMediaFolder()
+181:     * ([PREF_COLLECTION_PATH] is unset): a default is chosen during startup by
+186:    fun getCurrentAnkiDroidDirectory(preferences: SharedPreferences): File {
+187:        val collectionDirectory = preferences.getString(PREF_COLLECTION_PATH, null)
+205:    /** Test-only override for [storageDecision]. @see ankiDroidDirectoryOverride */
+207:    var storageDecisionTestOverride: StorageDecision? = null
+---Fsrs wrapper check---
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+package com.ichi2.anki.scheduling
+
+import net.ankiweb.rsdroid.BuildConfig as BackendBuildConfig
+
+/**
+ * Functionality for [FSRS](https://github.com/open-spaced-repetition/)
+ */
+object Fsrs {
+    val version = FsrsVersion(BackendBuildConfig.FSRS_VERSION)
+
+    /**
+     * A user-facing string for the FSRS version.
+     *
+     * The underlying library version is not typically known to Anki users
+     *
+     * `null` is unexpected
+     */
+    val displayVersion: String?
+        get() = version.displayString
+}
+
+@JvmInline
+value class FsrsVersion(
+    val libraryVersion: String,
+) {
+    val displayString: String? get() =
+        when (libraryVersion) {
+            "0.6.4" -> "FSRS 4.5"
+            "1.4.3", "2.0.3" -> "FSRS 5"
+            "4.1.1", "5.1.0", "5.2.0", "6.3.0", "6.6.2" -> "FSRS 6"
+            else -> null
+        }
+}
+ForgetCardsDialog.kt
+Fsrs.kt
+SetDueDateDialog.kt
+SetDueDateViewModel.kt
+---DummyScheduler check---
+./libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt
+./libanki/src/main/java/com/ichi2/anki/libanki/Collection.kt:75:import com.ichi2.anki.libanki.sched.DummyScheduler
+./libanki/src/main/java/com/ichi2/anki/libanki/Collection.kt:233:            sched = DummyScheduler(this)
+./libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt:12:class DummyScheduler(
+---BuildSrc version pins---
+compileSdk = "37"
+compileSdkMinor = "0"
+# Changing minSdk means newer AnkiDroid versions will not support older devices.
+# minSdk. It is critical to update those version codes when you change this.
+minSdk = "24"
+# The API should be as low as possible in order to enable dependencies to stay on a lower minSdk.
+targetSdk = "36"  # affects SDK downloads in the ankidroid.plugins.robolectric-downloader
+androidGradlePlugin = "9.4.1"
+ankiBackend = '0.1.72-anki26.09.3'
+kotlin = '2.4.20'
+# ../AnkiDroid/robolectricDownload.gradle may need changes - read instructions in that file
+robolectric = "4.17"
+ankiBackend-backend = { module = "io.github.david-allison:anki-android-backend", version.ref = "ankiBackend" }
+ankiBackend-testing = { module = "io.github.david-allison:anki-android-backend-testing", version.ref = "ankiBackend" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+---CI lint command---
+71:        # "lintAll" opts in all modules in 1 flavor to lint, pinning :AnkiDroid to lintFullDebug
+73:        run: ./gradlew lintAll ktlintCheck lint-rules:test --daemon
+---CI unit test command---
+177:          command: ./gradlew robolectricSdkDownload --daemon
+181:        run: ./gradlew jacocoUnitTestReport --daemon
+191:        run: ./gradlew testFullDebugUnitTest -PemptyApplication --daemon

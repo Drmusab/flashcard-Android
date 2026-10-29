@@ -1,0 +1,175 @@
+=== FSA-00C R3 Repository Inspection ===
+Date: 2026-10-29T22:22:47+00:00
+HEAD: 45b58a96dd161efb65339f4f8f1c6ef5d1138da1
+Branch: arena/1a304a7c-flashcard-android
+Status:
+?? docs/fsa/evidence/00c-r3/
+---git status verbose---
+On branch arena/1a304a7c-flashcard-android
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	docs/fsa/evidence/00c-r3/
+
+nothing added to commit but untracked files present (use "git add" to track)
+---git log -5---
+45b58a96dd (HEAD -> arena/1a304a7c-flashcard-android, origin/main, origin/HEAD, main) Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+cb42f5186f docs(fsa): reassess baseline gate at current head
+99d339e48c Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android
+9ee0d6b348 docs(fsa): record independent baseline audit
+f821225254 Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android
+---git branch -a---
+* arena/1a304a7c-flashcard-android
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+---git remote -v---
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+---git remote show origin---
+* remote origin
+  Fetch URL: https://github.com/Drmusab/flashcard-Android.git
+  Push  URL: https://github.com/Drmusab/flashcard-Android.git
+  HEAD branch: main
+  Remote branch:
+    main tracked
+  Local branch configured for 'git pull':
+    main merges with remote main
+  Local ref configured for 'git push':
+    main pushes to main (up to date)
+---git worktree list---
+/home/user/flashcard-Android  45b58a96dd [arena/1a304a7c-flashcard-android]
+---packed-refs---
+# pack-refs with: peeled fully-peeled sorted 
+45b58a96dd161efb65339f4f8f1c6ef5d1138da1 refs/remotes/origin/main
+---FETCH_HEAD---
+45b58a96dd161efb65339f4f8f1c6ef5d1138da1		branch 'main' of https://github.com/Drmusab/flashcard-Android
+---shallow/grafted---
+cat: .git/shallow: No such file or directory
+no shallow file
+24687
+---git show HEAD---
+commit 45b58a96dd161efb65339f4f8f1c6ef5d1138da1
+Merge: 99d339e48c cb42f5186f
+Author: Drmusab <114311690+Drmusab@users.noreply.github.com>
+Date:   Wed Oct 28 21:42:41 2026 +0300
+
+    Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+    
+    docs(fsa): reassess baseline gate at current head
+
+ docs/fsa/FSA-00-FINAL-LOCK.md                      |   2 +
+ docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md             |   2 +
+ docs/fsa/FSA-00C-BUILD-VERIFICATION.md             |   2 +
+ docs/fsa/FSA-00C-DEVICE-VERIFICATION.md            |   2 +
+ docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md             |   2 +
+ docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md    | 245 +++++++
+ docs/fsa/FSA-00C-RESIDUAL-RISKS.md                 |   2 +
+ docs/fsa/FSA-01-HANDOFF.md                         |   2 +
+ .../evidence/00c-r2/01-wrapper-exact-commands.txt  | 120 +++
+ docs/fsa/evidence/00c-r2/02-wrapper-with-jvm.txt   | 337 +++++++++
+ .../evidence/00c-r2/03-repository-and-upstream.txt | 344 +++++++++
+ .../evidence/00c-r2/04-environment-and-network.txt | 351 +++++++++
+ docs/fsa/evidence/00c-r2/05-source-audit.txt       | 806 +++++++++++++++++++++
+ .../00c-r2/06-integrity-and-reconciliation.txt     | 194 +++++
+ 14 files changed, 2411 insertions(+)
+---diff vs baseline a7121c11---
+A	docs/fsa/FSA-00-FINAL-LOCK.md
+A	docs/fsa/FSA-00B-fork-baseline-build-verification.md
+A	docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+A	docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+A	docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+A	docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+A	docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+A	docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+A	docs/fsa/FSA-01-HANDOFF.md
+A	docs/fsa/evidence/00c-r2/01-wrapper-exact-commands.txt
+A	docs/fsa/evidence/00c-r2/02-wrapper-with-jvm.txt
+A	docs/fsa/evidence/00c-r2/03-repository-and-upstream.txt
+A	docs/fsa/evidence/00c-r2/04-environment-and-network.txt
+A	docs/fsa/evidence/00c-r2/05-source-audit.txt
+A	docs/fsa/evidence/00c-r2/06-integrity-and-reconciliation.txt
+A	docs/fsa/evidence/00c/01-repository.txt
+A	docs/fsa/evidence/00c/02-environment.txt
+A	docs/fsa/evidence/00c/03-gradle-attempts.txt
+A	docs/fsa/evidence/00c/04-github.txt
+A	docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+A	docs/fsa/evidence/00c/06-network.txt
+A	docs/fsa/evidence/00c/07-integrity-and-scans.txt
+A	docs/fsa/evidence/00c/08-source-excerpts.txt
+A	docs/fsa/evidence/00c/09-follow-up-source.txt
+A	docs/fsa/evidence/00c/10-final-validation.txt
+---diff excluding docs/fsa should be empty---
+(empty as expected - no prod changes)
+---git log ancestry path---
+45b58a96dd 99d339e48c cb42f5186f Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+cb42f5186f 99d339e48c docs(fsa): reassess baseline gate at current head
+99d339e48c f821225254 9ee0d6b348 Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android
+9ee0d6b348 f821225254 docs(fsa): record independent baseline audit
+f821225254 a7121c11c6 2ad3dc8ce9 Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android
+---ls docs/fsa---
+docs/fsa:
+FSA-00-FINAL-LOCK.md
+FSA-00B-fork-baseline-build-verification.md
+FSA-00C-ARCHITECTURE-AUDIT.md
+FSA-00C-BUILD-VERIFICATION.md
+FSA-00C-DEVICE-VERIFICATION.md
+FSA-00C-ENTRY-AND-EVIDENCE.md
+FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+FSA-00C-RESIDUAL-RISKS.md
+FSA-01-HANDOFF.md
+evidence
+
+docs/fsa/evidence:
+00c
+00c-r2
+00c-r3
+
+docs/fsa/evidence/00c:
+01-repository.txt
+02-environment.txt
+03-gradle-attempts.txt
+04-github.txt
+05-baseline-and-upstream.txt
+06-network.txt
+07-integrity-and-scans.txt
+08-source-excerpts.txt
+09-follow-up-source.txt
+10-final-validation.txt
+
+docs/fsa/evidence/00c-r2:
+01-wrapper-exact-commands.txt
+02-wrapper-with-jvm.txt
+03-repository-and-upstream.txt
+04-environment-and-network.txt
+05-source-audit.txt
+06-integrity-and-reconciliation.txt
+
+docs/fsa/evidence/00c-r3:
+01-repository.txt
+---git diff --stat baseline---
+ docs/fsa/FSA-00-FINAL-LOCK.md                      |  173 +++
+ .../FSA-00B-fork-baseline-build-verification.md    |  463 ++++++
+ docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md             |   92 ++
+ docs/fsa/FSA-00C-BUILD-VERIFICATION.md             |   90 ++
+ docs/fsa/FSA-00C-DEVICE-VERIFICATION.md            |   50 +
+ docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md             |   91 ++
+ docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md    |  245 +++
+ docs/fsa/FSA-00C-RESIDUAL-RISKS.md                 |   44 +
+ docs/fsa/FSA-01-HANDOFF.md                         |   50 +
+ .../evidence/00c-r2/01-wrapper-exact-commands.txt  |  120 ++
+ docs/fsa/evidence/00c-r2/02-wrapper-with-jvm.txt   |  337 ++++
+ .../evidence/00c-r2/03-repository-and-upstream.txt |  344 +++++
+ .../evidence/00c-r2/04-environment-and-network.txt |  351 +++++
+ docs/fsa/evidence/00c-r2/05-source-audit.txt       |  806 ++++++++++
+ .../00c-r2/06-integrity-and-reconciliation.txt     |  194 +++
+ docs/fsa/evidence/00c/01-repository.txt            |   81 +
+ docs/fsa/evidence/00c/02-environment.txt           |  106 ++
+ docs/fsa/evidence/00c/03-gradle-attempts.txt       |   79 +
+ docs/fsa/evidence/00c/04-github.txt                |   59 +
+ docs/fsa/evidence/00c/05-baseline-and-upstream.txt |   61 +
+ docs/fsa/evidence/00c/06-network.txt               |   49 +
+ docs/fsa/evidence/00c/07-integrity-and-scans.txt   |   93 ++
+ docs/fsa/evidence/00c/08-source-excerpts.txt       | 1629 ++++++++++++++++++++
+ docs/fsa/evidence/00c/09-follow-up-source.txt      |  166 ++
+ docs/fsa/evidence/00c/10-final-validation.txt      |  119 ++
+ 25 files changed, 5892 insertions(+)

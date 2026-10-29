@@ -1,0 +1,212 @@
+=== FSA-00C R3 Integrity and Scans ===
+Date: 2026-10-29T22:23:21+00:00
+---hashes---
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+---check prod diff again---
+A	docs/fsa/FSA-00-FINAL-LOCK.md
+A	docs/fsa/FSA-00B-fork-baseline-build-verification.md
+A	docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+A	docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+A	docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+A	docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+A	docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+A	docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+A	docs/fsa/FSA-01-HANDOFF.md
+A	docs/fsa/evidence/00c-r2/01-wrapper-exact-commands.txt
+A	docs/fsa/evidence/00c-r2/02-wrapper-with-jvm.txt
+A	docs/fsa/evidence/00c-r2/03-repository-and-upstream.txt
+A	docs/fsa/evidence/00c-r2/04-environment-and-network.txt
+A	docs/fsa/evidence/00c-r2/05-source-audit.txt
+A	docs/fsa/evidence/00c-r2/06-integrity-and-reconciliation.txt
+A	docs/fsa/evidence/00c/01-repository.txt
+A	docs/fsa/evidence/00c/02-environment.txt
+A	docs/fsa/evidence/00c/03-gradle-attempts.txt
+A	docs/fsa/evidence/00c/04-github.txt
+A	docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+A	docs/fsa/evidence/00c/06-network.txt
+A	docs/fsa/evidence/00c/07-integrity-and-scans.txt
+A	docs/fsa/evidence/00c/08-source-excerpts.txt
+A	docs/fsa/evidence/00c/09-follow-up-source.txt
+A	docs/fsa/evidence/00c/10-final-validation.txt
+---check any prod kotlin changes---
+none
+---dependency repositories scan---
+settings.gradle.kts:3:        google()
+settings.gradle.kts:4:        gradlePluginPortal()
+settings.gradle.kts:5:        mavenCentral()
+settings.gradle.kts:23:        google()
+settings.gradle.kts:24:        mavenCentral()
+settings.gradle.kts:25:        maven(url = "https://jitpack.io")
+buildSrc/build.gradle.kts:11:    google()
+buildSrc/build.gradle.kts:12:    mavenCentral()
+buildSrc/build.gradle.kts:13:    gradlePluginPortal()
+---buildSrc test files exist---
+buildSrc/src/test:
+kotlin
+resources
+
+buildSrc/src/test/kotlin:
+com
+
+buildSrc/src/test/kotlin/com:
+ichi2
+
+buildSrc/src/test/kotlin/com/ichi2:
+anki
+
+buildSrc/src/test/kotlin/com/ichi2/anki:
+gradle
+
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle:
+BackendTempLibraryReportTest.kt
+BackendTempLibraryServiceTest.kt
+JacocoPluginTest.kt
+ReleaseMetadataPathTest.kt
+ScreenshotPluginTest.kt
+VersionCatalogsTest.kt
+VersionCodeTest.kt
+WriteReleaseMetadataTest.kt
+
+buildSrc/src/test/resources:
+jacoco-project
+
+buildSrc/src/test/resources/jacoco-project:
+app
+build.gradle.fixture
+empty
+settings.gradle.fixture
+
+buildSrc/src/test/resources/jacoco-project/app:
+build.gradle.fixture
+src
+
+buildSrc/src/test/resources/jacoco-project/app/src:
+main
+
+buildSrc/src/test/resources/jacoco-project/app/src/main:
+AndroidManifest.xml.fixture
+
+buildSrc/src/test/resources/jacoco-project/empty:
+src
+
+buildSrc/src/test/resources/jacoco-project/empty/src:
+main
+
+buildSrc/src/test/resources/jacoco-project/empty/src/main:
+java
+
+buildSrc/src/test/resources/jacoco-project/empty/src/main/java:
+regression
+
+buildSrc/src/test/resources/jacoco-project/empty/src/main/java/regression:
+Uncovered.java.fixture
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/BackendTempLibraryReportTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/BackendTempLibraryServiceTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/JacocoPluginTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/ReleaseMetadataPathTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/ScreenshotPluginTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/VersionCatalogsTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/VersionCodeTest.kt
+buildSrc/src/test/kotlin/com/ichi2/anki/gradle/WriteReleaseMetadataTest.kt
+---lint baseline check---
+-rw-r--r-- 1 user user 23982 Oct 29 22:20 lint-release.xml
+
+lint-rules:
+total 13
+drwxr-xr-x  3 user user  128 Oct 29 22:20 .
+drwxr-xr-x 24 user user 4096 Oct 29 22:20 ..
+-rw-r--r--  1 user user    6 Oct 29 22:20 .gitignore
+-rw-r--r--  1 user user 1163 Oct 29 22:20 README.md
+-rw-r--r--  1 user user  449 Oct 29 22:20 build.gradle.kts
+drwxr-xr-x  4 user user   60 Oct 29 22:20 src
+---fallback keystore---
+-rw-r--r-- 1 user user 2.7K Oct 29 22:20 tools/fallback-release-keystore.jks
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+---package identity scan---
+101:        applicationId = "com.ichi2.anki"
+187:            applicationIdSuffix = ".debug"
+226:                applicationIdSuffix = project.property("customSuffix").toString().replaceFirst(Regex("^\\.*"), ".")
+---provider authorities---
+633:            android:authorities="${applicationId}.flashcards"
+642:            android:authorities="${applicationId}.apkgfileprovider"
+---search for excluded architectures---
+---check Study-Agent client reference---
+flashcard-Android
+---CI workflows---
+README.md
+assignees.yml
+cancel_merge_queue_runs.yml
+codeql.yml
+compare_apk_size.yml
+conflict.yaml
+label.yml
+lint.yml
+merge_requirements.yml
+milestone.yml
+opencollective_notices.yml
+publish.yml
+screenshot_comment.yml
+screenshot_compare.yml
+screenshot_store.yml
+stale.yml
+sync_translations.yml
+tests_emulator.yml
+tests_unit.yml
+name: 🛠️ Unit Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      iterations:
+        description: "Number of iterations on each chosen operating system. Default 1. Max 85."
+        required: true
+        default: 1
+        type: number
+      operatingSystems:
+        description: "Which operating systems to run tests on"
+        required: true
+        type: choice
+        # If you alter system names in default + options here, also alter osArray below to match
+        default: '["windows-latest", "macos-14", "ubuntu-latest"]'
+        options:
+          - '["windows-latest", "macos-14", "ubuntu-latest"]'
+          - '["windows-latest"]'
+          - '["macos-14"]'
+          - '["ubuntu-latest"]'
+  schedule:
+    - cron: "42 0 * * 2"
+  pull_request:
+  push:
+    # Ignore merge queue branches on push; avoids merge_group+push concurrency race since ref is same
+    branches-ignore:
+      - 'gh-readonly-queue/**'
+      # Dependabot branches are already checked by the pull_request trigger.
+      - 'dependabot/**'
+      # Crowdin translations are already checked by the pull_request trigger.
+      - 'i18n_sync'
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  # if a workflow is run against the same ref, only one at a time...
+  # ...but allow different triggers to run concurrent (push, manual flake run, scheduled flake run...)
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  # We want to generate our matrix dynamically
+  # Initial job generates the matrix as a JSON, and following job will use deserialize and use the result
+  matrix_prep:
+    # Do not run the scheduled jobs on forks
+    if: (github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+    runs-on: ubuntu-latest

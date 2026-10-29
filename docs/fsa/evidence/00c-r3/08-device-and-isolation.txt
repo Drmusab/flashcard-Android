@@ -1,0 +1,94 @@
+=== FSA-00C R3 Device / Isolation Check ===
+Date: 2026-10-29T22:23:35+00:00
+---adb devices---
+/bin/bash: line 24: adb: command not found
+exit:127
+---emulator check---
+ls: cannot access '/dev/kvm': No such file or directory
+---APK existence---
+ls: cannot access 'AnkiDroid/build': No such file or directory
+---installation impossible without APK---
+No APK produced, cannot test install
+---manifest deep links---
+65:            <action android:name="android.intent.action.VIEW" />
+66:            <category android:name="android.intent.category.BROWSABLE" />
+70:            <action android:name="android.intent.action.VIEW" />
+71:            <category android:name="android.intent.category.BROWSABLE" />
+125:            <intent-filter>
+129:            </intent-filter>
+131:            <intent-filter>
+132:                <action android:name="android.intent.action.VIEW" />
+134:                <category android:name="android.intent.category.BROWSABLE" />
+260:            </intent-filter>
+262:            <intent-filter>
+263:                <action android:name="android.intent.action.VIEW" />
+265:                <action android:name="android.intent.action.SEND"/>
+277:            </intent-filter>
+280:            <intent-filter android:label="@string/image_occlusion">
+281:                <action android:name="android.intent.action.VIEW" />
+282:                <action android:name="android.intent.action.SEND" />
+292:            </intent-filter>
+295:            <intent-filter>
+298:            </intent-filter>
+322:            <intent-filter>
+326:            </intent-filter>
+341:            <intent-filter>
+342:                <action android:name="android.intent.action.VIEW" />
+344:                <category android:name="android.intent.category.BROWSABLE" />
+346:            </intent-filter>
+360:            android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
+363:            <intent-filter>
+364:                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+365:                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE_FOR_PERIOD" />
+367:            </intent-filter>
+385:            <intent-filter>
+386:                <action android:name="android.intent.action.VIEW" />
+388:            </intent-filter>
+405:            <intent-filter>
+407:            </intent-filter>
+421:            <intent-filter>
+425:            </intent-filter>
+434:            <intent-filter>
+437:            </intent-filter>
+438:            <intent-filter>
+439:                <action android:name="android.intent.action.SEND" />
+442:            </intent-filter>
+444:            <intent-filter android:label="@string/multimedia_editor_popup_image">
+445:                <action android:name="android.intent.action.SEND" />
+446:                <action android:name="android.intent.action.VIEW" />
+456:            </intent-filter>
+531:            <intent-filter>
+533:            </intent-filter>
+542:            <intent-filter>
+544:            </intent-filter>
+552:            <intent-filter>
+556:            </intent-filter>
+557:            <intent-filter>
+561:            </intent-filter>
+578:            <intent-filter>
+580:            </intent-filter>
+622:            <intent-filter>
+623:                <action android:name="android.intent.action.SEND" />
+626:            </intent-filter>
+---sync safety---
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPermission.kt:3:package com.ichi2.anki.sync
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPermission.kt:5:/** Permission to use a metered connection for one sync attempt. */
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPermission.kt:10:    /** Allow metered syncing for this attempt; the separate media restriction still applies. */
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:3:package com.ichi2.anki.sync
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:23: * [launchCatchingTask], showing a one-way sync dialog: [CommonString.full_sync_confirmation]
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:34:                    dialog.setArgs(message = getString(CommonString.full_sync_confirmation))
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:49: * [launchCatchingTask], showing a one-way sync dialog: [CommonString.full_sync_confirmation]
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:63:                    dialog.setArgs(message = getString(CommonString.full_sync_confirmation))
+AnkiDroid/src/main/java/com/ichi2/anki/sync/SchemaChanges.kt:78: * If changing the schema would require the next sync to be a full sync, and it's not already required, ask
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:3:package com.ichi2.anki.sync
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:19: * Single source of truth for the "warn the user before syncing on a metered connection"
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:24:    /** True when sync should be blocked/prompted because the network is metered. */
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:29:     * network changes before or during sync. Checking only the current connection is insufficient.
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:47:     * Run [onConfirm] immediately if the network is unmetered, metered-network sync is
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:51:     * @param skipPrompt `true` if the user has already accepted a metered sync earlier in this
+AnkiDroid/src/main/java/com/ichi2/anki/sync/MeteredSyncPolicy.kt:71:            message(CommonString.metered_sync_data_warning)
+MeteredSyncPermission.kt
+MeteredSyncPolicy.kt
+SchemaChanges.kt
+---backup surfaces---
+98:        android:allowBackup="true"

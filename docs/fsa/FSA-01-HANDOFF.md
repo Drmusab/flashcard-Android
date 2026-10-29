@@ -1,50 +1,114 @@
-# FSA-01 handoff — WITHHELD pending FSA-00 lock
+# FSA-01 Handoff — Study-Agent Migration Inventory & Component Classification
 
-> **Historical snapshot:** This document describes the 2026-10-25 audit at `f821225…`, not the current checkout. For the 2026-10-28 independent reassessment and current gate decision, see [FSA-00C-R2 reassessment](FSA-00C-R2-INDEPENDENT-REASSESSMENT.md). Historical findings and evidence below are preserved.
+> **Status:** **WITHHELD** — FSA-00 is **BLOCKED** at `45b58a9`.
+> Build, tests, APK, device Reviewer behavior, storage isolation and FSA-00A reconciliation are **not proven** and cannot become assumptions of FSA-01.
+> This handoff contains conditional scope and exclusions only; it is **not** authorization to begin production migration.
+> Next gate after verified lock: **FSA-01A — Study-Agent Migration Discovery & Component Classification**.
 
-**Not an authorization to start FSA-01.** FSA-00 is **BLOCKED**, per [final decision](FSA-00-FINAL-LOCK.md). This file records the stop condition and future scope only; no Study-Agent inventory, code copying, classification or integration has been performed.
+**As of:** 2026-10-29 UTC, `45b58a96dd161efb65339f4f8f1c6ef5d1138da1` (6 ahead /141 behind upstream `210b543e…`).
+**Authority:** Audit and verification only. No feature migration in FSA-00.
+**Evidence:** [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md) and predecessor reports – must not be treated as FSA-00 PASS.
 
-## What can be inherited now
+## 1. Precondition for activation
 
-- Audited revision `f8212252540fe104663e935d4c582e9ad499ec89` has the same production/build/test source as reference `a7121c11c6e11d9c6ba34518784156fba1701e29`; only FSA-00B documentation differs.
-- Source pins and native Reviewer-to-libanki mutation boundary were inspected; no PC scheduler/Study-Agent adapter was added.
-- Build, tests, APK, device behavior, storage isolation and FSA-00A reconciliation are **not proven**. These cannot become assumptions of FSA-01.
+FSA-01A may start **only after**:
 
-## Preconditions to activate
+- FSA-00 independently verified and locked with executed evidence: HEAD recorded, baseline equivalence, toolchain pins confirmed via actual build, FullDebug APK built and hashed/verified, unit + build-logic + lint executions passed with XML/HTML evidence, device Reviewer matrix passed on disposable collection, isolation proven, sync/contract resolved.
+- Parent-contract prerequisites: FSA-00A original reconciled with provenance, foundation-branch naming accepted, sync waiver authority documented if applicable.
+- No unauthorized upstream merge; baseline `a7121c11c6…` frozen.
 
-Close mandatory blockers in [residual risks](FSA-00C-RESIDUAL-RISKS.md), reconcile original evidence, and obtain an evidence-backed independent FSA-00 lock decision. No production migration is authorized before that decision.
+Current state: none of the above is satisfied – FSA-01 is **NOT AUTHORIZED**.
 
-## Conditional next scope (after legitimate lock only)
+## 2. FSA-01A purpose (when unblocked)
 
-**FSA-01A — Study-Agent Migration Discovery & Component Classification**, within FSA-01.
-Reference: `Drmusab/Study-Agent-Client`; not imported or audited as migration work in FSA-00C.
-
-Future classification vocabulary:
-
-- REUSE AS-IS
-- REFACTOR FOR ANKIDROID
-- ADAPT TO NATIVE REVIEWER
-- REPLACE WITH ANKIDROID IMPLEMENTATION
-- REMOVE
-- DEFER
-
-Candidate families supplied by the mission—not verified paths or classifications yet—include `core/voice/tts`, `core/voice/stt`, `core/audio`, `core/models/VoiceCommand`, `core/voice/StudyVoiceTurnGate`, StudySession coordination, AudioRouteManager, SpeechOrchestrator, RecognitionOrchestrator, AI Provider integration and AI Study UI.
-
-Authority must remain:
+Classify each existing `Drmusab/Study-Agent-Client` component against the frozen AnkiDroid baseline (`a7121c11…`):
 
 ```text
-Anki Studio Agent → AnkiDroid Native Reviewer → AnkiDroid/libanki → Anki Scheduler/FSRS
+REUSE AS-IS
+REFACTOR FOR ANKIDROID
+ADAPT TO NATIVE REVIEWER
+REPLACE WITH ANKIDROID IMPLEMENTATION
+REMOVE
+DEFER
 ```
 
-Explicitly excluded from any automatic migration:
+Candidate families to inventory (not to copy automatically):
 
-- `PcAnkiBackend`
-- `PcAnkiAvailabilitySource`
-- PC Backend Registry
-- PC Custom Study Adapter
-- AnkiConnect Scheduler Integration
-- Remote PC Review Queue
-- Duplicate FSRS / Anki Rating Engine
-- Dual-scheduler/backend-selection migration and automatic cross-backend failover
+```text
+core/voice/tts
+core/voice/stt
+core/audio
+core/models/VoiceCommand
+core/voice/StudyVoiceTurnGate
+StudySession coordination
+AudioRouteManager
+SpeechOrchestrator
+RecognitionOrchestrator
+AI Provider integration
+AI Study UI
+```
 
-Voice/AI must use future authorized native Reviewer boundaries, not substitute scheduling authority. Old GATE 21 multi-backend assumptions are not inherited. Optional PC AI computation is a separate future decision, not PC Anki integration. Release identity/signing/storage policy remains FSA-02 work.
+Do **not** transfer old GATE 21 multi-backend assumptions. The native AnkiDroid Reviewer → libanki → Anki scheduler/FSRS authority (INV-00C-01..07) remains exclusive; voice/AI are future advisory/command inputs, not scheduler replacements.
+
+Method after unblock: inventory component-by-component with source location, responsibility, data flow, storage, permissions and test mapping; produce classification matrix with rationale and residual risk; obtain review before any code copy.
+
+## 3. Permanent exclusions (even after unblock)
+
+The following are **out of scope** unless product owner explicitly issues a new architectural decision:
+
+```text
+PC ANKI ADAPTER:
+EXCLUDED
+
+PC ANKI BACKEND REGISTRY:
+EXCLUDED
+
+ANKICONNECT SCHEDULING:
+EXCLUDED
+
+PC CUSTOM STUDY ADAPTER:
+EXCLUDED
+
+DUAL ANKI SCHEDULER:
+PROHIBITED
+
+SECOND FSRS IMPLEMENTATION:
+PROHIBITED
+
+REMOTE PC CARD QUEUE:
+PROHIBITED
+
+AUTOMATIC CROSS-BACKEND FAILOVER:
+PROHIBITED
+
+STUDY-AGENT BACKEND SELECTION MIGRATION (GATE 21):
+NOT AUTHORIZED
+```
+
+In code terms this excludes (non-exhaustive enumeration, not introduction):
+
+```text
+PcAnkiBackend
+PcAnkiAvailabilitySource
+PC Backend Registry
+PC Custom Study Adapter
+AnkiConnect Scheduler Integration
+Remote PC Review Queue
+Duplicate FSRS / Anki Rating Engine
+RatingCommit adapter to PC (not the native undoableOp commit)
+```
+
+FSA-00C exclusion scans at `45b58a9` (R3-06/07) confirm none of these exist in the new architecture – that must be preserved. Optional **PC-based AI computation** is a separate future architectural topic, not PC Anki integration; it must not be confused with backend adapters. If pursued, it would be an optional AI provider path, not scheduler authority.
+
+## 4. What FSA-01 does NOT inherit
+
+- No claim that AnkiDroid builds without defects – build/test evidence is BLOCKED.
+- No claim that Reviewer ratings/undo survive lifecycle without re-rating – runtime unverified.
+- No claim that package separation equals storage isolation – runtime path must still be proven disposable.
+- No claim that sync is safe without disposable account – sync remains UNVERIFIED.
+- No release identity or signing policy – independent distribution belongs to **FSA-02**, not FSA-01.
+
+## 5. Next step when FSA-00 locks
+
+FSA-01A discovery report with per-component classification, exclusion reaffirmation, and explicit mapping of native Reviewer as authoritative study system. No code copy, no scheduler rewrite, no fallback-key distribution. Until then, **do not implement FSA-01**.
+
