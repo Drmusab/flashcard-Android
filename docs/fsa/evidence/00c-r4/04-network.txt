@@ -1,0 +1,29 @@
+# FSA-00C R4 — dependency and toolchain acquisition endpoints
+# generated: 2026-10-29T22:53:09Z UTC
+# method: curl -s -o /dev/null -m 15 -w '%{http_code}' ; 000 = connection/TLS not completed
+
+https://services.gradle.org/distributions/gradle-9.8.0-bin.zip                                  -> 000
+https://downloads.gradle.org/distributions/gradle-9.8.0-bin.zip                                 -> 000
+https://plugins.gradle.org/m2/                                                                  -> 000
+https://repo1.maven.org/maven2/                                                                 -> 000
+https://repo.maven.apache.org/maven2/                                                           -> 000
+https://dl.google.com/android/repository/repository2-3.xml                                      -> 000
+https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/9.4.1/gradle-9.4.1.pom   -> 000
+https://maven.google.com/com/android/tools/build/gradle/9.4.1/gradle-9.4.1.pom                  -> 000
+https://api.foojay.io/disco/v3.0/packages                                                       -> 000
+https://raw.githubusercontent.com/gradle/gradle/master/README.md                                -> 000
+https://objects.githubusercontent.com                                                           -> 000
+https://jitpack.io/                                                                             -> 000
+https://github.com                                                                              -> 200
+https://api.github.com/rate_limit                                                               -> 200
+https://codeload.github.com                                                                     -> 301
+https://registry.npmjs.org/                                                                     -> 200
+https://pypi.org/simple/jdk4py/                                                                 -> 200
+
+Interpretation:
+ - Gradle distribution, Google Maven (AGP/AndroidX), Maven Central, Plugin Portal, JitPack, foojay = 000 (TLS terminated by egress policy)
+ - raw/objects.githubusercontent.com = 000  => even GitHub release binary assets cannot be fetched
+ - only github.com, api.github.com, codeload.github.com, registry.npmjs.org, pypi.org are reachable
+ - consequence: AGP 9.4.1, Kotlin 2.4.20, AndroidX, Robolectric 4.17, anki-android-backend 0.1.72-anki26.09.3,
+   Android SDK platform 37 and Gradle 9.8.0 cannot be acquired by any legitimate route in this sandbox.
+ - no mirror, repackaged JDK/SDK, checksum-bypass or dependency substitution was attempted (prohibited).

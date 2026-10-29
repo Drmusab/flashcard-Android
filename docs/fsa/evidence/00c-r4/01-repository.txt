@@ -1,0 +1,103 @@
+# FSA-00C R4 — repository state
+# generated: 2026-10-29T22:51:59Z UTC by Arena.ai Agent Mode
+
+$ git status --short
+?? docs/fsa/evidence/00c-r4/
+exit=0
+
+$ git rev-parse HEAD
+f506261b8968418a2d98f7bfa796ea61e98e1578
+
+$ git branch --show-current
+arena/2424aa82-flashcard-android
+
+$ git branch -a
+* arena/2424aa82-flashcard-android
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+$ git remote -v
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+
+$ git log -10 --oneline
+f506261b89 Merge pull request #4 from Drmusab/arena/1a304a7c-flashcard-android
+1a704aa7b0 docs(fsa): FSA-00C R3 independent reassessment at 45b58a9
+45b58a96dd Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+cb42f5186f docs(fsa): reassess baseline gate at current head
+99d339e48c Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android
+9ee0d6b348 docs(fsa): record independent baseline audit
+f821225254 Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android
+2ad3dc8ce9 docs(fsa): FSA-00B fork baseline build & verification report
+a7121c11c6 feat(card-templates): reposition card types
+9693d1930c refactor: leaner card template ordinal tracking
+
+$ git rev-list --count HEAD
+24689
+
+$ ls .git/shallow  (shallow marker?)
+ls: cannot access '.git/shallow': No such file or directory
+ABSENT - full history
+
+$ git cat-file -t a7121c11c6e11d9c6ba34518784156fba1701e29
+commit
+
+$ git log -1 --format="%H %ci %an %s" a7121c11
+a7121c11c6e11d9c6ba34518784156fba1701e29 2026-10-25 00:14:19 +0000 David Allison feat(card-templates): reposition card types
+
+$ git diff --name-status a7121c11..HEAD
+A	docs/fsa/FSA-00-FINAL-LOCK.md
+A	docs/fsa/FSA-00B-fork-baseline-build-verification.md
+A	docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md
+A	docs/fsa/FSA-00C-BUILD-VERIFICATION.md
+A	docs/fsa/FSA-00C-DEVICE-VERIFICATION.md
+A	docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+A	docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+A	docs/fsa/FSA-00C-R3-INDEPENDENT-REASSESSMENT.md
+A	docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+A	docs/fsa/FSA-01-HANDOFF.md
+A	docs/fsa/evidence/00c-r2/01-wrapper-exact-commands.txt
+A	docs/fsa/evidence/00c-r2/02-wrapper-with-jvm.txt
+A	docs/fsa/evidence/00c-r2/03-repository-and-upstream.txt
+A	docs/fsa/evidence/00c-r2/04-environment-and-network.txt
+A	docs/fsa/evidence/00c-r2/05-source-audit.txt
+A	docs/fsa/evidence/00c-r2/06-integrity-and-reconciliation.txt
+A	docs/fsa/evidence/00c-r3/01-repository.txt
+A	docs/fsa/evidence/00c-r3/02-environment.txt
+A	docs/fsa/evidence/00c-r3/03-gradle-attempts.txt
+A	docs/fsa/evidence/00c-r3/04-network.txt
+A	docs/fsa/evidence/00c-r3/05-github-and-baseline.txt
+A	docs/fsa/evidence/00c-r3/06-integrity-and-scans.txt
+A	docs/fsa/evidence/00c-r3/07-source-audit.txt
+A	docs/fsa/evidence/00c-r3/08-device-and-isolation.txt
+A	docs/fsa/evidence/00c/01-repository.txt
+A	docs/fsa/evidence/00c/02-environment.txt
+A	docs/fsa/evidence/00c/03-gradle-attempts.txt
+A	docs/fsa/evidence/00c/04-github.txt
+A	docs/fsa/evidence/00c/05-baseline-and-upstream.txt
+A	docs/fsa/evidence/00c/06-network.txt
+A	docs/fsa/evidence/00c/07-integrity-and-scans.txt
+A	docs/fsa/evidence/00c/08-source-excerpts.txt
+A	docs/fsa/evidence/00c/09-follow-up-source.txt
+A	docs/fsa/evidence/00c/10-final-validation.txt
+
+$ git diff --name-only a7121c11..HEAD | wc -l
+34
+
+$ git diff --name-only a7121c11..HEAD | grep -v "^docs/fsa/"  (non-docs changes)
+grep_exit=1 (1 = no non-docs change)
+
+$ git log --oneline a7121c11..HEAD
+f506261b89 Merge pull request #4 from Drmusab/arena/1a304a7c-flashcard-android
+1a704aa7b0 docs(fsa): FSA-00C R3 independent reassessment at 45b58a9
+45b58a96dd Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+cb42f5186f docs(fsa): reassess baseline gate at current head
+99d339e48c Merge pull request #2 from Drmusab/arena/8214a12a-flashcard-android
+9ee0d6b348 docs(fsa): record independent baseline audit
+f821225254 Merge pull request #1 from Drmusab/arena/e0f873f3-flashcard-android
+2ad3dc8ce9 docs(fsa): FSA-00B fork baseline build & verification report
+
+$ git rev-parse HEAD^{tree} / baseline^{tree}
+ba844ea69ce6904b4139b569a8e15851979a252f
+cd3bde862b4b882caaa4fb4b6a2b9c1063ba2bb7

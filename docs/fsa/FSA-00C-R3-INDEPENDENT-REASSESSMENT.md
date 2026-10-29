@@ -45,7 +45,7 @@ Historical evidence (preserved, not current-head execution):
 
 | ID | Artifact | Scope |
 | --- | --- | --- |
-| E01-E10 | [00c/01-10](../../FSA-00B-fork-baseline-build-verification.md) + [R2-01..06](evidence/00c-r2/) | Prior FSA-00C audits at `a7121c1`/`f821225`/`99d339e` – source pins and blocked conclusions corroborated |
+| E01-E10 | [00c/01-10](evidence/00c/) + [FSA-00B](FSA-00B-fork-baseline-build-verification.md) + [R2-01..06](evidence/00c-r2/) | Prior FSA-00C audits at `a7121c1`/`f821225`/`99d339e` – source pins and blocked conclusions corroborated |
 
 ## 2. Prerequisite and documentation reconciliation
 

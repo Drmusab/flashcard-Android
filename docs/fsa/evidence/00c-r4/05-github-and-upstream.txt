@@ -1,0 +1,46 @@
+# FSA-00C R4 — GitHub identity, upstream divergence, prerequisite search
+# generated: 2026-10-29T22:53:13Z UTC
+
+$ gh api repos/Drmusab/flashcard-Android
+{"default_branch":"main","fork":true,"full_name":"Drmusab/flashcard-Android","parent":"ankidroid/Anki-Android","pushed_at":"2026-10-29T22:48:19Z","size":342489,"source":"ankidroid/Anki-Android"}
+
+$ gh api repos/ankidroid/Anki-Android/commits/main  (upstream head at observation)
+c21570b0a5139fe0823568f8fa29460aa9be6066 2026-10-29T22:05:40Z
+
+$ gh api repos/ankidroid/Anki-Android/commits/a7121c11... (baseline exists upstream)
+a7121c11c6e11d9c6ba34518784156fba1701e29 2026-10-23T08:59:42Z | feat(card-templates): reposition card types
+
+$ gh api compare/a7121c11...f506261  (baseline -> audit HEAD)
+{"ahead_by":8,"behind_by":0,"file_count":34,"status":"ahead","total_commits":8}
+
+$ gh api compare/main...ankidroid:main  (fork vs upstream)
+{"ahead_by":142,"behind_by":8,"status":"diverged"}
+
+$ git merge-base HEAD origin/main
+f506261b8968418a2d98f7bfa796ea61e98e1578
+
+$ gh pr list --state all
+[{"headRefName":"arena/1a304a7c-flashcard-android","mergedAt":"2026-10-29T22:48:20Z","number":4,"state":"MERGED","title":"docs(fsa): FSA-00C R3 independent reassessment at 45b58a9 — gate remains BLOCKED"},{"headRefName":"arena/657ed7e0-flashcard-android","mergedAt":"2026-10-28T18:42:42Z","number":3,"state":"MERGED","title":"docs(fsa): reassess baseline gate at current head"},{"headRefName":"arena/8214a12a-flashcard-android","mergedAt":"2026-10-28T11:07:25Z","number":2,"state":"MERGED","title":"docs(fsa): FSA-00C independent baseline audit — gate remains BLOCKED"},{"headRefName":"arena/e0f873f3-flashcard-android","mergedAt":"2026-10-25T21:02:56Z","number":1,"state":"MERGED","title":"docs(fsa): FSA-00B fork baseline build & verification report"}]
+
+$ gh release list
+(empty = no releases)
+
+$ gh api commits/f506261/check-runs (CI evidence for exact HEAD)
+0
+$ gh api actions/runs
+0
+
+$ git log --all --diff-filter=A --name-only -- "docs/fsa/*" | grep -i "00a|discovery"   (FSA-00A artifact in any ref)
+grep_exit=1 (1 = no FSA-00A artifact in any ref)
+
+$ grep -ril "FSA-00A" --include=*.md .   (mentions only, not the artifact)
+./docs/fsa/FSA-00-FINAL-LOCK.md
+./docs/fsa/FSA-01-HANDOFF.md
+./docs/fsa/FSA-00B-fork-baseline-build-verification.md
+./docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+./docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+./docs/fsa/FSA-00C-R3-INDEPENDENT-REASSESSMENT.md
+./docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+
+Finding: no FSA-00A discovery report exists in any branch, PR, release or commit of this fork.
+Only *references* to its absence appear (FSA-00B/00C docs and evidence). Reconciliation stays BLOCKED.

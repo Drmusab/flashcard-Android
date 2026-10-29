@@ -1,8 +1,10 @@
 # FSA-00C — Build and toolchain verification
 
-> **Current snapshot:** `45b58a9` on 2026-10-29. For the authoritative gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md). Prior snapshot at `f821225…` preserved below as historical.
+> **Current snapshot:** `f506261` on 2026-10-29. For the authoritative gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md). R3 (`45b58a9…`) and `f821225…` snapshots preserved below as historical.
 
-**Revision:** `45b58a96dd161efb65339f4f8f1c6ef5d1138da1`.
+**Revision:** `f506261b8968418a2d98f7bfa796ea61e98e1578`.
+
+> **R4 supersession of the build outcome only in one respect:** the wrapper is no longer unlaunchable. A Temurin 21.0.8 **JRE** obtained from an allowed host (`pypi.org`, `jdk4py`) executes `./gradlew`, which then fails downloading `gradle-9.8.0-bin.zip` with `javax.net.ssl.SSLHandshakeException`. All seven required commands still exit **1**, still before any Gradle task, so every row below stays BLOCKED — but the blocker is now proven to be **artifact acquisition**, not the launcher/JVM. That JRE has no `javac` and is not the pinned JETBRAINS vendor. See [R4-03](evidence/00c-r4/03-jvm-and-gradle.txt), [R4-04](evidence/00c-r4/04-network.txt).
 **Date:** 2026-10-29 UTC. Evidence IDs: [R3 index](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md#evidence-index--r3-current) (R3-01..08) and [entry index](FSA-00C-ENTRY-AND-EVIDENCE.md#evidence-index) (E01 etc).
 **Outcome: BLOCKED before JVM startup, not a demonstrated compiler/test defect.**
 

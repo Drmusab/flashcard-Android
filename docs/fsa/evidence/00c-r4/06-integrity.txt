@@ -1,0 +1,23 @@
+# FSA-00C R4 — source integrity vs FSA-00B §5.4 anchors
+# generated: 2026-10-29T22:53:23Z UTC
+
+$ sha256sum <9 pinned build inputs>
+3eba5a2745d47a47bd7de72fade92418c8273468abaf5b7f315346821b8e7145  gradle/wrapper/gradle-wrapper.properties
+238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5  gradle/wrapper/gradle-wrapper.jar
+100155c4ed9bc9ce22e208dec3836411300971708fae3a598b2e982a8f5a4904  gradle/libs.versions.toml
+6bb9a5da683dc48714609e17e7e202a7a3fb5d9bdbbd27b816af9777b9185089  gradle/gradle-daemon-jvm.properties
+53419655bae2b351b4f1ecdfe53161c0d5620a10c4ecbdbf5429ffaba38c96db  gradle.properties
+00d8bc5fc0ed42258786f94ff8a8f8cc48da7ae22123527167c89a45c0301f33  settings.gradle.kts
+ea5724589f1d4de136fe31a50c72533bb9b68a8d7c5e061baceaac83567cc9b8  AnkiDroid/build.gradle.kts
+748bda118c75910e7777a1c5c44e8a4cd702bdf02c241dab482e18da6ec99d8d  AnkiDroid/src/main/AndroidManifest.xml
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+
+Comparison against FSA-00B §5.4 / R2 / R3 recorded digests:
+  9 of 9 match byte-for-byte => pinned build inputs are unchanged since the a7121c11 baseline.
+  (Proves source integrity only. It does NOT prove dependency resolution, compilation or APK identity.)
+
+$ git diff --stat a7121c11..HEAD -- . ":(exclude)docs/fsa"
+(empty = no non-docs change)
+
+$ git diff --name-only a7121c11..HEAD -- "*.kt" "*.java" "*.kts" "*.xml" "*.toml" "*.gradle"
+(empty = no code/build/manifest/resource change)

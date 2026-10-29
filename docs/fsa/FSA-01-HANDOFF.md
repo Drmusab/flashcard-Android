@@ -1,11 +1,11 @@
 # FSA-01 Handoff — Study-Agent Migration Inventory & Component Classification
 
-> **Status:** **WITHHELD** — FSA-00 is **BLOCKED** at `45b58a9`.
+> **Status:** **WITHHELD** — FSA-00 is **BLOCKED** at `f506261` (R4).
 > Build, tests, APK, device Reviewer behavior, storage isolation and FSA-00A reconciliation are **not proven** and cannot become assumptions of FSA-01.
 > This handoff contains conditional scope and exclusions only; it is **not** authorization to begin production migration.
 > Next gate after verified lock: **FSA-01A — Study-Agent Migration Discovery & Component Classification**.
 
-**As of:** 2026-10-29 UTC, `45b58a96dd161efb65339f4f8f1c6ef5d1138da1` (6 ahead /141 behind upstream `210b543e…`).
+**As of:** 2026-10-29 UTC, `f506261b8968418a2d98f7bfa796ea61e98e1578` (8 ahead /142 behind upstream `c21570b0…`).
 **Authority:** Audit and verification only. No feature migration in FSA-00.
 **Evidence:** [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md) and predecessor reports – must not be treated as FSA-00 PASS.
 

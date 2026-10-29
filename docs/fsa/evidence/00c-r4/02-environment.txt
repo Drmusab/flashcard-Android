@@ -1,0 +1,55 @@
+# FSA-00C R4 — host environment
+# generated: 2026-10-29T22:53:05Z UTC
+
+$ uname -a
+Linux e2b.local 6.1.158+ #1 SMP PREEMPT_DYNAMIC Mon May 11 18:48:24 UTC 2026 x86_64 GNU/Linux
+
+$ cat /etc/os-release | head -3
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+
+$ nproc
+2
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       289Mi       2.8Gi       1.0Mi       959Mi       3.6Gi
+Swap:             0B          0B          0B
+
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        21G  1.6G   19G   8% /
+
+$ ls /dev/kvm
+ls: cannot access '/dev/kvm': No such file or directory
+ABSENT - no hardware acceleration => no usable emulator
+
+java         -> ABSENT
+javac        -> ABSENT
+gradle       -> ABSENT
+adb          -> ABSENT
+sdkmanager   -> ABSENT
+emulator     -> ABSENT
+aapt2        -> ABSENT
+apkanalyzer  -> ABSENT
+apksigner    -> ABSENT
+kotlinc      -> ABSENT
+
+$ env | grep -E "JAVA_HOME|ANDROID|GRADLE_USER_HOME"
+(unset in clean shell)
+
+$ ls local.properties
+ls: cannot access 'local.properties': No such file or directory
+ABSENT
+
+$ find . -name "*.apk" (repository)
+(no output = no APK)
+
+$ ls -d ~/.gradle /opt/android* /usr/lib/jvm 2>&1
+ls: cannot access '/home/user/.gradle': No such file or directory
+ls: cannot access '/opt/android*': No such file or directory
+ls: cannot access '/usr/lib/jvm': No such file or directory
+
+Summary: 2 vCPU, 3.8 GiB RAM, no swap, ~20 GiB free disk.
+Source requirements: daemon -Xmx3072M (gradle.properties) + per-fork test heap -> RAM marginal for real build.
