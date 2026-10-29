@@ -1,0 +1,142 @@
+# FSA-00C R4 — identity, storage isolation, device availability
+# generated: 2026-10-29T22:53:34Z UTC ; HEAD f506261b8968418a2d98f7bfa796ea61e98e1578
+
+== 1. Application identity ==
+$ sed -n "99,102p;131,136p;183,190p" AnkiDroid/build.gradle.kts
+
+    defaultConfig {
+        applicationId = "com.ichi2.anki"
+        buildConfigField("Boolean", "CI", (System.getenv("CI") == "true").toString())
+        // This ensures the correct ordering between the various types of releases (dev < alpha < beta < release) which is
+        // needed for upgrades to be offered correctly.
+        versionCode = 22600107
+        // If you change this to a new version, you probably also want to update .gradle/workflows/milestone.yml for the new version...
+        versionName = "2.26.0alpha7"
+        testApplicationId = "com.ichi2.anki.tests"
+    buildTypes {
+        named("debug") {
+            versionNameSuffix = "-debug"
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+            splits.abi.isUniversalApk = true // Build universal APK for debug always
+            // Check Crash Reports page on developer wiki for info on ACRA testing
+            // buildConfigField "String", "ACRA_URL", '"https://918f7f55-f238-436c-b34f-c8b5f1331fe5-bluemix.cloudant.com/acra-ankidroid/_design/acra-storage/_update/report"'
+
+== 2. Signing configuration (release falls back to a PUBLIC keystore) ==
+$ sed -n "167,180p" AnkiDroid/build.gradle.kts
+    signingConfigs {
+        create("release") {
+            val keystorePath = System.getenv("KEYSTOREPATH")
+            if (keystorePath != null && !keystorePath.trim().isEmpty()) {
+                storeFile = file(keystorePath)
+                storePassword = System.getenv("KEYSTOREPWD")?.takeIf { it.isNotEmpty() } ?: System.getenv("KSTOREPWD")
+                keyAlias = System.getenv("KEYALIAS")
+                keyPassword = System.getenv("KEYPWD")
+            } else {
+                storeFile = file("$rootDir/tools/fallback-release-keystore.jks")
+                storePassword = "Test@123"
+                keyAlias = "my-key"
+                keyPassword = "Test@123"
+            }
+
+$ sha256sum tools/fallback-release-keystore.jks
+d1d3fb7d48bcec155c86f92eca757775bc047fceaba42b5fe369e98d08ac80ea  tools/fallback-release-keystore.jks
+  => fallback key is committed and its passwords are public in the build script: a fork RELEASE signed
+     with it can never be a trustworthy update channel. No release APK was built or distributed by this audit.
+
+== 3. Provider / permission identity (templated on applicationId) ==
+$ grep -n "permission|authorities" AnkiDroid/src/main/AndroidManifest.xml
+360:            android:permission="android.permission.START_VIEW_PERMISSION_USAGE"
+633:            android:authorities="${applicationId}.flashcards"
+642:            android:authorities="${applicationId}.apkgfileprovider"
+
+== 4. Backup / cleartext surfaces ==
+$ grep -n "allowBackup|usesCleartextTraffic|fullBackupContent|dataExtractionRules" AnkiDroid/src/main/AndroidManifest.xml
+91:       Attribute usesCleartextTraffic, added in API 23 and false by default if targeting API >= 28,
+93:       https://developer.android.com/guide/topics/manifest/application-element#usesCleartextTraffic
+98:        android:allowBackup="true"
+102:        android:usesCleartextTraffic="true"
+
+== 5. Collection storage selection (package separation != storage separation) ==
+$ grep -n 'isInstrumentationTest|getCurrentAnkiDroidDirectory|collectionDirectory' anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt
+10:import com.ichi2.anki.common.utils.android.isInstrumentationTest
+170:    fun getCurrentAnkiDroidDirectory(context: Context): File = getCurrentAnkiDroidDirectory(context.sharedPrefs())
+186:    fun getCurrentAnkiDroidDirectory(preferences: SharedPreferences): File {
+187:        val collectionDirectory = preferences.getString(PREF_COLLECTION_PATH, null)
+188:        return if (isInstrumentationTest) {
+191:            File(collectionDirectory ?: throw collectionPathUnset(), "androidTest")
+194:                ?: File(collectionDirectory ?: throw collectionPathUnset())
+
+$ sed -n "186,196p" anki-common/src/main/kotlin/com/ichi2/anki/common/storage/CollectionHelper.kt
+    fun getCurrentAnkiDroidDirectory(preferences: SharedPreferences): File {
+        val collectionDirectory = preferences.getString(PREF_COLLECTION_PATH, null)
+        return if (isInstrumentationTest) {
+            // create an "androidTest" directory inside the current collection directory which contains the test data
+            // "/AnkiDroid/androidTest" would be a new collection path
+            File(collectionDirectory ?: throw collectionPathUnset(), "androidTest")
+        } else {
+            ankiDroidDirectoryOverride
+                ?: File(collectionDirectory ?: throw collectionPathUnset())
+        }
+    }
+
+$ find . -name "SetupStorage.kt" -o -name "InitialActivity.kt" | head
+./AnkiDroid/src/main/java/com/ichi2/anki/InitialActivity.kt
+./AnkiDroid/src/main/java/com/ichi2/anki/startup/SetupStorage.kt
+
+$ grep -rn "legacyAnkiDroidDirectory|DIRECTORY_DEFAULT|publicDirectory" --include=*.kt anki-common/src/main | head -6
+
+== 6. FileProvider exposed paths ==
+$ cat AnkiDroid/src/main/res/xml/filepaths.xml
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-cache-path path="export/" name="export-directory" />
+    <cache-path path="/" name="cache-directory" />
+    <external-path path="." name="photos" />
+    <external-files-path name="shared_decks" path="shared_decks" />
+    <external-cache-path name="temp-photos" path="temp-photos" />
+</paths>
+
+== 7. Device / emulator availability ==
+$ command -v adb
+ABSENT
+$ ls /dev/kvm
+ABSENT
+$ find . -name "*.apk"
+(none)
+  => no APK, no adb, no emulator, no KVM: no runtime verification was possible and none was simulated.
+
+== 8. Sync ==
+  No sync executed. No disposable AnkiWeb account was supplied or authorized.
+  Classification: UNVERIFIED — TEST ACCOUNT NOT AUTHORIZED (no waiver granted).
+
+== 5b. Default storage resolution (public shared directory can be selected) ==
+$ sed -n "127,150p" AnkiDroid/src/main/java/com/ichi2/anki/startup/SetupStorage.kt
+fun getDefaultAnkiDroidDirectory(
+    context: Context,
+    directoryName: String = "AnkiDroid",
+    folder: AnkiDroidFolder = selectAnkiDroidFolder(context),
+): File =
+    when (folder) {
+        AnkiDroidFolder.PUBLIC -> legacyAnkiDroidDirectory(directoryName)
+        AnkiDroidFolder.APP_PRIVATE -> File(getAppSpecificExternalAnkiDroidDirectory(context), directoryName)
+    }
+
+/**
+ * Returns the absolute path to the AnkiDroid directory under the primary/shared external storage directory.
+ * This directory may be in emulated external storage, or can be an SD Card directory.
+ *
+ * @param directoryName  The folder name to use at the end of the returned path. Defaults to
+ *                       `"AnkiDroid"`. Non-default profiles can pass `ProfileId` here to get a
+ *                       profile-specific layout.
+ * @return Absolute path to the AnkiDroid directory in primary shared/external storage
+ */
+private fun legacyAnkiDroidDirectory(directoryName: String = "AnkiDroid"): File =
+    File(Environment.getExternalStorageDirectory(), directoryName)
+
+/**
+ * Returns the absolute path to the AnkiDroid directory under the app-specific, primary/shared external storage
+
+=> AnkiDroidFolder.PUBLIC resolves to legacyAnkiDroidDirectory() = shared external storage + /AnkiDroid.
+   On a real device this can be the SAME directory a production/official AnkiDroid uses
+   (e.g. /storage/emulated/0/AnkiDroid). Debug package separation does not prevent this.

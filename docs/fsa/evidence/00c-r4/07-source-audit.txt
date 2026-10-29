@@ -1,0 +1,135 @@
+# FSA-00C R4 — source architecture audit (Reviewer / scheduler / exclusion / identity)
+# generated: 2026-10-29T22:53:26Z UTC ; source HEAD f506261b8968418a2d98f7bfa796ea61e98e1578
+
+== 1. Native rating path: Reviewer ==
+$ grep -n "answerCardInner|undoableOp|sched.answerCard" AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt
+109:import com.ichi2.anki.observability.undoableOp
+349:            undoableOp(this@Reviewer) {
+1580:    override suspend fun answerCardInner(rating: Rating) {
+1583:        Timber.d("answerCardInner: $cardId $rating")
+1585:        undoableOp(this) {
+1586:            sched.answerCard(state, rating).also {
+
+$ sed -n "1575,1592p" AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt
+    /**
+     * Answer the current card, update the scheduler and checks if the timebox limit has been reached
+     * and, if so, displays a dialog to the user
+     * @param rating The user's rating for the card
+     */
+    override suspend fun answerCardInner(rating: Rating) {
+        val state = queueState!!
+        val cardId = currentCard!!.id
+        Timber.d("answerCardInner: $cardId $rating")
+        var wasLeech = false
+        undoableOp(this) {
+            sched.answerCard(state, rating).also {
+                wasLeech = sched.stateIsLeech(state.states.again)
+            }
+        }.also {
+            previousCardId = cardId
+            if (rating == Rating.AGAIN && wasLeech) {
+                state.topCard.load(getColUnsafe)
+
+== 2. Native rating path: ReviewerViewModel ==
+$ grep -n 'fun answerCard|answerCardInternal|undoableOp|private suspend fun undo' AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt
+37:import com.ichi2.anki.observability.undoableOp
+192:    fun answerCard(rating: Rating) {
+252:        undoableOp {
+355:            undoableOp {
+365:            undoableOp {
+375:            undoableOp {
+384:        undoableOp {
+393:        undoableOp {
+400:    private suspend fun undo() {
+527:    private suspend fun answerCardInternal(rating: Rating) {
+541:        undoableOp(handler = this) { sched.answerCard(answer) }
+684:            undoableOp {
+758:                    ViewerAction.ANSWER_AGAIN -> answerCardInternal(Rating.AGAIN)
+759:                    ViewerAction.ANSWER_HARD -> answerCardInternal(Rating.HARD)
+760:                    ViewerAction.ANSWER_GOOD -> answerCardInternal(Rating.GOOD)
+761:                    ViewerAction.ANSWER_EASY -> answerCardInternal(Rating.EASY)
+
+$ sed -n "527,545p" AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt
+    private suspend fun answerCardInternal(rating: Rating) {
+        Timber.v("ReviewerViewModel::answerCard")
+        mutationSignal.await()
+        val state = queueState.await() ?: return
+        val card = currentCard.await()
+        val answer =
+            withCol {
+                sched.answerCard(
+                    card = card,
+                    states = state.states,
+                    rating,
+                )
+            }
+
+        undoableOp(handler = this) { sched.answerCard(answer) }
+        answerFeedbackFlow.emit(rating)
+        savedStateHandle[KEY_PREVIOUS_CARD_ID] = card.id
+
+        val wasLeech = withCol { sched.stateIsLeech(answer.newState) }
+
+== 3. Scheduler implementation (libanki wrapper, not a fork-owned engine) ==
+$ grep -n "class Scheduler|answerCard" libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt | head
+91:open class Scheduler(
+130:    open fun answerCard(
+139:    open fun answerCard(
+172:    fun answerCard(input: CardAnswer): OpChanges = col.backend.answerCard(input)
+$ sed -n "1,30p" libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt
+// SPDX-License-Identifier: GPL-3.0-or-later
+// SPDX-FileCopyrightText: Copyright (c) 2022 Ankitects Pty Ltd <https://apps.ankiweb.net>
+
+package com.ichi2.anki.libanki.sched
+
+import androidx.annotation.CheckResult
+import androidx.annotation.VisibleForTesting
+import androidx.annotation.WorkerThread
+import anki.collection.OpChanges
+import anki.collection.OpChangesWithCount
+import anki.config.ConfigKey
+import anki.config.OptionalStringConfigKey
+import anki.config.optionalStringConfigKey
+import anki.decks.DeckTreeNode
+import anki.decks.FilteredDeckForUpdate
+import anki.frontend.SchedulingStatesWithContext
+import anki.i18n.FormatTimespanRequest
+import anki.scheduler.BuryOrSuspendCardsRequest
+import anki.scheduler.CardAnswer
+import anki.scheduler.CardAnswer.Rating
+import anki.scheduler.CongratsInfoResponse
+import anki.scheduler.CustomStudyDefaultsResponse
+import anki.scheduler.CustomStudyRequest
+import anki.scheduler.QueuedCards
+import anki.scheduler.RepositionDefaultsResponse
+import anki.scheduler.SchedTimingTodayResponse
+import anki.scheduler.SchedulingContext
+import anki.scheduler.SchedulingState
+import anki.scheduler.SchedulingStates
+import anki.scheduler.UnburyDeckRequest
+
+== 4. Exclusion scan (forbidden components must be AFK in FSA-00) ==
+  pcanki               matches=0
+  pc-anki              matches=0
+  anki-connect         matches=0
+  ankiconnect          matches=0
+  study-agent          matches=0
+  studyagent           matches=0
+  StudyVoiceTurn       matches=0
+  SpeechOrchestrator   matches=0
+  RatingCommit         matches=0
+  PcAnkiBackend        matches=0
+  (0 matches for every forbidden Study-Agent / PC-Anki / AnkiConnect symbol)
+
+== 5. Only scheduler classes present ==
+$ grep -rn "class .*Scheduler" --include=*.kt libanki/src/main AnkiDroid/src/main
+libanki/src/main/java/com/ichi2/anki/libanki/sched/DummyScheduler.kt:12:class DummyScheduler(
+libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt:91:open class Scheduler(
+AnkiDroid/src/main/java/com/ichi2/anki/dialogs/SchedulerUpgradeDialog.kt:26:class SchedulerUpgradeDialog : DialogFragment() {
+
+$ grep -rn "DummyScheduler(this)" libanki/src/main/java/com/ichi2/anki/libanki/Collection.kt
+231-        val ver = schedVer()
+232-        if (ver == 1) {
+233:            sched = DummyScheduler(this)
+234-        } else if (ver == 2) {
+235-            if (!backend.getConfigBool(ConfigKey.Bool.SCHED_2021)) {

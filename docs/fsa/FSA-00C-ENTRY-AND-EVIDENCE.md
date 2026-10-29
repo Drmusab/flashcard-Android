@@ -1,8 +1,8 @@
 # FSA-00C — Entry, provenance and evidence reconciliation
 
-> **Current snapshot:** `45b58a96dd161efb65339f4f8f1c6ef5d1138da1` on 2026-10-29 — see [R3 independent reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md) for the authoritative current decision and evidence. Prior audit at `f821225…` / `99d339e…` preserved below as historical.
+> **Current snapshot:** `f506261b8968418a2d98f7bfa796ea61e98e1578` on 2026-10-29 — see [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md) for the authoritative current decision and evidence. Prior audits at `45b58a9…` (R3), `99d339e…` (R2) and `f821225…` are preserved below as historical.
 
-**Audit date:** 2026-10-29 UTC (R3). **Authority:** audit only; no migration.
+**Audit date:** 2026-10-29 UTC (R4). **Authority:** audit only; no migration.
 **Prepared with:** Arena.ai Agent Mode. No upstream contribution or remote workflow dispatch.
 **Decision:** [FSA-00 remains BLOCKED](FSA-00-FINAL-LOCK.md).
 
@@ -11,17 +11,19 @@
 | Field | Observed value |
 | --- | --- |
 | Target | `Drmusab/flashcard-Android` |
-| Audited HEAD | `45b58a96dd161efb65339f4f8f1c6ef5d1138da1` |
-| Session branch | `arena/1a304a7c-flashcard-android` (fixed Arena session) |
+| Audited HEAD | `f506261b8968418a2d98f7bfa796ea61e98e1578` (merge of PR #4, the R3 documentation merge) |
+| Session branch | `arena/2424aa82-flashcard-android` (fixed Arena session) |
 | Reference baseline | `a7121c11c6e11d9c6ba34518784156fba1701e29` |
 | Origin | `https://github.com/Drmusab/flashcard-Android.git` |
 | Upstream relationship | GitHub reports `fork:true`, parent/source `ankidroid/Anki-Android`, default branch `main` |
 | Configured upstream remote | None; upstream queried by URL/API only |
-| Observed upstream main | `210b543e8ff832073e31672494fdaa1e8a2d6549` (2026-10-29) |
-| Divergence vs that upstream SHA | **6 ahead / 141 behind**, merge base `a7121c11…` (GitHub compare) |
-| Entry worktree | Clean; R3 adds docs/fsa evidence only |
-| Report-generation worktree | New R3 documentation/evidence only; no prod/build changes discarded |
-| History | Full history (24,687 commits); no shallow file; no grafted commit. Prior runs were shallow. |
+| Observed upstream main | `c21570b0a5139fe0823568f8fa29460aa9be6066` (2026-10-29T22:05:40Z) |
+| Divergence vs that upstream SHA | **8 ahead / 142 behind**, merge base `a7121c11…` (GitHub compare) |
+| Entry worktree | Clean; R4 adds docs/fsa evidence only |
+| Report-generation worktree | New R4 documentation/evidence only; no prod/build changes discarded |
+| History | **Started shallow (1 commit) in this checkout**; `git fetch --unshallow` succeeded → full history (24,689 commits), no shallow file, no grafted commit. R3's full-history state did not carry into this session. |
+
+R4 entry evidence is index [R4-01..08](FSA-00C-R4-INDEPENDENT-AUDIT.md#evidence-index--r4); R4 also corrected R3's claim that no JVM could be provisioned at all (a JRE *is* obtainable from an allowed host, and it was used to isolate the failure to artifact acquisition).
 
 `git diff --name-status a7121c11..HEAD` contains exactly:
 
@@ -56,9 +58,13 @@ A docs/fsa/evidence/00c/10-final-validation.txt
 
 25 added documentation lines; **zero** changes to production Kotlin/Java, tests, build scripts, dependencies, manifests, resources or native scheduler outside docs/fsa. The diff excluding docs/fsa exits 0. All nine FSA-00B §5.4 SHA-256 anchors independently recalculated and match (R3-06). This verifies source integrity, not dependencies or APK.
 
+> **R4 update at `f506261…`:** the same diff now spans **34 added files, still all under `docs/fsa/`** (the 25 above plus the R3 report and its 8 evidence files). `git diff --stat a7121c11..HEAD ':(exclude)docs/fsa'` remains empty and the same 9 anchors still match (R4-01/R4-06). The conclusion is unchanged; only the count grew.
+
 ### Upstream changes not merged
 
 The fork-only commits are the 3 documentation commits + 3 merges (6 ahead). The 141 upstream-only commits since baseline include deck/refactors, custom-study dialogs, tests, lint, translations, policy/workflow docs and alpha8 bump. Their SHAs are retained in R3-05. No upstream commit was imported into working tree. Remote snapshots may advance after observation.
+
+> **R4 update:** at `f506261…` the fork is **8 ahead / 142 behind** upstream `c21570b0…`, still with merge base `a7121c11…`; the two additional fork commits are the R3 documentation commit and its merge (R4-05). No upstream commit was merged.
 
 ### Historical snapshot (preserved)
 
@@ -87,7 +93,9 @@ Both were valid for their cited SHAs; their blocked results are consistent with 
 
 ## Evidence index
 
-Current R3 evidence (relative to this directory, UTC timestamps, exact commands, exits):
+Current R4 evidence is the authoritative set: [R4-01..08](FSA-00C-R4-INDEPENDENT-AUDIT.md#evidence-index--r4) in `evidence/00c-r4/` (repository state, host environment, JVM provisioning + 7 wrapper executions, 17-endpoint acquisition matrix, GitHub/upstream compares, 9-anchor integrity, source audit, identity/storage/device). The R3 set below remains as historical evidence for `45b58a9…`.
+
+Historical R3 evidence (relative to this directory, UTC timestamps, exact commands, exits):
 
 | ID | Artifact | Purpose |
 | --- | --- | --- |
@@ -119,7 +127,7 @@ The installed `gh` CLI succeeded for all API queries; commit SHA `a7121c11…` i
 
 ### Explicit corrections/qualifications (historical documents preserved, still valid)
 
-1. **Revision/branch:** FSA-00B's `a7121c11…` and prior Arena branches describe those runs, not this run. Current HEAD is documentation merge `45b58a9…`; remote main now 141 behind upstream. Merge of docs proves no build success.
+1. **Revision/branch:** FSA-00B's `a7121c11…` and prior Arena branches describe those runs, not this run. Current HEAD is documentation merge `f506261…` on `arena/2424aa82-flashcard-android`; the fork is 142 behind upstream. Merge of docs proves no build success.
 2. **Lint spelling:** FSA-00B §5.1 correctly specifies `ktlintCheck`, §5.2 attempted `ktLintCheck`; `workflows/README.md:16` also old capitalization; authoritative `lint.yml:73` uses `ktlintCheck`. R3-03 uses correct spelling; neither reached task resolution historically or now.
 3. **JVM claim:** FSA-00B “any ≥17 launcher works” not verified unlimited range. Root `build.gradle.kts:203-240` enforces **daemon JVM 21–25** and states `JAVA_HOME` does not override daemon criteria. JetBrains 21 is pinned default. Launcher vs daemon compatibility remains unexecuted; use pinned JDK and record both.
 4. **No upstream remote ≠ no possible merge:** Git can fetch/merge by URL; no-merge conclusion rests on unchanged HEAD/tree and command record (R3-01/05), not missing remote.
@@ -127,7 +135,9 @@ The installed `gh` CLI succeeded for all API queries; commit SHA `a7121c11…` i
 6. **Sync waiver:** Suggested waiver not authorization. No parent contract permitting waiver supplied; sync remains UNVERIFIED, no waiver granted.
 7. **Branch remedy:** `feature/fsa-foundation` not created/switched per fixed Arena branch lock. Obtain owner acceptance of equivalent isolation if naming remains contract requirement; never reset main.
 8. **Memory:** Off-record memory settings not acceptable evidence. Any host settings must be recorded. Pressure is risk, not observed OOM.
-9. **Artifact paths:** APK paths in FSA-00B are expectations, not existing outputs. R3-02 found no APK; metadata/signature/hash remain absent.
+9. **Artifact paths:** APK paths in FSA-00B are expectations, not existing outputs. R4-02/R4-08 found no APK; metadata/signature/hash remain absent.
+10. **R3's JVM claim corrected by R4:** R3 concluded no JVM could be provisioned from allowed hosts. That is inaccurate — `pypi.org` is reachable and `jdk4py` supplied a working **Temurin 21.0.8 JRE**, which executed the wrapper launcher (exit 0 for `java -version`). It is a JRE (no `javac`, no `jmods`), not the pinned JETBRAINS vendor, so it cannot substitute for the build toolchain. The useful consequence: the proven blocker moved from "no JVM at all" to "Gradle distribution and all dependency artifacts are unfetchable" (R4-03/R4-04).
+11. **Shallow checkout recurred:** although R3 recorded full history, this session's checkout arrived shallow (1 commit). `git fetch --unshallow` succeeded, so baseline comparison is again valid — but the state must be re-established per session, not inherited.
 
 Contributor and architecture references: `CONTRIBUTING.md`, `AI_POLICY.md`, `workflows/README.md`, actual lint/unit/emulator workflows, `docs/development/gradle-daemon-jvm.md`, storage/reviewer source. No PR/workflow submitted.
 

@@ -1,9 +1,11 @@
 # FSA-00C — Architecture audit and scope verification
 
-> **Current snapshot:** `45b58a9` on 2026-10-29. For gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md). Prior snapshot at `f821225…` preserved as historical.
+> **Current snapshot:** `f506261` on 2026-10-29. For gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md). R3 (`45b58a9…`) and `f821225…` snapshots preserved as historical.
 
-**Revision:** `45b58a96dd161efb65339f4f8f1c6ef5d1138da1`.
-**Date:** 2026-10-29 UTC. Evidence: [R3-07 source audit](evidence/00c-r3/07-source-audit.txt), [R3-06 scans](evidence/00c-r3/06-integrity-and-scans.txt), [R3-01/05 repo](evidence/00c-r3/01-repository.txt), manifest/pipeline excerpts inline.
+**Revision:** `f506261b8968418a2d98f7bfa796ea61e98e1578`.
+**Date:** 2026-10-29 UTC. Evidence: [R4-07 source audit](evidence/00c-r4/07-source-audit.txt), [R4-08 identity/storage](evidence/00c-r4/08-identity-storage-device.txt), [R4-06 integrity](evidence/00c-r4/06-integrity.txt), [R4-01 repo](evidence/00c-r4/01-repository.txt), manifest/pipeline excerpts inline.
+
+> **R4 re-verification:** the conclusions below were re-checked at `f506261` by direct source inspection. `Reviewer.kt:1580-1592` still routes `answerCardInner` through `undoableOp { sched.answerCard(state, rating) }`; both reviewer surfaces still share one native authority; and a fresh scan returns **zero** matches for `pcanki`, `pc-anki`, `anki-connect`, `ankiconnect`, `study-agent`, `studyagent`, `StudyVoiceTurn`, `SpeechOrchestrator`, `RatingCommit` and `PcAnkiBackend` across Kotlin, Gradle, XML and catalog files. No runtime claim is upgraded — this remains a source audit.
 **Scope:** FSA-00 baseline-only – audit only, no Study-Agent migration, no PC Anki, no scheduler rewrite.
 
 ## 1. Native Reviewer and scheduler authority

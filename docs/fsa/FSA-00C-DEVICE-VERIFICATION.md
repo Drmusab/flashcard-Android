@@ -1,9 +1,11 @@
 # FSA-00C — Device and data-safety verification
 
-> **Current snapshot:** `45b58a9` on 2026-10-29. For the gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md). Prior snapshot at `f821225…` preserved below as historical.
+> **Current snapshot:** `f506261` on 2026-10-29. For the gate decision see [FSA-00 final lock](FSA-00-FINAL-LOCK.md) and [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md). R3 (`45b58a9…`) and `f821225…` snapshots preserved below as historical.
 
-**Revision:** `45b58a96dd161efb65339f4f8f1c6ef5d1138da1`.
-**Date:** 2026-10-29 UTC. Evidence: [R3-02](evidence/00c-r3/02-environment.txt), [R3-03](evidence/00c-r3/03-gradle-attempts.txt), [R3-08](evidence/00c-r3/08-device-and-isolation.txt), [R3-07](evidence/00c-r3/07-source-audit.txt) (storage/reviewer excerpts).
+**Revision:** `f506261b8968418a2d98f7bfa796ea61e98e1578`.
+**Date:** 2026-10-29 UTC. Evidence: [R4-02](evidence/00c-r4/02-environment.txt), [R4-03](evidence/00c-r4/03-jvm-and-gradle.txt), [R4-07](evidence/00c-r4/07-source-audit.txt), [R4-08](evidence/00c-r4/08-identity-storage-device.txt).
+
+> **R4 re-execution:** nothing changed for this matrix. There is still no APK, no `adb`, no emulator and no `/dev/kvm` on the host, so **every** device row remains BLOCKED/UNVERIFIED and none was simulated. R4 additionally pinned the storage risk to `SetupStorage.kt:127-148`, where `AnkiDroidFolder.PUBLIC` resolves to `File(getExternalStorageDirectory(), "AnkiDroid")` — a directory a production install can own.
 
 ## Outcome: BLOCKED – no device/APK/target; no production data touched
 

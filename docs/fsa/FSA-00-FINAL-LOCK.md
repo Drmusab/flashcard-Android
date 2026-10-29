@@ -4,8 +4,8 @@
 > Source equivalence and scoped source architecture checks pass.
 > Mandatory build, test, artifact, device and data-isolation evidence does not exist.
 > FSA-00A reconciliation is blocked. FSA-01 production migration is **NOT AUTHORIZED**.
-> **Current snapshot:** `45b58a9` on 2026-10-29. Prior snapshots `f821225…` / `99d339e…` are preserved as historical evidence.
-> See [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md) for current evidence.
+> **Current snapshot:** `f506261` on 2026-10-29 (R4). Prior snapshots `45b58a9…` (R3), `99d339e…` (R2) and `f821225…` are preserved as historical evidence.
+> See the [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md) for current evidence. The tables below were produced at R3; every field was re-verified at R4 with the same or a sharper result, and the R4-specific differences are called out inline and in the final contract block.
 
 **Audit date:** 2026-10-29 UTC. **Authority:** FSA-00C only, no feature migration.
 **Prepared with:** Arena.ai Agent Mode; maintainer acceptance is not implied.
@@ -15,24 +15,24 @@
 | Contract field | Observed result |
 | --- | --- |
 | Target repository | `Drmusab/flashcard-Android` |
-| HEAD | `45b58a96dd161efb65339f4f8f1c6ef5d1138da1` |
-| Branch | `arena/1a304a7c-flashcard-android` |
-| Worktree status | Clean on entry; R3 adds documentation/evidence only. No prod/build changes, no existing work discarded. See R3-01. |
-| Baseline commit | `a7121c11c6e11d9c6ba34518784156fba1701e29` |
-| Upstream HEAD (observed) | `210b543e8ff832073e31672494fdaa1e8a2d6549` (ankidroid/Anki-Android main 2026-10-29) |
-| Fork divergence | **6 ahead / 141 behind** that upstream SHA; merge base = reference baseline. Snapshot after advanced upstream (was 4/88 at R2). |
-| Source comparison | 25 added files, all under `docs/fsa/` (1×FSA-00B + 7 prior audit/handoff + 16 evidence transcripts + R2/R3 reports). Outside docs/fsa diff empty – production, tests, build, manifests, deps identical to baseline. |
-| History | Full history available (24,687 commits); previously shallow/grafted, now --unshallow. No ancestry fabrication. |
+| HEAD | `f506261b8968418a2d98f7bfa796ea61e98e1578` |
+| Branch | `arena/2424aa82-flashcard-android` |
+| Worktree status | Clean on entry; R4 adds documentation/evidence only. No prod/build changes, no existing work discarded. See R4-01. |
+| Baseline commit | `a7121c11c6e11d9c6ba34518784156fba1701e29` (verified present locally and upstream) |
+| Upstream HEAD (observed) | `c21570b0a5139fe0823568f8fa29460aa9be6066` (ankidroid/Anki-Android main, 2026-10-29T22:05:40Z) |
+| Fork divergence | **8 ahead / 142 behind** that upstream SHA; merge base = reference baseline. Snapshot counts move as upstream advances (was 6/141 at R3, 4/88 at R2). |
+| Source comparison | 34 added files at R4 entry, all under `docs/fsa/`. Outside docs/fsa diff empty – production, tests, build, manifests, deps identical to baseline; all 9 FSA-00B §5.4 hashes match (R4-06). |
+| History | This checkout arrived **shallow (1 commit)**; `git fetch --unshallow` succeeded → full history (24,689 commits), no shallow file, no grafted commit. Must be re-established per session, never inherited. |
 
-[R3-01 / R3-05](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md#evidence-index--r3-current) record exact Git/API commands. No upstream merge, branch switch, commit, push, PR action or workflow dispatch performed. Source and signing policies frozen.
+[R4-01..08](FSA-00C-R4-INDEPENDENT-AUDIT.md#evidence-index--r4) record exact commands, outputs and exit codes for this snapshot. No upstream merge, branch switch, commit, push, PR action or workflow dispatch performed. Source and signing policies frozen.
 
 Historical: At R2 (`99d339e…`) HEAD and remote main matched; 4 ahead /88 behind, 18 added docs. At `f821225…` 2 ahead /17 behind, 1 added doc. Those counts were valid for cited upstream SHAs, not current upstream.
 
 ## 2. Prerequisite evidence
 
 ```text
-FSA-00A:             BLOCKED — original unavailable in repo / workspace / PRs / attachments
-FSA-00B:             PARTIAL — pins, 9 hashes, blocked conclusion corroborated; not full log recovery
+FSA-00A:             BLOCKED — absent from every ref, all 4 PRs, releases and attachments (R4-05); not recreated
+FSA-00B:             PARTIAL — pins, 9 hashes, blocked conclusion corroborated at the current revision; not full log recovery
 HISTORICAL EVIDENCE: NOT RECONCILED — original FSA-00A missing
 ```
 
@@ -42,16 +42,16 @@ Detailed searches, limitations and corrections in [R3 §2](FSA-00C-R3-INDEPENDEN
 
 | Field | Result | Actual evidence |
 | --- | --- | --- |
-| GRADLE | **BLOCKED** | R3-03: `./gradlew --version` exit 1 before JVM; source pin 9.8.0 verified in wrapper |
-| JDK | **BLOCKED** | R3-02/03: `java -version` 127; no java/javac; source pins JetBrains daemon 21, range 21–25, CI jetbrains 21 |
-| ANDROID SDK | **BLOCKED** | R3-02: no SDK/tools/local.properties; SDK 37 source pin only, build-tools patch unknown until Gradle SDK diagnostic |
-| FULLDEBUG BUILD | **BLOCKED** | R3-03: `:AnkiDroid:assembleFullDebug` exit 1, no compiler execution |
-| UNIT TESTS | **BLOCKED** | R3-03: FullDebug and aggregate `jacocoUnitTestReport` each exit 1; no XML/HTML |
-| LINT | **BLOCKED** | R3-03: correct `lintAll ktlintCheck lint-rules:test` exit 1; no findings measured |
-| BUILD LOGIC | **BLOCKED** | R3-03: `./gradlew -p buildSrc test` exit 1 (8 tests exist, not executed) |
-| APK ARTIFACT | **NOT PRODUCED** | R3-02: APK search empty; no size/hash/package/signature from binary |
+| GRADLE | **BLOCKED** | R4-03: wrapper **launches under a real JVM 21** and dies downloading `gradle-9.8.0-bin.zip` (`SSLHandshakeException`, 4/4 attempts). Distribution never fetched, so no Gradle task ran. Pin 9.8.0 verified in wrapper |
+| JDK | **PARTIAL / BLOCKED** | R4-03: `java -version` = Temurin 21.0.8+9 (JRE only — **no `javac`**, no `jmods`), obtained from an allowed host (`pypi.org`/`jdk4py`). Pinned JETBRAINS 21 daemon never provisioned or observed; 21–25 bounds satisfied by the substitute but it cannot build |
+| ANDROID SDK | **BLOCKED** | R4-02/04: no SDK/tools/`local.properties`; `dl.google.com` and `maven.google.com` return `000`; SDK 37 source pin only, build-tools patch unknown until a real SDK diagnostic |
+| FULLDEBUG BUILD | **BLOCKED** | R4-03: `:AnkiDroid:assembleFullDebug` exit 1 at distribution fetch; no compiler execution, no `AnkiDroid/build` |
+| UNIT TESTS | **BLOCKED** | R4-03: `testFullDebugUnitTest` and `jacocoUnitTestReport` each exit 1; no XML/HTML |
+| LINT | **BLOCKED** | R4-03: correct `lintAll ktlintCheck lint-rules:test` exit 1; no findings measured, no rule disabled |
+| BUILD LOGIC | **BLOCKED** | R4-03: `./gradlew -p buildSrc test` exit 1 (8 test classes exist, none executed) |
+| APK ARTIFACT | **NOT PRODUCED** | R4-02/03/08: APK search empty; no size/hash/package/signature from binary |
 
-Robolectric preparation also exit 1. All 7 wrapper attempts have same missing-Java message; **no Gradle task ran**. AGP 9.4.1 / Kotlin 2.4.20 are verified source pins, not executed compatibility. Dependency probes TLS 35/HTTP 000 (R3-04) are boundary failures, not version defects. Exact commands and capable-host rerun contract in [R3 §3](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md#3-toolchain-and-actual-build-verification) and [build verification](FSA-00C-BUILD-VERIFICATION.md).
+Robolectric preparation also exit 1. All 7 wrapper invocations fail at the **same** step — the Gradle distribution download — so **no Gradle task ran**. This is a material sharpening of R3: the prior round could not distinguish a launcher/JVM defect from a network defect because there was no JVM at all. With a real JVM present, the failure is unambiguously artifact acquisition (`services.gradle.org`, `repo1.maven.org`, `dl.google.com`, `plugins.gradle.org`, `jitpack.io`, `api.foojay.io` all return `000`; even `objects.githubusercontent.com` is blocked, so GitHub release binaries are not an alternative either — R4-04). AGP 9.4.1 / Kotlin 2.4.20 remain verified source pins, not executed compatibility. No mirror, repackaged JDK/SDK, checksum bypass or dependency substitution was attempted. Exact commands and capable-host rerun contract in [R4 §3](FSA-00C-R4-INDEPENDENT-AUDIT.md#3-toolchain-and-build-verification-executed) and [build verification](FSA-00C-BUILD-VERIFICATION.md).
 
 ## 4. Android device verification
 
@@ -63,7 +63,7 @@ Robolectric preparation also exit 1. All 7 wrapper attempts have same missing-Ja
 | AGAIN / HARD / GOOD / EASY | **BLOCKED** – native pipeline source-verified, runtime unproven |
 | UNDO | **BLOCKED** |
 | PROCESS RECREATION | **BLOCKED** – lifecycle unexecuted |
-| COLLECTION ISOLATION | **BLOCKED** – shared-storage risk exposed (InitialActivity/SetupStorage choose public `/AnkiDroid` for full flavor); runtime path unknown |
+| COLLECTION ISOLATION | **BLOCKED** – shared-storage risk exposed and re-pinned at R4 to `SetupStorage.kt:127-148` (`PUBLIC` → `File(getExternalStorageDirectory(), "AnkiDroid")`); runtime path unknown |
 | SYNC TEST | **UNVERIFIED – TEST ACCOUNT NOT AUTHORIZED** – no parent-contract waiver; no authorized disposable account; correctly not attempted |
 
 Session end, restart/persistence, navigation, coexistence also BLOCKED. No install, collection access or production sync performed. Safe procedure and disposable-environment requirements in [R3 §4](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md#4-device-reviewer-and-data-safety-verification) and [device report](FSA-00C-DEVICE-VERIFICATION.md).
@@ -72,10 +72,10 @@ Session end, restart/persistence, navigation, coexistence also BLOCKED. No insta
 
 | Field | Result and qualification |
 | --- | --- |
-| NATIVE SCHEDULER | **UNCHANGED** in source; `Reviewer.kt:1580-1600` / `AbstractFlashcardViewer.kt:885-890` / `ReviewerViewModel:527-541` all via `undoableOp` → `backend`/`libanki`; runtime still blocked |
-| PC ANKI ADAPTER | **ABSENT** in source; exclusion scan zero hits (R3-06/07) |
+| NATIVE SCHEDULER | **UNCHANGED** in source; `Reviewer.kt:1580-1592` / `AbstractFlashcardViewer.kt:885-890` / `ReviewerViewModel.kt:527-541` all via `undoableOp` → libanki `Scheduler.kt:172` → `backend.answerCard` (R4-07); runtime still blocked |
+| PC ANKI ADAPTER | **ABSENT** in source; exclusion scan zero hits for all 10 forbidden symbols (R4-07) |
 | ANKICONNECT SCHEDULING | **ABSENT** – excluded |
-| SECOND FSRS | **ABSENT** as separate engine; `Fsrs.kt` is version-display wrapper for backend `6.6.2` build, `DummyScheduler` throws for old v1/v2 |
+| SECOND FSRS | **ABSENT** as separate engine; scheduling is delegated to the native backend, and `DummyScheduler` is only used when `schedVer() == 1` (unsupported legacy), `Collection.kt:231-236` (R4-07) |
 | STUDY-AGENT MIGRATION | **NOT STARTED** – prod diff empty |
 | RELEASE IDENTITY | **UNCHANGED** – release `com.ichi2.anki`, debug `.debug`, templated authorities/permissions; fallback keystore present but no distribution |
 | USER DATA SAFETY | **BLOCKED** for coexistence/isolation certification. No user collection touched. Risk: distinct package ID ≠ isolated storage. |
@@ -84,28 +84,28 @@ Session end, restart/persistence, navigation, coexistence also BLOCKED. No insta
 
 ## 6. Independent audit matrix
 
-**PASS = stated scope only.** Evidence IDs via R3 index. Risks/owners/closure in [risk register](FSA-00C-RESIDUAL-RISKS.md).
+**PASS = stated scope only.** Rows were established at R3 and re-verified at R4; the current evidence IDs are the R4 index in the [R4 audit](FSA-00C-R4-INDEPENDENT-AUDIT.md#6-independent-audit-matrix), which carries the same 18 verdicts plus the sharper JDK/dependency findings. Risks/owners/closure in [risk register](FSA-00C-RESIDUAL-RISKS.md).
 
 | Audit ID / subject | Result | Source evidence | Execution evidence | Defect / limitation | Remediation | Residual risk |
 | --- | --- | --- | --- | --- | --- | --- |
 | AUDIT-00C-01 Fork/upstream identity | **PASS** | Origin & GitHub parent/source | R3-01/05 identity/heads/compare | Remote advances | Preserve SHAs; reobserve | R-13 |
-| AUDIT-00C-02 Baseline integrity | **PASS** | Reference & HEAD trees; 9 hashes | R3-05/06 diff outside docs/fsa =0; hashes match | Previously shallow, now full | Retain API + diff | R-13 |
+| AUDIT-00C-02 Baseline integrity | **PASS** | Reference & HEAD trees; 9 hashes | R4-01/06 diff outside docs/fsa empty; hashes 9/9 | Checkout recurs shallow per session | Re-run `--unshallow`; retain API + diff | R-13 |
 | AUDIT-00C-03 Worktree/branch safety | **PASS** | Fixed Arena branch, unchanged baseline | R3-01 status/worktree | Branch-name contract unresolved | Keep branch; obtain acceptance | R-10 |
 | AUDIT-00C-04 FSA-00A/B reconciliation | **BLOCKED** | B present; A absent | R3-05 searches | No original A | Obtain original w/ provenance | R-04 |
-| AUDIT-00C-05 Version integrity | **PASS (pins)** | Wrapper/catalog/daemon/root bounds/buildSrc | R3-06/07 hashes & excerpts | Daemon resolution blocked | Execute pinned toolchain | R-01/R-02 |
-| AUDIT-00C-06 SDK/dependency readiness | **BLOCKED** | SDK 37, repos/backend defs | R3-02 inventory, R3-04 TLS×6 | No SDK; deps unavailable | Standard SDK + authorized net | R-02/R-09/R-11 |
-| AUDIT-00C-07 APK compilation | **BLOCKED** | FullDebug config exists | R3-03 exit 1 | No compiler verdict | Frozen FullDebug build | R-01/R-02/R-05 |
-| AUDIT-00C-08 Unit-test integrity | **BLOCKED** | FullDebug & aggregate tasks | R3-03 exits 1; no XML | No outcomes | Run both scopes, collect XML | R-05 |
-| AUDIT-00C-09 Lint/style | **BLOCKED** | lintAll/config/editor + lint.yml | R3-03 exit 1 | Unmeasured | Run unchanged rules | R-05 |
-| AUDIT-00C-10 Build-logic tests | **BLOCKED** | buildSrc test config | R3-03 exit 1 | Sources ≠ execution | Run with SDK where needed | R-05 |
-| AUDIT-00C-11 APK identity/signing/hash | **BLOCKED** | Source ID/signing expectations | R3-02 no APK | No binary evidence | Inspect APK with tools & hash | R-05/R-07 |
+| AUDIT-00C-05 Version integrity | **PASS (pins)** | Wrapper/catalog/daemon/root bounds/buildSrc | R4-06 hashes; R4-03 JVM 21 inside the 21–25 guard | Daemon vendor/patch and AGP compatibility unexecuted | Execute pinned toolchain | R-01/R-02 |
+| AUDIT-00C-06 SDK/dependency readiness | **BLOCKED** | SDK 37, repos/backend defs | R4-02 inventory; R4-04 12 endpoints `000` | No SDK; deps unobtainable by any allowed route | Standard SDK + authorized net | R-02/R-09/R-11 |
+| AUDIT-00C-07 APK compilation | **BLOCKED** | FullDebug config exists | R4-03 exit 1 at distribution fetch | No compiler verdict | Frozen FullDebug build | R-01/R-02/R-05 |
+| AUDIT-00C-08 Unit-test integrity | **BLOCKED** | FullDebug & aggregate tasks | R4-03 both exit 1; no XML | No outcomes | Run both scopes, collect XML | R-05 |
+| AUDIT-00C-09 Lint/style | **BLOCKED** | lintAll/config/editor + lint.yml | R4-03 exit 1 (correct spelling) | Unmeasured | Run unchanged rules | R-05 |
+| AUDIT-00C-10 Build-logic tests | **BLOCKED** | 8 buildSrc test classes | R4-03 exit 1 | Sources ≠ execution | Run on capable host | R-05 |
+| AUDIT-00C-11 APK identity/signing/hash | **BLOCKED** | Source ID/signing expectations | R4-02/08 no APK, no apksigner/aapt2 | No binary evidence | Inspect APK with tools & hash | R-05/R-07 |
 | AUDIT-00C-12 Native scheduler authority | **PASS (source)** | Viewer→undoableOp→libanki/backend | R3-05 unchanged + R3-06 scan | Backend binary/runtime unproven | Preserve; complete device | R-03/R-05 |
 | AUDIT-00C-13 Rating/undo behavior | **BLOCKED** | Native pipeline inspected | R3-02 no target | Behavioral proof requires device | Disposable device matrix | R-03/R-05/R-06 |
-| AUDIT-00C-14 Data/storage isolation | **BLOCKED** | AppId/provider & storage sources | R3-02/08 shared-risk exposed | Runtime unproven | Verify path; paired-install test | R-06/R-12 |
+| AUDIT-00C-14 Data/storage isolation | **BLOCKED** | AppId/provider & storage sources | R4-08 shared-risk re-pinned to `SetupStorage.kt:127-148` | Runtime unproven | Verify path; paired-install test | R-06/R-12 |
 | AUDIT-00C-15 No PC Adapter/second scheduler | **PASS (source)** | No adapter symbols; Fsrs/Dummy clarified | R3-06 scan + tree diff | Binary not reverse-audited | Maintain exclusion | R-05 |
 | AUDIT-00C-16 No Study-Agent migration in FSA-00 | **PASS** | Exact diff outside docs/fsa empty | R3-05/06 | – | Enforce for FSA-01A | – |
-| AUDIT-00C-17 No unauthorized upstream merge | **PASS** | HEAD frozen; 6 ahead from docs only | R3-01/05 logs; upstream 141 behind not merged | – | Do not sync upstream | R-11 |
-| AUDIT-00C-18 Truthful verification & lock decision | **PASS** | Only executed evidence cited | R3-01..08 retained | – | Gate remains BLOCKED | – |
+| AUDIT-00C-17 No unauthorized upstream merge | **PASS** | HEAD frozen; 8 ahead from docs only | R4-01/05 logs; 142 upstream commits not merged | – | Do not sync upstream | R-11 |
+| AUDIT-00C-18 Truthful verification & lock decision | **PASS** | Only executed evidence cited | R4-01..08 retained | – | Gate remains BLOCKED | – |
 
 Source inspection alone satisfies mandatory runtime/build audits only as BLOCKED.
 
@@ -119,9 +119,9 @@ Source inspection alone satisfies mandatory runtime/build audits only as BLOCKED
 | VER-00C-04 Fork/upstream relation | **PASS** – R3-05 |
 | VER-00C-05 FSA-00A reconciliation | **BLOCKED** – original not located |
 | VER-00C-06 FSA-00B evidence | **PARTIAL** – pins/hashes corroborated |
-| VER-00C-07 JDK & daemon JVM | **BLOCKED** – 127 (R3-02/03) |
-| VER-00C-08 Gradle wrapper executes | **BLOCKED** – exit 1 before Gradle |
-| VER-00C-09 Dependencies resolve | **BLOCKED** – TLS 35 (R3-04) |
+| VER-00C-07 JDK & daemon JVM | **PARTIAL** – real Temurin 21.0.8 **JRE** ran the launcher (no `javac`, not the pinned vendor); pinned JETBRAINS 21 daemon never observed (R4-03) |
+| VER-00C-08 Gradle wrapper executes | **BLOCKED** – launcher runs, distribution fetch fails TLS (R4-03) |
+| VER-00C-09 Dependencies resolve | **BLOCKED** – 12 acquisition endpoints `000` (R4-04) |
 | VER-00C-10 Robolectric preparation | **BLOCKED** – exit 1 |
 | VER-00C-11 FullDebug APK builds | **BLOCKED** – no APK |
 | VER-00C-12 Unit tests pass | **BLOCKED** – both scopes exit 1 |
@@ -142,7 +142,7 @@ Source inspection alone satisfies mandatory runtime/build audits only as BLOCKED
 | VER-00C-27 No alternate FSRS | **PASS (source)** |
 | VER-00C-28 No unauthorized migration | **PASS** – exact diff |
 | VER-00C-29 No release-signing violation | **PASS (audit)** – no distribution; risk documented |
-| VER-00C-30 Exact evidence attached | **PASS** – R3-01..08 |
+| VER-00C-30 Exact evidence attached | **PASS** – R4-01..08 |
 
 Mandatory device rows remain BLOCKED; sync waiver not granted.
 
@@ -150,7 +150,7 @@ Mandatory device rows remain BLOCKED; sync waiver not granted.
 
 | Risk | Severity | Blocks? |
 | --- | --- | --- |
-| R-01 No JDK/daemon | Critical | **YES** |
+| R-01 No full pinned JDK/daemon (JRE-only substitute proven insufficient) | Critical | **YES** |
 | R-02 No SDK/repo TLS | Critical | **YES** |
 | R-03 No device/Reviewer runtime | Critical | **YES** |
 | R-04 Missing FSA-00A | High | **YES** |
@@ -162,37 +162,37 @@ Mandatory device rows remain BLOCKED; sync waiver not granted.
 | R-10 Branch naming contract | Low | YES if mandatory |
 | R-11 No distribution checksum/lockfile (inherited) | Medium | NO alone |
 | R-12 Deep-link/file-grant/backup routing | Medium | YES via R-06 |
-| R-13 History now full | Low | NO |
+| R-13 History full only after per-session `--unshallow` | Low | NO |
 
-Ordered closure: owner prerequisites → capable host (JetBrains 21, SDK 37, authorized network, adequate memory, disposable Android target) → re-execute 7 commands + collect XML/lint/APK hash/sign/ rebuild → prove disposable storage before mutation, then full Reviewer/lifecycle/coexistence → independent re-review. Never distribute fallback-signed release. See [risk register](FSA-00C-RESIDUAL-RISKS.md).
+Ordered closure: owner prerequisites → capable host (**full** JETBRAINS JDK 21, SDK 37 via standard SDK manager, authorized network to Gradle/Google/Maven/Plugin/foojay, ≥8 GiB RAM, disposable Android target) → re-execute the 7 commands and collect XML/lint/APK hash/signature, then rebuild before any reproducibility claim → prove disposable storage before the first mutation, then the full Reviewer/lifecycle/coexistence matrix → independent re-review. Never distribute a fallback-signed release. Nothing in the R4 round closed a risk. See [risk register](FSA-00C-RESIDUAL-RISKS.md).
 
 ## 9. Final contract
 
 ### Repository
 
 ```text
-FSA-00C — INDEPENDENT BASELINE AUDIT (R3)
+FSA-00C — INDEPENDENT BASELINE AUDIT (R4)
 
 TARGET REPOSITORY:
 Drmusab/flashcard-Android
 
 HEAD:
-45b58a96dd161efb65339f4f8f1c6ef5d1138da1
+f506261b8968418a2d98f7bfa796ea61e98e1578
 
 BRANCH:
-arena/1a304a7c-flashcard-android
+arena/2424aa82-flashcard-android
 
 WORKTREE STATUS:
-Clean on entry; R3 documentation/evidence only. No prod/build changes.
+Clean on entry; R4 documentation/evidence only. No prod/build changes.
 
 BASELINE COMMIT:
 a7121c11c6e11d9c6ba34518784156fba1701e29
 
 UPSTREAM HEAD:
-210b543e8ff832073e31672494fdaa1e8a2d6549 (ankidroid/Anki-Android main 2026-10-29)
+c21570b0a5139fe0823568f8fa29460aa9be6066 (ankidroid/Anki-Android main 2026-10-29T22:05:40Z)
 
 FORK DIVERGENCE:
-6 ahead (docs only) / 141 behind upstream — merge base a7121c11…
+8 ahead (docs only) / 142 behind upstream — merge base a7121c11…
 ```
 
 ### Prerequisite Evidence
@@ -212,16 +212,19 @@ NOT RECONCILED — FSA-00A absent; prior FSA-00C snapshots preserved
 
 ```text
 GRADLE:
-BLOCKED — wrapper pin 9.8.0 verified, Gradle never ran (R3-03 exit 1, no JVM)
+BLOCKED — wrapper launches under JVM 21 then fails fetching gradle-9.8.0-bin.zip
+(SSLHandshakeException, 4/4 attempts); no Gradle task ran (R4-03)
 
 JDK:
-BLOCKED — no java (127), daemon JetBrains 21 pin verified but not observed (R3-02/03)
+PARTIAL — Temurin 21.0.8 JRE ran the launcher, but it has no javac/jmods and is not
+the pinned JETBRAINS vendor; pinned daemon JVM 21 never provisioned or observed (R4-03)
 
 ANDROID SDK:
-BLOCKED — no SDK/tools (R3-02); compile 37 source pin only
+BLOCKED — no SDK/tools (R4-02); dl.google.com and maven.google.com return 000 (R4-04);
+compileSdk 37 source pin only, build-tools patch unknown until a real SDK diagnostic
 
 FULLDEBUG BUILD:
-BLOCKED — :AnkiDroid:assembleFullDebug exit 1, no APK
+BLOCKED — :AnkiDroid:assembleFullDebug exit 1 at distribution fetch, no APK, no build dir
 
 UNIT TESTS:
 BLOCKED — testFullDebugUnitTest + jacocoUnitTestReport both exit 1, no XML
@@ -230,17 +233,17 @@ LINT:
 BLOCKED — lintAll ktlintCheck lint-rules:test exit 1, correct spelling used
 
 BUILD LOGIC:
-BLOCKED — -p buildSrc test exit 1
+BLOCKED — -p buildSrc test exit 1 (8 test classes exist, none executed)
 
 APK ARTIFACT:
-NOT PRODUCED — APK search empty (R3-02), no hash/identity/signature
+NOT PRODUCED — APK search empty (R4-02/03/08), no hash/identity/signature
 ```
 
 ### Android Device Verification
 
 ```text
 APP LAUNCH:
-BLOCKED — no target/APK (R3-02/08)
+BLOCKED — no APK, no adb, no emulator, no /dev/kvm (R4-02/08)
 
 DECK ACCESS:
 BLOCKED
@@ -258,7 +261,8 @@ PROCESS RECREATION:
 BLOCKED
 
 COLLECTION ISOLATION:
-BLOCKED — shared public storage risk identified, runtime path unproven (R3-07)
+BLOCKED — PUBLIC storage branch resolves to shared /AnkiDroid (SetupStorage.kt:127-148);
+runtime path unproven; no user-owned collection read or written (R4-08)
 
 SYNC TEST:
 UNVERIFIED — TEST ACCOUNT NOT AUTHORIZED — no parent-contract waiver; no authorized disposable account; correctly not attempted
@@ -270,7 +274,8 @@ Each field is an actual result with cited evidence, not a planned procedure.
 
 ```text
 NATIVE SCHEDULER:
-UNCHANGED — Reviewer/VM → undoableOp → libanki/backend at current source; binary/runtime proof blocked
+UNCHANGED — Reviewer/VM → undoableOp → libanki Scheduler → backend.answerCard at current source
+(Reviewer.kt:1580-1592, ReviewerViewModel.kt:527-541, Scheduler.kt:172); binary/runtime proof blocked
 
 PC ANKI ADAPTER:
 ABSENT — zero hits in exclusion scan; prod diff empty confirms excluded
@@ -285,7 +290,8 @@ STUDY-AGENT MIGRATION:
 NOT STARTED — exact diff outside docs/fsa empty; no client code copied
 
 RELEASE IDENTITY:
-UNCHANGED — release com.ichi2.anki, debug .debug, ${applicationId} authorities; fallback keystore present, no public distribution
+UNCHANGED — release com.ichi2.anki, debug .debug, ${applicationId} authorities; committed fallback
+keystore (public passwords) untouched and nothing built, signed, installed or distributed
 
 USER DATA SAFETY:
 BLOCKED for coexistence/isolation certification; audit itself touched no user collection; mandatory caution preserved
@@ -299,10 +305,10 @@ Immediate blockers: missing JDK/SDK/repo access; absent APK/tests/lint/build-log
 
 ```text
 FSA-00:
-BLOCKED — NOT LOCKED
+BLOCKED — NOT LOCKED  (Gate contract Case B)
 
 BASELINE:
-VERIFIED (source equivalence + toolchain pins match expected values)
+VERIFIED (source equivalence, 9/9 hashes, toolchain pins match expected values)
 
 APK:
 NOT BUILT
@@ -324,10 +330,12 @@ BLOCKED — FSA-01 PRODUCTION MIGRATION NOT AUTHORIZED
 Next after verified lock: FSA-01A — Study-Agent Migration Discovery & Component Classification
 
 ACTION:
-Execute baseline build on capable host per R3 §3-4; attach R3 evidence set; independent re-review. Do not claim PASS without execution.
+Execute baseline build on capable host per R4 §3 and the R4 closure plan (full pinned JDK 21,
+SDK 37, authorized egress, disposable target); attach R4-equivalent evidence; independent
+re-review. Do not merge upstream. Do not claim PASS without execution.
 ```
 
-A blocked gate is preferable to a fabricated PASS. Prior snapshots remain valid historical evidence for their cited SHAs; this decision reflects current HEAD `45b58a9` with fresh execution evidence (R3-01..08) and source audit (R3-07). No release distribution occurred.
+A blocked gate is preferable to a fabricated PASS. Prior snapshots remain valid historical evidence for their cited SHAs; this decision reflects current HEAD `f506261` with fresh execution evidence (R4-01..08) and a re-verified source audit. The R4 round changed no verdict: it narrowed the JDK blocker from "no JVM" to "no full pinned JDK", and moved the build blocker's proven boundary from the launcher to artifact acquisition. No release distribution, upstream merge or user-data operation occurred.
 
 ---
 

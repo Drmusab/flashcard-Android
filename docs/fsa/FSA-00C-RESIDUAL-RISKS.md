@@ -1,13 +1,15 @@
 # FSA-00C — Residual risks and blocker-resolution plan
 
-> **Current snapshot:** `45b58a9` on 2026-10-29 — prior snapshot at `f821225…` preserved as historical. See [R3 reassessment](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md) for current evidence.
+> **Current snapshot:** `f506261` on 2026-10-29 — prior snapshots at `45b58a9…` (R3) and `f821225…` preserved as historical. See [R4 independent audit](FSA-00C-R4-INDEPENDENT-AUDIT.md) for current evidence.
 
-**As of:** 2026-10-29 UTC, source `45b58a96dd161efb65339f4f8f1c6ef5d1138da1`.
+**As of:** 2026-10-29 UTC, source `f506261b8968418a2d98f7bfa796ea61e98e1578`.
+
+> **R4 effect on this register:** no risk was closed. R-01 was *narrowed and re-evidenced*: a JRE was obtained from an allowed host and did execute the wrapper, so the blocker is no longer "no JVM" but "no full pinned JDK, and no reachable Gradle distribution or dependency repository" (R4-03/R4-04). R-13 must be re-established per session because this checkout arrived shallow. All "blocks lock" answers are unchanged.
 Owners below are required roles, not claims of assignment/acceptance. Evidence IDs: [R3 index](FSA-00C-R3-INDEPENDENT-REASSESSMENT.md#evidence-index--r3-current) (R3-01..08) and historical [00c index](FSA-00C-ENTRY-AND-EVIDENCE.md#evidence-index).
 
 | Risk ID | Severity | Evidence | Consequence / residual risk | Owner | Required action | Blocks FSA-00 lock? |
 | --- | --- | --- | --- | --- | --- | --- |
-| R-01 | Critical to verification | R3-02 `java -version` 127, no `JAVA_HOME`; R3-03 7 wrapper exits 1 before JVM | No actual launcher/daemon version or Gradle evaluation; toolchain compatibility unproven | Build/platform maintainer | Execute on authorized host with pinned JetBrains JDK 21 (daemon 21, supported range 21–25); capture `java -version`, `./gradlew --version`, daemon diagnostics (vendor/patch/resolution); do not downgrade pins | **YES** |
+| R-01 | Critical to verification | R4-03: real Temurin 21.0.8 **JRE** ran the launcher (`java -version` OK) but has no `javac`; pinned JETBRAINS 21 daemon never provisioned; 7 wrapper calls exit 1 at the distribution download | No actual launcher/daemon version or Gradle evaluation; toolchain compatibility unproven | Build/platform maintainer | Execute on authorized host with pinned JetBrains JDK 21 (daemon 21, supported range 21–25); capture `java -version`, `./gradlew --version`, daemon diagnostics (vendor/patch/resolution); do not downgrade pins | **YES** |
 | R-02 | Critical to verification | R3-02 absent SDK/cache; R3-04 six TLS 35 / HTTP 000 (Gradle/Google/Maven/Plugin/JitPack/Foojay) vs GitHub 200; R3-06 repo declarations | SDK 37, build-tools, native backend `0.1.72-anki26.09.3` and Robolectric dependencies cannot resolve; AGP-selected build-tools patch unknown | Build infrastructure owner | Provide standard Android SDK via SDK manager plus authorized network to required repositories (Google/Maven/Plugin/JitPack) and foojay redirects; let Gradle identify exact build-tools; record dependency graph and resolved artifact hashes | **YES** |
 | R-03 | Critical to verification | R3-02 no adb/emulator/KVM; R3-08 no APK; device matrix D-1..D-10 unexecuted | Launch, deck access, Q/A reveal, all ratings, undo, session/persistence, navigation, lifecycle, coexistence unproven | Android QA/platform owner | Fresh emulator/disposable device, FullDebug universal APK, disposable collection; execute complete device matrix and instrumentation after proving isolation; preserve logcat/screenshots | **YES** |
 | R-04 | High | R3-05 searches for FSA-00A (find/grep/PR/release) yielded none; no attachment | Original discovery assertions, parent waiver/naming contract cannot be fully reconciled; HISTORICAL EVIDENCE NOT RECONCILED | Product owner / original FSA-00A author | Supply original artifact with provenance (author/revision/date/hash), not recreated substitute; independent comparison vs baseline and contradiction record | **YES** |
@@ -25,7 +27,7 @@ Owners below are required roles, not claims of assignment/acceptance. Evidence I
 
 | FSA-00B ID | Current disposition at `45b58a9` |
 | --- | --- |
-| B-01 No JDK | **Still BLOCKED** – fresh R3-02/03 evidence; no JVM in clean env |
+| B-01 No JDK | **Narrowed, still BLOCKED** – a JRE was obtained from an allowed host and executed the wrapper (R4-03), proving no build JVM/locked toolchain is available; it lacks `javac` and is not the pinned vendor |
 | B-02 Restricted network | **Still BLOCKED** – R3-04 six endpoint TLS failures; not dep incompatibility |
 | B-03 No SDK/emulator | **Still BLOCKED** – R3-02/08 no sdk/adb/kvm/device |
 | B-04 Missing FSA-00A | **Still BLOCKED** – R3-05 search unsuccessful; not recreated |
