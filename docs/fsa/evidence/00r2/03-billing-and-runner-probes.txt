@@ -1,0 +1,17 @@
+# FSA-00R2 — billing/runner probes
+captured_utc=2026-10-31T15:51:01Z
+
+## actions permissions
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/actions/permissions#get-github-actions-permissions-for-a-repository","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+
+## allowed actions / selected
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/actions/permissions#get-default-workflow-permissions-for-a-repository","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+
+## billing (user scope, expected 403 without admin:org/billing)
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/billing/billing#get-github-actions-billing-for-a-user","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+
+## self-hosted runner inventory
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/actions/self-hosted-runners#list-self-hosted-runners-for-a-repository","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+
+## any successful workflow run ever (status=success)
+0

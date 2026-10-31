@@ -1,0 +1,82 @@
+# FSA-00R2 — run history and runner-allocation audit (full scan)
+captured_utc=2026-10-31T15:51:27Z
+Note: GitHub reports skipped jobs with the literal string "null" for runner_name; only non-empty, non-null names and steps>0 count as an allocation.
+total_runs_reported=75
+runs_with_conclusion_success=0
+
+RUN          WORKFLOW                           SHA       RESULT                 ALLOCATED  STEPS   CREATED
+41216750799  🛠️ Conflict Scan              0d815865  completed/failure      0          0       2026-10-31T15:50:24Z
+41216750684  🛠️ Emulator Tests             0d815865  completed/failure      0          0       2026-10-31T15:50:24Z
+41216750669  🧪 FSA Foundation CI             0d815865  completed/failure      0          0       2026-10-31T15:50:24Z
+41216750565  🛠️ Code Quality Checks        0d815865  completed/failure      0          0       2026-10-31T15:50:24Z
+41216750394  🛠️ Unit Tests                 0d815865  completed/failure      0          0       2026-10-31T15:50:24Z
+41215940319  🛠️ Screenshots: Comment       26de0813  completed/skipped      0          0       2026-10-31T15:40:06Z
+41215933138  PR Milestone                       68358c16  completed/failure      0          0       2026-10-31T15:40:01Z
+41215933128  🛠️ Add/Remove Labels          68358c16  completed/failure      0          0       2026-10-31T15:40:01Z
+41215933125  Remove Assignees                   68358c16  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932322  🛠️ Screenshots: Compare       26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932321  🛠️ Conflict Scan              26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932308  🛠️ Unit Tests                 26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932284  🛠️ Screenshots: Store Baselin 26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932283  🛠️ Emulator Tests             26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932270  🛠️ Code Quality Checks        26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932263  🧪 FSA Foundation CI             26de0813  completed/failure      0          0       2026-10-31T15:40:01Z
+41215932240  CodeQL Advanced                    26de0813  completed/failure      0          0       2026-10-31T15:40:00Z
+41215844603  🛠️ Screenshots: Comment       2aaa16ac  completed/skipped      0          0       2026-10-31T15:38:50Z
+41215838515  🛠️ Add/Remove Labels          68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838501  🛠️ Code Quality Checks        68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838484  🛠️ Merge Requirements         68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838460  🧪 FSA Foundation CI             68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838447  🛠️ Screenshots: Compare       68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838402  CodeQL Advanced                    68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838386  🛠️ Emulator Tests             68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215838351  🛠️ Unit Tests                 68358c16  completed/failure      0          0       2026-10-31T15:38:45Z
+41215827722  🧪 FSA Foundation CI             68358c16  completed/failure      0          0       2026-10-31T15:38:37Z
+41215827721  🛠️ Conflict Scan              68358c16  completed/failure      0          0       2026-10-31T15:38:37Z
+41215827700  🛠️ Code Quality Checks        68358c16  completed/failure      0          0       2026-10-31T15:38:37Z
+41215827687  🛠️ Unit Tests                 68358c16  completed/failure      0          0       2026-10-31T15:38:37Z
+41215827678  🛠️ Emulator Tests             68358c16  completed/failure      0          0       2026-10-31T15:38:37Z
+41214426357  🛠️ Screenshots: Comment       2aaa16ac  completed/skipped      0          0       2026-10-31T15:20:57Z
+41214420509  PR Milestone                       9f337f03  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420414  🛠️ Unit Tests                 2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420411  🛠️ Add/Remove Labels          9f337f03  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420402  Remove Assignees                   9f337f03  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420391  🛠️ Screenshots: Store Baselin 2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420367  🛠️ Screenshots: Compare       2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420343  🛠️ Conflict Scan              2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420340  🛠️ Emulator Tests             2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420308  CodeQL Advanced                    2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420301  🧪 FSA Foundation CI             2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41214420287  🛠️ Code Quality Checks        2aaa16ac  completed/failure      0          0       2026-10-31T15:20:52Z
+41209193587  🛠️ Screenshots: Comment       ca446d87  completed/skipped      0          0       2026-10-31T14:14:16Z
+41209183908  🛠️ Add/Remove Labels          9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183694  CodeQL Advanced                    9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183683  🛠️ Screenshots: Compare       9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183671  🛠️ Emulator Tests             9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183667  🧪 FSA Foundation CI             9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183647  🛠️ Merge Requirements         9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183587  🛠️ Code Quality Checks        9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209183574  🛠️ Unit Tests                 9f337f03  completed/failure      0          0       2026-10-31T14:14:08Z
+41209169448  🛠️ Unit Tests                 9f337f03  completed/failure      0          0       2026-10-31T14:13:58Z
+41209169447  🛠️ Emulator Tests             9f337f03  completed/failure      0          0       2026-10-31T14:13:58Z
+41209169429  🧪 FSA Foundation CI             9f337f03  completed/failure      0          0       2026-10-31T14:13:58Z
+41209169424  🛠️ Conflict Scan              9f337f03  completed/failure      0          0       2026-10-31T14:13:58Z
+41209169421  🛠️ Code Quality Checks        9f337f03  completed/failure      0          0       2026-10-31T14:13:58Z
+41209156680  🧪 FSA Foundation CI             460b611a  completed/failure      0          0       2026-10-31T14:13:48Z
+41209156667  🛠️ Unit Tests                 460b611a  completed/failure      0          0       2026-10-31T14:13:48Z
+41209156640  🛠️ Emulator Tests             460b611a  completed/failure      0          0       2026-10-31T14:13:48Z
+41209156602  🛠️ Code Quality Checks        460b611a  completed/failure      0          0       2026-10-31T14:13:48Z
+41209156583  🛠️ Conflict Scan              460b611a  completed/failure      0          0       2026-10-31T14:13:48Z
+41209077123  🛠️ Code Quality Checks        8481a0e4  completed/failure      0          0       2026-10-31T14:12:48Z
+41209077114  🧪 FSA Foundation CI             8481a0e4  completed/failure      0          0       2026-10-31T14:12:48Z
+41209077098  🛠️ Unit Tests                 8481a0e4  completed/failure      0          0       2026-10-31T14:12:48Z
+41209077089  🛠️ Emulator Tests             8481a0e4  completed/failure      0          0       2026-10-31T14:12:48Z
+41209077082  🛠️ Conflict Scan              8481a0e4  completed/failure      0          0       2026-10-31T14:12:48Z
+41208932554  🛠️ Unit Tests                 42d86837  completed/failure      0          0       2026-10-31T14:10:53Z
+41208932546  🛠️ Conflict Scan              42d86837  completed/failure      0          0       2026-10-31T14:10:53Z
+41208932541  🛠️ Code Quality Checks        42d86837  completed/failure      0          0       2026-10-31T14:10:53Z
+41208932535  🛠️ Emulator Tests             42d86837  completed/failure      0          0       2026-10-31T14:10:53Z
+41208928756  🛠️ Unit Tests                 2a44a16a  completed/failure      0          0       2026-10-31T14:10:50Z
+41208928673  🛠️ Emulator Tests             2a44a16a  completed/failure      0          0       2026-10-31T14:10:50Z
+41208928667  🛠️ Code Quality Checks        2a44a16a  completed/failure      0          0       2026-10-31T14:10:50Z
+41208928627  🛠️ Conflict Scan              2a44a16a  completed/failure      0          0       2026-10-31T14:10:50Z

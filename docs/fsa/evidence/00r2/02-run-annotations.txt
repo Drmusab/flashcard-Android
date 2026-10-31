@@ -1,0 +1,13 @@
+## job annotations for run 41215932263 (billing-lock evidence)
+job=FullDebug build + APK identity id=124580338240
+  [failure] The job was not started because your account is locked due to a billing issue.
+  [notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+job=Unit tests (FullDebug + aggregate) id=124580338334
+  [failure] The job was not started because your account is locked due to a billing issue.
+  [notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+job=Lint, style and build-logic tests id=124580338350
+  [failure] The job was not started because your account is locked due to a billing issue.
+  [notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+job=Evidence index id=124580345663
+  [failure] The job was not started because your account is locked due to a billing issue.
+  [notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"

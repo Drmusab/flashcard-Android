@@ -1,0 +1,21 @@
+# FSA-00R2 — run 41216750669 (fresh push, arena/f9ac2ddf-flashcard-android)
+captured_utc=2026-10-31T15:52:51Z
+
+## run
+{"conclusion":"failure","created_at":"2026-10-31T15:50:24Z","event":"push","head_branch":"arena/f9ac2ddf-flashcard-android","head_sha":"0d8158658c6a2d766e069a01c7a5b1b7cb9a14bc","id":41216750669,"name":"🧪 FSA Foundation CI","run_attempt":1,"status":"completed","updated_at":"2026-10-31T15:50:29Z","url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41216750669"}
+
+## jobs (runner_name "/null" and steps=0 => no allocation, no execution)
+job=Unit tests (FullDebug + aggregate) id=124582759736 status=completed/failure runner_name= steps_executed=0 started=2026-10-31T15:50:24Z completed=2026-10-31T15:50:26Z
+job=FullDebug build + APK identity id=124582760010 status=completed/failure runner_name= steps_executed=0 started=2026-10-31T15:50:24Z completed=2026-10-31T15:50:26Z
+job=Lint, style and build-logic tests id=124582760041 status=completed/failure runner_name= steps_executed=0 started=2026-10-31T15:50:24Z completed=2026-10-31T15:50:26Z
+job=Evidence index id=124582767132 status=completed/failure runner_name= steps_executed=0 started=2026-10-31T15:50:26Z completed=2026-10-31T15:50:28Z
+
+## failure annotations
+[failure] The job was not started because your account is locked due to a billing issue.
+[notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+[failure] The job was not started because your account is locked due to a billing issue.
+[notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+[failure] The job was not started because your account is locked due to a billing issue.
+[notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+[failure] The job was not started because your account is locked due to a billing issue.
+[notice] "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
