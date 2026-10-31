@@ -1,0 +1,91 @@
+# FSA-00R1 evidence 08 — identity, signing expectation, storage pin, invariant scan
+# captured 2026-10-31T14:08:31Z at ca446d8712e3a9b01050c536c26e3869220f0415
+
+## application identity (source expectation; no APK exists to inspect)
+$ grep -nE "applicationId( |Suffix|=)|versionCode =|versionName =|versionNameSuffix" AnkiDroid/build.gradle.kts
+101:        applicationId = "com.ichi2.anki"
+133:        versionCode = 22600107
+135:        versionName = "2.26.0alpha7"
+185:            versionNameSuffix = "-debug"
+187:            applicationIdSuffix = ".debug"
+226:                applicationIdSuffix = project.property("customSuffix").toString().replaceFirst(Regex("^\\.*"), ".")
+
+## signing configuration
+$ grep -n -B3 "signingConfig = signingConfigs" AnkiDroid/build.gradle.kts
+218-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+219-            testProguardFile("proguard-test-rules.pro")
+220-            splits.abi.isUniversalApk = universalApkEnabled // Build universal APK for release with `-Duniversal-apk=true`
+221:            signingConfig = signingConfigs.getByName("release")
+--
+235-
+236-        create("benchmark") {
+237-            initWith(getByName("release"))
+238:            signingConfig = signingConfigs.getByName("debug")
+
+  → release build type signs with the 'release' config; the benchmark build type reuses the debug key.
+  → assembleFullDebug produces the debug build type, so a production/keystore signature is impossible on this path (D-02/C-02 safety requirement).
+
+## fallback release keystore present in-tree (upstream behaviour, unused here)
+$ ls -l tools/fallback-release-keystore.jks
+-rw-r--r-- 1 user user 2712 Oct 31 14:00 tools/fallback-release-keystore.jks
+  → the workflow never references it: only the debug build type is compiled.
+
+## expected APK location for the FullDebug variant (AGP convention)
+$ grep -rn "outputs/apk" AnkiDroid/build.gradle.kts
+(no override: AGP default AnkiDroid/build/outputs/apk/full/debug)
+
+## collection storage pin — why a device run needs an isolated collection
+$ sed -n '125,138p' AnkiDroid/src/main/java/com/ichi2/anki/startup/SetupStorage.kt
+// TODO Tracked in https://github.com/ankidroid/Anki-Android/issues/5304
+@CheckResult
+fun getDefaultAnkiDroidDirectory(
+    context: Context,
+    directoryName: String = "AnkiDroid",
+    folder: AnkiDroidFolder = selectAnkiDroidFolder(context),
+): File =
+    when (folder) {
+        AnkiDroidFolder.PUBLIC -> legacyAnkiDroidDirectory(directoryName)
+        AnkiDroidFolder.APP_PRIVATE -> File(getAppSpecificExternalAnkiDroidDirectory(context), directoryName)
+    }
+
+/**
+ * Returns the absolute path to the AnkiDroid directory under the primary/shared external storage directory.
+  → AnkiDroidFolder.PUBLIC resolves to the shared external "AnkiDroid" directory, i.e. possibly the directory a production install also uses: distinct applicationId (.debug) does NOT imply distinct storage.
+
+## reviewer scheduling authority (source)
+$ sed -n '1580,1590p' AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt
+    override suspend fun answerCardInner(rating: Rating) {
+        val state = queueState!!
+        val cardId = currentCard!!.id
+        Timber.d("answerCardInner: $cardId $rating")
+        var wasLeech = false
+        undoableOp(this) {
+            sched.answerCard(state, rating).also {
+                wasLeech = sched.stateIsLeech(state.states.again)
+            }
+        }.also {
+            previousCardId = cardId
+$ grep -n 'fun answerCard(input: CardAnswer)' libanki/src/main/java/com/ichi2/anki/libanki/sched/Scheduler.kt
+172:    fun answerCard(input: CardAnswer): OpChanges = col.backend.answerCard(input)
+  → one native authority: reviewer → undoableOp → libanki Scheduler → backend.answerCard.
+
+## invariant symbol scan (identical patterns to FSA-00C R3-06/R4-07)
+  pcanki                     matches=0
+  pc-anki                    matches=0
+  PcAnkiBackend              matches=0
+  PcAnkiAvailabilitySource   matches=0
+  ankiconnect                matches=0
+  anki-connect               matches=0
+  AnkiConnect                matches=0
+  RatingCommit               matches=0
+  DualScheduler              matches=0
+  SecondFsrs                 matches=0
+  study-agent                matches=0
+  studyagent                 matches=0
+  StudyVoiceTurn             matches=0
+  SpeechOrchestrator         matches=0
+  BackendRegistry            matches=0
+  Remote.*Queue              matches=0
+
+## conclusion
+Every source invariant holds at this revision. None of these statements is runtime evidence: with no APK and no device, launch / deck picker / question / reveal / Again-Hard-Good-Easy / undo / persistence / lifecycle / navigation all remain BLOCKED (see FSA-00R1-EMULATOR-EVIDENCE.md).

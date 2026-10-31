@@ -1,0 +1,53 @@
+# FSA-00R1 evidence 01 — repository state
+# captured 2026-10-31T14:06:11Z
+
+$ git status --short
+?? .github/fsa/
+?? .github/workflows/fsa-foundation-ci.yml
+?? docs/fsa/evidence/00r1/
+[empty output = clean worktree]
+$ git rev-parse HEAD
+ca446d8712e3a9b01050c536c26e3869220f0415
+$ git branch --show-current
+arena/a6008955-flashcard-android
+$ git remote -v
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+$ git log -8 --oneline
+ca446d8712 Merge pull request #6 from Drmusab/arena/11b3224c-flashcard-android
+cc9de1a3ef docs(fsa): record R5 baseline audit and blocked gate
+f441f267b9 Merge pull request #5 from Drmusab/arena/2424aa82-flashcard-android
+42ebdb34e2 docs(fsa): FSA-00C R4 independent baseline audit at f506261 — gate remains BLOCKED
+f506261b89 Merge pull request #4 from Drmusab/arena/1a304a7c-flashcard-android
+1a704aa7b0 docs(fsa): FSA-00C R3 independent reassessment at 45b58a9
+45b58a96dd Merge pull request #3 from Drmusab/arena/657ed7e0-flashcard-android
+cb42f5186f docs(fsa): reassess baseline gate at current head
+
+$ git rev-parse --is-shallow-repository
+false
+$ git rev-list --count HEAD
+24693
+
+## baseline: a7121c11c6e11d9c6ba34518784156fba1701e29 (reference baseline recorded in FSA-00C)
+$ git merge-base --is-ancestor a7121c11 HEAD
+exit=0: baseline is an ancestor of HEAD
+
+$ git diff --stat a7121c11 HEAD -- . ":(exclude)docs"
+[empty output = no non-docs changes: production, tests, build files and .github are identical to the baseline]
+
+$ git diff --name-only a7121c11 HEAD | sed "s|/[^/]*$||" | sort | uniq -c
+     12 docs/fsa
+     10 docs/fsa/evidence/00c
+      6 docs/fsa/evidence/00c-r2
+      8 docs/fsa/evidence/00c-r3
+      8 docs/fsa/evidence/00c-r4
+      8 docs/fsa/evidence/00c-r5
+
+$ git rev-list --count a7121c11..HEAD
+12
+
+## upstream divergence (GitHub compare API)
+$ gh api repos/ankidroid/Anki-Android/compare/a7121c11...89e5dbe --jq "{status,ahead_by,behind_by}"
+{"ahead_by":165,"behind_by":0,"status":"ahead"}
+$ git ls-remote https://github.com/ankidroid/Anki-Android.git refs/heads/main
+89e5dbeabb7b3b97262aa87b8671c10c2e847139	refs/heads/main

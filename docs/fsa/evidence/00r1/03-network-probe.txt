@@ -1,0 +1,22 @@
+# FSA-00R1 evidence 03 — dependency/toolchain network reachability
+# captured 2026-10-31T14:06:33Z on revision ca446d8712e3a9b01050c536c26e3869220f0415
+# command: curl -sS -o /dev/null -w '%{http_code}' --max-time 10 <url>; a non-zero curl exit is reported as BLOCKED
+
+https://services.gradle.org/distributions/gradle-9.8.0-bin.zip     BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to services.gradle.org:443)
+https://dl.google.com/android/repository/repository2-3.xml         BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to dl.google.com:443 )
+https://maven.google.com/web/index.html                            BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to maven.google.com:443 )
+https://repo.maven.apache.org/maven2/                              BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to repo.maven.apache.org:4)
+https://repo1.maven.org/maven2/                                    BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to repo1.maven.org:443 )
+https://plugins.gradle.org/m2/                                     BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to plugins.gradle.org:443 )
+https://jitpack.io/                                                BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to jitpack.io:443 )
+https://api.foojay.io/disco/v3.0/packages                          BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to api.foojay.io:443 )
+https://objects.githubusercontent.com/                             BLOCKED (curl exit 35: curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to objects.githubuserconte)
+https://github.com/                                                HTTP 200
+https://api.github.com/                                            HTTP 200
+https://registry.npmjs.org/                                        HTTP 200
+https://pypi.org/simple/                                           HTTP 200
+
+## interpretation
+- 200 only for github.com, api.github.com, registry.npmjs.org, pypi.org: the only hosts this execution sandbox is allowed to reach.
+- Every host required by Gradle, the Android SDK and Maven/Google/JitPack resolution is unreachable at the TLS layer (curl exit 35), so no Gradle task can start here.
+- No mirror, proxy, TLS-verification bypass or dependency substitution was used (B-02).

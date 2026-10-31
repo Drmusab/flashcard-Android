@@ -1,0 +1,49 @@
+# FSA-00R1 evidence 04 — JVM and Gradle wrapper
+# captured 2026-10-31T14:06:35Z
+
+## JVM available in this sandbox
+# A JRE was installed from an allowed host (pypi.org → jdk4py wheel) so the wrapper has a real JVM to start under.
+$ $JAVA_HOME/bin/java -version
+openjdk version "25.0.2" 2026-01-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.2+10 (build 25.0.2+10-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.2+10 (build 25.0.2+10-LTS, mixed mode)
+$ test -x $JAVA_HOME/bin/javac
+javac ABSENT (runtime-only image: no compiler, cannot build)
+$ ls $JAVA_HOME/jmods
+jmods ABSENT
+
+## Gradle wrapper pin (source of truth)
+$ cat gradle/wrapper/gradle-wrapper.properties
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+networkTimeout=10000
+retries=3
+retryBackOffMs=1000
+validateDistributionUrl=true
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+
+## wrapper execution attempts (JAVA_HOME set to the JRE above)
+$ ./gradlew --version   # attempt 1
+--- tail of output ---
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+--- exit code: 1 (recorded by the invoking shell) ---
+
+$ ./gradlew --version   # attempt 2
+--- tail of output ---
+Caused by: java.io.EOFException: SSL peer shut down incorrectly
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(Unknown Source)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(Unknown Source)
+	at java.base/sun.security.ssl.SSLTransport.decode(Unknown Source)
+	... 16 more
+--- exit code: 1 (recorded by the invoking shell) ---
+
+## classification
+ENVIRONMENT_ERROR: the wrapper launcher itself runs (JVM starts, wrapper code executes) and fails while fetching gradle-9.8.0-bin.zip from services.gradle.org (SSL peer shut down incorrectly / EOFException). No Gradle build ever started, so no Gradle task outcome exists for this revision.

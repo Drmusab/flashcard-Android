@@ -1,0 +1,54 @@
+# FSA-00R1 evidence 11 — GitHub Actions run-level evidence (root cause found)
+# captured 2026-10-31T14:12:03Z
+
+## sequence observed during this round
+- 2026-10-31T14:01Z  push of arena/a6008955-flashcard-android  -> GET /actions/runs: total_count=0
+- 2026-10-31T14:08Z  (evidence 02 captured)                     -> total_count=0, caches=0, artifacts=0
+- 2026-10-31T14:10:50Z push of commit 2a44a16a61             -> 8 runs created
+- 2026-10-31T14:10:53Z push of commit 42d86837cc             -> 8 runs created
+  (the environment changed from 'no runs at all' to 'runs created and immediately failing' inside this round; Arena issued no settings write - every attempt returned 403, see evidence 02. The change therefore came from outside this session and its origin cannot be verified from here.)
+
+## runs (all created on the FSA-00R1 branch, all 'failure' within 2-3 seconds)
+$ gh api 'repos/Drmusab/flashcard-Android/actions/runs?per_page=10' --jq '.workflow_runs[] | "..."'
+🛠️ Unit Tests	push	completed	failure	42d86837cc	2026-10-31T14:10:53Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208932554
+🛠️ Conflict Scan	push	completed	failure	42d86837cc	2026-10-31T14:10:53Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208932546
+🛠️ Code Quality Checks	push	completed	failure	42d86837cc	2026-10-31T14:10:53Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208932541
+🛠️ Emulator Tests	push	completed	failure	42d86837cc	2026-10-31T14:10:53Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208932535
+🛠️ Unit Tests	push	completed	failure	2a44a16a61	2026-10-31T14:10:50Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208928756
+🛠️ Emulator Tests	push	completed	failure	2a44a16a61	2026-10-31T14:10:50Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208928673
+🛠️ Code Quality Checks	push	completed	failure	2a44a16a61	2026-10-31T14:10:50Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208928667
+🛠️ Conflict Scan	push	completed	failure	2a44a16a61	2026-10-31T14:10:50Z	https://github.com/Drmusab/flashcard-Android/actions/runs/41208928627
+
+## job-level evidence: jobs fail before any step exists (no runner ever started)
+$ gh api repos/Drmusab/flashcard-Android/actions/runs/41208932554/jobs --jq '.jobs[0] | {name,conclusion,started_at,completed_at,runner_name,steps:(.steps|length)}'
+{"completed_at":"2026-10-31T14:10:56Z","conclusion":"failure","name":"matrix_prep","runner_group_name":"","runner_name":"","started_at":"2026-10-31T14:10:54Z","steps":0}
+
+  → runner_name is empty and steps=0: the job never reached a GitHub-hosted runner.
+
+## the annotations GitHub attaches to those jobs
+# source: the run page HTML (https://github.com/Drmusab/flashcard-Android/actions/runs/41208932554),
+# fetched anonymously; annotation text extracted verbatim, HTML markup stripped.
+ANNOTATION: The job was not started because your account is locked due to a billing issue.
+ANNOTATION: The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748 "
+
+  → "The job was not started because your account is locked due to a billing issue." is the operative
+    annotation: an account-level billing lock on the repository owner (Drmusab).
+  → This is not a workflow defect, not a secrets problem, not a runner-label problem and not a repository
+    permission problem: GitHub accepted the workflow, queued the job, then refused to allocate any runner.
+  → Resolving it is an owner action on the GitHub account (Settings -> Billing), outside this repository and
+    outside this session's permissions.
+
+## checks API (same verdict, no output message exposed)
+$ gh api repos/Drmusab/flashcard-Android/commits/42d86837cc81316c636fc62a9c740bb267c0924c/check-runs --jq '.check_runs[] | {name,conclusion}'
+{"conclusion":"skipped","name":"JUnit Tests (${{ matrix.name }} run ${{ matrix.iteration }})"}
+{"conclusion":"skipped","name":"Android Emulator Test (${{ matrix.api-level }}, ${{ matrix.arch }}, ${{ matrix.target }}, ${{ matrix.first-boot-delay }}, ${{ matrix.iteration }}${{ (((matrix.device == 'tablet') \u0026\u0026 ', tablet') || '') }})"}
+{"conclusion":"failure","name":"matrix_prep"}
+{"conclusion":"failure","name":"Lint Javascript"}
+{"conclusion":"failure","name":"scan_conflicts"}
+{"conclusion":"failure","name":"matrix_prep"}
+{"conclusion":"failure","name":"Lint Kotlin"}
+
+## log download is also impossible from this sandbox
+$ gh run view 41208932554 --log-failed
+failed to get run log: Get "https://results-receiver.actions.githubusercontent.com/rest/runs/2a751ee9-94e2-82e7-9d96-de38f9c505c7/logs?filename=logs_111702779540.zip&signature=1793455927.2b37c1a07304b227b951a5b8ef1e7ec109159d0ea4075477c32cb23df83f2706": EOF
+  → results-receiver.actions.githubusercontent.com is outside this sandbox's allowed egress, so run logs cannot be read here even when they exist. Job/step metadata via api.github.com is readable.

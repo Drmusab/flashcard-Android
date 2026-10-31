@@ -1,0 +1,36 @@
+# FSA-00R1 evidence 10 — self-test of the new evidence harness
+# captured 2026-10-31T14:08:41Z
+# The harness (.github/fsa/run_evidence_command.sh) is the thing that will produce CI evidence,
+# so it was exercised locally first: it must record exit codes truthfully and classify this
+# sandbox's distribution-download failure. Full command list and per-command logs: 05-logs/.
+
+$ head -1 docs/fsa/evidence/00r1/05-logs/commands.tsv
+label	command	git_sha	branch	os	jdk_vendor	jdk	gradle	exit_code	duration_s	started_utc	failure_category	log
+
+$ cat docs/fsa/evidence/00r1/05-logs/commands.tsv
+label	command	git_sha	branch	os	jdk_vendor	jdk	gradle	exit_code	duration_s	started_utc	failure_category	log
+gradle-version	./gradlew --version	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	8	2026-10-31T14:06:39Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/gradle-version.log
+robolectric-sdk-download	./gradlew robolectricSdkDownload	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	7	2026-10-31T14:06:47Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/robolectric-sdk-download.log
+assemble-full-debug	./gradlew :AnkiDroid:assembleFullDebug	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	7	2026-10-31T14:06:55Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/assemble-full-debug.log
+test-full-debug-unit	./gradlew :AnkiDroid:testFullDebugUnitTest	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	8	2026-10-31T14:07:02Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/test-full-debug-unit.log
+jacoco-unit-test-report	./gradlew jacocoUnitTestReport	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	7	2026-10-31T14:07:10Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/jacoco-unit-test-report.log
+lint-all-ktlint-lint-rules-test	./gradlew lintAll ktlintCheck lint-rules:test	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	8	2026-10-31T14:07:17Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/lint-all-ktlint-lint-rules-test.log
+buildsrc-test	./gradlew -p buildSrc test	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	OpenJDK (vendor unspecified)	openjdk version "25.0.2" 2026-01-20 LTS (JAVA_HOME=/tmp/jdkvenv/lib/python3.11/site-packages/jdk4py/java-runtime)	not-yet-known	1	7	2026-10-31T14:07:25Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/home/user/flashcard-Android/docs/fsa/evidence/00r1/05-logs/buildsrc-test.log
+
+## negative-control run (deliberately failing command, sandbox-only, no repository mutation)
+$ FSA_EVIDENCE_DIR=/tmp/selftest .github/fsa/run_evidence_command.sh "self-test-failing" bash -c "echo simulated; echo \"Could not download x\" >&2; exit 7"
+Could not download https://services.gradle.org/x.zip
+FSA evidence | self-test-failing | exit=7 | 0s | ENVIRONMENT_ERROR (dependency/distribution acquisition) | log=/tmp/fsa00r1/selftest2/self-test-failing.log | sha=ca446d8712e3a9b01050c536c26e3869220f0415
+harness exit=0
+$ tail -1 /tmp/fsa00r1/selftest2/commands.tsv
+self-test-failing	bash -c echo simulated build output; echo "Could not download https://services.gradle.org/x.zip" >&2; exit 7	ca446d8712e3a9b01050c536c26e3869220f0415	arena/a6008955-flashcard-android	Linux 6.1.158+ x86_64	unknown	unknown	not-yet-known	7	0	2026-10-31T14:08:41Z	ENVIRONMENT_ERROR (dependency/distribution acquisition)	/tmp/fsa00r1/selftest2/self-test-failing.log
+
+## APK-identity script negative control (no APK present)
+$ .github/fsa/apk_identity.sh AnkiDroid/build/outputs/apk/full/debug self-test
+APK: NOT PRODUCED (AnkiDroid/build/outputs/apk/full/debug)
+apk-identity exit=1 (1 = correctly reports NOT_PRODUCED instead of inventing an artifact)
+
+## what the harness guarantees for the CI run
+- one TSV row per command: label, command, git SHA, branch, OS, JDK vendor/version, Gradle version, exit code, duration, UTC start, failure category, log path;
+- logs are verbatim build output (no filtering, no rewriting);
+- non-zero exits are propagated (a failed step fails the job), so a skip can never be reported as a pass.
