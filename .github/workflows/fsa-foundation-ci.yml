@@ -1,0 +1,283 @@
+name: 🧪 FSA Foundation CI
+
+# FSA-00R1 baseline-evidence workflow.
+#
+# Why this exists alongside tests_unit.yml / lint.yml (justification: docs/fsa/FSA-00R1-CI-DIAGNOSTICS.md §4):
+#   * the inherited workflows never compile the application variant FSA-00 has to certify
+#     (`:AnkiDroid:assembleFullDebug`), so they cannot produce APK identity evidence;
+#   * they do not record per-command provenance (git SHA, JDK, Gradle, exit code, duration,
+#     failure category) in a machine-readable form;
+#   * tests_unit.yml defaults to a three-OS matrix, which is unnecessary for a single baseline verdict.
+#
+# Everything reusable is reused verbatim from the inherited workflows: the same SHA-pinned
+# actions, the same JetBrains JDK 21, the same setup-gradle caching policy and the same Gradle
+# commands that `.github/workflows/README.md` documents.
+#
+# Safety contract:
+#   * least privilege: `contents: read` only, no other scopes, no secrets beyond the automatic token;
+#   * no release/publish/signing steps: only the debug signing config used by assembleFullDebug;
+#   * no AVD, no collection, no sync, no user data - instrumentation evidence stays with
+#     tests_emulator.yml, which already owns the tested emulator setup.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_fulldebug:
+    name: FullDebug build + APK identity
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      FSA_EVIDENCE_DIR: ${{ github.workspace }}/fsa-evidence
+    steps:
+      # Work around Ubuntu 26.04's RAM-backed /tmp until the image fix rolls out.
+      # https://github.com/actions/runner-images/pull/14814
+      - name: Keep /tmp on disk
+        run: |
+          if [ "$(findmnt -n -o FSTYPE --target /tmp)" = "tmpfs" ]; then
+            sudo systemctl mask tmp.mount
+            sudo umount -l /tmp
+          fi
+          df -hT /tmp
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Configure JDK
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: "jetbrains"
+          java-version: "21"  # also change jitpack.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        timeout-minutes: 10
+        with:
+          cache-provider: basic
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      - name: Record environment provenance
+        run: bash .github/fsa/run_evidence_command.sh "environment" bash -c 'echo "sha=$(git rev-parse HEAD)"; echo "branch=$(git rev-parse --abbrev-ref HEAD)"; echo "event=${GITHUB_EVENT_NAME}"; echo "runner=${RUNNER_OS}/${RUNNER_ARCH}"; echo "jdk=$(java -version 2>&1 | head -n1)"; echo "JAVA_HOME=${JAVA_HOME}"; echo "sdk=${ANDROID_HOME}"; uname -srm'
+
+      - name: Gradle wrapper version
+        run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+
+      - name: Robolectric SDK preparation
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
+        with:
+          timeout_minutes: 15
+          retry_wait_seconds: 60
+          max_attempts: 3
+          command: bash .github/fsa/run_evidence_command.sh "robolectric-sdk-download" ./gradlew robolectricSdkDownload --daemon
+
+      - name: Compile FullDebug
+        run: bash .github/fsa/run_evidence_command.sh "assemble-full-debug" ./gradlew :AnkiDroid:assembleFullDebug --daemon
+
+      - name: Capture APK identity
+        if: always()
+        run: bash .github/fsa/apk_identity.sh AnkiDroid/build/outputs/apk/full/debug "${{ github.sha }}-full-debug"
+
+      - name: Upload build evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fsa-build-evidence
+          if-no-files-found: warn
+          path: |
+            fsa-evidence/
+            AnkiDroid/build/reports/
+            AnkiDroid/build/outputs/apk/full/debug/
+            **/build/outputs/*.json
+
+  unit_tests:
+    name: Unit tests (FullDebug + aggregate)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      FSA_EVIDENCE_DIR: ${{ github.workspace }}/fsa-evidence
+    steps:
+      - name: Keep /tmp on disk
+        run: |
+          if [ "$(findmnt -n -o FSTYPE --target /tmp)" = "tmpfs" ]; then
+            sudo systemctl mask tmp.mount
+            sudo umount -l /tmp
+          fi
+          df -hT /tmp
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Configure JDK
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: "jetbrains"
+          java-version: "21"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        timeout-minutes: 10
+        with:
+          cache-provider: basic
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      - name: Gradle wrapper version
+        run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+
+      - name: Robolectric SDK preparation
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
+        with:
+          timeout_minutes: 15
+          retry_wait_seconds: 60
+          max_attempts: 3
+          command: bash .github/fsa/run_evidence_command.sh "robolectric-sdk-download" ./gradlew robolectricSdkDownload --daemon
+
+      # Scoped variant first: gives an unambiguous per-variant verdict.
+      - name: FullDebug unit tests
+        run: bash .github/fsa/run_evidence_command.sh "test-full-debug-unit" ./gradlew :AnkiDroid:testFullDebugUnitTest --daemon
+
+      # Aggregate task documented in .github/workflows/README.md. Gradle reuses the test tasks
+      # that the scoped run above already executed, so this does not re-run the same suites.
+      - name: Aggregate unit-test report
+        if: always()
+        run: bash .github/fsa/run_evidence_command.sh "jacoco-unit-test-report" ./gradlew jacocoUnitTestReport --daemon
+
+      - name: Report unit-test failures
+        if: always() && hashFiles('**/build/test-results/**/TEST-*.xml') != ''
+        run: python3 .github/report_test_failures.py . --pattern "build/test-results/**/TEST-*.xml" --title "Unit test failures"
+
+      - name: Upload unit-test evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fsa-unit-test-evidence
+          if-no-files-found: warn
+          path: |
+            fsa-evidence/
+            **/build/test-results/
+            **/build/reports/jacoco/
+            **/build/reports/tests/
+
+  lint_and_build_logic:
+    name: Lint, style and build-logic tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      FSA_EVIDENCE_DIR: ${{ github.workspace }}/fsa-evidence
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Configure JDK
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: "jetbrains"
+          java-version: "21"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        timeout-minutes: 5
+        with:
+          cache-provider: basic
+          cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+
+      - name: Gradle wrapper version
+        run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+
+      - name: Build-logic tests
+        run: bash .github/fsa/run_evidence_command.sh "buildsrc-test" ./gradlew -p buildSrc test --daemon
+
+      - name: Warm Gradle cache
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
+        with:
+          timeout_minutes: 15
+          retry_wait_seconds: 60
+          max_attempts: 3
+          command: bash .github/fsa/run_evidence_command.sh "warm-compile" ./gradlew :AnkiDroid:compileFullDebugJavaWithJavac compileLint lint-rules:compileTestJava --daemon
+
+      - name: Lint, ktlint and lint-rule tests
+        run: bash .github/fsa/run_evidence_command.sh "lint-all-ktlint-lint-rules-test" ./gradlew lintAll ktlintCheck lint-rules:test --daemon
+
+      - name: Upload lint evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fsa-lint-evidence
+          if-no-files-found: warn
+          path: |
+            fsa-evidence/
+            **/build/reports/lint-results*
+            buildSrc/build/test-results/
+            buildSrc/build/reports/tests/
+            lint-rules/build/test-results/
+            lint-rules/build/reports/tests/
+
+  evidence_index:
+    name: Evidence index
+    needs:
+      - build_fulldebug
+      - unit_tests
+      - lint_and_build_logic
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download evidence
+        # v7.0.0 verified against the GitHub API on 2026-10-31 (tag object type: commit),
+        # major version matched to the upload-artifact v7.0.1 pin used above.
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          path: evidence
+
+      - name: Summarise provenance records
+        run: |
+          echo "## FSA baseline evidence index" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Revision: \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          found=0
+          while IFS= read -r record; do
+            found=1
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            cat "$record" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          done < <(find evidence -name commands.tsv | sort)
+          if [ "$found" = "0" ]; then
+            echo "No provenance records were uploaded: no job reached the evidence step." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          find evidence -name 'apk-identity.txt' -exec cat {} \; >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Upload consolidated evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fsa-consolidated-evidence
+          if-no-files-found: warn
+          path: evidence/

@@ -1,5 +1,17 @@
 # FSA-00C — Independent baseline audit and final gate decision
 
+> **FSA-00R1 (2026-10-31, evaluated HEAD `ca446d8`): FSA-00 remains BLOCKED, NOT LOCKED — the execution blocker is
+> now localised to GitHub Actions availability on the fork, not to the build.** New evidence: 18 workflows are
+> registered and active with correct triggers, the triggering push/merge events occurred, and **zero workflow runs
+> have ever been created**; every Actions settings/dispatch call returns `403` to the session's integration, so the
+> fix is an owner-side click. In parallel, all seven Gradle commands were attempted again at this revision through a
+> new evidence harness and all seven fail with `ENVIRONMENT_ERROR` at the wrapper's distribution download. A pinned,
+> least-privilege baseline workflow (`fsa-foundation-ci.yml`) plus an evidence harness were added so that one owner
+> action produces the missing build/test/lint/APK evidence without further code change. FSA-00A remains absent and
+> is not reconstructed. See [FSA-00R1 residual blockers](FSA-00R1-RESIDUAL-BLOCKERS.md) and
+> [CI diagnostics](FSA-00R1-CI-DIAGNOSTICS.md). FSA-01 remains NOT AUTHORIZED. All text below is preserved as
+> historical evidence.
+
 > **Latest reassessment (R5, evaluated HEAD `f441f267`): FSA-00 remains BLOCKED, NOT LOCKED.** The earlier R4 snapshot below is preserved as historical evidence. See [R5 independent audit](FSA-00C-R5-INDEPENDENT-AUDIT.md) for the current branch, divergence, executed commands, matrix, and blocker-resolution plan. FSA-01 production migration remains unauthorized.
 
 > **FSA-00: BLOCKED — NOT LOCKED.**
@@ -345,3 +357,47 @@ A blocked gate is preferable to a fabricated PASS. Prior snapshots remain valid 
 
 The [FSA-01 handoff](FSA-01-HANDOFF.md) is **withheld** (conditional scope/exclusions only). **After legitimate FSA-00 lock**, next gate is FSA-01A — Study-Agent Migration Discovery & Component Classification. This audit does not execute it.
 
+
+---
+
+## FSA-00R1 addendum — CI recovery round (2026-10-31, revision `ca446d8`)
+
+Appended by FSA-00R1. Everything above is preserved unchanged as historical evidence for its cited SHAs. This
+addendum adds new execution evidence and re-affirms the existing decision; it does not upgrade any earlier result.
+
+### What was re-verified at `ca446d8712e3a9b01050c536c26e3869220f0415`
+
+| Item | Result | Evidence |
+| --- | --- | --- |
+| Baseline integrity | non-`docs` diff vs `a7121c11` **empty**; 12 commits ahead of baseline, all documentation | [01](evidence/00r1/01-repository-state.txt) |
+| Upstream | 165 commits ahead, **not merged** | [01](evidence/00r1/01-repository-state.txt) |
+| GitHub Actions | 18 workflows registered and `active`, triggers correct, events occurred, **0 runs ever**, 0 caches, 0 artifacts; dispatch/settings `403` | [02](evidence/00r1/02-github-actions-api.txt) |
+| Gradle wrapper | launcher executes, distribution fetch fails (`EOFException` / `SSL peer shut down incorrectly`) | [04](evidence/00r1/04-jvm-and-wrapper.txt) |
+| Seven Gradle commands | all attempted, all exit 1, all `ENVIRONMENT_ERROR`, no build directory, no reports | [05-logs](evidence/00r1/05-logs/commands.tsv) |
+| Dependency hosts | every Gradle/Google/Maven/JitPack/foojay host blocked at TLS in this sandbox | [03](evidence/00r1/03-network-probe.txt) |
+| Invariants (16 forbidden symbols) | 0 matches; native scheduler path unchanged | [08](evidence/00r1/08-identity-invariants.txt) |
+| FSA-00A | still absent from every ref, PR, release and artifact; not reconstructed | [09](evidence/00r1/09-fsa-00a-search.txt) |
+
+### What was added (infrastructure only — no product code)
+
+* `.github/workflows/fsa-foundation-ci.yml` — manual + `main` workflow producing FullDebug compile, unit tests,
+  lint/ktlint/lint-rule tests, build-logic tests, APK identity, per-command provenance and artifacts, under
+  `permissions: contents: read` with SHA-pinned actions only.
+* `.github/fsa/run_evidence_command.sh`, `.github/fsa/apk_identity.sh` — evidence harness (self-tested, including a
+  negative control) so that "attempted" can never again be confused with "executed".
+* `docs/fsa/FSA-00R1-*.md` + `docs/fsa/evidence/00r1/**` — this round's report and evidence set.
+
+### Decision (unchanged)
+
+```text
+FSA-00:                     BLOCKED  (11 of 13 acceptance rows blocked; 2 pass as absence claims only)
+FSA-00 LOCK:                NOT GRANTED
+FSA-01 PRODUCTION MIGRATION: NOT AUTHORIZED
+UNBLOCKING OWNER ACTION:    R1-B1 — enable GitHub Actions for fork Drmusab/flashcard-Android
+                            (Actions tab fork banner + Settings → Actions → General),
+                            then run "🧪 FSA Foundation CI" on arena/a6008955-flashcard-android
+SECOND OWNER ACTION:        R1-B5 — supply the original FSA-00A report (with hash) for provenance
+```
+
+A blocked gate remains preferable to a fabricated PASS. This round produced no APK, executed no test and ran no
+emulator; it localised the blocker and removed the remaining excuse for a repeat source-only audit.

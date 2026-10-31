@@ -1,0 +1,136 @@
+# FSA-00R1 evidence 06 — CI configuration static validation
+# captured 2026-10-31T14:07:40Z
+
+## 1. every workflow file parses as YAML and exposes the expected jobs
+OK  .github/workflows/assignees.yml
+    triggers: pull_request_target
+    jobs: merge_job
+OK  .github/workflows/cancel_merge_queue_runs.yml
+    triggers: delete
+    jobs: cancel
+OK  .github/workflows/codeql.yml
+    triggers: pull_request,push,schedule,workflow_dispatch
+    jobs: analyze
+OK  .github/workflows/compare_apk_size.yml
+    triggers: workflow_dispatch
+    jobs: sizeCheck
+OK  .github/workflows/fsa-foundation-ci.yml
+    triggers: pull_request,push,workflow_dispatch
+    jobs: build_fulldebug, unit_tests, lint_and_build_logic, evidence_index
+OK  .github/workflows/label.yml
+    triggers: pull_request_target
+    jobs: merge_job, add_label, add_new_contributor_label, add_needs_review_label
+OK  .github/workflows/lint.yml
+    triggers: merge_group,pull_request,push,workflow_dispatch
+    jobs: lintKotlin, lintJavascript
+OK  .github/workflows/merge_requirements.yml
+    triggers: merge_group,pull_request
+    jobs: squashMerge
+OK  .github/workflows/milestone.yml
+    triggers: pull_request_target
+    jobs: milestone
+OK  .github/workflows/opencollective_notices.yml
+    triggers: workflow_dispatch
+    jobs: post_notices
+OK  .github/workflows/publish.yml
+    triggers: schedule,workflow_dispatch
+    jobs: check_release, release_app
+OK  .github/workflows/screenshot_comment.yml
+    triggers: workflow_run
+    jobs: Comment-CompareScreenshot
+OK  .github/workflows/screenshot_compare.yml
+    triggers: pull_request,push
+    jobs: compare-screenshot-test
+OK  .github/workflows/screenshot_store.yml
+    triggers: pull_request,push
+    jobs: store-screenshot-test
+OK  .github/workflows/stale.yml
+    triggers: schedule
+    jobs: stale
+OK  .github/workflows/sync_translations.yml
+    triggers: workflow_dispatch
+    jobs: sync_translations
+OK  .github/workflows/tests_emulator.yml
+    triggers: merge_group,pull_request,push,schedule,workflow_dispatch
+    jobs: matrix_prep, emulator_test
+OK  .github/workflows/tests_unit.yml
+    triggers: merge_group,pull_request,push,schedule,workflow_dispatch
+    jobs: matrix_prep, unit
+OK  .github/workflows/conflict.yaml
+    triggers: push,schedule
+    jobs: scan_conflicts
+
+## 2. triggers of the inherited build/test workflows (fork relevance)
+--- tests_unit.yml ---
+triggers: ['workflow_dispatch', 'schedule', 'pull_request', 'push', 'merge_group']
+permissions: {'contents': 'read'}
+  job matrix_prep: if=(github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+  job unit: if=(github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+--- tests_emulator.yml ---
+triggers: ['schedule', 'workflow_dispatch', 'pull_request', 'push', 'merge_group']
+permissions: {'contents': 'read'}
+  job matrix_prep: if=(github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+  job emulator_test: if=None
+--- lint.yml ---
+triggers: ['workflow_dispatch', 'pull_request', 'push', 'merge_group']
+permissions: {'contents': 'read'}
+  job lintKotlin: if=None
+  job lintJavascript: if=None
+
+## 3. fork guards present in the inherited workflows (scheduled runs only on upstream)
+.github/workflows/tests_unit.yml:49:    if: (github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+.github/workflows/tests_unit.yml:116:    if: (github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+.github/workflows/tests_unit.yml:233:          fail_ci_if_error: ${{ github.repository == 'ankidroid/Anki-Android' }} # optional (default = false)
+.github/workflows/tests_emulator.yml:37:    if: (github.event_name == 'schedule' && github.repository == 'ankidroid/Anki-Android') || (github.event_name != 'schedule')
+.github/workflows/tests_emulator.yml:393:          fail_ci_if_error: ${{ github.repository == 'ankidroid/Anki-Android' }} # optional (default = false)
+
+## 4. secrets referenced by the inherited workflows
+     12 ${{ secrets.GITHUB_TOKEN }}
+      3 ${{ secrets.MACHINE_ACCOUNT_PAT }}
+      2 ${{ secrets.CODECOV_TOKEN }}
+      1 ${{ secrets.SSH_PRIVATE_KEY }}
+      1 ${{ secrets.RELEASES_PUBLISH_TOKEN }}
+      1 ${{ secrets.KEYSTORE_PASSWORD }}
+      1 ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+      1 ${{ secrets.KEYSTORE }}
+      1 ${{ secrets.GOOGLE_PUBLISH_CREDENTIALS }}
+      1 ${{ secrets.CROWDIN_APIv2_PAT }}
+      1 ${{ secrets.CODACY_TOKEN }}
+      1 ${{ secrets.AMAZON_PUBLISH_CREDENTIALS }}
+  (secrets absent in a fork resolve to empty strings; none of the three build/test workflows gates a job on a missing secret)
+
+## 5. action pins used by .github/workflows/fsa-foundation-ci.yml, resolved against the GitHub API
+# method: for each pin, GET /repos/{repo}/commits/{sha} (commit must exist) and
+# GET /repos/{repo}/git/ref/tags/{tag} (annotated tag object followed to its commit);
+# a pin is VERIFIED only when the tag resolves to exactly the pinned commit SHA.
+actions/checkout             pin=3d3c42e5aac5  tag v7.0.1 -> 3d3c42e5aac5 (annotated tag object resolved)  VERIFIED
+actions/setup-java           pin=de7274f081f3  tag v6.0.1 -> de7274f081f3 (annotated tag object resolved)  VERIFIED
+gradle/actions               pin=3f5f9adaf7d9  tag v6.4.0 -> 3f5f9adaf7d9 (annotated tag object resolved)  VERIFIED
+actions/upload-artifact      pin=043fb46d1a93  tag v7.0.1 -> 043fb46d1a93 (annotated tag object resolved)  VERIFIED
+actions/download-artifact    pin=37930b1c2aba  tag v7.0.0 -> 37930b1c2aba (annotated tag object resolved)  VERIFIED
+nick-fields/retry            pin=ad984534de44  tag v4.0.0 -> ad984534de44 (annotated tag object resolved)  VERIFIED
+# only pinned SHAs are used; no floating tag reference is present in the workflow
+$ grep -c '@v[0-9]' .github/workflows/fsa-foundation-ci.yml   # bare tag references
+0
+
+## 6. Gradle tasks referenced by the workflow exist in this source tree
+$ grep -rn "robolectricSdkDownload" buildSrc/src/main/kotlin/ | head -3
+buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:12: * Once applied to your gradle project, can be executed with ./gradlew robolectricSdkDownload
+buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:46:val robolectricSdkDownload =
+buildSrc/src/main/kotlin/ankidroid.plugins.robolectric-downloader.gradle.kts:47:    tasks.register<WriteProperties>("robolectricSdkDownload") {
+$ grep -rn "jacocoUnitTestReport" buildSrc/src/main/kotlin/ | head -2
+buildSrc/src/main/kotlin/com/ichi2/anki/gradle/JacocoCoverage.kt:58:        tasks.register<JacocoReport>("jacocoUnitTestReport") {
+buildSrc/src/main/kotlin/ankidroid.android.library.gradle.kts:46:// AnkiDroid's jacocoUnitTestReport aggregates across modules.
+$ grep -n "tasks.register(\"lintAll\")" build.gradle.kts
+186:val lintAll = tasks.register("lintAll") {
+$ grep -n "ktlint" build.gradle.kts | head -4
+17:import org.jlleitschuh.gradle.ktlint.KtlintExtension
+38:    alias(libs.plugins.ktlint.gradle.plugin) apply false
+51:val ktlintVersion: String = libs.versions.ktlint.get()
+78:    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+  → ktlintCheck is registered by the org.jlleitschuh.gradle.ktlint plugin (applied at build.gradle.kts:78), which the inherited lint.yml already calls.
+$ ls lint-rules/src/test  (lint-rules:test scope)
+java
+$ ls buildSrc/src/test/kotlin/com/ichi2/anki/gradle | wc -l
+8
+

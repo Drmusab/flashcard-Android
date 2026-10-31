@@ -1,0 +1,92 @@
+# FSA-00R1 evidence 07 — safety audit of the new workflow
+# captured 2026-10-31T14:08:05Z
+
+## workflow-level permissions (least privilege)
+$ python3 -c "yaml.safe_load(...)[\"permissions\"]"
+{'contents': 'read'}
+$ grep -c "contents: write" .github/workflows/fsa-foundation-ci.yml
+0
+0
+
+## secrets referenced
+$ grep -oE "secrets\\.[A-Za-z0-9_]+" .github/workflows/fsa-foundation-ci.yml | sort | uniq -c
+      3 secrets.GITHUB_TOKEN
+  → only the automatic GITHUB_TOKEN is referenced (for actions/setup-java, as the inherited workflows do).
+
+## forbidden-capability scan (each must be absent)
+  pull_request_target    occurrences in non-comment lines: 0
+  action-gh-release      occurrences in non-comment lines: 0
+  gh release             occurrences in non-comment lines: 0
+  gradle publish         occurrences in non-comment lines: 0
+  publishRelease         occurrences in non-comment lines: 0
+  signingConfig          occurrences in non-comment lines: 0
+  keystore               occurrences in non-comment lines: 0
+  KEYSTORE               occurrences in non-comment lines: 0
+  assembleRelease        occurrences in non-comment lines: 0
+  bundleRelease          occurrences in non-comment lines: 0
+  Play Store             occurrences in non-comment lines: 0
+  appsign                occurrences in non-comment lines: 0
+
+## steps by job (what actually executes)
+[build_fulldebug] runs-on=ubuntu-latest timeout=90m needs=None
+   - Keep /tmp on disk                          run: if [ "$(findmnt -n -o FSTYPE --target /tmp)" = "tmpfs" ]; then
+   - Checkout                                   uses actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+   - Configure JDK                              uses actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6
+   - Setup Gradle                               uses gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6
+   - Record environment provenance              run: bash .github/fsa/run_evidence_command.sh "environment" bash -c 'echo "sha=$(git rev-parse 
+   - Gradle wrapper version                     run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+   - Robolectric SDK preparation                uses nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60
+   - Compile FullDebug                          run: bash .github/fsa/run_evidence_command.sh "assemble-full-debug" ./gradlew :AnkiDroid:assemb
+   - Capture APK identity                       run: bash .github/fsa/apk_identity.sh AnkiDroid/build/outputs/apk/full/debug "${{ github.sha }}
+   - Upload build evidence                      uses actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+[unit_tests] runs-on=ubuntu-latest timeout=90m needs=None
+   - Keep /tmp on disk                          run: if [ "$(findmnt -n -o FSTYPE --target /tmp)" = "tmpfs" ]; then
+   - Checkout                                   uses actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+   - Configure JDK                              uses actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6
+   - Setup Gradle                               uses gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6
+   - Gradle wrapper version                     run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+   - Robolectric SDK preparation                uses nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60
+   - FullDebug unit tests                       run: bash .github/fsa/run_evidence_command.sh "test-full-debug-unit" ./gradlew :AnkiDroid:testF
+   - Aggregate unit-test report                 run: bash .github/fsa/run_evidence_command.sh "jacoco-unit-test-report" ./gradlew jacocoUnitTes
+   - Report unit-test failures                  run: python3 .github/report_test_failures.py . --pattern "build/test-results/**/TEST-*.xml" --t
+   - Upload unit-test evidence                  uses actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+[lint_and_build_logic] runs-on=ubuntu-latest timeout=60m needs=None
+   - Checkout                                   uses actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+   - Configure JDK                              uses actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6
+   - Setup Gradle                               uses gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6
+   - Gradle wrapper version                     run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
+   - Build-logic tests                          run: bash .github/fsa/run_evidence_command.sh "buildsrc-test" ./gradlew -p buildSrc test --daem
+   - Warm Gradle cache                          uses nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60
+   - Lint, ktlint and lint-rule tests           run: bash .github/fsa/run_evidence_command.sh "lint-all-ktlint-lint-rules-test" ./gradlew lintA
+   - Upload lint evidence                       uses actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+[evidence_index] runs-on=ubuntu-latest timeout=10m needs=['build_fulldebug', 'unit_tests', 'lint_and_build_logic']
+   - Download evidence                          uses actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+   - Summarise provenance records               run: echo "## FSA baseline evidence index" >> "$GITHUB_STEP_SUMMARY"
+   - Upload consolidated evidence               uses actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+
+## checkout hardening
+$ grep -n -A2 "name: Checkout" .github/workflows/fsa-foundation-ci.yml
+56:      - name: Checkout
+57-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+58-        with:
+59-          persist-credentials: false
+60-          fetch-depth: 1
+--
+125:      - name: Checkout
+126-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+127-        with:
+128-          persist-credentials: false
+129-          fetch-depth: 1
+--
+190:      - name: Checkout
+191-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+192-        with:
+193-          persist-credentials: false
+194-          fetch-depth: 2
+
+## explicit statement
+The workflow cannot publish a release, mint a signed artifact, read a keystore, or touch a user collection:
+- no release/publish action, no tag, no artifacts outside fsa-*-evidence;
+- only assembleFullDebug is built, which uses the repository's debug signing config (AnkiDroid/build.gradle.kts:238);
+- no emulator, AVD, adb, sync or collection path is referenced;
+- no external network endpoint is contacted beyond the pinned actions and the Gradle/Android repositories the build itself needs.

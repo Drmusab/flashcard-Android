@@ -1,0 +1,46 @@
+# FSA-00R1 evidence 09 — FSA-00A provenance search (E-01/E-02)
+# captured 2026-10-31T14:08:39Z
+# Purpose: does the original FSA-00A discovery report exist anywhere reachable? (Not recreated: fabricating it is prohibited.)
+
+## 1. tracked files in any ref
+$ git log --all --diff-filter=A --name-only --pretty=format: -- "docs/fsa/*" | sort -u | grep -i "00a\|discovery"
+(no match, grep exit 1)
+
+## 2. any tracked filename matching 00A/discovery
+$ git ls-tree -r --name-only HEAD docs/fsa | grep -i "00a\|discovery"
+(no match)
+
+## 3. commits that mention FSA-00A in their message
+$ git log --all --oneline --grep=FSA-00A
+42ebdb34e2 docs(fsa): FSA-00C R4 independent baseline audit at f506261 — gate remains BLOCKED
+9ee0d6b348 docs(fsa): record independent baseline audit
+(no commit adds an FSA-00A artifact)
+
+## 4. documents that merely REFERENCE FSA-00A (references, not the artifact)
+$ grep -rIl "FSA-00A" docs/
+docs/fsa/FSA-00-FINAL-LOCK.md
+docs/fsa/FSA-01-HANDOFF.md
+docs/fsa/FSA-00B-fork-baseline-build-verification.md
+docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md
+docs/fsa/FSA-00C-R2-INDEPENDENT-REASSESSMENT.md
+docs/fsa/FSA-00C-R3-INDEPENDENT-REASSESSMENT.md
+docs/fsa/FSA-00C-R4-INDEPENDENT-AUDIT.md
+docs/fsa/FSA-00C-R5-INDEPENDENT-AUDIT.md
+docs/fsa/FSA-00C-RESIDUAL-RISKS.md
+docs/fsa/evidence/00c-r2/03-repository-and-upstream.txt
+docs/fsa/evidence/00c-r3/05-github-and-baseline.txt
+docs/fsa/evidence/00c-r4/05-github-and-upstream.txt
+
+## 5. pull requests, releases and branches
+$ gh pr list --state all --limit 20 --json number,title,state
+[{"number":6,"state":"MERGED","title":"docs(fsa): record independent baseline audit and blocked gate"},{"number":5,"state":"MERGED","title":"docs(fsa): FSA-00C R4 independent baseline audit at f506261 — gate remains BLOCKED"},{"number":4,"state":"MERGED","title":"docs(fsa): FSA-00C R3 independent reassessment at 45b58a9 — gate remains BLOCKED"},{"number":3,"state":"MERGED","title":"docs(fsa): reassess baseline gate at current head"},{"number":2,"state":"MERGED","title":"docs(fsa): FSA-00C independent baseline audit — gate remains BLOCKED"},{"number":1,"state":"MERGED","title":"docs(fsa): FSA-00B fork baseline build & verification report"}]
+$ gh release list
+(empty = no releases, so no release attachment carries the report)
+
+## 6. GitHub-reachable artifacts
+$ gh api repos/Drmusab/flashcard-Android/actions/artifacts --jq .total_count
+0
+  → zero artifacts exist, so it is not retrievable from Actions either.
+
+## 7. conclusion
+FSA-00A is absent from every reachable location: no ref, no PR, no release, no workflow artifact, no attachment supplied in this session. Its contents are NOT reconstructed here. One owner action resolves E-01: upload the original file (with its hash) so provenance can be recorded and reconciled against FSA-00B/C.
