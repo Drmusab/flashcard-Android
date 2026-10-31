@@ -187,7 +187,7 @@ only tested emulator setup in this repository, and D-03 is therefore routed thro
 
 | Requirement | Result in this round | Evidence |
 | --- | --- | --- |
-| GitHub-hosted Ubuntu runner | **UNAVAILABLE** — no workflow can be scheduled (Actions not executing) | §2 |
+| GitHub-hosted Ubuntu runner | **ADMITTED, NOT ALLOCATED** — workflows trigger and jobs are queued, then refused: owner account billing lock | §2, [11](evidence/00r1/11-run-evidence.txt), [12](evidence/00r1/12-fsa-workflow-run.txt) |
 | Local sandbox runner | **INCAPABLE** — no JDK with `javac`, no Android SDK, and every Gradle/Maven/Google endpoint is unreachable at TLS | [03](evidence/00r1/03-network-probe.txt), [04](evidence/00r1/04-jvm-and-wrapper.txt) |
 | Approved dependency sources | `services.gradle.org`, `dl.google.com`, `maven.google.com`, `repo.maven.apache.org`, `repo1.maven.org`, `plugins.gradle.org`, `jitpack.io`, `api.foojay.io`, `objects.githubusercontent.com` → **all blocked (curl exit 35, TLS handshake reset)**; only `github.com`, `api.github.com`, `registry.npmjs.org`, `pypi.org` answer | [03](evidence/00r1/03-network-probe.txt) |
 | No mirror / no TLS bypass / no pin changes | Honoured: nothing was substituted, no checksum bypassed, `libs.versions.toml`, wrapper and repository declarations are untouched (diff vs baseline is docs-only) | [01](evidence/00r1/01-repository-state.txt), [03](evidence/00r1/03-network-probe.txt) |
