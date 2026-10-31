@@ -76,6 +76,20 @@ BLOCKED
 provisioning step and no SDK installation step ever started on a runner, so no execution result exists for
 them (mission §4: `BILLING_OR_RUNNER_ERROR`, not a build failure).
 
+### 1.1 Revision binding
+
+The verdict was measured twice at two consecutive documentation revisions, and is not revision-specific:
+
+| Revision | Run | Result | Signature |
+| --- | --- | --- | --- |
+| `0d815865…` (entry commit) | [41216750669](https://github.com/Drmusab/flashcard-Android/actions/runs/41216750669) | failure, 5 s | billing lock, 4/4 jobs, 0 runners, 0 steps |
+| `3837d8d6…` (report commit) | [41216961236](https://github.com/Drmusab/flashcard-Android/actions/runs/41216961236) | failure, 14 s | billing lock, 4/4 jobs, 0 runners, 0 steps ([07](evidence/00r2/07-run-41216961236.txt)) |
+
+The `18/19`-second spread is GitHub's scheduler, not a build. Note that committing an updated version of this
+file necessarily produces one further run; that run is expected to carry the identical annotation and is **not**
+part of this verdict's basis. The authoritative verification run remains `41216750669` at `0d815865…`, whose
+tree differs from `origin/main` only under `docs/fsa/`.
+
 ---
 
 ## 2. Entry conditions (§2) — what was verified and what was not
