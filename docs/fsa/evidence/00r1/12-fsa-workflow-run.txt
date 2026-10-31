@@ -1,0 +1,39 @@
+# FSA-00R1 evidence 12 — the new FSA workflow is admitted by GitHub (and refused a runner)
+# captured 2026-10-31T14:13:37Z
+
+After .github/workflows/fsa-foundation-ci.yml gained an 'arena/**' push trigger (workflow_dispatch is only
+exposed once a workflow exists on the default branch), the round's next push produced a run for it:
+
+$ gh api 'repos/Drmusab/flashcard-Android/actions/runs?per_page=6'
+🛠️ Code Quality Checks	push	completed/failure	8481a0e4ae	https://github.com/Drmusab/flashcard-Android/actions/runs/41209077123
+🧪 FSA Foundation CI	push	completed/failure	8481a0e4ae	https://github.com/Drmusab/flashcard-Android/actions/runs/41209077114
+🛠️ Unit Tests	push	completed/failure	8481a0e4ae	https://github.com/Drmusab/flashcard-Android/actions/runs/41209077098
+🛠️ Emulator Tests	push	completed/failure	8481a0e4ae	https://github.com/Drmusab/flashcard-Android/actions/runs/41209077089
+🛠️ Conflict Scan	push	completed/failure	8481a0e4ae	https://github.com/Drmusab/flashcard-Android/actions/runs/41209077082
+🛠️ Unit Tests	push	completed/failure	42d86837cc	https://github.com/Drmusab/flashcard-Android/actions/runs/41208932554
+
+## the FSA run in detail
+$ gh api repos/Drmusab/flashcard-Android/actions/runs/41209077114/jobs --jq '.jobs[] | {...}'
+Unit tests (FullDebug + aggregate)	failure	runner_name=""	steps=0
+Lint, style and build-logic tests	failure	runner_name=""	steps=0
+FullDebug build + APK identity	failure	runner_name=""	steps=0
+Evidence index	failure	runner_name=""	steps=0
+
+  → all four jobs of the new workflow (FullDebug build + APK identity, unit tests, lint/build-logic,
+    evidence index) exist as scheduled jobs and each is refused a runner.
+  → the run page carries the same operative annotation as every inherited workflow:
+    "The job was not started because your account is locked due to a billing issue."
+    (verified in the anonymous run-page HTML for run 41209077114)
+
+## what this proves
+1. fsa-foundation-ci.yml is syntactically and semantically valid: GitHub parsed it, registered its four
+   jobs and created a run for the pushed revision.
+2. Its trigger configuration works (push on arena/**).
+3. The blocker is exclusively GitHub-side runner allocation: an account-level billing lock.
+4. No command in the workflow has executed, so no build/test/lint/APK evidence exists yet.
+
+## self-hosted runner alternative
+$ gh api repos/Drmusab/flashcard-Android/actions/runners
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/actions/self-hosted-runners#list-self-hosted-runners-for-a-repository","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+  → not readable with this integration, and registering a self-hosted runner is a deliberate owner
+    infrastructure decision (a machine of the owner executing fork code), out of scope for this round.

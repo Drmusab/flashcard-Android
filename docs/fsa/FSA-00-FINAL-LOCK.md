@@ -387,6 +387,11 @@ addendum adds new execution evidence and re-affirms the existing decision; it do
   negative control) so that "attempted" can never again be confused with "executed".
 * `docs/fsa/FSA-00R1-*.md` + `docs/fsa/evidence/00r1/**` — this round's report and evidence set.
 
+The new workflow is already admitted by GitHub: run
+[41209077114](https://github.com/Drmusab/flashcard-Android/actions/runs/41209077114) registered all four of its jobs
+and then failed each with `runner_name: ""`, `steps: 0` and the billing-lock annotation. No command inside it has
+executed.
+
 ### Decision (unchanged)
 
 ```text

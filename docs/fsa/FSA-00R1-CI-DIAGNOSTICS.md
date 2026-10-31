@@ -56,6 +56,14 @@ Primary evidence (run URLs — these are real runs, created during this round):
 | 🛠️ Emulator Tests | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928673> |
 | 🛠️ Conflict Scan | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928627> |
 
+| 🧪 **FSA Foundation CI** (new, this round) | `8481a0e4ae` | failure, 4 jobs, 0 steps each | <https://github.com/Drmusab/flashcard-Android/actions/runs/41209077114> |
+
+The new workflow is admitted and triggered exactly like the inherited ones — GitHub registered its four jobs
+(`FullDebug build + APK identity`, `Unit tests (FullDebug + aggregate)`, `Lint, style and build-logic tests`,
+`Evidence index`) and created a run for the pushed revision, then refused every one of them a runner
+([12](evidence/00r1/12-fsa-workflow-run.txt)). That is the strongest possible confirmation that the CI work of this
+round is correct and that the obstruction is purely account-level.
+
 Job-level proof that no runner was ever allocated: `runner_name` is empty, `runner_group_name` is empty, and
 `steps` is an empty array — a job that had started would list its steps with per-step conclusions
 ([11](evidence/00r1/11-run-evidence.txt)).
