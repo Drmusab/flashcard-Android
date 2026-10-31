@@ -104,3 +104,7 @@ round explicitly refuses that substitution.
 **Why this round is still progress:** the blocker is now precisely localised. It is not "the build is broken", it is
 "the runner never starts". One owner action (R1-B1) plus one workflow dispatch converts this report from BLOCKED
 to a full evidence set without further code change.
+
+---
+
+**Current-revision follow-up (2026-10-31):** See [FSA-00R1 current-revision follow-up](FSA-00R1-CURRENT-REVISION-FOLLOWUP.md). This report above remains historical evidence for its stated revision; the follow-up records later GitHub runs and current blockers.

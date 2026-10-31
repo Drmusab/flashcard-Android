@@ -1,0 +1,34 @@
+# Current-revision GitHub Actions observations (UTC)
+2026-10-31T15:27:59Z
+$ gh repo view --json nameWithOwner,isFork,isPrivate,defaultBranchRef,viewerPermission
+{"defaultBranchRef":{"name":"main"},"isFork":true,"isPrivate":false,"nameWithOwner":"Drmusab/flashcard-Android","viewerPermission":"ADMIN"}
+$ gh api .../actions/workflows (selected)
+{"id":402787991,"name":"🧪 FSA Foundation CI","path":".github/workflows/fsa-foundation-ci.yml","state":"active"}
+{"id":395866918,"name":"🛠️ Code Quality Checks","path":".github/workflows/lint.yml","state":"active"}
+{"id":395866930,"name":"🛠️ Emulator Tests","path":".github/workflows/tests_emulator.yml","state":"active"}
+{"id":395866931,"name":"🛠️ Unit Tests","path":".github/workflows/tests_unit.yml","state":"active"}
+RUN 41214420301
+{"conclusion":"failure","createdAt":"2026-10-31T15:20:52Z","event":"push","headSha":"2aaa16ac2dee5609c6c3de67e54c72ceab5dbabc","jobs":[{"completedAt":"2026-10-31T15:20:57Z","conclusion":"failure","databaseId":124575842433,"name":"FullDebug build + APK identity","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420301/job/124575842433"},{"completedAt":"2026-10-31T15:20:57Z","conclusion":"failure","databaseId":124575842619,"name":"Unit tests (FullDebug + aggregate)","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420301/job/124575842619"},{"completedAt":"2026-10-31T15:20:57Z","conclusion":"failure","databaseId":124575842651,"name":"Lint, style and build-logic tests","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420301/job/124575842651"},{"completedAt":"2026-10-31T15:20:57Z","conclusion":"failure","databaseId":124575851416,"name":"Evidence index","startedAt":"2026-10-31T15:20:55Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420301/job/124575851416"}],"status":"completed","updatedAt":"2026-10-31T15:20:57Z","url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420301"}
+RUN 41214420414
+{"conclusion":"failure","createdAt":"2026-10-31T15:20:52Z","event":"push","headSha":"2aaa16ac2dee5609c6c3de67e54c72ceab5dbabc","jobs":[{"completedAt":"2026-10-31T15:20:55Z","conclusion":"failure","databaseId":124575842523,"name":"matrix_prep","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420414/job/124575842523"},{"completedAt":"2026-10-31T15:20:55Z","conclusion":"skipped","databaseId":124575853135,"name":"JUnit Tests (${{ matrix.name }} run ${{ matrix.iteration }})","startedAt":"2026-10-31T15:20:55Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420414/job/124575853135"}],"status":"completed","updatedAt":"2026-10-31T15:20:56Z","url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420414"}
+RUN 41214420340
+{"conclusion":"failure","createdAt":"2026-10-31T15:20:52Z","event":"push","headSha":"2aaa16ac2dee5609c6c3de67e54c72ceab5dbabc","jobs":[{"completedAt":"2026-10-31T15:20:55Z","conclusion":"failure","databaseId":124575842374,"name":"matrix_prep","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420340/job/124575842374"},{"completedAt":"2026-10-31T15:20:55Z","conclusion":"skipped","databaseId":124575852270,"name":"Android Emulator Test (${{ matrix.api-level }}, ${{ matrix.arch }}, ${{ matrix.target }}, ${{ matrix.first-boot-delay }}, ${{ matrix.iteration }}${{ (((matrix.device == 'tablet') && ', tablet') || '') }})","startedAt":"2026-10-31T15:20:55Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420340/job/124575852270"}],"status":"completed","updatedAt":"2026-10-31T15:20:56Z","url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420340"}
+RUN 41214420287
+{"conclusion":"failure","createdAt":"2026-10-31T15:20:52Z","event":"push","headSha":"2aaa16ac2dee5609c6c3de67e54c72ceab5dbabc","jobs":[{"completedAt":"2026-10-31T15:20:55Z","conclusion":"failure","databaseId":124575842167,"name":"Lint Javascript","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420287/job/124575842167"},{"completedAt":"2026-10-31T15:20:55Z","conclusion":"failure","databaseId":124575842465,"name":"Lint Kotlin","startedAt":"2026-10-31T15:20:53Z","status":"completed","steps":[],"url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420287/job/124575842465"}],"status":"completed","updatedAt":"2026-10-31T15:20:56Z","url":"https://github.com/Drmusab/flashcard-Android/actions/runs/41214420287"}
+ANNOTATIONS 124575842433
+{"annotation_level":"failure","message":"The job was not started because your account is locked due to a billing issue.","path":".github"}
+ANNOTATIONS 124575842523
+{"annotation_level":"failure","message":"The job was not started because your account is locked due to a billing issue.","path":".github"}
+{"annotation_level":"notice","message":"\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"","path":".github"}
+ANNOTATIONS 124575842374
+{"annotation_level":"failure","message":"The job was not started because your account is locked due to a billing issue.","path":".github"}
+{"annotation_level":"notice","message":"\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"","path":".github"}
+ANNOTATIONS 124575842465
+{"annotation_level":"failure","message":"The job was not started because your account is locked due to a billing issue.","path":".github"}
+{"annotation_level":"notice","message":"\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"","path":".github"}
+ARTIFACTS
+{"artifacts":[],"total_count":0}
+SETTINGS permissions endpoint
+{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/actions/permissions#get-github-actions-permissions-for-a-repository","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+DISPATCH: gh workflow run fsa-foundation-ci.yml --ref main
+could not create workflow dispatch event: HTTP 403: Resource not accessible by integration (https://api.github.com/repos/Drmusab/flashcard-Android/actions/workflows/402787991/dispatches)

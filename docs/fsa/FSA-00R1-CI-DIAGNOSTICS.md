@@ -211,3 +211,7 @@ capable runner is the GitHub-hosted one, and it is gated on the owner actions in
 | What was fixed in this round? | Only the genuine infrastructure gaps: no FullDebug/APK evidence path and no per-command provenance. No source, dependency, wrapper, lint or Reviewer change. |
 | What is needed to unblock? | Owner action **O-1** (clear the billing lock, §2.3). Everything else is already in place: one dispatch of `.github/workflows/fsa-foundation-ci.yml` then produces the build/test/lint/APK evidence, and one dispatch of `tests_emulator.yml` produces the install/instrumentation evidence. |
 | Honest limitation | Run **logs** live on `results-receiver.actions.githubusercontent.com`, which this sandbox cannot reach, so future log reading needs either the GitHub UI or a reconnect with broader permissions. Job/step metadata via `api.github.com` is readable and is what the evidence here uses. |
+
+---
+
+**Current-revision follow-up (2026-10-31):** See [FSA-00R1 current-revision follow-up](FSA-00R1-CURRENT-REVISION-FOLLOWUP.md). This report above remains historical evidence for its stated revision; the follow-up records later GitHub runs and current blockers.
