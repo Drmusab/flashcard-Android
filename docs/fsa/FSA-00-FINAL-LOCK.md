@@ -406,3 +406,11 @@ SECOND OWNER ACTION:        R1-B5 — supply the original FSA-00A report (with h
 
 A blocked gate remains preferable to a fabricated PASS. This round produced no APK, executed no test and ran no
 emulator; it localised the blocker and removed the remaining excuse for a repeat source-only audit.
+
+---
+
+## FSA-00R1 current-revision follow-up — 2026-10-31
+
+At entry revision `2aaa16ac2dee5609c6c3de67e54c72ceab5dbabc`, GitHub has recognized and triggered the existing CI workflows, but its check annotations state that the account is locked due to a billing issue; no runner started. A manual dispatch from this integration returned 403. Local wrapper version and FullDebug build attempts stopped before Gradle because Java was unavailable. No Android test, lint, APK, emulator or collection-isolation evidence was produced. The owner must address the account lock and supply the missing original FSA-00A artifact; further execution and runtime isolation proof remain mandatory. See the [current-revision follow-up](FSA-00R1-CURRENT-REVISION-FOLLOWUP.md) for evidence, infrastructure corrections, precise owners, limitations and the complete decision. The earlier historical records above are unchanged.
+
+**Decision remains: FSA-00 BLOCKED; lock not granted; FSA-01 production migration not authorized.**

@@ -125,3 +125,7 @@ Source expectations are labelled as such on purpose: an APK identity claim requi
 
 Build evidence for FSA-00 therefore remains **BLOCKED**. This round contributes a working evidence pipeline and a
 verified diagnosis, not a passing build.
+
+---
+
+**Current-revision follow-up (2026-10-31):** See [FSA-00R1 current-revision follow-up](FSA-00R1-CURRENT-REVISION-FOLLOWUP.md). This report above remains historical evidence for its stated revision; the follow-up records later GitHub runs and current blockers.

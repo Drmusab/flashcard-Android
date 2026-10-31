@@ -91,3 +91,7 @@ claimed now.
 
 FSA-00 test/lint evidence remains **BLOCKED**, blocked upstream of the tests by CI execution availability
 ([CI diagnostics §2.3](FSA-00R1-CI-DIAGNOSTICS.md#23-exact-owner-actions-nothing-here-can-be-done-by-arena)).
+
+---
+
+**Current-revision follow-up (2026-10-31):** See [FSA-00R1 current-revision follow-up](FSA-00R1-CURRENT-REVISION-FOLLOWUP.md). This report above remains historical evidence for its stated revision; the follow-up records later GitHub runs and current blockers.

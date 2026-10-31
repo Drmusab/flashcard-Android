@@ -1,0 +1,7 @@
+$ bash .github/fsa/tests/evidence_helpers_test.sh
+PASS: synthetic helper tests (no Android SDK/APK/test execution)
+exit=0
+$ bash -n .github/fsa/*.sh .github/fsa/tests/*.sh
+exit=0
+$ git diff --check
+exit=0

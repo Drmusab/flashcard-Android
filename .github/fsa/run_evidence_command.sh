@@ -27,6 +27,14 @@ mkdir -p "$evidence_dir"
 
 slug=$(printf '%s' "$label" | tr -cs 'A-Za-z0-9._-' '-' | sed -e 's/^-//' -e 's/-$//')
 log_file="$evidence_dir/${slug}.log"
+# Retries must not overwrite the logs referenced by earlier command records.
+if [[ -e "$log_file" ]]; then
+    attempt=2
+    while [[ -e "$evidence_dir/${slug}-attempt-${attempt}.log" ]]; do
+        attempt=$((attempt + 1))
+    done
+    log_file="$evidence_dir/${slug}-attempt-${attempt}.log"
+fi
 records="$evidence_dir/commands.tsv"
 readable_command="$*"
 
@@ -76,6 +84,12 @@ exit_code=$?
 wait 2>/dev/null || true
 
 duration=$(( $(date -u +%s) - start_epoch ))
+# For the version command itself, use the just-captured output rather than
+# leaving a successful first invocation marked as not-yet-known.
+if [[ "$label" == "gradle-version" ]]; then
+    detected=$(grep -m 1 -E '^Gradle [0-9]' "$log_file" 2>/dev/null || true)
+    if [[ -n "$detected" ]]; then gradle_version=$detected; fi
+fi
 
 case "$exit_code" in
     0) failure_category="NONE" ;;

@@ -64,6 +64,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      - name: Check evidence helpers
+        run: bash .github/fsa/tests/evidence_helpers_test.sh
+
       - name: Configure JDK
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
@@ -85,20 +88,14 @@ jobs:
       - name: Gradle wrapper version
         run: bash .github/fsa/run_evidence_command.sh "gradle-version" ./gradlew --version
 
-      - name: Robolectric SDK preparation
-        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
-        with:
-          timeout_minutes: 15
-          retry_wait_seconds: 60
-          max_attempts: 3
-          command: bash .github/fsa/run_evidence_command.sh "robolectric-sdk-download" ./gradlew robolectricSdkDownload --daemon
-
+      # Robolectric preparation belongs to the unit-test job; do not block the
+      # baseline build on a dependency used only by tests.
       - name: Compile FullDebug
         run: bash .github/fsa/run_evidence_command.sh "assemble-full-debug" ./gradlew :AnkiDroid:assembleFullDebug --daemon
 
       - name: Capture APK identity
         if: always()
-        run: bash .github/fsa/apk_identity.sh AnkiDroid/build/outputs/apk/full/debug "${{ github.sha }}-full-debug"
+        run: bash .github/fsa/apk_identity.sh AnkiDroid/build/outputs/apk/full/debug "FullDebug"
 
       - name: Upload build evidence
         if: always()
