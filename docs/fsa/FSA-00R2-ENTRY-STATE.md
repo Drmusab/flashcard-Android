@@ -2,8 +2,9 @@
 
 **Evaluated:** 2026-10-31 UTC · **Target workflow:** `.github/workflows/fsa-foundation-ci.yml`
 **Baseline revision under test:** `26de08130112e7fbc244839ca80f518742588696` (`main`)
-**Result: entry conditions verified; runner allocation test in progress.** No source, dependency,
-toolchain or workflow definition was changed to produce this document.
+**Result: entry conditions verified; runner allocation still refused. The billing lock persisted on a fresh
+run at 15:50:24Z, so FSA-00R2 resolved to BLOCKED — see [the FSA-00R2 report](FSA-00R2-REPORT.md).** No source,
+dependency, toolchain or workflow definition was changed to produce this document.
 
 ---
 
@@ -73,7 +74,14 @@ re-confirmed here rather than inherited.
 **Consequence:** GitHub-hosted runners are the only authorized Android build host for this stage. If they stay
 locked, every build/test/APK criterion stays `BLOCKED` and no substitute evidence may be substituted.
 
-## 5. What this document does not claim
+## 5. Outcome (resolved)
+
+The allocation test ran at 15:50:24Z on `0d815865…` and reproduced the lock exactly: 4/4 jobs failed in 5 s with
+`The job was not started because your account is locked due to a billing issue.`, 0 runners, 0 steps
+([06](evidence/00r2/06-run-41216750669.txt)). Full scan of all 75 repository runs: 0 allocations, 0 steps,
+0 successes ([04](evidence/00r2/04-run-history-audit.txt)). Verdict: [FSA-00R2 report](FSA-00R2-REPORT.md).
+
+## 6. What this document does not claim
 
 No build, test, lint, build-logic, APK, emulator or collection-isolation result is claimed here. Those fields
 remain `BLOCKED` until a runner allocates and executes steps at a recorded SHA.

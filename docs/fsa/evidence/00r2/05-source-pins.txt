@@ -1,0 +1,46 @@
+# FSA-00R2 — source-pin re-verification at the checked revision
+captured_utc=2026-10-31T15:52:22Z
+head=0d8158658c6a2d766e069a01c7a5b1b7cb9a14bc
+branch=arena/f9ac2ddf-flashcard-android
+
+## gradle wrapper
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.8.0-bin.zip
+networkTimeout=10000
+retries=3
+
+## version catalog pins (grep -nE '^(androidGradlePlugin|kotlin|compileSdk|targetSdk|minSdk)')
+2:compileSdk = "37"
+3:compileSdkMinor = "0"
+10:minSdk = "24"
+14:targetSdk = "36"  # affects SDK downloads in the ankidroid.plugins.robolectric-downloader
+105:kotlin = '2.4.20'
+107:kotlinxSerializationJson = "1.11.0"
+196:kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+197:kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+198:kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+235:kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+236:kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+237:kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+238:kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+239:kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+260:kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+261:kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+262:kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+263:kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+264:kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+## workflow JDK pin
+73:          distribution: "jetbrains"
+74:          java-version: "21"  # also change jitpack.yml
+136:          distribution: "jetbrains"
+137:          java-version: "21"
+201:          distribution: "jetbrains"
+202:          java-version: "21"
+
+## diff vs main (files changed)
+ docs/fsa/FSA-00R2-ENTRY-STATE.md                  | 79 +++++++++++++++++++++++
+ docs/fsa/evidence/00r2/00-sandbox-capability.txt  | 30 +++++++++
+ docs/fsa/evidence/00r2/01-github-entry-probes.txt | 17 +++++
+ docs/fsa/evidence/00r2/02-run-annotations.txt     | 13 ++++
+ 4 files changed, 139 insertions(+)
+26:androidGradlePlugin = "9.4.1"
