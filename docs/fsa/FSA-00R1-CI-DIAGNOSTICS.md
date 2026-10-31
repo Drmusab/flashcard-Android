@@ -68,6 +68,12 @@ this integration cannot read or write:
 3. **Account-level Actions block** (billing/spending-limit state, or an organisation policy if the repository is
    later moved into an organisation).
 
+> **Live control experiment, same round.** While this report was being written, the round's own commit
+> `2a44a16a61` was pushed to `arena/a6008955-flashcard-android` (2026-10-31). A commit push creates a `push` event on
+> a branch the inherited workflows and the new workflow all listen to. Immediately afterwards
+> `GET /actions/runs` still returned `total_count: 0`. The absence of runs is therefore reproducible on demand, at
+> the exact revision this report describes, and is not an artefact of a stale query or an old default branch.
+
 We explicitly do **not** claim the owner changed anything, and we explicitly do **not** claim that
 "no runs" proves Actions is disabled — it proves Actions is not running, and the cause must be read off the
 web UI by someone who can see the owner's settings.
