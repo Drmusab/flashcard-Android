@@ -22,8 +22,13 @@ name: 🧪 FSA Foundation CI
 on:
   workflow_dispatch:
   push:
+    # 'main' plus the controlled development branches. Arena working branches must be listed
+    # explicitly: `workflow_dispatch` only becomes available through the UI once the workflow
+    # exists on the default branch, so a branch push is the only way to exercise this file
+    # before it is merged.
     branches:
       - 'main'
+      - 'arena/**'
   pull_request:
     branches:
       - 'main'

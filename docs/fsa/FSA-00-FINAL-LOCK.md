@@ -4,7 +4,7 @@
 > now localised to GitHub Actions availability on the fork, not to the build.** New evidence: 18 workflows are
 > registered and active with correct triggers, the triggering push/merge events occurred, and **zero workflow runs
 > have ever been created**; every Actions settings/dispatch call returns `403` to the session's integration, so the
-> fix is an owner-side click. In parallel, all seven Gradle commands were attempted again at this revision through a
+> fix is an owner-side account action. In parallel, all seven Gradle commands were attempted again at this revision through a
 > new evidence harness and all seven fail with `ENVIRONMENT_ERROR` at the wrapper's distribution download. A pinned,
 > least-privilege baseline workflow (`fsa-foundation-ci.yml`) plus an evidence harness were added so that one owner
 > action produces the missing build/test/lint/APK evidence without further code change. FSA-00A remains absent and
@@ -371,7 +371,7 @@ addendum adds new execution evidence and re-affirms the existing decision; it do
 | --- | --- | --- |
 | Baseline integrity | non-`docs` diff vs `a7121c11` **empty**; 12 commits ahead of baseline, all documentation | [01](evidence/00r1/01-repository-state.txt) |
 | Upstream | 165 commits ahead, **not merged** | [01](evidence/00r1/01-repository-state.txt) |
-| GitHub Actions | 18 workflows registered and `active`, triggers correct, events occurred, **0 runs ever**, 0 caches, 0 artifacts; dispatch/settings `403` | [02](evidence/00r1/02-github-actions-api.txt) |
+| GitHub Actions | 18 workflows registered and `active`, triggers correct; at 14:01/14:08 the API reported **0 runs**, at 14:10 pushes created **8 runs**, all failing with `runner_name: ""`, `steps: 0` and the annotation *"The job was not started because your account is locked due to a billing issue."*; dispatch/settings `403` | [02](evidence/00r1/02-github-actions-api.txt), [11](evidence/00r1/11-run-evidence.txt) |
 | Gradle wrapper | launcher executes, distribution fetch fails (`EOFException` / `SSL peer shut down incorrectly`) | [04](evidence/00r1/04-jvm-and-wrapper.txt) |
 | Seven Gradle commands | all attempted, all exit 1, all `ENVIRONMENT_ERROR`, no build directory, no reports | [05-logs](evidence/00r1/05-logs/commands.tsv) |
 | Dependency hosts | every Gradle/Google/Maven/JitPack/foojay host blocked at TLS in this sandbox | [03](evidence/00r1/03-network-probe.txt) |
@@ -393,8 +393,8 @@ addendum adds new execution evidence and re-affirms the existing decision; it do
 FSA-00:                     BLOCKED  (11 of 13 acceptance rows blocked; 2 pass as absence claims only)
 FSA-00 LOCK:                NOT GRANTED
 FSA-01 PRODUCTION MIGRATION: NOT AUTHORIZED
-UNBLOCKING OWNER ACTION:    R1-B1 — enable GitHub Actions for fork Drmusab/flashcard-Android
-                            (Actions tab fork banner + Settings → Actions → General),
+UNBLOCKING OWNER ACTION:    R1-B1 — clear the billing lock on the owner account (github.com/settings/billing)
+                            that stops GitHub from allocating any hosted runner, then re-run / push;
                             then run "🧪 FSA Foundation CI" on arena/a6008955-flashcard-android
 SECOND OWNER ACTION:        R1-B5 — supply the original FSA-00A report (with hash) for provenance
 ```

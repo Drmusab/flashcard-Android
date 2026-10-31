@@ -33,66 +33,85 @@ handling from earlier rounds is superseded (history is now complete and verified
 
 ---
 
-## 2. GitHub Actions diagnosis (A-02) — the central finding of this round
+## 2. GitHub Actions diagnosis (A-02) — root cause proven
 
-### 2.1 What is observable
+**Root cause: the repository owner's GitHub account is locked for billing reasons, so GitHub accepts every
+workflow, queues every job, and then refuses to start any job on a runner.** The annotation GitHub attaches to each
+job is reproduced verbatim:
 
-| # | Question | Observed answer | Evidence |
+```text
+The job was not started because your account is locked due to a billing issue.
+```
+
+Primary evidence (run URLs — these are real runs, created during this round):
+
+| Workflow | Revision | Result | Run URL |
 | --- | --- | --- | --- |
-| 1 | Are workflows recognised by GitHub? | **Yes.** 18 workflows registered, every one `state: active`, including `tests_unit.yml`, `tests_emulator.yml`, `lint.yml` | [02](evidence/00r1/02-github-actions-api.txt) |
-| 2 | Has any workflow ever run? | **No.** `GET /actions/runs` → `total_count: 0`; `check-runs` on `main` → `0`; `actions/cache/usage` → `0` entries, `0` bytes | [02](evidence/00r1/02-github-actions-api.txt) |
-| 3 | Do triggers match this fork's branches? | **Yes.** `tests_unit.yml`, `tests_emulator.yml`, `lint.yml` trigger on `push` (all branches), `pull_request`, `merge_group`, `workflow_dispatch`, `schedule`; the only fork guard restricts *scheduled* runs to the upstream repository, which is correct and does not block push/PR/manual runs | [06](evidence/00r1/06-ci-static-validation.txt) |
-| 4 | Wanted events — did they happen? | **Yes.** `PushEvent` 2026-10-28T11:07Z and 2026-10-28T18:42Z; merge of PR #6 into `main` 2026-10-31T12:54Z; FSA-00R1 branch creation/push 2026-10-31T14:01Z. All should have produced `push` runs. **None did.** | [02](evidence/00r1/02-github-actions-api.txt) |
-| 5 | Are jobs restricted to the upstream repository? | **No.** The only repository comparisons are (a) `schedule && github.repository == 'ankidroid/Anki-Android'` guards and (b) `fail_ci_if_error: ${{ github.repository == 'ankidroid/Anki-Android' }}` on the codecov upload. Neither prevents a fork run. | [06](evidence/00r1/06-ci-static-validation.txt) |
-| 6 | Do inherited workflows depend on upstream-only secrets? | Nine upstream secrets are referenced repository-wide (`KEYSTORE*`, `GOOGLE_PUBLISH_CREDENTIALS`, `CROWDIN_APIv2_PAT`, `SSH_PRIVATE_KEY`, `RELEASES_PUBLISH_TOKEN`, `MACHINE_ACCOUNT_PAT`, `AMAZON_PUBLISH_CREDENTIALS`, `CODACY_TOKEN`, `CODECOV_TOKEN`) — **but none of them gates the build/test jobs**. The three build/test workflows reference only `CODECOV_TOKEN` (upload step, non-fatal in a fork) plus the automatic `GITHUB_TOKEN`. Missing secrets are **not** the cause. | [06](evidence/00r1/06-ci-static-validation.txt) |
-| 7 | Is `workflow_dispatch` usable? | The trigger is declared in all three build/test workflows, **but dispatch cannot be issued from here**: `POST /actions/workflows/{id}/dispatches` → `403 Resource not accessible by integration` for both `tests_unit.yml` and `lint.yml` | [02](evidence/00r1/02-github-actions-api.txt) |
-| 8 | Are Actions settings readable/changed? | **No.** `GET /actions/permissions`, `/actions/permissions/workflow`, `/actions/permissions/selected-actions`, `/actions/runners` → `403`; `PUT /actions/permissions` (`enabled=true`) → `403`; `PUT /actions/workflows/{id}/enable` → `403`. The integration token carries **no** `x-oauth-scopes` and no Actions permission. Nothing was changed. | [02](evidence/00r1/02-github-actions-api.txt) |
-| 9 | Are hosted runners / minutes available? | **Not determinable from here.** No run has ever been scheduled, so no runner allocation or minutes consumption has been recorded (0 caches, 0 artifacts). | [02](evidence/00r1/02-github-actions-api.txt) |
+| 🛠️ Unit Tests | `42d86837cc` | failure, 0 steps, no runner | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208932554> |
+| 🛠️ Code Quality Checks | `42d86837cc` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208932541> |
+| 🛠️ Emulator Tests | `42d86837cc` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208932535> |
+| 🛠️ Conflict Scan | `42d86837cc` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208932546> |
+| 🛠️ Unit Tests | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928756> |
+| 🛠️ Code Quality Checks | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928667> |
+| 🛠️ Emulator Tests | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928673> |
+| 🛠️ Conflict Scan | `2a44a16a61` | failure, 0 steps | <https://github.com/Drmusab/flashcard-Android/actions/runs/41208928627> |
 
-### 2.2 What the evidence does and does not prove
+Job-level proof that no runner was ever allocated: `runner_name` is empty, `runner_group_name` is empty, and
+`steps` is an empty array — a job that had started would list its steps with per-step conclusions
+([11](evidence/00r1/11-run-evidence.txt)).
 
-**Proved:** GitHub Actions is not executing on `Drmusab/flashcard-Android`. The workflows are present, valid,
-active and correctly triggered, the triggering events occurred, and yet zero runs have ever been created —
-including after a fresh push performed *during this round*.
+### 2.1 The state changed inside this round — recorded honestly
 
-**Not proved:** *why*. Three explanations remain, and all three are owner-side account/repository settings that
-this integration cannot read or write:
+| Time (UTC) | Observation |
+| --- | --- |
+| 14:01 | push of `arena/a6008955-flashcard-android` → `GET /actions/runs` = **0** |
+| 14:08 | evidence file [02](evidence/00r1/02-github-actions-api.txt) captured → runs **0**, caches **0**, artifacts **0** |
+| 14:10:50 / 14:10:53 | pushes of `2a44a16a61` and `42d86837cc` → **8 runs created**, all failing within 2–3 s with the billing annotation |
 
-1. **Fork Actions not enabled.** GitHub registers the workflows of a newly forked repository but does not run them
-   until the fork owner approves them ("Workflows aren't being run on this forked repository" → *I understand my
-   workflows, go ahead and enable them*). This is the default state for a fork created 2026-10-23 and is the
-   single most probable cause.
-2. **Repository Actions policy disabled** (Settings → Actions → General → *Disable actions*, or an
-   allow-list that excludes the pinned third-party actions such as `nick-fields/retry`,
-   `gradle/actions/setup-gradle`, `reactivecircus/android-emulator-runner`).
-3. **Account-level Actions block** (billing/spending-limit state, or an organisation policy if the repository is
-   later moved into an organisation).
+So the earlier "no runs at all" state ended during this round. Two facts must be stated plainly:
 
-> **Live control experiment, same round.** While this report was being written, the round's own commit
-> `2a44a16a61` was pushed to `arena/a6008955-flashcard-android` (2026-10-31). A commit push creates a `push` event on
-> a branch the inherited workflows and the new workflow all listen to. Immediately afterwards
-> `GET /actions/runs` still returned `total_count: 0`. The absence of runs is therefore reproducible on demand, at
-> the exact revision this report describes, and is not an artefact of a stale query or an old default branch.
+* **Arena changed nothing.** Every Actions settings write attempted from this session returned
+  `403 Resource not accessible by integration` ([02](evidence/00r1/02-github-actions-api.txt)). The session holds no
+  Actions permission and no `workflow` scope, so it cannot enable, disable or dispatch anything.
+* **The origin of the change is not verifiable from here.** It is consistent with the owner approving the fork's
+  workflows and/or GitHub adjusting the account state, but that cannot be confirmed from a session that cannot read
+  Actions settings. It is recorded as an observation, not as an act of this round.
 
-We explicitly do **not** claim the owner changed anything, and we explicitly do **not** claim that
-"no runs" proves Actions is disabled — it proves Actions is not running, and the cause must be read off the
-web UI by someone who can see the owner's settings.
+### 2.2 Answering the ten A-02 questions
 
-### 2.3 Exact owner actions (nothing here can be done by Arena)
+| # | Question | Answer | Evidence |
+| --- | --- | --- | --- |
+| 1 | Are Actions enabled for this fork? | **Effectively yes** — workflows are registered, `push` events create runs, jobs are queued. Execution is then blocked by the billing lock, not by Actions being off. | [11](evidence/00r1/11-run-evidence.txt) |
+| 2 | Are the workflows recognised? | **Yes.** 18 workflows, all `state: active`, valid YAML, including `tests_unit.yml`, `tests_emulator.yml`, `lint.yml`. | [02](evidence/00r1/02-github-actions-api.txt), [06](evidence/00r1/06-ci-static-validation.txt) |
+| 3 | Is `workflow_dispatch` available? | **Declared** in the three build/test workflows and in the new FSA workflow. **Not issuable from this session** (`POST .../dispatches` → `403`). Also note GitHub only exposes a dispatchable workflow in the UI once the file exists on the default branch: `fsa-foundation-ci.yml` therefore also triggers on `arena/**` pushes so it can be exercised before merge. | [02](evidence/00r1/02-github-actions-api.txt), workflow triggers |
+| 4 | Are workflows restricted by repository settings? | **No restriction observed.** No allow-list error, no "workflow not allowed" annotation; the only blocking annotation is billing. Settings themselves are unreadable (`403`). | [11](evidence/00r1/11-run-evidence.txt) |
+| 5 | Do triggers match the fork's branches? | **Yes.** `push` on all branches (minus merge-queue/dependabot/crowdin), `pull_request`, `merge_group`, `workflow_dispatch`; only *scheduled* runs are upstream-guarded. | [06](evidence/00r1/06-ci-static-validation.txt) |
+| 6 | Are runner resources available? | **No.** `ubuntu-latest` jobs are queued and refused; no runner is ever assigned. | [11](evidence/00r1/11-run-evidence.txt) |
+| 7 | Do inherited workflows depend on upstream-only secrets? | Nine upstream secrets are referenced repository-wide, but **none gates a build/test job**; the three build/test workflows use only `CODECOV_TOKEN` (non-fatal in a fork) plus the automatic `GITHUB_TOKEN`. Secrets are **not** the cause. | [06](evidence/00r1/06-ci-static-validation.txt) |
+| 8 | Are any jobs restricted to the upstream repository? | **No.** Only `schedule` guards and a codecov `fail_ci_if_error` comparison reference `ankidroid/Anki-Android`. | [06](evidence/00r1/06-ci-static-validation.txt) |
+| 9 | Are workflows skipped by event filters? | **No.** The failing runs prove the events match; the jobs exist and then fail at runner allocation. | [11](evidence/00r1/11-run-evidence.txt) |
+| 10 | Are hosted runners and Actions minutes available? | **No** — this is precisely the blocked resource: the account is locked for billing, which suspends hosted-runner allocation (public-repo minutes included until the lock is cleared). | [11](evidence/00r1/11-run-evidence.txt) |
+
+### 2.3 Exact owner actions (none of these can be performed by Arena)
 
 | # | Where | Action |
 | --- | --- | --- |
-| O-1 | <https://github.com/Drmusab/flashcard-Android/actions> | If the banner *"Workflows aren't being run on this forked repository"* is present, click **I understand my workflows, go ahead and enable them**. Screenshot the resulting state. |
-| O-2 | Settings → Actions → General | Set **Actions permissions** to *Allow all actions and reusable workflows* (or an allow-list containing the SHA-pinned actions already used by the inherited workflows). Confirm **Disable actions** is not selected. |
-| O-3 | Settings → Billing / Actions usage | Confirm hosted-runner minutes are not blocked (public repositories use free standard runners; a payment or spending-limit failure still blocks job scheduling). |
-| O-4 | Arena → GitHub connection | If Actions should be dispatchable from this session, reconnect the GitHub app with **Actions: read and write** (plus `workflow` scope on a classic token). Today every Actions write is `403`, so the session cannot even start a run. No credential should ever be pasted into chat. |
-| O-5 | After O-1…O-4 | Run the baseline workflow: Actions → **🧪 FSA Foundation CI** → *Run workflow* on branch `arena/a6008955-flashcard-android`. CLI equivalent for a token with `workflow` scope: `gh workflow run fsa-foundation-ci.yml --ref arena/a6008955-flashcard-android`. |
+| **O-1 (blocking)** | <https://github.com/settings/billing> (account `Drmusab`) | **Clear the billing lock.** Settle the failed payment / update the payment method / raise or remove the spending limit until the account shows no lock. This is the single action that unblocks every Android execution step. |
+| O-2 | <https://github.com/Drmusab/flashcard-Android/actions> | If the fork banner *"Workflows aren't being run on this forked repository"* reappears, click **I understand my workflows, go ahead and enable them**. |
+| O-3 | Settings → Actions → General | Keep **Allow all actions and reusable workflows** (or an allow-list containing the SHA-pinned actions already in use). This is currently not the blocker — the annotation proves runner allocation is — but it should be verified while the owner is there. |
+| O-4 | Arena → GitHub connection | Optional: reconnect with **Actions: read/write** (+ `workflow` scope) so this session can dispatch runs and read logs itself. Today every Actions write is `403`, and run logs live on `results-receiver.actions.githubusercontent.com`, which this sandbox cannot reach. |
+| O-5 | After O-1 | Re-run any failed run, or push again; then run **🧪 FSA Foundation CI** on `arena/a6008955-flashcard-android`. CLI (token with `workflow` scope): `gh workflow run fsa-foundation-ci.yml --ref arena/a6008955-flashcard-android`. |
 
-Once Actions executes, the evidence FSA-00 is missing is produced automatically by the workflow added in this
-round (§3) plus the inherited `tests_unit.yml`, `lint.yml` and `tests_emulator.yml` — no further code change is
-required.
+Verification that O-1 worked: the next run's jobs show a non-empty `runner_name` and a non-zero step count, and no
+billing annotation.
 
----
+### 2.4 Why the earlier rounds saw "no runs" and this one sees failing runs
+
+Earlier rounds (2026-10-29) recorded `total_count: 0`. This round reproduced that at 14:01 and 14:08, then observed
+runs appearing at 14:10 with a billing-lock annotation. Both observations are true for their timestamps. The
+difference is not an audit error and not a code change: the fork moved from "workflows not running at all" to
+"workflows running and blocked at runner allocation". What has **not** changed is the thing FSA-00 needs —
+no job has ever executed on a runner, so there is still no build, test, lint or APK evidence.
 
 ## 3. Existing CI dependencies audit (A-03) — what is reused
 
@@ -177,8 +196,10 @@ capable runner is the GitHub-hosted one, and it is gated on the owner actions in
 
 | Question | Answer |
 | --- | --- |
-| Are the workflows missing? | No — 18 registered, all active, all valid YAML, correct triggers, no upstream-only blocking guard. |
-| Is GitHub Actions disabled? | Unproven, but Actions is **not executing**. The three candidate causes are all owner-side settings this integration cannot read (`403`) or change (`403`). |
-| Is a code defect blocking CI? | No evidence of one. Nothing in the workflows explains zero runs; the triggering events happened. |
+| Are the workflows missing? | No — 18 registered, all active, valid YAML, correct triggers, no upstream-only blocking guard. |
+| Is GitHub Actions disabled? | **No.** Workflows are recognised, `push` events create runs, jobs are queued. Execution is blocked one layer deeper. |
+| What blocks execution? | **An account-level billing lock on the repository owner**: every job carries the annotation *"The job was not started because your account is locked due to a billing issue."* No runner is ever allocated (`runner_name: ""`, `steps: 0`). |
+| Is any code/workflow defect involved? | No evidence of one. Four inherited workflows and the new one behave identically on the same pushes. |
 | What was fixed in this round? | Only the genuine infrastructure gaps: no FullDebug/APK evidence path and no per-command provenance. No source, dependency, wrapper, lint or Reviewer change. |
-| What is still needed? | Owner actions O-1…O-5 (§2.3), then one dispatch produces FSA-00's build/test/lint/APK evidence. Emulator evidence then follows from `tests_emulator.yml`. |
+| What is needed to unblock? | Owner action **O-1** (clear the billing lock, §2.3). Everything else is already in place: one dispatch of `.github/workflows/fsa-foundation-ci.yml` then produces the build/test/lint/APK evidence, and one dispatch of `tests_emulator.yml` produces the install/instrumentation evidence. |
+| Honest limitation | Run **logs** live on `results-receiver.actions.githubusercontent.com`, which this sandbox cannot reach, so future log reading needs either the GitHub UI or a reconnect with broader permissions. Job/step metadata via `api.github.com` is readable and is what the evidence here uses. |

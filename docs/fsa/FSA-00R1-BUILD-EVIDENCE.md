@@ -121,7 +121,7 @@ Source expectations are labelled as such on purpose: an APK identity claim requi
 | FULLDEBUG BUILDS | **NOT EXECUTED** |
 | APK PRODUCED | **NO** |
 | APK IDENTITY MEASURED | **NO** — expectations recorded from source only |
-| CAPABLE RUNNER | exists (GitHub-hosted Ubuntu) but is gated on owner actions O-1…O-5 in [CI diagnostics §2.3](FSA-00R1-CI-DIAGNOSTICS.md#23-exact-owner-actions-nothing-here-can-be-done-by-arena) |
+| CAPABLE RUNNER | the GitHub-hosted Ubuntu runner exists and workflows now trigger, but **no job is ever started**: GitHub refuses runner allocation because the owner account is locked for billing ([CI diagnostics §2](FSA-00R1-CI-DIAGNOSTICS.md#2-github-actions-diagnosis-a-02--root-cause-proven), [11](evidence/00r1/11-run-evidence.txt)) |
 
 Build evidence for FSA-00 therefore remains **BLOCKED**. This round contributes a working evidence pipeline and a
 verified diagnosis, not a passing build.

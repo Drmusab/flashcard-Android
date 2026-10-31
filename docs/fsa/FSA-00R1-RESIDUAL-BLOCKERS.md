@@ -9,7 +9,7 @@
 
 | Requirement | Required evidence | Status at this revision | What exists instead |
 | --- | --- | --- | --- |
-| GitHub Actions | recognised workflow **and a run URL** | **BLOCKED** | 18 workflows recognised/active, correct triggers, triggering events present, **0 runs ever**; dispatch and settings APIs return `403` to this integration — [02](evidence/00r1/02-github-actions-api.txt) |
+| GitHub Actions | recognised workflow **and a run URL** | **RUNS RECOGNISED, EXECUTION BLOCKED** — run URLs now exist (e.g. [run 41208932554](https://github.com/Drmusab/flashcard-Android/actions/runs/41208932554)), workflows are active and triggered, but **every job is refused at runner allocation**: *"The job was not started because your account is locked due to a billing issue."* (`runner_name: ""`, `steps: 0`) — [11](evidence/00r1/11-run-evidence.txt), [02](evidence/00r1/02-github-actions-api.txt) |
 | JDK / Gradle | executed version output | **BLOCKED** | wrapper launcher executes under Temurin 25 JRE, dies on distribution fetch (`ENVIRONMENT_ERROR`); JetBrains 21 never provisioned — [04](evidence/00r1/04-jvm-and-wrapper.txt) |
 | Build | successful `:AnkiDroid:assembleFullDebug` | **BLOCKED** | attempted, exit 1 before any task ran — [BUILD §2](FSA-00R1-BUILD-EVIDENCE.md) |
 | Tests | executed unit-test results | **BLOCKED** | attempted, exit 1, no XML/HTML — [TEST §1](FSA-00R1-TEST-RESULTS.md) |
@@ -32,16 +32,17 @@ row that requires execution is blocked.
 
 | ID | Blocker | Owner | Exact action | Evidence it produces |
 | --- | --- | --- | --- | --- |
-| **R1-B1** | GitHub Actions does not execute on the fork (0 runs ever, dispatch `403`) | **Repository owner (Drmusab)** | (1) Open <https://github.com/Drmusab/flashcard-Android/actions>; if the fork banner is shown, click **I understand my workflows, go ahead and enable them**. (2) Settings → Actions → General → *Allow all actions and reusable workflows*; ensure *Disable actions* is off. (3) Confirm hosted-runner minutes are not blocked. (4) Optionally reconnect the GitHub app in Arena with **Actions: read/write** so the session can dispatch. (5) Run **🧪 FSA Foundation CI** on `arena/a6008955-flashcard-android`. | Recognised workflow + run URL, FullDebug build, unit tests, lint, build-logic tests, APK identity |
-| **R1-B2** | No capable build runner reachable from Arena (sandbox has no compiler, SDK or Maven access) | **None — inherent to the environment**; resolved by R1-B1 | No action beyond enabling Actions; do not add mirrors or TLS workarounds | — |
+| **R1-B1** | **Owner account locked for billing → no GitHub-hosted runner is ever allocated** (workflows run, jobs stop at allocation) | **Repository owner (Drmusab)** | (1) **Clear the billing lock** at <https://github.com/settings/billing> (settle the failed payment / update the payment method / adjust the spending limit) until the account shows no lock. (2) Verify Settings → Actions → General still allows the pinned actions. (3) Re-run a failed run or push again — a healthy job shows a non-empty `runner_name` and real steps. (4) Optionally reconnect the GitHub app in Arena with **Actions: read/write** so this session can dispatch and read logs. (5) Run **🧪 FSA Foundation CI** on `arena/a6008955-flashcard-android` (`gh workflow run fsa-foundation-ci.yml --ref arena/a6008955-flashcard-android`). | FullDebug build, unit tests, lint, build-logic tests, APK identity, run URLs with executed steps |
+| **R1-B2** | No capable build runner reachable from Arena itself (sandbox has no compiler, SDK or Maven access; run logs are outside its egress) | **None — inherent to the environment**; resolved by R1-B1 | No action beyond O-1; do not add mirrors or TLS workarounds | — |
 | **R1-B3** | No APK → no install → no emulator, no Reviewer smoke tests | **Owner** (after R1-B1) | Dispatch `tests_emulator.yml -f iterations=1` for install/boot/instrumentation evidence; add a dedicated disposable-collection test **or** perform a documented manual session if D-02's 14 behaviours are to be certified | Instrumentation results, logcat; Reviewer behaviour only if step 2 is done |
 | **R1-B4** | Disposable collection path unproven at runtime | **Owner / device runner** | Apply the 5-step procedure in [EMULATOR §1](FSA-00R1-EMULATOR-EVIDENCE.md) on the emulator, recording the resolved absolute path and the package uid before the first write | Proof that the path is disposable |
 | **R1-B5** | FSA-00A original report missing | **Owner** | Supply the original file (and its SHA-256 if available) so provenance can be recorded and reconciled against FSA-00B/C. Not reconstructed here, and not a reason to repeat another source-only audit | FSA-00A provenance entry |
 | **R1-B6** | Sync verification (out of R1 scope) | **Owner** | Provide an authorized disposable AnkiWeb test account before any sync test is attempted | Sync evidence, or an explicit waiver |
 
-`R1-B1` is the single unblocking action for the entire Android execution chain: with it, one run of the new
-workflow plus one run of `tests_emulator.yml` produces everything FSA-00 is missing except R1-B5 and R1-B4's
-runtime path proof.
+`R1-B1` is the single unblocking action for the entire Android execution chain. The workflows are already admitted
+and already triggering; GitHub refuses only the runner. Once the billing lock is cleared, one run of the new
+workflow plus one run of `tests_emulator.yml` produces everything FSA-00 is missing except R1-B5 (FSA-00A) and the
+runtime proof required by R1-B4.
 
 ---
 
@@ -87,7 +88,7 @@ FSA-01 PRODUCTION MIGRATION:         NOT AUTHORIZED
 FSA-00 LOCK:                         NOT GRANTED
 
 REMAINING BLOCKERS:
-  R1-B1  GitHub Actions execution disabled/not executing   owner: Drmusab   -> enable Actions for the fork
+  R1-B1  Owner account billing lock: no runner allocated       owner: Drmusab   -> clear the billing lock (O-1)
   R1-B2  No capable runner reachable from Arena            none             -> resolved by R1-B1
   R1-B3  No APK / no emulator / no Reviewer runtime proof  owner            -> dispatch FSA CI + tests_emulator
   R1-B4  Disposable collection path unproven at runtime    owner/runner     -> 5-step isolation procedure
