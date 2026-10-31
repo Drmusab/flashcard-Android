@@ -1,5 +1,7 @@
 # FSA-00C — Independent baseline audit and final gate decision
 
+> **Latest reassessment (R5, evaluated HEAD `f441f267`): FSA-00 remains BLOCKED, NOT LOCKED.** The earlier R4 snapshot below is preserved as historical evidence. See [R5 independent audit](FSA-00C-R5-INDEPENDENT-AUDIT.md) for the current branch, divergence, executed commands, matrix, and blocker-resolution plan. FSA-01 production migration remains unauthorized.
+
 > **FSA-00: BLOCKED — NOT LOCKED.**
 > Source equivalence and scoped source architecture checks pass.
 > Mandatory build, test, artifact, device and data-isolation evidence does not exist.

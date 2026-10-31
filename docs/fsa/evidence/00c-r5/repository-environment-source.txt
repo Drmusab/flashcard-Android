@@ -1,0 +1,85 @@
+
+$ git rev-parse HEAD
+f441f267b9876e07c99db6fa1912f47f1170d75e
+exit=0
+
+$ git branch --show-current
+arena/11b3224c-flashcard-android
+exit=0
+
+$ git rev-parse --is-shallow-repository
+false
+exit=0
+
+$ git merge-base --is-ancestor a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD
+exit=0
+
+$ git diff --name-status a7121c11c6e11d9c6ba34518784156fba1701e29 HEAD -- :(exclude)docs/fsa
+exit=0
+
+$ git ls-files *00A* *00a* *discovery*
+exit=0
+
+$ git remote -v
+origin	https://github.com/Drmusab/flashcard-Android.git (fetch)
+origin	https://github.com/Drmusab/flashcard-Android.git (push)
+exit=0
+
+$ git ls-remote https://github.com/ankidroid/Anki-Android.git refs/heads/main
+c21570b0a5139fe0823568f8fa29460aa9be6066	refs/heads/main
+exit=0
+
+$ gh api repos/ankidroid/Anki-Android/compare/c21570b0a5139fe0823568f8fa29460aa9be6066...Drmusab:f441f267b9876e07c99db6fa1912f47f1170d75e --jq {status,ahead_by,behind_by,merge_base:.merge_base_commit.sha}
+{"ahead_by":10,"behind_by":142,"merge_base":"a7121c11c6e11d9c6ba34518784156fba1701e29","status":"diverged"}
+exit=0
+
+$ /tmp/fsa00c-jvm/extracted/jdk4py/java-runtime/bin/java -version
+openjdk version "21.0.8" 2025-07-15 LTS
+OpenJDK Runtime Environment Temurin-21.0.8+9 (build 21.0.8+9-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.8+9 (build 21.0.8+9-LTS, mixed mode)
+exit=0
+
+$ which java
+exit=1
+
+$ which javac
+exit=1
+
+$ which adb
+exit=1
+
+$ which emulator
+exit=1
+
+$ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        21G  1.4G   19G   7% /
+exit=0
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       275Mi       3.0Gi       1.0Mi       781Mi       3.6Gi
+Swap:             0B          0B          0B
+exit=0
+$ SDK env
+exit=1
+$ apk search
+$ source excerpts
+1580:    override suspend fun answerCardInner(rating: Rating) {
+1581-        val state = queueState!!
+1582-        val cardId = currentCard!!.id
+1583-        Timber.d("answerCardInner: $cardId $rating")
+1584-        var wasLeech = false
+1585-        undoableOp(this) {
+1586-            sched.answerCard(state, rating).also {
+1587-                wasLeech = sched.stateIsLeech(state.states.again)
+1588-            }
+1589-        }.also {
+1590-            previousCardId = cardId
+1591-            if (rating == Rating.AGAIN && wasLeech) {
+1592-                state.topCard.load(getColUnsafe)
+1593-                val leechMessage: String =
+1594-                    if (state.topCard.queue.buriedOrSuspended()) {
+1595-                        resources.getString(CommonString.leech_suspend_notification)
+grep: AnkiDroid/src/main/java/com/ichi2/anki/ReviewerViewModel.kt: No such file or directory
+grep: libanki/src/main/java/com/ichi2/libanki/Scheduler.kt: No such file or directory
