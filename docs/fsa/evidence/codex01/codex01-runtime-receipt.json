@@ -1,0 +1,11 @@
+{
+    "fatalExceptionLines": 0,
+    "emulatorVersion": "37.2.13.0",
+    "acceleration": "WHPX(10.0.26200) installed and usable",
+    "systemImage": "system-images;android-28;default;x86_64 revision 4",
+    "package": "com.ichi2.anki.debug",
+    "webView": "Current WebView Update Service state\r\n  Fallback logic enabled: true\r\n  Multiprocess enabled: true\r\n  Current WebView package (name, version): (com.android.webview, 66.0.3359.158)\r\n  Minimum WebView version code: 336015865\r\n  Number of relros started: 2\r\n  Number of relros finished: 2\r\n  WebView package dirty: false\r\n  Any WebView package installed: true\r\n  Preferred WebView package (name, version): (com.android.webview, 66.0.3359.158)\r\n  WebView packages:\r\n    Valid package com.android.webview (versionName: 66.0.3359.158, versionCode: 336015865, targetSdkVersion: 28) is  installed/enabled for all users",
+    "collectionSnapshotSha256": "A7DA99D738B8B39BED1797074CC0BF3C872AA22532979981D0FC47D8B3124AA5",
+    "stoppedAppBeforeDatabaseInspection": true,
+    "completedUtc": "2026-11-12T18:54:02.9788647Z"
+}

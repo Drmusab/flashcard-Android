@@ -1,0 +1,35 @@
+{
+    "debug": {
+        "authorities": [
+            "com.ichi2.anki.debug.flashcards",
+            "com.ichi2.anki.debug.apkgfileprovider",
+            "com.ichi2.anki.debug.cropper.fileprovider",
+            "com.ichi2.anki.debug.androidx-startup",
+            "com.ichi2.anki.debug.acra",
+            "com.squareup.leakcanary.fileprovider.com.ichi2.anki.debug",
+            "com.ichi2.anki.debug.leakcanary-installer",
+            "com.ichi2.anki.debug.plumber-installer"
+        ],
+        "allowBackup": true,
+        "hasExplicitBackupRules": false,
+        "customApiPermission": "com.ichi2.anki.debug.permission.READ_WRITE_DATABASE"
+    },
+    "official": {
+        "authorities": [
+            "com.ichi2.anki.flashcards",
+            "com.ichi2.anki.apkgfileprovider",
+            "com.ichi2.anki.cropper.fileprovider",
+            "com.ichi2.anki.androidx-startup",
+            "com.ichi2.anki.acra",
+            "com.squareup.leakcanary.fileprovider.com.ichi2.anki",
+            "com.ichi2.anki.leakcanary-installer",
+            "com.ichi2.anki.plumber-installer"
+        ],
+        "allowBackup": true,
+        "hasExplicitBackupRules": false,
+        "customApiPermission": "com.ichi2.anki.permission.READ_WRITE_DATABASE"
+    },
+    "authorityCollisions": [],
+    "authorityIdentity": "Actual binary manifest, not placeholder source",
+    "sharedIntentSchemesRequireSelection": true
+}

@@ -6,6 +6,7 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ContentResolver
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.CheckResult
@@ -60,6 +61,35 @@ class ImportUtilsTest : RobolectricTest() {
     @After
     fun restoreCrashReporter() {
         CrashReportService.setReporter(originalCrashReporter)
+    }
+
+    @Test
+    fun `package cache copy preserves its directory and encodes only filenames`() {
+        val cacheDir = tempFolder.newFolder("cache %20 好")
+        val context =
+            object : ContextWrapper(targetContext) {
+                override fun getCacheDir(): File = cacheDir
+            }
+        val contents = "disposable package contents"
+        val uri = "content://import/document/123".toUri()
+        shadowOf(context.contentResolver).registerInputStreamSupplier(uri) { contents.byteInputStream() }
+
+        for (fileName in listOf("deck name 好%20.apkg", "backup name 好%20.colpkg")) {
+            val expectedFile = File(cacheDir, Uri.encode(fileName))
+            try {
+                val result =
+                    assertIs<ImportResult.Success>(
+                        importerWithFileName(fileName).prepareImport(context, Intent(Intent.ACTION_VIEW, uri)),
+                    )
+
+                assertEquals(expectedFile.absolutePath, result.path)
+                assertEquals(cacheDir.canonicalFile, File(result.path).canonicalFile.parentFile)
+                assertEquals(contents, File(result.path).readText())
+                verifyNoInteractions(crashReporter)
+            } finally {
+                expectedFile.delete()
+            }
+        }
     }
 
     @Test

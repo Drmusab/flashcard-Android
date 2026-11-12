@@ -1,0 +1,12 @@
+{
+    "serial": "emulator-5580",
+    "avd": "FSA00D_01a1cc75_API28",
+    "hostDataImage": "L:\\AnkiStudioRecovery-01a1cc75\\avd\\FSA00D_01a1cc75_API28.avd\\userdata-qemu.img",
+    "selectedCollectionDirectory": "/data/user/0/com.ichi2.anki.debug/files/fsa00d-native-01a1cc75",
+    "preferenceVerifiedBeforeLaunch": true,
+    "directoryEmptyBeforeLaunch": true,
+    "reason": "Fresh native-only acceptance run. Earlier external SQLite diagnostics invalidated the first run persistence evidence; it is not acceptance.",
+    "databaseInspectionPolicy": "Only after app is stopped; no external SQLite connection while native backend runs",
+    "syncAccountConfigured": false,
+    "verifiedUtc": "2026-11-12T18:49:35.4686065Z"
+}

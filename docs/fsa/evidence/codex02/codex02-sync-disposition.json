@@ -1,0 +1,12 @@
+{
+    "status": "UNRESOLVED",
+    "sync": "NOT EXECUTED — AUTHORIZATION REQUIRED",
+    "authorizedDisposableAccountProvided": false,
+    "productionAccountUsed": false,
+    "agentWaiverGranted": false,
+    "fsa00b": "Gate recommendation says D-8 only with an authorized throwaway sync account, else explicitly waived as UNVERIFIED.",
+    "fsa00c": "Device verification permits a written optional waiver only if the parent Gate explicitly allows it; residual R-08 remains blocking until authority and disposition are established.",
+    "parentAuthorityVerified": false,
+    "reason": "Original FSA-00A/parent contract was not supplied. No authorized deferral is established from B/C alone.",
+    "ownerAction": "Authorize a disposable AnkiWeb test account and controlled sync, or provide the explicit parent-contract deferral authority and written authorized disposition."
+}

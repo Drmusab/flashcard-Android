@@ -1,0 +1,26 @@
+{
+    "avd": "FSA00E_01a1cc75_API36",
+    "serial": "emulator-5582",
+    "hostDataImage": "L:\\AnkiStudioRecovery-01a1cc75\\avd\\FSA00E_01a1cc75_API36.avd\\userdata-qemu.img",
+    "api": 36,
+    "webView": "133.0.6943.137",
+    "packages": [
+        {
+            "package": "com.ichi2.anki",
+            "uid": "10150",
+            "selectedCollectionDirectory": "/data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75",
+            "verifiedEmptyBeforeFirstLaunch": true,
+            "preferencesVerifiedBeforeFirstLaunch": true
+        },
+        {
+            "package": "com.ichi2.anki.debug",
+            "uid": "10151",
+            "selectedCollectionDirectory": "/data/user/0/com.ichi2.anki.debug/files/fsa00e-debug-01a1cc75",
+            "verifiedEmptyBeforeFirstLaunch": true,
+            "preferencesVerifiedBeforeFirstLaunch": true
+        }
+    ],
+    "sharedSdImage": false,
+    "accountsConfigured": false,
+    "verifiedUtc": "2026-11-12T19:34:59.9747356Z"
+}

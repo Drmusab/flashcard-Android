@@ -1,0 +1,1118 @@
+[
+    {
+        "file": "codex02-accepted-assertions.jsonl",
+        "bytes": 2971,
+        "sha256": "7425A68FE517DB6B7827A9B14DCF2D6F47AFDB7035BD3AC8BE917A5173671E63",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-accepted-assertions.jsonl"
+    },
+    {
+        "file": "codex02-activity-lifecycle.txt",
+        "bytes": 1362,
+        "sha256": "331094D4E92935899EB5892819DABC768774E77963F0805F4B31F4E7ED307574",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-activity-lifecycle.txt"
+    },
+    {
+        "file": "codex02-activity-pid-before.txt",
+        "bytes": 6,
+        "sha256": "1619C617873EFA063669583AA62705B32ED1B788B9AE1343296DE5AAC69F5F86",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-activity-pid-before.txt"
+    },
+    {
+        "file": "codex02-adb.jsonl",
+        "bytes": 25006307,
+        "sha256": "715F67C29BE4E099DE2CAA4C79A6D6D51BBDEDD64019163679C707B0CC0CB37D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-adb.jsonl"
+    },
+    {
+        "file": "codex02-apiprovider-com.ichi2.anki.debug.txt",
+        "bytes": 963,
+        "sha256": "2745E8B0A838CEC0B87EB83D81231B4C23AC1B0C0562C52240D2498BA57E4374",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-apiprovider-com.ichi2.anki.debug.txt"
+    },
+    {
+        "file": "codex02-apiprovider-com.ichi2.anki.txt",
+        "bytes": 957,
+        "sha256": "A72B8F3A1AD4A07D369C8C5037BCAB259669043CED19A33EC4EF083E524E2207",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-apiprovider-com.ichi2.anki.txt"
+    },
+    {
+        "file": "codex02-avd-config.ini",
+        "bytes": 4601,
+        "sha256": "05E1C0ACA2294CF4122C2E679779EB2CDA569F90B9E33DE280FC47AB9F073B1E",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-avd-config.ini"
+    },
+    {
+        "file": "codex02-avd-create.log",
+        "bytes": 1469,
+        "sha256": "66206E8FA73D8F98CED6541206DCCAA6D060A33F932B634460C27AE2EE90678A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-avd-create.log"
+    },
+    {
+        "file": "codex02-backup-restore.json",
+        "bytes": 861,
+        "sha256": "1FF3B87FD105266470EBB97CC43C6234A4A761FE9FD7A3632B05D2E4BCED113B",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-backup-restore.json"
+    },
+    {
+        "file": "codex02-coexistence-routing.json",
+        "bytes": 320,
+        "sha256": "0319BC9CC2CE96C0E04EA82CBA9C16BC519028B6FE695A4A9BC6627971A321D6",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-coexistence-routing.json"
+    },
+    {
+        "file": "codex02-colpkg-resolvers.txt",
+        "bytes": 303,
+        "sha256": "4FDE94683AF56AD869CFC53442CC02660DED48A3DAB2823D1F1D3B346CFB0899",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-colpkg-resolvers.txt"
+    },
+    {
+        "file": "codex02-debug-binary-manifest.txt",
+        "bytes": 84019,
+        "sha256": "157295C22EE547944C0128FB53B4ABB9324CAC77AD72C0BE5B4304BBDA5E7060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-debug-binary-manifest.txt"
+    },
+    {
+        "file": "codex02-debug-pid-initial.json",
+        "bytes": 78,
+        "sha256": "7A608C09024C7594E0FA550AF336AC494CEE3EE443FAB57E63375A5C45C73BB0",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-debug-pid-initial.json"
+    },
+    {
+        "file": "codex02-debug-post-restore-state.txt",
+        "bytes": 54,
+        "sha256": "5F7E20FF9314C62A5A09FF4DB20BA969EB0AE7177966EF8610181ACC4F97877F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-debug-post-restore-state.txt"
+    },
+    {
+        "file": "codex02-debug-pre-backup-state.txt",
+        "bytes": 54,
+        "sha256": "5F7E20FF9314C62A5A09FF4DB20BA969EB0AE7177966EF8610181ACC4F97877F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-debug-pre-backup-state.txt"
+    },
+    {
+        "file": "codex02-debug-runtime-package.txt",
+        "bytes": 76653,
+        "sha256": "A8C0A4419BD96260C5870F5EC635CD548825C610015154231476BB8EA1001C2C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-debug-runtime-package.txt"
+    },
+    {
+        "file": "codex02-deeplink-resolvers.txt",
+        "bytes": 315,
+        "sha256": "092B4A0E1B4F07777EE441107620F6D169713A55BD8D894EF3E017FCE26C8E18",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-deeplink-resolvers.txt"
+    },
+    {
+        "file": "codex02-disk-final.json",
+        "bytes": 164,
+        "sha256": "5D539B12DAEDDD234B11BF51E3744B71B4DFF054DB77327A84F596E83E40A153",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-disk-final.json"
+    },
+    {
+        "file": "codex02-emulator-stderr.log",
+        "bytes": 0,
+        "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-emulator-stderr.log"
+    },
+    {
+        "file": "codex02-emulator-stdout.log",
+        "bytes": 16626,
+        "sha256": "7B82DDE5FC3EA3D32D7E1E193344E1E66F415BDD877C1DD22D012C1F6633C167",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-emulator-stdout.log"
+    },
+    {
+        "file": "codex02-emulator.json",
+        "bytes": 413,
+        "sha256": "F7E98388808FCB8BFE8BF6A45335FC6ADDC916E7E9E633B811EEC550EDD8A2FA",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-emulator.json"
+    },
+    {
+        "file": "codex02-entry.json",
+        "bytes": 446,
+        "sha256": "1B6A90BFAD2B077D6052AF7FAE9091A0B23A0D4184D2052D811D4DAA0C58DD46",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-entry.json"
+    },
+    {
+        "file": "codex02-fileprovider-com.ichi2.anki.debug.txt",
+        "bytes": 1471,
+        "sha256": "69DE701F662EB8652CBA80570BE106A63B471E28919E404B94D801812D17E071",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-fileprovider-com.ichi2.anki.debug.txt"
+    },
+    {
+        "file": "codex02-fileprovider-com.ichi2.anki.txt",
+        "bytes": 1465,
+        "sha256": "2BF9F90B255079A2B89A80B0F53347560A49730E66251FAA1C5777DACF002621",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-fileprovider-com.ichi2.anki.txt"
+    },
+    {
+        "file": "codex02-fsa00a-provenance.json",
+        "bytes": 655,
+        "sha256": "7FCD2D5E03B30B9A1B7F855B89BCD7700CA78DE729ED035E09DCA3906A5C5554",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-fsa00a-provenance.json"
+    },
+    {
+        "file": "codex02-git-push-dry-run-exit.txt",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-git-push-dry-run-exit.txt"
+    },
+    {
+        "file": "codex02-git-push-dry-run.log",
+        "bytes": 104,
+        "sha256": "1B5086F4DF17EC2977ED9380742CCED9FBD46375C8B82C4C421668186878E0D9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-git-push-dry-run.log"
+    },
+    {
+        "file": "codex02-identity-surfaces.json",
+        "bytes": 1286,
+        "sha256": "94DBDAD07719EB5EE547D9203D251E91B7B0F2096553D10C39D090EBDE885BEC",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-identity-surfaces.json"
+    },
+    {
+        "file": "codex02-import-resolvers.txt",
+        "bytes": 303,
+        "sha256": "4FDE94683AF56AD869CFC53442CC02660DED48A3DAB2823D1F1D3B346CFB0899",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-import-resolvers.txt"
+    },
+    {
+        "file": "codex02-isolation.json",
+        "bytes": 908,
+        "sha256": "8598E445853328CCB5BEBAD4EB9BBF5D8E951760D50FE26BD84C24B025C325CA",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-isolation.json"
+    },
+    {
+        "file": "codex02-lifecycle-activity-initial-attempt.json",
+        "bytes": 546,
+        "sha256": "24D513724C0B32A9EB3D4D2219E51FBCABCDAF09133402C1316C80ABDBB662DE",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-lifecycle-activity-initial-attempt.json"
+    },
+    {
+        "file": "codex02-lifecycle-activity.json",
+        "bytes": 1771,
+        "sha256": "504CF242453BC9821E0A66EA40336E963975638D3511975C6AA615F4CC8CD39F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-lifecycle-activity.json"
+    },
+    {
+        "file": "codex02-lifecycle-background.json",
+        "bytes": 166,
+        "sha256": "49DDDC7A1CC7180A852CCAD93001D2EE821B2CB633CDAE0E08A2059CE96945EB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-lifecycle-background.json"
+    },
+    {
+        "file": "codex02-lifecycle-logcat-sofar.log",
+        "bytes": 6406992,
+        "sha256": "19DA339CDCE3C77362513AFEC265485BBF5881048F6986AB0DF2B4625B5E63CF",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-lifecycle-logcat-sofar.log"
+    },
+    {
+        "file": "codex02-lifecycle-process-death.json",
+        "bytes": 631,
+        "sha256": "30357C7121C97F9AB866AAFD5D34CECACE6A6523E19C6443FA1D68B6CE251B09",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-lifecycle-process-death.json"
+    },
+    {
+        "file": "codex02-local-backup-sets.txt",
+        "bytes": 24,
+        "sha256": "4006FBBB8256A057362D30810380B0C1E36D189D26BBC0683FE1D288BE707C1A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-local-backup-sets.txt"
+    },
+    {
+        "file": "codex02-local-backup.log",
+        "bytes": 1525,
+        "sha256": "FBD070B5F73B9D8941E223DC92AF9D600703188FE735FE89722211E455472771",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-local-backup.log"
+    },
+    {
+        "file": "codex02-local-restore.log",
+        "bytes": 129,
+        "sha256": "A7DC54B41865C83CF5B80EAD4401ED82BBA19FEFDF951DB5B36AB60174FAF5B6",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-local-restore.log"
+    },
+    {
+        "file": "codex02-logcat.log",
+        "bytes": 10018189,
+        "sha256": "4BE120E9CE5F0595B48183CCF0201AF9DD9E65E906A01FFBF0E1CA422CDB1771",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-logcat.log"
+    },
+    {
+        "file": "codex02-modern-image-install-duplicate-dependency.log",
+        "bytes": 42590,
+        "sha256": "46095E7486A8E2A4E20F951C444CFCFB83389823375D76A8652CFB5C6674E830",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install-duplicate-dependency.log"
+    },
+    {
+        "file": "codex02-modern-image-install-exit.txt",
+        "bytes": 4,
+        "sha256": "186A919B8C7CB84AEBF4E53C70CD1CC028A93A1D183EE29DD6E10CD18A714577",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install-exit.txt"
+    },
+    {
+        "file": "codex02-modern-image-install-reused-emulator-exit.txt",
+        "bytes": 3,
+        "sha256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install-reused-emulator-exit.txt"
+    },
+    {
+        "file": "codex02-modern-image-install-reused-emulator.log",
+        "bytes": 588,
+        "sha256": "43CDD1E62C94EA2554AA188687061F77DF402F599DA8B40B6BD549A8D99450E2",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install-reused-emulator.log"
+    },
+    {
+        "file": "codex02-modern-image-install-syntax-error.log",
+        "bytes": 203,
+        "sha256": "54021F6C194E2A6FF01CE511BCC879D9A4751FED098D8808BE24D3A60A6412D8",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install-syntax-error.log"
+    },
+    {
+        "file": "codex02-modern-image-install.log",
+        "bytes": 42710,
+        "sha256": "493FD75140B9A9EC356D061FD41F0D22B2C42D26CFC6F5B59E3CCA9DF918C87C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-modern-image-install.log"
+    },
+    {
+        "file": "codex02-native-assertions.jsonl",
+        "bytes": 3775,
+        "sha256": "4C78A4302CBAB26822304565A29B20C5294437C63ABE24EBF7759CA83D2728A3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-native-assertions.jsonl"
+    },
+    {
+        "file": "codex02-native-scheduler.json",
+        "bytes": 687,
+        "sha256": "5787DBAFF8300D8BDE5FF778A6F7C77BD7186EE987E130111FB641B9EA2F2A2C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-native-scheduler.json"
+    },
+    {
+        "file": "codex02-official-after-debug.json",
+        "bytes": 475,
+        "sha256": "6C6F7D81C9602995C48E20A0DBC39FE02311E036DD9B0A4D83D9A7663D38CD0A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-after-debug.json"
+    },
+    {
+        "file": "codex02-official-apk-receipt.json",
+        "bytes": 828,
+        "sha256": "8FBF74E3D31A70A659DC176604C8A6F817DF72E399DA0D9E754C570E36606D49",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-apk-receipt.json"
+    },
+    {
+        "file": "codex02-official-baseline-hashes.txt",
+        "bytes": 290,
+        "sha256": "1A86979F9A0B8AB0CDB97E02BB5CC43E2C0EE154B117E1A2CD805F4CA1676168",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-baseline-hashes.txt"
+    },
+    {
+        "file": "codex02-official-before-restore-hashes.txt",
+        "bytes": 290,
+        "sha256": "75BC7396AA41C881DD62B83DCA17B4EC59FB345CB63A2B7923B3FECACB10A306",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-before-restore-hashes.txt"
+    },
+    {
+        "file": "codex02-official-binary-manifest.txt",
+        "bytes": 80591,
+        "sha256": "8273F5BA2DE29451A08169802F29A7A1FA89EF2F32E91AA645C19A13CDC5219E",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-binary-manifest.txt"
+    },
+    {
+        "file": "codex02-official-final-state.txt",
+        "bytes": 9,
+        "sha256": "C82B1841EA7EE86142858D7CD7487229972F593CE5746F3B82AB6FD7E88996C4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-final-state.txt"
+    },
+    {
+        "file": "codex02-official-pre-backup-hashes.txt",
+        "bytes": 143,
+        "sha256": "6A29135D995E1B2F31353AEF1B2FB4C524A7A4BA0E42E2A7C5C901DCE0B621F8",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-pre-backup-hashes.txt"
+    },
+    {
+        "file": "codex02-official-release.json",
+        "bytes": 3758,
+        "sha256": "7AB05FD24EAC3B2BC24DC13D38B40323A4839BA22CF3F2BE8FFB28FCB16F9178",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-release.json"
+    },
+    {
+        "file": "codex02-official-runtime-package.txt",
+        "bytes": 74012,
+        "sha256": "85FA5AF91D54E1EC25404888079CA4C1F41A6D7064C2E9572142D66F6258B546",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-official-runtime-package.txt"
+    },
+    {
+        "file": "codex02-prelaunch-com.ichi2.anki.debug.xml",
+        "bytes": 169,
+        "sha256": "57270D308E63CCC6A9D372FB8D37B8DBF6C2E8A3A2DBA5E69E5168E8EB13799C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-prelaunch-com.ichi2.anki.debug.xml"
+    },
+    {
+        "file": "codex02-prelaunch-com.ichi2.anki.xml",
+        "bytes": 166,
+        "sha256": "430CD5F430E92C241E45586C90752DCACE5BADF8B6EA28091526C40939A2158E",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-prelaunch-com.ichi2.anki.xml"
+    },
+    {
+        "file": "codex02-process-death-retained-task.txt",
+        "bytes": 8564,
+        "sha256": "0ED3A95DFD6CC14CF75E2DE02D5A9BC4C6AE1C0D5BA4B2C46B36A78A9D89715E",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-process-death-retained-task.txt"
+    },
+    {
+        "file": "codex02-remote-before-publish.txt",
+        "bytes": 58,
+        "sha256": "ED547CE272C5CA48DD468ABEBA59D4D9FB0D492806A8F33EC59C2CD55BA53F10",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-remote-before-publish.txt"
+    },
+    {
+        "file": "codex02-runtime-summary.json",
+        "bytes": 321,
+        "sha256": "169BE348D59D1AA45402598FA49820C1190A2AA4A97B1ABDCA219E30117AA738",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-runtime-summary.json"
+    },
+    {
+        "file": "codex02-screen-activity-recreated.png",
+        "bytes": 33301,
+        "sha256": "4F907456646BF2FDFE54F5DD4020C9FB4EF4AA34FEF6BE9C7A68DB3DDDE50620",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-activity-recreated.png"
+    },
+    {
+        "file": "codex02-screen-activity-recreation-failure-state.png",
+        "bytes": 667962,
+        "sha256": "8C939D0E94E2BEF6EDAE208C01293367F4BC97F192B0196ACF5ADB44BEDBF95F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-activity-recreation-failure-state.png"
+    },
+    {
+        "file": "codex02-screen-activity-recreation-recents.png",
+        "bytes": 51746,
+        "sha256": "B20E1003B5B7034A2AEA2450BF6A70367E9A27BCA2EB8B803998D111B0811BD8",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-activity-recreation-recents.png"
+    },
+    {
+        "file": "codex02-screen-after-recreation-answer-diagnostic.png",
+        "bytes": 36746,
+        "sha256": "FE667FAB41D8ADD9C6D4D5D5756A14F9317F5DF1A37E9AE63E64065C3A224917",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-after-recreation-answer-diagnostic.png"
+    },
+    {
+        "file": "codex02-screen-debug-restored-deckpicker.png",
+        "bytes": 42326,
+        "sha256": "828A0828B6A9A84D4ECA9B432C80699D5F01B02B41633B79139F29F1BCD7E1E4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-debug-restored-deckpicker.png"
+    },
+    {
+        "file": "codex02-screen-deeplink-chooser.png",
+        "bytes": 51437,
+        "sha256": "720F5FF45558E52D6ED5EBBE0412A08298E897EC23D347471AADF2207491E2B3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-deeplink-chooser.png"
+    },
+    {
+        "file": "codex02-screen-modern-after-undo.png",
+        "bytes": 22654,
+        "sha256": "3612283278FEC623C7FDDCA9A2DF633AC07E8C601544B9FBD3213675D4A37F01",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-after-undo.png"
+    },
+    {
+        "file": "codex02-screen-modern-answer.png",
+        "bytes": 33922,
+        "sha256": "179C7CCFFE83C44CD2E23DED5548B3C366D994775F72BA3AFF23DADBFC406A8A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-answer.png"
+    },
+    {
+        "file": "codex02-screen-modern-before-undo.png",
+        "bytes": 23099,
+        "sha256": "8C298CD597D4084452976ABE27F6164D6F0C087CEE8BF9F3D6E1917425C83B48",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-before-undo.png"
+    },
+    {
+        "file": "codex02-screen-modern-current.png",
+        "bytes": 23573,
+        "sha256": "D80BE28D3ED03E4D877E8A5F786B9555A304539E46B8F517B0E2CA219B7D9953",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-current.png"
+    },
+    {
+        "file": "codex02-screen-modern-landscape.png",
+        "bytes": 33528,
+        "sha256": "6F3A9B46A6B297E5C1D0D9E9A5A4C5E14C534A6BD273B2E475A70945493AD135",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-landscape.png"
+    },
+    {
+        "file": "codex02-screen-modern-question.png",
+        "bytes": 23447,
+        "sha256": "6AE24D2F1868008B33B7C7BD2207C35B58243A6DD58CBC58EC6425C6E76D95CE",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-question.png"
+    },
+    {
+        "file": "codex02-screen-modern-ratings-finished.png",
+        "bytes": 22949,
+        "sha256": "230A42B3652F45BD724217BE8F66AB4072F4EBEC6699EF0AF9E4437092D16369",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-modern-ratings-finished.png"
+    },
+    {
+        "file": "codex02-screen-official-deckpicker.png",
+        "bytes": 38782,
+        "sha256": "19ACA825D43B55DEFF727C51B10EE52E35CFFB3D1DFE294845B0BC3A494A3A41",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-official-deckpicker.png"
+    },
+    {
+        "file": "codex02-screen-process-death-before.png",
+        "bytes": 33517,
+        "sha256": "A5ECD4EFC5C40DBBC71015008D51C0ABF5D285DB2D43AF25E92A842376381D52",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-process-death-before.png"
+    },
+    {
+        "file": "codex02-screen-process-death-restored.png",
+        "bytes": 22998,
+        "sha256": "23D81C1518EB45F7FBCEF6C8E8874EF0A8FD5D7A2761C8F7D8A7EDF3574C003C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-screen-process-death-restored.png"
+    },
+    {
+        "file": "codex02-send-apkg-resolvers.txt",
+        "bytes": 303,
+        "sha256": "4FDE94683AF56AD869CFC53442CC02660DED48A3DAB2823D1F1D3B346CFB0899",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-send-apkg-resolvers.txt"
+    },
+    {
+        "file": "codex02-source-integrity.json",
+        "bytes": 1925,
+        "sha256": "213D5E1F220DE0188716A14A9885B066535905634EBB71C098277A8D6203BE0C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-source-integrity.json"
+    },
+    {
+        "file": "codex02-sync-disposition.json",
+        "bytes": 868,
+        "sha256": "F096F77951D1813AFA7004FACFEC3079F31A31B2174CDBB5BEDF55CB871FD438",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-sync-disposition.json"
+    },
+    {
+        "file": "codex02-ui-activity-native-before-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-before-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-confirmed-home-settled.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-confirmed-home-settled.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-confirmed-recents-1.xml",
+        "bytes": 6307,
+        "sha256": "413B3D9796E9F6CC6A97D31E9D91E8A25155B37F64836EE0818E9C60DFA6AF0D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-confirmed-recents-1.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-recents.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-recents.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt2.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt2.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt3.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt3.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt4.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt4.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt5.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt5.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt6.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt6.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt7.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt7.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-restored-attempt8.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-restored-attempt8.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-setting-restored-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-setting-restored-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-toggle-enabled.xml",
+        "bytes": 18196,
+        "sha256": "CA132416C4D34EB226D6D28CBAA99CBB4791D254151176999474D8DE215B8899",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-toggle-enabled.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-toggle-off.xml",
+        "bytes": 18196,
+        "sha256": "CA132416C4D34EB226D6D28CBAA99CBB4791D254151176999474D8DE215B8899",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-toggle-off.xml"
+    },
+    {
+        "file": "codex02-ui-activity-native-toggle-on.xml",
+        "bytes": 18198,
+        "sha256": "D1396A52E02748A8B3CD69084CDE579777C5766AFD40B13F125A8805A6B02455",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-native-toggle-on.xml"
+    },
+    {
+        "file": "codex02-ui-activity-recreated-card-attempt1.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-recreated-card-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-activity-recreated-state.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-recreated-state.xml"
+    },
+    {
+        "file": "codex02-ui-activity-recreation-failure-state.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-recreation-failure-state.xml"
+    },
+    {
+        "file": "codex02-ui-activity-recreation-recents.xml",
+        "bytes": 6290,
+        "sha256": "F052A2DBF073F51999E75289EC6050A57B0DF64CB32C754ED6FEC768DADFE0DA",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-recreation-recents.xml"
+    },
+    {
+        "file": "codex02-ui-activity-setting-restored-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-activity-setting-restored-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-debug-first-launch.xml",
+        "bytes": 8108,
+        "sha256": "FA38BE487A03B41618FDE18D85D8963AB3672224D7066B2289F2D5AC4DD9ABE8",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-first-launch.xml"
+    },
+    {
+        "file": "codex02-ui-debug-get-started.xml",
+        "bytes": 8108,
+        "sha256": "FA38BE487A03B41618FDE18D85D8963AB3672224D7066B2289F2D5AC4DD9ABE8",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-get-started.xml"
+    },
+    {
+        "file": "codex02-ui-debug-modern-deckpicker.xml",
+        "bytes": 11754,
+        "sha256": "9A6D3A21831FDCF47FB0EEACC693F843537CA745B6812952232AA292514AEC14",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-modern-deckpicker.xml"
+    },
+    {
+        "file": "codex02-ui-debug-new-deck-confirm.xml",
+        "bytes": 7695,
+        "sha256": "C3C70A322B90659C1E10096C77C31D80FA6D6633DC264CA2F07EA1DF71EB0446",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-new-deck-confirm.xml"
+    },
+    {
+        "file": "codex02-ui-debug-new-deck-menu.xml",
+        "bytes": 11754,
+        "sha256": "9A6D3A21831FDCF47FB0EEACC693F843537CA745B6812952232AA292514AEC14",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-new-deck-menu.xml"
+    },
+    {
+        "file": "codex02-ui-debug-new-deck.xml",
+        "bytes": 13405,
+        "sha256": "5DD445CC6E3F8959610B86CDAE164619976E510233ABFB512149C3F8A662D1D6",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-new-deck.xml"
+    },
+    {
+        "file": "codex02-ui-debug-note-editor.xml",
+        "bytes": 16896,
+        "sha256": "3A19DFDCA6DAB1287E81F32DC8B62FA66222BD25E69879027473278D79500B96",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-note-editor.xml"
+    },
+    {
+        "file": "codex02-ui-debug-note-menu.xml",
+        "bytes": 16360,
+        "sha256": "5F1B4D2849B97E22C0E6917DB05B04AA1E467AF78C747C1D0A8FF85EA218E3C1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-note-menu.xml"
+    },
+    {
+        "file": "codex02-ui-debug-restored-deckpicker.xml",
+        "bytes": 15614,
+        "sha256": "913E1E6E0522E90CCE7A31A172556DD59C4827D5F3DD9D50564C38E0A5A34583",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-restored-deckpicker.xml"
+    },
+    {
+        "file": "codex02-ui-debug-scoped-browser.xml",
+        "bytes": 21220,
+        "sha256": "4805E2DDA17AAE2BE86A875C94F0E207F43F1121D81AF47CC56BE10F793F05E5",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-debug-scoped-browser.xml"
+    },
+    {
+        "file": "codex02-ui-deeplink-chooser.xml",
+        "bytes": 10519,
+        "sha256": "F7068E77B14ECDEE37DB4AF40ECADF3A2693C543F37BB5BFBAFA194FAA912086",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-deeplink-chooser.xml"
+    },
+    {
+        "file": "codex02-ui-developer-options-enabled.xml",
+        "bytes": 18198,
+        "sha256": "D1396A52E02748A8B3CD69084CDE579777C5766AFD40B13F125A8805A6B02455",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-developer-options-enabled.xml"
+    },
+    {
+        "file": "codex02-ui-developer-options-settled.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-developer-options-settled.xml"
+    },
+    {
+        "file": "codex02-ui-developer-options.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-developer-options.xml"
+    },
+    {
+        "file": "codex02-ui-modern-after-again-attempt1.xml",
+        "bytes": 13257,
+        "sha256": "94C2FA628F03B6157985CC07E1C912FA7301FB4503E5CD432D845A63A8D7EDBA",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-after-again-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-after-undo-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "DF6154351B788D07D53C0D6871CA9C2615F5F3D650C8DFA929C18F8B750DC060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-after-undo-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-again-reveal.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-again-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-again.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-again.xml"
+    },
+    {
+        "file": "codex02-ui-modern-answer-attempt1.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-answer-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-back-1.xml",
+        "bytes": 22703,
+        "sha256": "66426BA3BE0DB503C2D39AC23A7FCEC5756D00140D9C5E308A970034FCE89D5D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-back-1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-back-2.xml",
+        "bytes": 22703,
+        "sha256": "3378C27039CD56EF1B99BA083C7332888EE41ACCB0FB26A0FF86158FF34367E1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-back-2.xml"
+    },
+    {
+        "file": "codex02-ui-modern-back-3.xml",
+        "bytes": 22703,
+        "sha256": "1A62DE04BD264933D7B88D2CA792BB9DDBB4CFDA27CC5702F95731DF17C07296",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-back-3.xml"
+    },
+    {
+        "file": "codex02-ui-modern-back-4.xml",
+        "bytes": 22703,
+        "sha256": "3A6F35B018ABC6F96C0F3E1B3E95DF5B5F2DE1F9594C64EB32A6B4E2B98A4735",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-back-4.xml"
+    },
+    {
+        "file": "codex02-ui-modern-background-resume-attempt1.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-background-resume-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-easy-result-attempt1.xml",
+        "bytes": 13266,
+        "sha256": "B06F36EE9FD2C87701CDCBC790B4A8BB151C5DEC761BC886D489DBBC958CA49B",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-easy-result-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-easy-reveal.xml",
+        "bytes": 13254,
+        "sha256": "E894F385FBE4D03D2FDAE0103E8E507324418A59B880E266AC6703EC147C2B0C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-easy-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-easy.xml",
+        "bytes": 18695,
+        "sha256": "C10B442F1E9FC6C155957B51AA35B99D96D0E58D3D55A88D69B49B99E74D6B6B",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-easy.xml"
+    },
+    {
+        "file": "codex02-ui-modern-final-again-result-attempt1.xml",
+        "bytes": 13257,
+        "sha256": "94C2FA628F03B6157985CC07E1C912FA7301FB4503E5CD432D845A63A8D7EDBA",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-final-again-result-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-final-again-reveal.xml",
+        "bytes": 13254,
+        "sha256": "DF6154351B788D07D53C0D6871CA9C2615F5F3D650C8DFA929C18F8B750DC060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-final-again-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-final-again.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-final-again.xml"
+    },
+    {
+        "file": "codex02-ui-modern-front-1.xml",
+        "bytes": 22695,
+        "sha256": "13FDFA3C8CCD6861C0E9DA83C7F455053D88CAE3725C57AF43CA97C5999DD78E",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-front-1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-front-2.xml",
+        "bytes": 23819,
+        "sha256": "FDE19ECD18B1A487EBC300EFAF3B956F5BAE2F20E8323971340C48515E079600",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-front-2.xml"
+    },
+    {
+        "file": "codex02-ui-modern-front-3.xml",
+        "bytes": 23819,
+        "sha256": "FDE19ECD18B1A487EBC300EFAF3B956F5BAE2F20E8323971340C48515E079600",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-front-3.xml"
+    },
+    {
+        "file": "codex02-ui-modern-front-4.xml",
+        "bytes": 23819,
+        "sha256": "FDE19ECD18B1A487EBC300EFAF3B956F5BAE2F20E8323971340C48515E079600",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-front-4.xml"
+    },
+    {
+        "file": "codex02-ui-modern-good-result-attempt1.xml",
+        "bytes": 13263,
+        "sha256": "1058C9F06645142A3B99F1D5812F0DF00D1DFFE456C72B37EFCA2909DA4DB510",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-good-result-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-good-reveal.xml",
+        "bytes": 13254,
+        "sha256": "0D64ACFAEC6AB01C0751855D1D1E29F393D505764453B21190C43B7B1D758D05",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-good-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-good.xml",
+        "bytes": 18695,
+        "sha256": "EF03893DB84C3344BEAC204217A6971CE394171FF9312BFD700CFE2B1FB9E7B3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-good.xml"
+    },
+    {
+        "file": "codex02-ui-modern-hard-result-attempt1.xml",
+        "bytes": 13260,
+        "sha256": "A07A452BF0D4320E59BB4CB618603D296D0C2273698AB227FBBCB93A8E28E88C",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-hard-result-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-hard-reveal.xml",
+        "bytes": 13254,
+        "sha256": "04373EC226617D691815AB1269A64EBEF615C289D5DEF6A5380F72D7BFE068BE",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-hard-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-hard.xml",
+        "bytes": 18695,
+        "sha256": "857B538EE4B11339A65428A2832C170641A5AE1655F2F09E5D52E1BE9F0A0472",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-hard.xml"
+    },
+    {
+        "file": "codex02-ui-modern-note-exit.xml",
+        "bytes": 23819,
+        "sha256": "FDE19ECD18B1A487EBC300EFAF3B956F5BAE2F20E8323971340C48515E079600",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-note-exit.xml"
+    },
+    {
+        "file": "codex02-ui-modern-question-accepted-attempt1.xml",
+        "bytes": 13254,
+        "sha256": "DF6154351B788D07D53C0D6871CA9C2615F5F3D650C8DFA929C18F8B750DC060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-question-accepted-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-question-settled.xml",
+        "bytes": 13254,
+        "sha256": "DF6154351B788D07D53C0D6871CA9C2615F5F3D650C8DFA929C18F8B750DC060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-question-settled.xml"
+    },
+    {
+        "file": "codex02-ui-modern-question.xml",
+        "bytes": 12171,
+        "sha256": "5D015F118C50DBB5BAF0D419AEE3817AF66169C216297A742058E426FE1777F4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-question.xml"
+    },
+    {
+        "file": "codex02-ui-modern-reveal.xml",
+        "bytes": 13254,
+        "sha256": "DF6154351B788D07D53C0D6871CA9C2615F5F3D650C8DFA929C18F8B750DC060",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-reveal.xml"
+    },
+    {
+        "file": "codex02-ui-modern-review-deck.xml",
+        "bytes": 15607,
+        "sha256": "D8E3124632B5F26735A4852668EF24F8FC3A45951EE0260E243FFCEAE4B2750D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-review-deck.xml"
+    },
+    {
+        "file": "codex02-ui-modern-rotation-landscape-attempt1.xml",
+        "bytes": 19064,
+        "sha256": "E0AB119FE85B7A552C0DE11931215625F5FBA40B9F83BD027942E4CA14BE45C9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-rotation-landscape-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-rotation-portrait-attempt1.xml",
+        "bytes": 18695,
+        "sha256": "C8463E4161291FDC298FAFBA60D86639F0E95A86A4F4AD22647AFDBC6AEE11BD",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-rotation-portrait-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-save-1.xml",
+        "bytes": 22711,
+        "sha256": "A72D4A7F2ABFD856B6E5AA9FB7727FDB581B3D3410157B35FDAD5797F989E7CE",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-save-1.xml"
+    },
+    {
+        "file": "codex02-ui-modern-save-2.xml",
+        "bytes": 22711,
+        "sha256": "E2B05CB70D6B1DC5C2DE433446886F7C94F1A7855E280128392F80B0ECD56CF3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-save-2.xml"
+    },
+    {
+        "file": "codex02-ui-modern-save-3.xml",
+        "bytes": 22711,
+        "sha256": "00FD07444F47B444CC96E681C593B0CFE52E491B63EF5775B880AC64FB51AF75",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-save-3.xml"
+    },
+    {
+        "file": "codex02-ui-modern-save-4.xml",
+        "bytes": 22711,
+        "sha256": "D29752CA1C3E1F434C1F11B3684D506677762D587DDCB5076E496978A4EF3C96",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-modern-save-4.xml"
+    },
+    {
+        "file": "codex02-ui-official-add-menu.xml",
+        "bytes": 16293,
+        "sha256": "6041E47DFF7C4DD0B15C2AE8CBD0FDC78028051BB13EE606D205C7262E4477A3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-add-menu.xml"
+    },
+    {
+        "file": "codex02-ui-official-add-note.xml",
+        "bytes": 16805,
+        "sha256": "4D2FB28731F2C7428F09EA89AC605F7BD0EC4D57490D929C0993DC2F4AA2463B",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-add-note.xml"
+    },
+    {
+        "file": "codex02-ui-official-back.xml",
+        "bytes": 22467,
+        "sha256": "6E79870E07BA46FB689F1EFF4AF076428947077E8DC22D9337CB557149566D43",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-back.xml"
+    },
+    {
+        "file": "codex02-ui-official-create-confirm.xml",
+        "bytes": 7518,
+        "sha256": "16AED1910C4189EDC653C0024216930953F155C8CEA76B90B6DBE7086B02E496",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-create-confirm.xml"
+    },
+    {
+        "file": "codex02-ui-official-create-deck.xml",
+        "bytes": 13425,
+        "sha256": "EA01AB468D3D3A77EBDCC28E9B30FA945F6E68062FCC2564B2CFEA7E73D54626",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-create-deck.xml"
+    },
+    {
+        "file": "codex02-ui-official-deck-menu.xml",
+        "bytes": 11822,
+        "sha256": "9E7E5C656291FDABEA89B09DAD9FC0DC200C1BD39C9AAC48B248AFD2E19F685F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-deck-menu.xml"
+    },
+    {
+        "file": "codex02-ui-official-deckpicker.xml",
+        "bytes": 11822,
+        "sha256": "9E7E5C656291FDABEA89B09DAD9FC0DC200C1BD39C9AAC48B248AFD2E19F685F",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-deckpicker.xml"
+    },
+    {
+        "file": "codex02-ui-official-first.xml",
+        "bytes": 8246,
+        "sha256": "7237BBE92D4DF55EC009A810ADD9E1183B2612C4E252FB6BBED943AD63B01DE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-first.xml"
+    },
+    {
+        "file": "codex02-ui-official-front.xml",
+        "bytes": 22452,
+        "sha256": "5E3854AB462793CE44D52A3481FD70FCD11B997D83D5E2C7205A479B0B965777",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-front.xml"
+    },
+    {
+        "file": "codex02-ui-official-note-exit.xml",
+        "bytes": 23552,
+        "sha256": "7B4FCAB37DC3149D67B8F0979D2D0C75B526005E8FE642C9231C904E90D77549",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-note-exit.xml"
+    },
+    {
+        "file": "codex02-ui-official-save.xml",
+        "bytes": 22482,
+        "sha256": "CA1D30A2517DE502E61D87BB27A4E27237B91B47774FA21CDB77642CDA5CB25A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-save.xml"
+    },
+    {
+        "file": "codex02-ui-official-scoped-browser.xml",
+        "bytes": 15717,
+        "sha256": "088E026D414062895105874C5FE8670B9896E46FECF2A47020C407B7C69D0108",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-scoped-browser.xml"
+    },
+    {
+        "file": "codex02-ui-official-sentinel-created.xml",
+        "bytes": 15557,
+        "sha256": "FCD01A0B149F7C763E5C5EC9E0BA3E3F498F3D288AD5340B4D614894205C4C3A",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-sentinel-created.xml"
+    },
+    {
+        "file": "codex02-ui-official-start.xml",
+        "bytes": 8246,
+        "sha256": "7237BBE92D4DF55EC009A810ADD9E1183B2612C4E252FB6BBED943AD63B01DE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-official-start.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt1.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt2.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt2.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt3.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt3.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt4.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt4.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt5.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt5.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt6.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt6.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt7.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt7.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-attempt8.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-attempt8.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-controls-attempt1.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-controls-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-before-native-answer.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-before-native-answer.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-home-settled.xml",
+        "bytes": 9988,
+        "sha256": "DC01B94BDC9669C1707A8F55789FD9A31330D2A61648F56B25CE1DE879D86CE1",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-home-settled.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-initial.xml",
+        "bytes": 16915,
+        "sha256": "A97D2E8E9D3860748769D8EA526027962B08244C6F914B415CFFF3478722B3CB",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-initial.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-recents-1.xml",
+        "bytes": 6307,
+        "sha256": "413B3D9796E9F6CC6A97D31E9D91E8A25155B37F64836EE0818E9C60DFA6AF0D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-recents-1.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-restored-attempt1.xml",
+        "bytes": 6307,
+        "sha256": "413B3D9796E9F6CC6A97D31E9D91E8A25155B37F64836EE0818E9C60DFA6AF0D",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-restored-attempt1.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-restored-attempt2.xml",
+        "bytes": 12161,
+        "sha256": "8C57244BB707E436CDD8B76DAD1BF95AA17E796E92ACDEDF751C84FEF71793E3",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-restored-attempt2.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-restored-attempt3.xml",
+        "bytes": 13244,
+        "sha256": "1425856BA7CF4F55FA54AE6D838ADB297554FF36F5507A80F861EA49C029C8D4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-restored-attempt3.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-restored-state.xml",
+        "bytes": 13244,
+        "sha256": "1425856BA7CF4F55FA54AE6D838ADB297554FF36F5507A80F861EA49C029C8D4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-restored-state.xml"
+    },
+    {
+        "file": "codex02-ui-process-death-reveal.xml",
+        "bytes": 13254,
+        "sha256": "C584E157973EE31679CBA1C511AF8C0CA7F6BE3BE71A7994408F3BAC506635E9",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-ui-process-death-reveal.xml"
+    },
+    {
+        "file": "codex02-webview.txt",
+        "bytes": 585,
+        "sha256": "222F3F42F36678B02075CCF7C24F2E3BBED55871F242B476A872066154D82BC4",
+        "retainedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\codex02-webview.txt"
+    }
+]

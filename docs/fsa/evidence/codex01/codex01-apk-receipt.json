@@ -1,0 +1,38 @@
+[
+    {
+        "file": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\checkout\\AnkiDroid\\build\\outputs\\apk\\full\\debug\\AnkiDroid-full-arm64-v8a-debug.apk",
+        "bytes": 76103344,
+        "sha256": "3FFF7837AF9FF0EBD691171D2107D4125EFF19941F23E44592688AC5D11B6422",
+        "package": "package: name='com.ichi2.anki.debug' versionCode='22600107' versionName='2.26.0alpha7-debug' platformBuildVersionName='17' platformBuildVersionCode='37' compileSdkVersion='37' compileSdkVersionCodename='17'",
+        "nativeCode": "native-code: 'arm64-v8a'",
+        "certificate": "Signer #1 certificate SHA-256 digest: 1f0c7bcce20fe9e01d54f74ec7e5fe1ee74aab1d22de99805ab3a52e2078e87d",
+        "verified": true
+    },
+    {
+        "file": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\checkout\\AnkiDroid\\build\\outputs\\apk\\full\\debug\\AnkiDroid-full-armeabi-v7a-debug.apk",
+        "bytes": 72383656,
+        "sha256": "AC0C0C08A6E8CF880C400FBB770E478B8CF77EC1468C24C8353B848F4CD90446",
+        "package": "package: name='com.ichi2.anki.debug' versionCode='22600107' versionName='2.26.0alpha7-debug' platformBuildVersionName='17' platformBuildVersionCode='37' compileSdkVersion='37' compileSdkVersionCodename='17'",
+        "nativeCode": "native-code: 'armeabi-v7a'",
+        "certificate": "Signer #1 certificate SHA-256 digest: 1f0c7bcce20fe9e01d54f74ec7e5fe1ee74aab1d22de99805ab3a52e2078e87d",
+        "verified": true
+    },
+    {
+        "file": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\checkout\\AnkiDroid\\build\\outputs\\apk\\full\\debug\\AnkiDroid-full-x86_64-debug.apk",
+        "bytes": 78047754,
+        "sha256": "4F373C2D3E1699E04FC0DB5425F016260E44A4CB356AED9A8C65745D4F763102",
+        "package": "package: name='com.ichi2.anki.debug' versionCode='22600107' versionName='2.26.0alpha7-debug' platformBuildVersionName='17' platformBuildVersionCode='37' compileSdkVersion='37' compileSdkVersionCodename='17'",
+        "nativeCode": "native-code: 'x86_64'",
+        "certificate": "Signer #1 certificate SHA-256 digest: 1f0c7bcce20fe9e01d54f74ec7e5fe1ee74aab1d22de99805ab3a52e2078e87d",
+        "verified": true
+    },
+    {
+        "file": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\checkout\\AnkiDroid\\build\\outputs\\apk\\full\\debug\\AnkiDroid-full-x86-debug.apk",
+        "bytes": 76951608,
+        "sha256": "3EB2C81D1DCC9AB072E93D7920F9ACC7249B4D05E904F3A5DD211F31F9D66248",
+        "package": "package: name='com.ichi2.anki.debug' versionCode='22600107' versionName='2.26.0alpha7-debug' platformBuildVersionName='17' platformBuildVersionCode='37' compileSdkVersion='37' compileSdkVersionCodename='17'",
+        "nativeCode": "native-code: 'x86'",
+        "certificate": "Signer #1 certificate SHA-256 digest: 1f0c7bcce20fe9e01d54f74ec7e5fe1ee74aab1d22de99805ab3a52e2078e87d",
+        "verified": true
+    }
+]

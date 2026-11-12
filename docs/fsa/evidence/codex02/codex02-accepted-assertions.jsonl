@@ -1,0 +1,15 @@
+{"utc":"2026-11-12T19:47:48.8964122Z","step":"activity-native-restored-attempt1","cardText":"DEBUG_Q1","new":"0","learning":"3","status":"PASS","xml":"codex02-ui-activity-native-restored-attempt1.xml"}
+{"utc":"2026-11-12T19:47:54.8293638Z","step":"activity-native-setting-restored-attempt1","cardText":"DEBUG_Q1","new":"0","learning":"3","status":"PASS","xml":"codex02-ui-activity-native-setting-restored-attempt1.xml"}
+{"utc":"2026-11-12T19:41:02.7727702Z","step":"modern-after-again-attempt1","cardText":"DEBUG_Q2","new":"3","learning":"1","status":"PASS","xml":"codex02-ui-modern-after-again-attempt1.xml"}
+{"utc":"2026-11-12T19:41:06.3697641Z","step":"modern-after-undo-attempt1","cardText":"DEBUG_Q1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-after-undo-attempt1.xml"}
+{"utc":"2026-11-12T19:39:27.2227848Z","step":"modern-answer-attempt1","cardText":"DEBUG_A1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-answer-attempt1.xml"}
+{"utc":"2026-11-12T19:39:34.7685941Z","step":"modern-background-resume-attempt1","cardText":"DEBUG_A1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-background-resume-attempt1.xml"}
+{"utc":"2026-11-12T19:41:33.1245792Z","step":"modern-easy-result-attempt1","cardText":"","new":"0","learning":"3","status":"PASS","xml":"codex02-ui-modern-easy-result-attempt1.xml"}
+{"utc":"2026-11-12T19:41:13.2455154Z","step":"modern-final-again-result-attempt1","cardText":"DEBUG_Q2","new":"3","learning":"1","status":"PASS","xml":"codex02-ui-modern-final-again-result-attempt1.xml"}
+{"utc":"2026-11-12T19:41:26.4804536Z","step":"modern-good-result-attempt1","cardText":"DEBUG_Q4","new":"1","learning":"3","status":"PASS","xml":"codex02-ui-modern-good-result-attempt1.xml"}
+{"utc":"2026-11-12T19:41:19.8786182Z","step":"modern-hard-result-attempt1","cardText":"DEBUG_Q3","new":"2","learning":"2","status":"PASS","xml":"codex02-ui-modern-hard-result-attempt1.xml"}
+{"utc":"2026-11-12T19:39:22.6551398Z","step":"modern-question-accepted-attempt1","cardText":"DEBUG_Q1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-question-accepted-attempt1.xml"}
+{"utc":"2026-11-12T19:39:29.8341748Z","step":"modern-rotation-landscape-attempt1","cardText":"DEBUG_A1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-rotation-landscape-attempt1.xml"}
+{"utc":"2026-11-12T19:39:32.4086825Z","step":"modern-rotation-portrait-attempt1","cardText":"DEBUG_A1","new":"4","learning":"0","status":"PASS","xml":"codex02-ui-modern-rotation-portrait-attempt1.xml"}
+{"utc":"2026-11-12T19:50:16.9569849Z","step":"process-death-before-controls-attempt1","cardText":"","new":"0","learning":"3","status":"PASS","xml":"codex02-ui-process-death-before-controls-attempt1.xml"}
+{"utc":"2026-11-12T19:50:33.7738756Z","step":"process-death-restored-attempt3","cardText":"DEBUG_Q1","new":"0","learning":"3","status":"PASS","xml":"codex02-ui-process-death-restored-attempt3.xml"}

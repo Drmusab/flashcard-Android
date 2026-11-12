@@ -1,0 +1,23 @@
+{
+    "status": "PASS",
+    "type": "Activity destruction/recreation",
+    "mechanism": "Native Developer Options switch, Home, restore existing task through Recents",
+    "pidBefore": "2954",
+    "pidAfter": "2954",
+    "sameProcess": true,
+    "cardRestored": "DEBUG_Q1",
+    "new": 0,
+    "learning": 3,
+    "onDestroyAndOnCreateLogs": [
+        "11-12 22:38:05.507  2954  2954 I ActivityLaunchLoggerKt: Reviewer::onCreate, savedInstanceState: null, launch: {action=null, categories=null, flags=0x0, extraKeys=null, startedWithShortcut=absent, taskId=9, isTaskRoot=false, caller=self}",
+        "11-12 22:40:00.645  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onStop",
+        "11-12 22:43:32.496  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onStop",
+        "11-12 22:44:48.216  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onStop",
+        "11-12 22:44:55.162  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onStop",
+        "11-12 22:44:55.175  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onDestroy",
+        "11-12 22:47:37.209  2954  2954 I ActivityLaunchLoggerKt: Reviewer::onCreate, savedInstanceState: null, launch: {action=null, categories=null, flags=0x30400000, extraKeys=null, startedWithShortcut=absent, taskId=9, isTaskRoot=false, caller=unavailable}",
+        "11-12 22:47:40.883  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onStop",
+        "11-12 22:47:40.927  2954  2954 I AnkiDroidApp$setupLifecycleLogging: Reviewer::onDestroy",
+        "11-12 22:47:45.175  2954  2954 I ActivityLaunchLoggerKt: Reviewer::onCreate, savedInstanceState: 4 keys, launch: {action=null, categories=null, flags=0x30400000, extraKeys=null, startedWithShortcut=absent, taskId=9, isTaskRoot=false, caller=unavailable}"
+    ]
+}

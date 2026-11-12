@@ -1,0 +1,26 @@
+{
+    "status": "PASS",
+    "transport": "com.android.localtransport/.LocalTransport",
+    "cloudAccountUsed": false,
+    "targetPackage": "com.ichi2.anki.debug",
+    "restoreToken": "1",
+    "markerRestoredFromBackup": true,
+    "debugNativeRowsPreserved": [
+        "4",
+        "4",
+        "1|1",
+        "2|1",
+        "3|1",
+        "4|1",
+        "1|1|1",
+        "1|1|1",
+        "1|1|1",
+        "1|2|2"
+    ],
+    "officialCollectionHashesUnchanged": true,
+    "officialHashes": [
+        "9cc298a3b9dee50332bb2d83bc021d7e65c2352155ecf4eaca20cc2a45c718f5  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2",
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2-wal"
+    ],
+    "collectionPathAfterRestore": "/data/user/0/com.ichi2.anki.debug/files/fsa00e-debug-01a1cc75"
+}

@@ -1,0 +1,8 @@
+{
+    "status": "PASS",
+    "implicitSharedDeepLink": "Android ResolverActivity chooser; both apps have the same visible AnkiDroid label",
+    "debugScopedResult": "four DEBUG_Q cards only",
+    "officialScopedResult": "one OFFICIAL_ONLY_Q card only",
+    "providerAuthorityCollisions": 0,
+    "collectionsSeparate": true
+}

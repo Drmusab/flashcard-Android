@@ -1,0 +1,9 @@
+{
+    "status": "PASS",
+    "officialCollectionUnchangedDuringDebugCreateReviewUndoLifecycle": true,
+    "files": [
+        "05db6c45991489e752787d579025de7f22a7552543a1f6972dfeab61e483563e  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2",
+        "2f1cc6ebf738dd8020289d4804a5ab7ed0bec9b91594110054c0d5bf3acb1754  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2-wal"
+    ],
+    "verifiedUtc": "2026-11-12T19:49:01.0148097Z"
+}
