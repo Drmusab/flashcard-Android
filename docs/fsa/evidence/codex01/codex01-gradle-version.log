@@ -1,0 +1,15 @@
+Picked up JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStoreType=Windows-ROOT -Djavax.net.ssl.trustStore=NONE
+
+------------------------------------------------------------
+Gradle 9.8.0
+------------------------------------------------------------
+
+Build time:    2026-09-24 13:40:00 UTC
+Revision:      a927be5e08efe79e0b87ada06c762dde6bb9f8b8
+
+Kotlin:        2.4.10
+Groovy:        4.0.33
+Ant:           Apache Ant(TM) version 1.10.17 compiled on April 6 2026
+Launcher JVM:  21.0.11 (JetBrains s.r.o. 21.0.11+1-b1163.116)
+Daemon JVM:    Compatible with Java 21, JetBrains, nativeImageCapable=false (from gradle/gradle-daemon-jvm.properties)
+OS:            Windows 11 10.0 amd64

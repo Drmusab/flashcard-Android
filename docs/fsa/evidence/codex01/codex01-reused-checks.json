@@ -1,0 +1,54 @@
+{
+    "testedCodeCommit": "1ca8fcc1c631c4000ae63ed53ee949a6cce78b33",
+    "currentBuildCommit": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "changedPaths": ["docs/fsa/CODEX-00-RECOVERY.md"],
+    "reason": "Application and build inputs unchanged; current HEAD differs only by recovery documentation. Required checks were executed in this local recovery; avoid redundant aggregate test execution.",
+    "results": [
+        {
+            "scope": "robolectricSdkDownload",
+            "log": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\robolectric-sdk-download.log",
+            "sha256": "E91C173EA5E49A5E2627453EF7706CDE55A66E6F4C097CA13EEFAF6EA717C9C5",
+            "reused": true,
+            "exitReceipt": "Robolectric preparation exit code: 0",
+            "exitCode": 0
+        },
+        {
+            "scope": "FullDebug unit scope",
+            "log": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\unit-tests-and-jacoco.log",
+            "sha256": "D90F93ECA8D46A35543C73EEA3721B4D65B25AE1A7F59E1F2C87657C748293DE",
+            "reused": true,
+            "summary": {
+                "task": ":AnkiDroid:testFullDebugUnitTest",
+                "suites": 465,
+                "tests": 3898,
+                "failures": 0,
+                "errors": 0,
+                "skipped": 85
+            }
+        },
+        {
+            "scope": "jacocoUnitTestReport (fresh producers)",
+            "log": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\jacoco-acceptance.log",
+            "sha256": "9BF59ED90B4E82482EF3BF4A1D524803E5BDCF61FB8B97B0C45B65E62559A65A",
+            "reused": true,
+            "exitReceipt": "JaCoCo acceptance exit code: 0",
+            "exitCode": 0
+        },
+        {
+            "scope": "lintAll ktlintCheck lint-rules:test",
+            "log": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\lint-style-rules.log",
+            "sha256": "B3E78A9A23E0113644BC55190F3360632E9C2C648904C2425378C464188FA172",
+            "reused": true,
+            "exitReceipt": "Lint, style, lint-rule tests exit code: 0",
+            "exitCode": 0
+        },
+        {
+            "scope": "buildSrc test ktlintCheck (clean rescan)",
+            "log": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\.recovery\\evidence\\buildsrc-acceptance.log",
+            "sha256": "671F7336C4E361DC9658F5B1B86E900CB2F1575B432EFBAA81C7ED927B659A6C",
+            "reused": true,
+            "exitReceipt": "BuildSrc clean acceptance exit code: 0",
+            "exitCode": 0
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "dateUtc": "2026-11-12T18:36:10.1175311Z",
+    "os": "Microsoft Windows 11 Pro",
+    "ramBytes": 17015635968,
+    "freeRamKiB": 4283680,
+    "hypervisor": true,
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12400F",
+    "studioSystem": false,
+    "studioUser": false,
+    "disk": [
+        {
+            "Name": "C",
+            "Free": 1776443392
+        },
+        {
+            "Name": "D",
+            "Free": 6492942336
+        }
+    ]
+}
