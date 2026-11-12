@@ -1,0 +1,47 @@
+{
+    "observedUtc": "2026-11-12T20:32:40.8302342Z",
+    "entryHead": "7966e5f51fb0f96115b07520ba56b02d0e0979b4",
+    "apkSource": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "sourceEquivalent": true,
+    "apkHashesPreserved": 4,
+    "codeX01RawEvidenceVerified": 162,
+    "codeX02RawEvidenceVerified": 186,
+    "testsRerun": false,
+    "fsa00a": {
+        "requiredPath": "docs/fsa/FSA-00A_Baseline_Discovery_Report.md",
+        "originalFilePresent": false,
+        "actualSha256": null,
+        "status": "BLOCKED",
+        "expectedSha256": "4b9d7fef3c3166eede26b3e753d892d54f81f61959e0e606747e7d315935935b",
+        "ownerStatedDiscoveryDate": "2026-10-25",
+        "dateVerifiedFromOriginal": false,
+        "originalReconstructed": false
+    },
+    "sync": {
+        "accountTokenPresentAfterStoppingApp": false,
+        "disposition": "UNRESOLVED",
+        "temporaryTestAppOnlyAvastRootAuthorized": true,
+        "deferralAuthorized": false,
+        "providedAccountOwnerClassification": "Existing or production account; do not use",
+        "loginUiOrAuthenticationLogsCaptured": false,
+        "rootTrustChangesApplied": false,
+        "status": "NOT EXECUTED",
+        "ownerDirectLoginReportedNetworkError": true,
+        "credentialsCapturedInToolsOrEvidence": false,
+        "authorizedUsableDisposableAccountAvailable": false,
+        "customCertificateApplied": false,
+        "optionExplicitlyAuthorized": 1,
+        "providedAccountExcluded": true
+    },
+    "gate": "BLOCKED",
+    "fsa01HandoffPrepared": false,
+    "productionMigrationStarted": false,
+    "referencedExecutedCheckLogsHashVerified": 5,
+    "retainedFullDebugXmlTotals": {
+        "skipped": 85,
+        "suites": 465,
+        "errors": 0,
+        "failures": 0,
+        "tests": 3898
+    }
+}
