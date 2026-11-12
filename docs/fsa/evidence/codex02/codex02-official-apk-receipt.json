@@ -1,0 +1,10 @@
+{
+    "file": "L:\\AnkiStudioRecovery-01a1cc75\\official-AnkiDroid-2.25.3-x86_64.apk",
+    "sha256": "154101F06F4BA286248FA4A26863F759D3A1631BD4B1D6790503EC35A85EDAC7",
+    "expectedDigest": "sha256:154101f06f4ba286248fa4a26863f759d3a1631bd4b1d6790503ec35a85edac7",
+    "sourceUrl": "https://github.com/ankidroid/Anki-Android/releases/download/v2.25.3/variant-abi-AnkiDroid-2.25.3-x86_64.apk",
+    "releaseUrl": "https://github.com/ankidroid/Anki-Android/releases/tag/v2.25.3",
+    "package": "package: name='com.ichi2.anki' versionCode='422503300' versionName='2.25.3' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "certificate": "Signer #1 certificate SHA-256 digest: 2071534f0f4b5e54ae952dd275d70da6e3459ee69909d2ab1b4843c4c5b21a45",
+    "verified": true
+}

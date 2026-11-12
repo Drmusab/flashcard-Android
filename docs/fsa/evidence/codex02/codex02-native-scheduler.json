@@ -1,0 +1,32 @@
+{
+    "status": "PASS",
+    "sourceCommit": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "package": "com.ichi2.anki.debug",
+    "nativeNotes": 4,
+    "nativeCards": 4,
+    "revlogByEase": [
+        {
+            "ease": 1,
+            "count": 1
+        },
+        {
+            "ease": 2,
+            "count": 1
+        },
+        {
+            "ease": 3,
+            "count": 1
+        },
+        {
+            "ease": 4,
+            "count": 1
+        }
+    ],
+    "repetitionsPerCard": 1,
+    "learningCards": 3,
+    "reviewCards": 1,
+    "againUndoRestoredNewCount": 4,
+    "allMutatingReviewActions": "Native Reviewer/libanki only",
+    "externalSqlPolicy": "Only after proving app process stopped",
+    "afterGenuineProcessDeathAndLocalRestore": true
+}

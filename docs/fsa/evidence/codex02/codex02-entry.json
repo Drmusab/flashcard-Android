@@ -1,0 +1,11 @@
+{
+    "entryHead": "a1aa6c7932e65982220de10ae10c53a2e8b0fa7e",
+    "branch": "codex/fsa00-recovery",
+    "apkSource": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "trackedApplicationOrBuildChanges": [],
+    "remoteMain": "4bfadceba7d91abec270c4b45e95e26dbc294d15",
+    "remoteRecoveryBranchPresent": false,
+    "priorEvidencePreserved": true,
+    "sync": "NOT EXECUTED — AUTHORIZATION REQUIRED",
+    "observedUtc": "2026-11-12T19:23:56.7253920Z"
+}

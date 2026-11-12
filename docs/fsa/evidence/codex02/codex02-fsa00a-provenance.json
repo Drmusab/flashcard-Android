@@ -1,0 +1,12 @@
+{
+    "status": "BLOCKED",
+    "expectedFilename": "FSA-00A_Baseline_Discovery_Report.md",
+    "expectedSha256": "4b9d7fef3c3166eede26b3e753d892d54f81f61959e0e606747e7d315935935b",
+    "suppliedPath": null,
+    "actualSha256": null,
+    "originalSuppliedToSession": false,
+    "originalTextReconstructed": false,
+    "originalTextModified": false,
+    "ownerAction": "Provide the original file/path. Verify its hash before copying verbatim under docs/fsa and reconciling meaningful differences.",
+    "searchScope": "Named file search in current workspace, Codex attachments, Downloads and Documents; no original located. This is not a claim about every disk."
+}

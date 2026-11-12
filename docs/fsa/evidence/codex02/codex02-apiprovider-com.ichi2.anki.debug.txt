@@ -1,0 +1,13 @@
+Error while accessing provider:com.ichi2.anki.debug.flashcards
+java.lang.SecurityException: Permission not granted for: CardContentProvider.query /decks (com.android.shell)
+	at android.os.Parcel.createExceptionOrNull(Parcel.java:3340)
+	at android.os.Parcel.createException(Parcel.java:3324)
+	at android.os.Parcel.readException(Parcel.java:3307)
+	at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:201)
+	at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:153)
+	at android.content.ContentProviderProxy.query(ContentProviderNative.java:495)
+	at com.android.commands.content.Content$QueryCommand.onExecute(Content.java:661)
+	at com.android.commands.content.Content$Command.execute(Content.java:522)
+	at com.android.commands.content.Content.main(Content.java:735)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:371)

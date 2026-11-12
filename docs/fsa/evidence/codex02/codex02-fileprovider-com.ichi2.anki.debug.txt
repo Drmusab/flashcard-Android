@@ -1,0 +1,17 @@
+Error while accessing provider:com.ichi2.anki.debug.apkgfileprovider
+java.lang.SecurityException: Permission Denial: opening provider androidx.core.content.FileProvider from (null) (pid=5751, uid=2000) that is not exported from UID 10151
+	at android.os.Parcel.createExceptionOrNull(Parcel.java:3340)
+	at android.os.Parcel.createException(Parcel.java:3324)
+	at android.os.Parcel.readException(Parcel.java:3307)
+	at android.os.Parcel.readException(Parcel.java:3249)
+	at android.app.IActivityManager$Stub$Proxy.getContentProviderExternal(IActivityManager.java:8239)
+	at com.android.commands.content.Content$Command.execute(Content.java:516)
+	at com.android.commands.content.Content.main(Content.java:735)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:371)
+Caused by: android.os.RemoteException: Remote stack trace:
+	at com.android.server.am.ContentProviderHelper.checkAssociationAndPermissionLocked(ContentProviderHelper.java:726)
+	at com.android.server.am.ContentProviderHelper.getContentProviderImpl(ContentProviderHelper.java:408)
+	at com.android.server.am.ContentProviderHelper.getContentProviderExternalUnchecked(ContentProviderHelper.java:168)
+	at com.android.server.am.ContentProviderHelper.getContentProviderExternal(ContentProviderHelper.java:162)
+	at com.android.server.am.ActivityManagerService.getContentProviderExternal(ActivityManagerService.java:7090)

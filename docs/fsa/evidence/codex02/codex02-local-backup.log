@@ -1,0 +1,27 @@
+Running incremental backup for 1 requested packages.
+Package @pm@ with result: Success
+Package com.ichi2.anki.debug with progress: 2048/542208
+Package com.ichi2.anki.debug with progress: 2560/542208
+Package com.ichi2.anki.debug with progress: 5632/542208
+Package com.ichi2.anki.debug with progress: 7168/542208
+Package com.ichi2.anki.debug with progress: 35328/542208
+Package com.ichi2.anki.debug with progress: 94208/542208
+Package com.ichi2.anki.debug with progress: 126976/542208
+Package com.ichi2.anki.debug with progress: 191488/542208
+Package com.ichi2.anki.debug with progress: 252416/542208
+Package com.ichi2.anki.debug with progress: 290816/542208
+Package com.ichi2.anki.debug with progress: 293376/542208
+Package com.ichi2.anki.debug with progress: 294400/542208
+Package com.ichi2.anki.debug with progress: 294912/542208
+Package com.ichi2.anki.debug with progress: 295936/542208
+Package com.ichi2.anki.debug with progress: 301568/542208
+Package com.ichi2.anki.debug with progress: 302080/542208
+Package com.ichi2.anki.debug with progress: 303104/542208
+Package com.ichi2.anki.debug with progress: 359936/542208
+Package com.ichi2.anki.debug with progress: 360448/542208
+Package com.ichi2.anki.debug with progress: 360960/542208
+Package com.ichi2.anki.debug with progress: 426496/542208
+Package com.ichi2.anki.debug with progress: 492032/542208
+Package com.ichi2.anki.debug with progress: 544256/542208
+Package com.ichi2.anki.debug with result: Success
+Backup finished with result: Success

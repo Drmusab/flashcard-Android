@@ -1,0 +1,16 @@
+{
+    "status": "PASS",
+    "type": "Genuine background app process death and retained-task restoration",
+    "mechanism": "Home, am kill --user 0, prove PID absent, restore existing task from Recents",
+    "pidBefore": "2954",
+    "absentBeforeRestore": true,
+    "pidAfter": "5341",
+    "newProcess": true,
+    "pendingCardRestored": "DEBUG_Q1",
+    "answerVisibleAfterProcessDeath": false,
+    "new": 0,
+    "learning": 3,
+    "forceStopUsed": false,
+    "ratingsNotResubmitted": true,
+    "preDeathAnswerEvidence": "Native answer controls plus visually verified DEBUG_Q1/DEBUG_A1 screenshot; WebView accessibility text was intermittent"
+}

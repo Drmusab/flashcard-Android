@@ -1,0 +1,11 @@
+{
+    "avd": "FSA00E_01a1cc75_API36",
+    "serial": "emulator-5582",
+    "pid": 18896,
+    "avdPath": "L:\\AnkiStudioRecovery-01a1cc75\\avd\\FSA00E_01a1cc75_API36.avd",
+    "image": "system-images;android-36;default;x86_64 revision 2",
+    "fresh": true,
+    "sdCardAttached": false,
+    "creation": "New empty directory and AVD configuration; no old userdata copied",
+    "startedUtc": "2026-11-12T19:31:35.1881479Z"
+}
