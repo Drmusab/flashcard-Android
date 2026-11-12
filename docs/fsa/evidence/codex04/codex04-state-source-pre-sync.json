@@ -1,0 +1,127 @@
+{
+    "user": 10,
+    "collection": "/data/user/10/com.ichi2.anki.debug/files/fsa00-sync-source-01a1cc75",
+    "appStoppedBeforeRead": true,
+    "sqlQueryOnly": true,
+    "capturedUtc": "2026-11-12T22:12:34.7074666Z",
+    "logicalState": {
+        "notes": [
+            {
+                "id": 1794521458788,
+                "guid": "w)Ae?~[$N]",
+                "mid": 1794521397345,
+                "tags": "",
+                "fields": ["SYNC_TEST_Q1", "SYNC_TEST_A1"]
+            },
+            {
+                "id": 1794521467573,
+                "guid": "fv%(/&`GY5",
+                "mid": 1794521397345,
+                "tags": "",
+                "fields": ["SYNC_TEST_Q2", "SYNC_TEST_A2"]
+            }
+        ],
+        "cards": [
+            {
+                "id": 1794521458788,
+                "nid": 1794521458788,
+                "did": 1794521426366,
+                "ord": 0,
+                "type": 1,
+                "queue": 1,
+                "due": 1794521561,
+                "interval": 0,
+                "factor": 0,
+                "repetitions": 1,
+                "lapses": 0,
+                "remainingSteps": 2,
+                "originalDue": 0,
+                "originalDeck": 0,
+                "flags": 0,
+                "nativeData": {
+                    "pos": 1,
+                    "lrt": 1794521494
+                }
+            },
+            {
+                "id": 1794521467573,
+                "nid": 1794521467573,
+                "did": 1794521426366,
+                "ord": 0,
+                "type": 1,
+                "queue": 1,
+                "due": 1794522157,
+                "interval": 0,
+                "factor": 0,
+                "repetitions": 1,
+                "lapses": 0,
+                "remainingSteps": 1,
+                "originalDue": 0,
+                "originalDeck": 0,
+                "flags": 0,
+                "nativeData": {
+                    "pos": 2,
+                    "lrt": 1794521508
+                }
+            }
+        ],
+        "reviews": [
+            {
+                "id": 1794521494566,
+                "cardId": 1794521458788,
+                "rating": 1,
+                "interval": -60,
+                "previousInterval": 0,
+                "factor": 0,
+                "timeMs": 21006,
+                "type": 0
+            },
+            {
+                "id": 1794521508971,
+                "cardId": 1794521467573,
+                "rating": 3,
+                "interval": -600,
+                "previousInterval": 0,
+                "factor": 0,
+                "timeMs": 14390,
+                "type": 0
+            }
+        ],
+        "decks": [
+            {
+                "id": 1,
+                "name": "Default"
+            },
+            {
+                "id": 1794521426366,
+                "name": "FSA00_SYNC_20261113_01a1cc75"
+            }
+        ],
+        "noteTypes": [
+            {
+                "id": 1794521397345,
+                "name": "Basic"
+            },
+            {
+                "id": 1794521397346,
+                "name": "Basic (and reversed card)"
+            },
+            {
+                "id": 1794521397353,
+                "name": "Basic (optional reversed card)"
+            },
+            {
+                "id": 1794521397354,
+                "name": "Basic (type in the answer)"
+            },
+            {
+                "id": 1794521397355,
+                "name": "Cloze"
+            },
+            {
+                "id": 1794521397356,
+                "name": "Image Occlusion"
+            }
+        ]
+    }
+}

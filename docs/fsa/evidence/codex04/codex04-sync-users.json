@@ -1,0 +1,12 @@
+{
+    "avd": "FSA00E_01a1cc75_API36",
+    "serial": "emulator-5582",
+    "sourceUser": 10,
+    "sourceName": "FSA00SyncSource_01a1cc75",
+    "replicaUser": 11,
+    "replicaName": "FSA00SyncReplica_01a1cc75",
+    "originalUserPreserved": 0,
+    "apkSource": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "createdByThisTask": true,
+    "cleanup": "Remove only these two task-created Android users after saving redacted logical-state evidence"
+}

@@ -1,0 +1,164 @@
+[
+    {
+        "file": "acceptance-matrix.json",
+        "sha256": "210696f665755b563baa41b606d4e42394202360d16fe1e86e6bda674bc429fe",
+        "bytes": 2468
+    },
+    {
+        "file": "closure.json",
+        "sha256": "65cebc39c29a91293c53bd3274ece19f1d6499252d1b29a2ced130831df05af1",
+        "bytes": 2723
+    },
+    {
+        "file": "codex04-logical-equivalence.json",
+        "sha256": "ac36e26fbdfec0798503cfc0362ca55392c4ed8b384d46dd3fd410d3ba02cdc0",
+        "bytes": 301,
+        "rawLocalSource": "../evidence/codex04-logical-equivalence.json",
+        "rawLocalSha256": "962c152c6f29dc19a2fb632dca6bbebc9e50aa4077fb27093c261f6ef9ac08bc",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-official-after-sync-hashes.txt",
+        "sha256": "198bfb5db45a9fc5785cbbd4e28dc133f9c2af6b525bb5a1ff0ea02f26505a1d",
+        "bytes": 288,
+        "rawLocalSource": "../evidence/codex04-official-after-sync-hashes.txt",
+        "rawLocalSha256": "75bc7396aa41c881dd62b83dca17b4ec59fb345cb63a2b7923b3fecacb10a306",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-official-before-sync-hashes.txt",
+        "sha256": "198bfb5db45a9fc5785cbbd4e28dc133f9c2af6b525bb5a1ff0ea02f26505a1d",
+        "bytes": 288,
+        "rawLocalSource": "../evidence/codex04-official-before-sync-hashes.txt",
+        "rawLocalSha256": "75bc7396aa41c881dd62b83dca17b4ec59fb345cb63a2b7923b3fecacb10a306",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-private-android.ps1",
+        "sha256": "8e4ee52b565eabd2085d2093d689a4759261dae58c6ec08b6029aaf6c65ea948",
+        "bytes": 3120,
+        "rawLocalSource": "../codex04-private-android.ps1",
+        "rawLocalSha256": "8e4ee52b565eabd2085d2093d689a4759261dae58c6ec08b6029aaf6c65ea948",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-replica-empty.json",
+        "sha256": "13b4fb9224af33c058ee23b288bdc8744c1cfa92289da948544e10babdd51ba1",
+        "bytes": 152,
+        "rawLocalSource": "../evidence/codex04-replica-empty.json",
+        "rawLocalSha256": "6b43385ab93fbe4ee2fd7a64e67831ac415aaa52c1bea24b0384a586897f1b64",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-replica-isolation.json",
+        "sha256": "1867226ccce1bd1faa5b0826d8071df4dcbb794cc118d02cee4914f57b16a259",
+        "bytes": 391,
+        "rawLocalSource": "../evidence/codex04-replica-isolation.json",
+        "rawLocalSha256": "4d86f4e2b009be91c39a033cac3f05ecca6d7f75e2333c77a8745b6378fc0599",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-scoped-public-tls.txt",
+        "sha256": "de99ec2ca3cf7718c1a4f147de9c7792849781818c69bd949de169160b0e4ae3",
+        "bytes": 127,
+        "rawLocalSource": "../evidence/codex04-scoped-public-tls.txt",
+        "rawLocalSha256": "ddb11390b530b51fc1050329f645f1dac7a6c4c9504c3d3ca90fb5f288eda804",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-source-isolation.json",
+        "sha256": "9845517b10c24ba970506a487d3077ba8c78cc19f9b65788532a6db1ff9bdc14",
+        "bytes": 380,
+        "rawLocalSource": "../evidence/codex04-source-isolation.json",
+        "rawLocalSha256": "dff40bbbc1c528926b669de4ec69e1379ec52b58ed5383e5b6a64fcbd9b8661d",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-state-replica-after-restart.json",
+        "sha256": "cf576cc222b17f4f3cde5d43f2c6676613734502307d19c53e76092123b11808",
+        "bytes": 3589,
+        "rawLocalSource": "../evidence/codex04-state-replica-after-restart.json",
+        "rawLocalSha256": "819e0f888ed0a09cea9a5c22a129d8c27bc80caf9d1921776348382d0d87f91a",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-state-replica-downloaded.json",
+        "sha256": "71d571c0ae663399b727fbcfc081d72d19406759615a1ba248132da38564b2d3",
+        "bytes": 3589,
+        "rawLocalSource": "../evidence/codex04-state-replica-downloaded.json",
+        "rawLocalSha256": "38464df85318db8e5488fa672f911faf2e7d60dedb26e5c110c27c7cd22f03fa",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-state-source-post-sync.json",
+        "sha256": "6bd592f432059148c96d9becc920fcef79325fbdff9b46fe9ea6100347d84fdc",
+        "bytes": 3588,
+        "rawLocalSource": "../evidence/codex04-state-source-post-sync.json",
+        "rawLocalSha256": "256767d1cbf7e368ce687ed84519c425fef25093098a90c6fdc4249ab3a3286c",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-state-source-pre-sync.json",
+        "sha256": "6c61e28fe3a6f612d448a0f404e764772b198ae588609ea79808e0ad713b9613",
+        "bytes": 3588,
+        "rawLocalSource": "../evidence/codex04-state-source-pre-sync.json",
+        "rawLocalSha256": "401eaa54a7a6c84856347ceac4b7347e7abdd85269f9fa547cdfb29ea6e1bd4a",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-sync-acceptance.json",
+        "sha256": "73bba6c9b806a8529fd93f64783002fd016f3027c8144a346127d65f2779bf09",
+        "bytes": 472,
+        "rawLocalSource": "../evidence/codex04-sync-acceptance.json",
+        "rawLocalSha256": "6f90642ce13d28fbb0943df199c2776c1952f9671036993eeea8726197615941",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-sync-cleanup.json",
+        "sha256": "4b7ca83d57aebe8663837dea31efed9374dbb6df52b2c86603e1b17808897d68",
+        "bytes": 582,
+        "rawLocalSource": "../evidence/codex04-sync-cleanup.json",
+        "rawLocalSha256": "41f3c31f970d14faec4174f42a6e4ce2ade42c785e627bd8b2e43e1beceb15d2",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-sync-users.json",
+        "sha256": "f9bbf53eb685feec3d79f22571a7cd1588eecfc29197b94a62947e59b500914a",
+        "bytes": 445,
+        "rawLocalSource": "../evidence/codex04-sync-users.json",
+        "rawLocalSha256": "dd806b4d5d4b9ea4c2b85d56f6ba1307cd788233bab5e59b1a020b386a136467",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-ui-replica-sync-download-result.xml",
+        "sha256": "dd2956b640e3204a3d0526bd208c7bb608ed83b750a1d946d3aab4260a530f61",
+        "bytes": 18282,
+        "rawLocalSource": "../evidence/codex04-ui-replica-sync-download-result.xml",
+        "rawLocalSha256": "62fdefdda766de1d34c71734c7dd46175c170fb07e1388e0c053e06c5f18495a",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "codex04-ui-source-sync-initial.xml",
+        "sha256": "dd2956b640e3204a3d0526bd208c7bb608ed83b750a1d946d3aab4260a530f61",
+        "bytes": 18282,
+        "rawLocalSource": "../evidence/codex04-ui-source-sync-initial.xml",
+        "rawLocalSha256": "62fdefdda766de1d34c71734c7dd46175c170fb07e1388e0c053e06c5f18495a",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "logical-state-query.ps1",
+        "sha256": "d54d0cfb90775b9afe20590a13139a5f90a7415c9c86065ec44a203940ba8b4b",
+        "bytes": 3852,
+        "rawLocalSource": "../codex04-logical-state.ps1",
+        "rawLocalSha256": "c36e7f4f022a3eea4163de49ab75caa1577d92a2a5c62310aee6061c408db04d",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    },
+    {
+        "file": "ScopedTlsProbe.java",
+        "sha256": "68ac1e52a31341d7931dd1c186944b3830a2d06b6cb97c298b4577c1bc230e7e",
+        "bytes": 2751,
+        "rawLocalSource": "../ScopedTlsProbe.java",
+        "rawLocalSha256": "68ac1e52a31341d7931dd1c186944b3830a2d06b6cb97c298b4577c1bc230e7e",
+        "copyNote": "Packaged text normalizes line endings; JSON formatting and final blank lines may normalize; logical content retained"
+    }
+]

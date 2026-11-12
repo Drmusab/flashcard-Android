@@ -1,0 +1,76 @@
+[
+    {
+        "evidence": "closure.json",
+        "result": "BLOCKED",
+        "requirement": "FSA-00A provenance",
+        "reason": "Original absent; exact hash, date and historical reconciliation remain unverified"
+    },
+    {
+        "evidence": "../codex02/codex02-source-integrity.json",
+        "result": "PASS",
+        "requirement": "Source integrity"
+    },
+    {
+        "evidence": "../codex01/codex01-assemble.log",
+        "result": "PASS",
+        "requirement": "Local build evidence"
+    },
+    {
+        "evidence": "../codex01/codex01-reused-checks.json",
+        "result": "PASS",
+        "requirement": "Unit tests and lint"
+    },
+    {
+        "evidence": "../codex02/codex02-source-integrity.json",
+        "result": "PASS",
+        "requirement": "Debug APK verification"
+    },
+    {
+        "evidence": "../codex02/codex02-runtime-summary.json",
+        "result": "PASS",
+        "requirement": "Modern Android runtime"
+    },
+    {
+        "evidence": "../codex02/codex02-native-scheduler.json",
+        "result": "PASS",
+        "requirement": "Native Reviewer"
+    },
+    {
+        "evidence": "../codex02/codex02-lifecycle-process-death.json",
+        "result": "PASS",
+        "requirement": "Process-death recovery"
+    },
+    {
+        "evidence": "../codex02/codex02-coexistence-routing.json",
+        "result": "PASS",
+        "requirement": "Official/Debug coexistence",
+        "scope": "Configured separate app-internal directories; not shared public-directory defaults"
+    },
+    {
+        "evidence": "../codex02/codex02-isolation.json",
+        "result": "PASS",
+        "requirement": "Collection isolation"
+    },
+    {
+        "evidence": "codex04-sync-acceptance.json",
+        "result": "PASS",
+        "requirement": "Sync requirement disposition",
+        "reason": "Owner-authorized disposable account; native upload/download, logical scheduling/review equivalence and cold restart passed; cleanup verified"
+    },
+    {
+        "evidence": "closure.json",
+        "result": "BLOCKED",
+        "requirement": "Gate lock",
+        "reason": "Original FSA-00A absent; controlled sync now passed"
+    },
+    {
+        "requirement": "Local backup/restore",
+        "result": "PASS",
+        "evidence": "../codex02/codex02-backup-restore.json"
+    },
+    {
+        "requirement": "Disposable credentials and temporary trust cleanup",
+        "result": "PASS",
+        "evidence": "codex04-sync-cleanup.json"
+    }
+]

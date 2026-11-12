@@ -1,0 +1,2 @@
+9cc298a3b9dee50332bb2d83bc021d7e65c2352155ecf4eaca20cc2a45c718f5  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /data/user/0/com.ichi2.anki/files/fsa00e-official-01a1cc75/collection.anki2-wal

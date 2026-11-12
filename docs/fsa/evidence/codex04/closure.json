@@ -1,0 +1,70 @@
+{
+    "executedLocalDate": "2026-11-13",
+    "timezone": "Asia/Baghdad",
+    "capturedUtc": "2026-11-12T22:31:28.6374829Z",
+    "entryHead": "88ad187ec4efc6083d0bab02be62faf0317e9bab",
+    "apkSource": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "applicationBuildSourceEquivalent": true,
+    "rebuilds": 0,
+    "previousSuccessfulSuitesRerun": false,
+    "priorEvidenceReused": [
+        {
+            "path": "docs/fsa/CODEX-01-LOCAL-FOUNDATION.md",
+            "sha256": "24a9f331f28130a1e90539cb8a0d16dd5658f7fd7e18aea3b23173a2ccb7f309"
+        },
+        {
+            "path": "docs/fsa/CODEX-02-FINAL-ACCEPTANCE.md",
+            "sha256": "4466890b6f546dfdb647c442fee809506156ae85a35b93e1b86fd76e3b5c6b54"
+        },
+        {
+            "path": "docs/fsa/CODEX-03-EVIDENCE-CLOSURE.md",
+            "sha256": "176d20681744a8859492812dde455e20d966ca8f3c40f51211b6e03b63eb6d83"
+        },
+        {
+            "path": "docs/fsa/evidence/codex03/closure.json",
+            "sha256": "349244e75da5091399290af437d2ba524a96efd1f5f5686c9b1e23747a4a5ea3"
+        }
+    ],
+    "fsa00a": {
+        "path": "docs/fsa/FSA-00A_Baseline_Discovery_Report.md",
+        "present": false,
+        "expectedSha256": "4b9d7fef3c3166eede26b3e753d892d54f81f61959e0e606747e7d315935935b",
+        "actualSha256": null,
+        "ownerStatedDiscoveryDate": "2026-10-25",
+        "dateVerified": false,
+        "provenanceVerified": false,
+        "historicalReconciliationComplete": false,
+        "reconstructed": false,
+        "taskStopped": true
+    },
+    "sync": {
+        "status": "PASS",
+        "option": 1,
+        "ownerAuthorizedDisposableAccount": true,
+        "productionAccountExcluded": true,
+        "credentialsEnteredPrivatelyInNativeUi": true,
+        "credentialsOrAuthenticationTokensCapturedInToolsOrEvidence": false,
+        "loginUiCaptured": false,
+        "authenticationLogsCaptured": false,
+        "nativeUploadSuccessObserved": true,
+        "nativeReplicaSyncSuccessObserved": true,
+        "logicalSourcePrePostEquivalent": true,
+        "logicalReplicaEquivalent": true,
+        "coldRestartPersistent": true,
+        "notes": 2,
+        "cards": 2,
+        "reviews": 2,
+        "ratings": [1, 3],
+        "tlsVerificationEnabled": true,
+        "temporaryAppOnlyApprovedRoot": true,
+        "temporaryTrustAndCredentialsRemoved": true,
+        "officialTestCollectionUnchanged": true,
+        "userOwnedCollectionAccessed": false
+    },
+    "gate": "BLOCKED",
+    "gateReason": "Original FSA-00A absent; all controlled sync requirements now passed",
+    "priorReportsModified": false,
+    "fsa01AHandoffPrepared": false,
+    "productionMigrationStarted": false,
+    "upstreamMergePerformed": false
+}

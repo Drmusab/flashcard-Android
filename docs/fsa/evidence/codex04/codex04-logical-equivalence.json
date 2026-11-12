@@ -1,0 +1,8 @@
+{
+    "capturedUtc": "2026-11-12T22:27:22.8174581Z",
+    "comparison": "Native logical state; excludes synchronization bookkeeping",
+    "source": "codex04-state-source-post-sync.json",
+    "replica": "codex04-state-replica-downloaded.json",
+    "equivalent": true,
+    "rawSqliteHashesUsed": false
+}

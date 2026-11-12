@@ -1,0 +1,14 @@
+{
+    "capturedUtc": "2026-11-12T22:28:01.4608534Z",
+    "downloadEquivalent": true,
+    "restartPersistent": true,
+    "notes": 2,
+    "cards": 2,
+    "reviews": 2,
+    "ratings": [1, 3],
+    "repetitions": [1, 1],
+    "officialTestCollectionUnchanged": true,
+    "runtimeApkSha256": "4f373c2d3e1699e04fc0db5425f016260e44a4cb356aed9a8c65745d4f763102",
+    "sourceBaseline": "7653676c30374b8270f9be57871dacae0cc41d9a",
+    "rawSqliteHashesUsedForSyncEquivalence": false
+}

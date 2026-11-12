@@ -1,0 +1,15 @@
+{
+    "capturedUtc": "2026-11-12T22:28:54.7170741Z",
+    "avd": "FSA00E_01a1cc75_API36",
+    "removedUsers": [10, 11],
+    "originalUserPreserved": 0,
+    "removedDisposableCredentials": true,
+    "removedAppOnlyCustomCertificates": true,
+    "method": "Removed only identity-verified task-created Android users, including their application data",
+    "publicProbeFilesRemoved": true,
+    "batterySimulationReset": true,
+    "officialTestCollectionUnchanged": true,
+    "androidSystemTrustChanged": false,
+    "globalAntivirusChanged": false,
+    "tlsVerificationDisabled": false
+}
