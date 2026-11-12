@@ -38,4 +38,9 @@ tasks.test {
 
 configure<KtlintExtension> {
     version.set(libs.versions.ktlint.get())
+    // Kotlin DSL adds compiler-generated plugin/accessor sources to the main source set.
+    val buildOutputDirectory = layout.buildDirectory.get().asFile
+    filter {
+        exclude { element -> element.file.toPath().startsWith(buildOutputDirectory.toPath()) }
+    }
 }

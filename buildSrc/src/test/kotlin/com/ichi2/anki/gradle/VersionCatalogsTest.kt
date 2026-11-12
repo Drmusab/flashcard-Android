@@ -43,7 +43,8 @@ class VersionCatalogsTest {
             GradleRunner
                 .create()
                 .withProjectDir(projectDir)
-                .withTestKitDir(File(projectDir, "test-kit"))
+                // The reused daemon keeps native cache files locked on Windows after the test.
+                .withTestKitDir(File("build/test-kit").absoluteFile)
                 .withArguments("showTargetSdk", "--offline", "--stacktrace")
 
         catalog.writeText("[versions]\ntargetSdk = \"36\"\n")
