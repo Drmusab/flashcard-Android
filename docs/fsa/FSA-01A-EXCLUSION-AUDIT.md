@@ -26,3 +26,13 @@ ADAPT_TO_NATIVE_REVIEWER does not authorize copying its dependency graph:
 ## Architecture status
 
 This six-document change touches no production Reviewer, scheduler, FSRS, collection, sync, manifest or build implementation. It merges no upstream changes and introduces no excluded component. This is source discovery, not runtime proof that future code cannot violate these boundaries. Future acceptance must inspect real imports/calls and exercise cancellation/races before enabling voice.
+
+## R2 server/resource closure and unchanged authority
+
+The [supplemental inventory](FSA-01A-COMPONENT-INVENTORY.md#r2-supplemental-non-kotlin-dependency-register) explicitly excludes server/mock_pc_agent.py, server/review_commit_store.py and associated remote-review launch/client/contract fixtures. Their rate_card/ReviewCommitProcessor/file persistence cannot be copied as a second answer/rating path. Server-only TTS provider/PCM/cache/stream/media modules are deferred reference dependencies; no PC review command, unauthenticated/plain-HTTP media policy, source key custody or rating replay enters a future AI-only contract.
+
+Source manifest, network security, backup/resource and old Gradle declarations are now individually classified. Existing native owners replace the source shell, not vice versa. Preserve current target manifest/build/source and FSA-00 evidence. Copy-status fields and [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) block unresolved transfer; DEFER/REUSE is not permission.
+
+[Audio ownership contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md) defines only transient voice/audio coordination. Its proposed states select no review card, compute no schedule/FSRS, persist no rating and commit no answer. Native Reviewer -> libanki -> native scheduler/FSRS remains sole authority. Existing ReadText/video/JS/native TTS paths must be observed or automatic listening remains blocked; adding another source playback/focus manager is not a solution.
+
+FSA-01B remains documentation-only under the [corrected sequence](FSA-01A-MIGRATION-SEQUENCE.md). No original 33-Gate roadmap alteration, upstream merge, feature migration or exception to any permanent exclusion is enacted by R2.

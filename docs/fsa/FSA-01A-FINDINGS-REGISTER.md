@@ -1,10 +1,32 @@
-# FSA-01A-R1 findings register
+# FSA-01A findings register — R2 disposition
 
-**Verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. Seven findings: three HIGH, three MEDIUM, one LOW. Severity describes migration/review risk, not a reproduced defect in the verified FSA-00 application. All remain OPEN against discovery commit `1128b1ed97928af95749d12b74298b4a8de4c598`; these review documents propose corrections but do not silently rewrite the six originals.
+**Current R2 verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. The seven original identifiers and severities are unchanged: three HIGH, three MEDIUM, one LOW. **Four RESOLVED as source-verified documentation findings; three OPEN.** No runtime defect is declared fixed; no voice feature is implemented. R1 evidence and acceptance requirements below are preserved from 5faa9f3, with their old statuses explicitly labelled historical. [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md) records current verification and residual holds.
+
+| Original finding | Severity | R2 status | Exact residual acceptance |
+|---|---|---|---|
+| R1-001 | HIGH | OPEN | Invalid FSA-01 implementation scope removed; full original 33-Gate reconciliation and owner review still missing. |
+| R1-002 | HIGH | OPEN | Provenance/dependency matrix completed; applicable first-party grants and component obligations still do not clear copying. |
+| R1-003 | HIGH | RESOLVED | Source-supported ownership/transition specification and future acceptance cases consistently documented; implementation/runtime acceptance remains later. |
+| R1-004 | MEDIUM | RESOLVED | Cited high-risk metadata repaired; all 74 retained/deferred candidates have explicit owner/missing-seam and keep/drop boundaries. |
+| R1-005 | MEDIUM | RESOLVED | All19 server files plus 15 manifest/resource/build/doc adjuncts explicitly classified, with pinned identities/scope and dependency edges. |
+| R1-006 | MEDIUM | OPEN | Concrete V01-V12 scenarios specified; exact assignment to the unavailable original roadmap is not verified. |
+| R1-007 | LOW | RESOLVED | D: recovery/L: discovery current paths, readable pinned objects and historical C:/alternates description verified. |
 
 Source paths S below are exact paths below `app/src/main/java/com/studyagent/client/` at `0976d1c48080e74926f1a86d2c472edb9128b7ca`. Target paths T start at repository root at `81fdb7c6581c96939cf7e4ec24201d923e717556`. Original inventory row IDs are stable within 1128b1e. Related primary license records and the sample assessment are in [independent review](FSA-01A-INDEPENDENT-REVIEW.md).
 
 ## R1-001 — HIGH — Gate numbering silently advances implementation into source audit
+
+**R2 status: OPEN.**
+
+**Precise correction:** Updated all six discovery documents and scope proposal: no FSA-01B implementation, retired invented implementation subgates, future guard only in FSA-06-onward track; no33-Gate artifact changed or reconstructed.
+
+**Supporting source/verification:** Corrected sequence and proposal; all C-row Gate fields remapped to existing native ownership/named work packages, never implementation in FSA-01. Public complete main tree4bfadceba7 has no roadmap path. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Check every current Gate field and six documents for implementation creep; then compare to supplied original 33-Gate roadmap/hash and obtain owner review.
+
+**Residual risk / remaining acceptance:** Original full schedule/titles and owner review remain unavailable; correction alone cannot close original acceptance.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** FSA-01A-MIGRATION-SEQUENCE.md, section Proposed first implementation slice: FSA-01B and Later dependency order; COMPONENT-INVENTORY, Gate column; VERIFICATION-PLAN, Target gap/gate; NATIVE-REUSE-MATRIX N1/N1b.
 
@@ -14,9 +36,21 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Replace the01B implementation proposal with the documentation-only scope in [scope proposal](FSA-01B-APPROVED-SCOPE-PROPOSAL.md). Move future contract implementation to the native Reviewer integration track beginning FSA-06, and record proposed consumption/whole-loop verification against FSA-07/08 pending the actual roadmap. Use named work packages, not new01C–G implementation gates, until explicitly approved. Preserve interface-before-media-readiness-before-recognition-before-automatic-loop dependency order. Any reordered roadmap needs a separately identified owner-approved architecture change.
 
-**Closure:** All six documents' Gate references agree with the approved roadmap/scope; owner reviews the correction. No production guard in 01B. **Status: OPEN; code implementation not authorized.**
+**Closure:** All six documents' Gate references agree with the approved roadmap/scope; owner reviews the correction. No production guard in 01B. **R1 snapshot status at 5faa9f3: OPEN; code implementation not authorized.**
 
 ## R1-002 — HIGH — Copying rights remain unresolved; dependency declarations are not a complete license clearance
+
+**R2 status: OPEN.**
+
+**Precise correction:** Added distinct BLOCKED FOR COPYING field to every 382 C/34 S entry and source/test/asset coverage; produced component/dependency provenance matrix with seven historical file queries and contributor evidence.
+
+**Supporting source/verification:** License/provenance matrix links actual commits/POM/license records; GitHub license metadata null, no first-party grant found, bot/anonymous contributor signals explicitly not ownership proof. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Before any copy, establish applicable rightsholder/origin/grant and actual retained artifact notices/obligations for each transferred item. No unresolved entry can be treated as cleared.
+
+**Residual risk / remaining acceptance:** No first-party grant or complete component obligation clearance supplied; copying remains blocked regardless of technical suitability.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** COMPONENT-INVENTORY section Reading the inventory/L1 and every reuse candidate; source root tree and `app/build.gradle.kts` dependency/packaging blocks; target COPYING, REUSE.toml, api/COPYING.LESSER, LICENSES and docs/contributing/copyright-headers.md.
 
@@ -26,9 +60,21 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Add a copy-status field separate from the primary technical classification. Set every unresolved source component/test/asset to COPY_BLOCKED. Obtain an applicable grant from actual rightsholders, record provenance and exceptions, map retained exact artifacts/transitives and preserve required notices/attribution/changed-file markers. Reuse target dependencies, not source Gradle pins. Do not label an unresolved component approved for transfer because its algorithm is suitable. Do not claim this review produced a complete SBOM or legal compatibility determination.
 
-**Closure:** Documented first-party rights and applicable dependency/asset obligations clear each copied item. Pure documentation preparation can proceed separately; no code is transferred while unresolved. **Status: OPEN; copying BLOCKED.**
+**Closure:** Documented first-party rights and applicable dependency/asset obligations clear each copied item. Pure documentation preparation can proceed separately; no code is transferred while unresolved. **R1 snapshot status at 5faa9f3: OPEN; copying BLOCKED.**
 
 ## R1-003 — HIGH — Native audio reuse does not yet define a safe completion/focus seam
+
+**R2 status: RESOLVED.**
+
+**Precise correction:** Defined existing owner boundaries and unimplemented A01-A13 transitions, success/stop/error/no-output meanings, native sound/TTS/video/ReadText/JS/recording coverage, one native lease/focus policy and mic guards.
+
+**Supporting source/verification:** Audio contract links actual CardMediaPlayer245-276, SoundTagPlayer51-56/90-202, AndroidTtsPlayer58-84/141-219, ReadText191-215/338-414, Reviewer lifecycle and official Android semantics; native/source bodies inspected. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Cross-check contract and all affected maps: raw finally/segment/synthesis/status/job flag cannot authorize STT; all paths have ownership or explicit automatic-listen block, and V03-V07/V09 cover interruptions/stale/duplicate events.
+
+**Residual risk / remaining acceptance:** No shared typed readiness/focus seam is implemented; legacy/JS/engine quirks require later approved source changes/device evidence before voice activation. This closes the R1 specification finding only.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** NATIVE-REUSE-MATRIX N2/N2b; COMPONENT-INVENTORY C190/C195/C207; DEPENDENCY-MAP Proposed native ownership; VERIFICATION-PLAN source focus risk.
 
@@ -36,11 +82,23 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Risk:** A future bridge that treats generic group completion as successful playback could open the mic after cancel/error or under insufficient focus/ownership. REPLACE_WITH_NATIVE alone does not define the missing handoff semantics.
 
-**Correction:** Retain native engine/media ownership, but document explicit observed outcomes Completed/Cancelled/Failed and owner/presentation identity. A bare finally callback must never authorize listening. Define how native sound and TTS jointly expose current playback, settled cancellation and focus state, including API24 compatibility; extension points remain proposals. Gate mic opening on current identity, successful permitted transition and exclusive audio/mic ownership. Do not add another TTS engine manager. No target defect fix is authorized by this review.
+**Correction:** Retain native engine/media ownership, but document explicit observed outcomes Completed/Cancelled/Failed and owner/presentation identity. A bare finally callback must never authorize listening. Define how native sound and TTS jointly expose current playback, settled cancellation and focus state, including API 24 compatibility; extension points remain proposals. Gate mic opening on current identity, successful permitted transition and exclusive audio/mic ownership. Do not add another TTS engine manager. No target defect fix is authorized by this review.
 
-**Closure:** Revised seam specification and later targeted acceptance cases distinguish success/cancellation/failure, focus denial/loss and stale callbacks for both audio branches. **Status: OPEN; design correction required before later voice implementation.**
+**Closure:** Revised seam specification and later targeted acceptance cases distinguish success/cancellation/failure, focus denial/loss and stale callbacks for both audio branches. **R1 snapshot status at 5faa9f3: OPEN; design correction required before later voice implementation.**
 
 ## R1-004 — MEDIUM — Several per-file rows describe incidental declarations or inherit misleading policy metadata
+
+**R2 status: RESOLVED.**
+
+**Precise correction:** Corrected C091/C108/C112/C175/C176/C186/C190/C196/C198/C206/C291/C375 responsibilities/dependencies/local-versus-consumer policy. Added explicit keep/drop/native-owner-or-gap mapping for all 74 retained/deferred candidates.
+
+**Supporting source/verification:** CommandNormalizer body has no recognizer/permission; AppContainer is actual composition root; StudyViewModel rate/reveal/PTT calls and medicalProcessor active local caller are identified; technical categories unchanged. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Verify exact source symbols/paths/call locations; C175=P0, C196=local/optional/P0, C198 has RemoteTtsTransport/P6; retained boundary IDs exactly equal all REUSE/REFACTOR/ADAPT/DEFER row IDs.
+
+**Residual risk / remaining acceptance:** Remaining index references are labelled lexical, not complete call graphs/passing coverage. Missing M1-M8 seams remain explicit design work; no source transfer cleared.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** COMPONENT-INVENTORY, especially C091, C108, C175/C176, C186, C196, C198, C291 and C375; Shared flow/permission policies.
 
@@ -50,9 +108,21 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Keep exactly one primary technical category per item but repair named responsibilities and actual runtime collaborators/callers. Separate permissions required by the component itself from caller/runtime prerequisites, and current lifecycle from proposed target requirements. For C175 retain conditional algorithmic REUSE_AS_IS with P0 and copy hold; C174/C176 remain REFACTOR; interpreter/gate remain ADAPT; competing TTS ownership remains REPLACE; ledgers remain REMOVE. C196 may remain DEFER as an optional **local** lexicon with its true active caller, independent of remote provider availability. Record direct tested assertions separately from lexical references; do not change every category mechanically.
 
-**Closure:** Focused semantic revision of high-risk candidate rows and their concrete keep/drop/split dependencies; an explicit example traces every retained candidate to native owner or a still-missing seam. **Status: OPEN.**
+**Closure:** Focused semantic revision of high-risk candidate rows and their concrete keep/drop/split dependencies; an explicit example traces every retained candidate to native owner or a still-missing seam. **R1 snapshot status at 5faa9f3: OPEN.**
 
 ## R1-005 — MEDIUM — Kotlin-only inventory omits material provider and integration dependencies
+
+**R2 status: RESOLVED.**
+
+**Precise correction:** Added S001-S034 for all 19 server files and manifest/resource/build/README adjuncts; actual provider/stream/cache dependencies and remote review persistence are distinguished.
+
+**Supporting source/verification:** All19 server blob hashes independently matched pinned Git tree; ReviewCommitProcessor/atomic persistence/rate_card source inspected; providers and default HTTP auth semantics traced; local XML/build files read. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Compare S paths to exact pinned tree scope; one primary category/status each; server remote-review graph REMOVE, provider reference DEFER, native shell/resource/build replacement explicit; confirm no source is copied.
+
+**Residual risk / remaining acceptance:** Not an exhaustive repository/transitive audit. Python/service/asset rights remain unresolved and blocked; provider/network/backend runtime not certified.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** COMPONENT-INVENTORY Frozen inputs/scope; DEPENDENCY-MAP Live versus legacy or incomplete; source repository tree outside app-main Kotlin.
 
@@ -62,9 +132,21 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Extend inventory boundaries explicitly to the relevant Python provider/transport/review-store dependencies and manifest/network-security/resources, without claiming all non-Kotlin content was audited. Proposed primary treatment: DEFER provider/PCM/AI-only server reference code pending privacy/rights/interface design; REMOVE existing remote-Anki mock/review-store authority from migration. Do not copy the plain-HTTP/default-auth server into the target. Document actual key custody/API/stream/cache dependencies and separate provider service/voice rights from code rights. No API call or server process is needed for this source audit.
 
-**Closure:** Explicit decisions and dependency edges exist for these files/resources, with inspected versus uninspected scope stated. **Status: OPEN.**
+**Closure:** Explicit decisions and dependency edges exist for these files/resources, with inspected versus uninspected scope stated. **R1 snapshot status at 5faa9f3: OPEN.**
 
 ## R1-006 — MEDIUM — Failure strategy needs explicit network and native acknowledgement scenarios
+
+**R2 status: OPEN.**
+
+**Precise correction:** Specified V01-V12 with arrange/trigger/expected native effects, including native completion/focus, network before/after PCM, actual-backend retry/callbacks, gestures/permissions and handled-versus-committed distinction.
+
+**Supporting source/verification:** Verification plan links audio A01-A13 and inspected source assertions; all new cases NOT EXECUTED. Original fake-ID test limitation explicitly retained. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Check concrete cases cover all required hazards, then assign precise implementation/acceptance stages using the original 33-Gate roadmap and owner-reviewed prerequisites.
+
+**Residual risk / remaining acceptance:** Coverage specification corrected; exact original-roadmap gate allocation remains unverified under R1-001, so the complete original closure requirement is still OPEN.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** VERIFICATION-PLAN Source test map and Required native acceptance; NATIVE-REUSE-MATRIX N1; source UI gesture code.
 
@@ -74,9 +156,21 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Specify future tests for no network/DNS/TLS/timeout, disconnect before result or after first PCM bytes, cancelled/late response after native card change, and fallback preserving manual review with zero remote/native rating writes from provider failure. Preserve TLS validation; do not blindly retry paid synthesis after partial delivery. Specify hold versus tap versus cancelled gesture and processing-disabled behavior; exactly one intended start/finish/dispatch. Define native action requested/accepted/completed/failed/cancelled semantics without inventing a second commit path or ledger. Add real-backend listener-generation/retry-delay tests, native completion/focus cases from R1-003, and native review-record assertions. All remain proposed/not executed.
 
-**Closure:** Concrete arrange/action/expected-result cases are assigned to the actual future roadmap gates; source tests, retained foundation PASS and unexecuted tests stay clearly distinct. **Status: OPEN.**
+**Closure:** Concrete arrange/action/expected-result cases are assigned to the actual future roadmap gates; source tests, retained foundation PASS and unexecuted tests stay clearly distinct. **R1 snapshot status at 5faa9f3: OPEN.**
 
 ## R1-007 — LOW — Workspace provenance must reflect the owner move
+
+**R2 status: RESOLVED.**
+
+**Precise correction:** Updated inventory current authority to moved D: checkout; historical C: and shared-alternates setup clearly date-scoped. Kept all work/scratch/bundles on L:.
+
+**Supporting source/verification:** Recovery clean 81fdb7c; discovery starts 5faa9f3; pinned commit/tree/blob reads succeed, alternates file absent; no object-store repoint/cache deletion/environment move performed. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+
+**Specific verification criterion:** Verify current canonical paths and critical pinned objects; final receipt requires unchanged D:/source worktrees and FSA-00 digest, plus no non-documentation diff.
+
+**Residual risk / remaining acceptance:** Selective object checks are not a full repository integrity/storage audit. Limited disk capacity remains; old dated paths are not active instructions.
+
+### Original R1 evidence and acceptance (preserved)
 
 **Location:** COMPONENT-INVENTORY Frozen inputs/scope: authoritative C: checkout and shared object-store statement.
 
@@ -84,8 +178,12 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **Correction:** Preserve historical location statements as dated observations; append current canonical paths and validate object availability before later work. Do not move environments, repoint Git object stores, clear caches or rewrite original evidence during this review. The new review records current paths.
 
-**Closure:** Owner-facing handoff/current receipt uses D: recovery and L: discovery paths, with the old C: reference explicitly historical. **Status: OPEN against original snapshot; current-path correction recorded in R1.**
+**Closure:** Owner-facing handoff/current receipt uses D: recovery and L: discovery paths, with the old C: reference explicitly historical. **R1 snapshot status at 5faa9f3: OPEN against original snapshot; current-path correction recorded in R1.**
 
-## Findings versus confirmed boundaries
+## Findings versus confirmed boundaries — R1 historical summary
 
 No proposed architecture intentionally adds a second scheduler/FSRS or ledger; the exclusion direction is retained. The guard and scope proposal remain **documents**, not implementations. The independent pass supports native command reuse, removal of source transaction/PC authority, adaptation of bounded voice policies, and refusal to copy unresolved source. Licensing remains a copying hold; FSA-00 lock stays unchanged. See the scope proposal for review-only closure order. No finding is closed by 382 file rows or 429 resolvable links.
+
+## R2 current stop decision
+
+R1-001/R1-002/R1-006 remain OPEN. Other closures are source-verified documentation remediation, not code/runtime acceptance. FSA-01A: CHANGES_REQUIRED. FSA-00 LOCKED preserved; FSA-01B not started; no copy, feature implementation, tests/builds, publish or merge.

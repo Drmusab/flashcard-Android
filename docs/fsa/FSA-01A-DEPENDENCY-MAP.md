@@ -34,15 +34,26 @@ WebSocketAgentConnection and ProtocolMessages carry start_session/submit_answer/
 ```text
 Native profile/collection + Reviewer presentation/side + lifecycle
   -> bounded transient voice turn/cancellation state
-  -> native media completion -> gap -> revalidate -> microphone
+  -> correlated successful/no-output native outcome from every supported audio path
+  -> COMPLETING/settled lease + gap -> revalidate -> exclusive microphone
   -> generation-bound STT result -> typed intent
   -> native identity/side/single-consumption guard
   -> established Reviewer command/action path
   -> undoableOp -> libanki -> native scheduler/FSRS
 ```
 
-Native CardMediaPlayer/AndroidTtsPlayer and compat focus own card audio. Native recording and SpeechRecognizer need exclusive microphone ownership. Use native preferences and bounded redacted diagnostics. Optional AI is a consented advisory branch, never rating truth.
+Existing owners include CardMediaPlayer/AndroidTtsPlayer, legacy TTS/ReadText, HTML/video and card-JS speech. SoundTagPlayer focus acquisition covers its audio-file branch; it does not automatically cover native TTS/video or observe loss. The [R2 audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md) records the missing shared native lease/typed outcome seam. A generic completion callback, job flag or synthesis event never grants a mic lease. Native recording and SpeechRecognizer need exclusive microphone ownership. Use native preferences and bounded redacted diagnostics. Optional AI is a consented advisory branch, never rating truth.
 
 The transient consumption guard prevents duplicate live dispatch; it is not a durable rating ledger. After process recreation discard old requests and rebuild only from native state. Undo/reappearance of the same card creates a new presentation epoch.
 
 See [native reuse](FSA-01A-NATIVE-REUSE-MATRIX.md), [exclusions](FSA-01A-EXCLUSION-AUDIT.md) and [verification](FSA-01A-VERIFICATION-PLAN.md).
+
+## R2 omitted dependency containment and scope
+
+[Supplemental inventory S001-S034](FSA-01A-COMPONENT-INVENTORY.md#r2-supplemental-non-kotlin-dependency-register) adds all 19 pinned server files plus manifest/resources/build/documentation adjuncts. Provider implementations exist in server/tts/openai_provider.py and elevenlabs_provider.py; their provider interface, models, PCM normalization/cache, StreamManager and plain-HTTP TtsMediaHttpServer form a server-only dependency graph. They are DEFER/reference-only with copying blocked, not proof of wired Android streaming. Android RemoteTtsTransport is still an interface without a located live implementation.
+
+server/mock_pc_agent.py handles rate_card through server/review_commit_store.py (ReviewCommitProcessor/atomic file persistence). That remote review/commit graph and its launch/client/contract fixtures are REMOVE from migration. It is not an AI-only provider boundary. The source manifest/network_security_config permits cleartext LAN traffic; no target provider policy may inherit that grant or the media server's default unauthenticated/plain-HTTP behavior.
+
+MedicalPronunciationProcessor is called locally by DefaultSpeechOrchestrator.kt:495-496 when configured; its DEFER decision means optional user-configured local lexicon, independent of cloud availability. Pure normalization and model/policy helpers do not own Android mic/network permission; runtime consumer prerequisites are separately recorded in the candidate boundary register.
+
+All74 retained/deferred candidates point to an existing native owner or an explicit missing M1-M8 design seam. Technical suitability does not clear copying: [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) keeps unresolved code/tests/assets BLOCKED FOR COPYING. [Corrected sequence](FSA-01A-MIGRATION-SEQUENCE.md) confines FSA-01B to documentation; future native Reviewer implementation belongs to FSA-06 onward under the unchanged original 33-Gate roadmap. Exact full-roadmap reconciliation/owner review is still OPEN. No code or state machine is implemented.
