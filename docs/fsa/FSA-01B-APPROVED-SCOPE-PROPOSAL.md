@@ -1,12 +1,12 @@
 # FSA-01B approved-scope proposal — R2 documentation boundary
 
-**PROPOSED, NOT APPROVED. FSA-01B NOT STARTED.** 2026-11-13, Asia/Baghdad. The filename is owner-requested; it is not an approval. Current verdict is **FSA-01A: CHANGES_REQUIRED**, with R1-001 roadmap/owner review and R1-002 copying rights still OPEN. R2 is authorized FSA-01A remediation, not execution of this next gate.
+**PROPOSED, NOT APPROVED. FSA-01B NOT STARTED.** 2026-11-13, Asia/Baghdad. The filename is owner-requested; it is not an approval. Current verdict is **FSA-01A: CHANGES_REQUIRED**, with R1-001 owner review and R1-002 copying rights still OPEN; roadmap reconciliation and R1-006 test allocation are now evidenced. R2 is authorized FSA-01A remediation, not execution of this next gate.
 
 ## Fixed scope
 
 FSA-01 is Source Audit & Migration Inventory. A separately authorized FSA-01B can review/finalize the migration inventory, dependency mapping, architecture contracts and unresolved provenance. It must not implement the Native Reviewer Intent Guard or any production feature, even disabled or driven by fake input. No code/test/asset copy or independent reimplementation is authorized.
 
-The original 33-Gate roadmap remains controlling. Its standalone file has not been located; no missing text or gate title is reconstructed. Historical FSA-00A section3 places voice Reviewer contracts at FSA-06 onward. Exact FSA-06/07/08 allocation and prerequisites require the original roadmap and owner review before implementation. Retired provisional implementation subgate labels are not adopted.
+The original 33-Gate roadmap remains controlling. The owner-supplied file is now located and hashed; [sequence](FSA-01A-MIGRATION-SEQUENCE.md) reproduces its unchanged index. FSA-06 is Reviewer Integration Surface; FSA-07 is Turn Identity & Reveal-State Contract; FSA-08 is Single-Authority Rating Gateway. Voice/media/recognition integration is FSA-10 through16. Retired provisional implementation labels are not adopted; FSA-01C retains its original inventory audit role. No stage is authorized by providing the file.
 
 ## Entry and possible documentation outputs
 
@@ -14,7 +14,7 @@ Owner must review R2 and separately authorize this bounded scope. Copying holds 
 
 Potential outputs, if later authorized:
 
-1. Confirm the original 33-Gate roadmap path/revision/hash and reconcile all proposed work packages to its real stage scope, without changing it.
+1. Review the now-verified original 33-Gate roadmap/hash and reconciled work-package/test assignments, without changing its stages or prerequisites.
 2. Review every relevant candidate's keep/drop/split dependency boundary, native owner or missing seam, current versus future lifecycle, and direct versus lexical test evidence. R2 provides the candidate boundary register and supplemental server/resource coverage.
 3. Complete origin/rightsholder/grant and artifact-notice records. Mark unresolved entries BLOCKED FOR COPYING; repository/contributor names alone cannot clear them.
 4. Review the [audio ownership contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md) and [verification plan](FSA-01A-VERIFICATION-PLAN.md) as specifications. Record owner choices or remaining design holds before later implementation.
@@ -28,14 +28,18 @@ Separate requested/handled from native completion/failure/cancellation. Delegate
 
 Only existing native audio owners create playback engines. The future transient voice coordinator observes a single native lease boundary covering supported native tags, ReadText, video/JS and recording; it cannot acquire a competing focus request or add another playback manager. Unknown output/completion/route remains automatic-listen blocked. Cancellation/error/stale callbacks cannot become successful handoff events. Transition IDs A01–A13 and future verification IDs V01–V12 define this contract; no state machine is implemented.
 
-## Later integration track and dependency preservation
+## Verified later integration allocation
 
-| Existing track | Documentation prepared here | Authorization still required |
+| Gate / exact title | Native responsibility | Prerequisites |
 |---|---|---|
-| FSA-06 onward | Native Reviewer command/identity/side/operation contract and sole native collection authority. | Original roadmap stage scope and owner authorization before any Native Reviewer Intent Guard code. |
-| FSA-07/08 | Candidate consumption/whole-loop test dependencies for the requested integration track, without claiming missing stage titles. | Original roadmap must determine which stage implements recognition, media seams or integrated acceptance; this table does not schedule them. |
+| FSA-06 — Reviewer Integration Surface | Read-only presentation events and narrow native action seam. | FSA-05 |
+| FSA-07 — Turn Identity & Reveal-State Contract | Native identity, generation, reveal phase and stale/cancel handling. | FSA-06 |
+| FSA-08 — Single-Authority Rating Gateway | Actual production rating admission/one-shot guard and native delegation. | FSA-06,FSA-07 |
+| FSA-10 / FSA-11 | TTS output and foreground STT/mic respectively, initially independent supported paths. | Both FSA-07,FSA-05 |
+| FSA-12 / FSA-13 / FSA-14 | Grammar, voice-session/echo coordinator, then integrated hands-free MVP. | Exact original prerequisites in the sequence index. |
+| FSA-15 / FSA-16 | Extended routing/Bluetooth, then approved background/lock-screen operation. | FSA-14; then FSA-14,FSA-15 respectively. |
 
-Preserve contract -> native media/focus/mic readiness -> cancellation/privacy-safe recognition -> automatic handoff/route -> optional background/advisory features, according to actual roadmap prerequisites. No new implementation gates or altered acceptance dates. Any desired schedule/boundary change needs an explicit architecture decision with old/new scope, dependencies, risks and owner approval.
+No implementation belongs to FSA-01B. Preserve the exact 33-Gate graph: do not invent FSA-10 -> FSA-11 dependence or require future extended Bluetooth certification before every foreground STT task. Supported output/mic non-overlap is still mandatory before a voice loop starts. Any real schedule/boundary amendment needs an explicit owner-approved architecture decision.
 
 ## Possible later experiment, not part of FSA-01B
 

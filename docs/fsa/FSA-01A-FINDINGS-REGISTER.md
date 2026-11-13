@@ -1,15 +1,15 @@
 # FSA-01A findings register — R2 disposition
 
-**Current R2 verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. The seven original identifiers and severities are unchanged: three HIGH, three MEDIUM, one LOW. **Four RESOLVED as source-verified documentation findings; three OPEN.** No runtime defect is declared fixed; no voice feature is implemented. R1 evidence and acceptance requirements below are preserved from 5faa9f3, with their old statuses explicitly labelled historical. [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md) records current verification and residual holds.
+**Current R2 verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. The seven original identifiers and severities are unchanged: three HIGH, three MEDIUM, one LOW. **Five RESOLVED as source-verified documentation findings; two OPEN.** No runtime defect is declared fixed; no voice feature is implemented. R1 evidence and acceptance requirements below are preserved from 5faa9f3, with their old statuses explicitly labelled historical. [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md) records current verification and residual holds.
 
 | Original finding | Severity | R2 status | Exact residual acceptance |
 |---|---|---|---|
-| R1-001 | HIGH | OPEN | Invalid FSA-01 implementation scope removed; full original 33-Gate reconciliation and owner review still missing. |
+| R1-001 | HIGH | OPEN | Original33-Gate reconciliation now verified; owner review of the correction remains pending. |
 | R1-002 | HIGH | OPEN | Provenance/dependency matrix completed; applicable first-party grants and component obligations still do not clear copying. |
 | R1-003 | HIGH | RESOLVED | Source-supported ownership/transition specification and future acceptance cases consistently documented; implementation/runtime acceptance remains later. |
 | R1-004 | MEDIUM | RESOLVED | Cited high-risk metadata repaired; all 74 retained/deferred candidates have explicit owner/missing-seam and keep/drop boundaries. |
 | R1-005 | MEDIUM | RESOLVED | All19 server files plus 15 manifest/resource/build/doc adjuncts explicitly classified, with pinned identities/scope and dependency edges. |
-| R1-006 | MEDIUM | OPEN | Concrete V01-V12 scenarios specified; exact assignment to the unavailable original roadmap is not verified. |
+| R1-006 | MEDIUM | RESOLVED | V01-V12 now map to actual original acceptance stages/prerequisites; all future tests stay NOT EXECUTED. |
 | R1-007 | LOW | RESOLVED | D: recovery/L: discovery current paths, readable pinned objects and historical C:/alternates description verified. |
 
 Source paths S below are exact paths below `app/src/main/java/com/studyagent/client/` at `0976d1c48080e74926f1a86d2c472edb9128b7ca`. Target paths T start at repository root at `81fdb7c6581c96939cf7e4ec24201d923e717556`. Original inventory row IDs are stable within 1128b1e. Related primary license records and the sample assessment are in [independent review](FSA-01A-INDEPENDENT-REVIEW.md).
@@ -18,13 +18,13 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **R2 status: OPEN.**
 
-**Precise correction:** Updated all six discovery documents and scope proposal: no FSA-01B implementation, retired invented implementation subgates, future guard only in FSA-06-onward track; no33-Gate artifact changed or reconstructed.
+**Precise correction:** The supplied original 33-Gate roadmap is now verified, all 33 index/detail entries and 99 prompts checked, and all current mappings corrected: FSA-01B documentation only; FSA-06 surface; FSA-07 identity/reveal; FSA-08 rating gateway; FSA-10-16 speech/voice. No gate or prerequisite changed.
 
-**Supporting source/verification:** Corrected sequence and proposal; all C-row Gate fields remapped to existing native ownership/named work packages, never implementation in FSA-01. Public complete main tree4bfadceba7 has no roadmap path. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+**Supporting source/verification:** Owner path D:/flashcard-Android-main/flashcard-Android-main/docs/Anki_Studio_Agent_Fork_Gates_Roadmap.md; SHA-256 `34ac42269c91c61d3a7c618c886e254c92ac8079c8e353a5061a9f5bd01ef4d1`. Roadmap lines186-187 prohibit production porting in FSA-01B. Sequence contains the unchanged full index; scope, candidate and test mappings use actual stages. Prior missing-file observations remain historical in the 0dff170 snapshot.
 
-**Specific verification criterion:** Check every current Gate field and six documents for implementation creep; then compare to supplied original 33-Gate roadmap/hash and obtain owner review.
+**Specific verification criterion:** Compare current mappings to the exact supplied33-Gate artifact/hash (completed); obtain owner review of the corrected scope (pending). No production guard or source copy in FSA-01B.
 
-**Residual risk / remaining acceptance:** Original full schedule/titles and owner review remain unavailable; correction alone cannot close original acceptance.
+**Residual risk / remaining acceptance:** Providing a path is not approval of the correction. Original R1 owner-review criterion remains unmet, so the finding stays OPEN; there is no remaining missing-roadmap claim.
 
 ### Original R1 evidence and acceptance (preserved)
 
@@ -136,15 +136,15 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 ## R1-006 — MEDIUM — Failure strategy needs explicit network and native acknowledgement scenarios
 
-**R2 status: OPEN.**
+**R2 status: RESOLVED.**
 
-**Precise correction:** Specified V01-V12 with arrange/trigger/expected native effects, including native completion/focus, network before/after PCM, actual-backend retry/callbacks, gestures/permissions and handled-versus-committed distinction.
+**Precise correction:** V01-V12 retain their concrete arrange/trigger/expected-effect requirements and now have explicit original-roadmap acceptance stages, including native gateway08C, turn07C, TTS10C, STT11C, coordinator13C, MVP14C, routes15C/background16C, provider/privacy17C/18C, recovery28C and hardening29C/30C/31C/32C as applicable.
 
-**Supporting source/verification:** Verification plan links audio A01-A13 and inspected source assertions; all new cases NOT EXECUTED. Original fake-ID test limitation explicitly retained. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+**Supporting source/verification:** Supplied roadmap exact hash/index/detail sections; verification plan's twelve-row allocation table cross-checked to the actual33-Gate definitions and original prerequisites. No source test is relabelled as executed target evidence.
 
-**Specific verification criterion:** Check concrete cases cover all required hazards, then assign precise implementation/acceptance stages using the original 33-Gate roadmap and owner-reviewed prerequisites.
+**Specific verification criterion:** Each V01-V12 case has an actual original acceptance stage; stage IDs/titles/prerequisites agree with the unchanged roadmap. There is no invented FSA-01 implementation subgate or new dependency edge. The allocation and metadata checks are completed; all actual future tests remain NOT EXECUTED.
 
-**Residual risk / remaining acceptance:** Coverage specification corrected; exact original-roadmap gate allocation remains unverified under R1-001, so the complete original closure requirement is still OPEN.
+**Residual risk / remaining acceptance:** Later code gates still require separate authorization, source rights clearance and real prescribed tests/device evidence. This resolves the original test-specification/allocation finding, not the future feature tests.
 
 ### Original R1 evidence and acceptance (preserved)
 
@@ -186,4 +186,4 @@ No proposed architecture intentionally adds a second scheduler/FSRS or ledger; t
 
 ## R2 current stop decision
 
-R1-001/R1-002/R1-006 remain OPEN. Other closures are source-verified documentation remediation, not code/runtime acceptance. FSA-01A: CHANGES_REQUIRED. FSA-00 LOCKED preserved; FSA-01B not started; no copy, feature implementation, tests/builds, publish or merge.
+R1-001/R1-002 remain OPEN. R1-006 is now RESOLVED after roadmap receipt. Other closures are source-verified documentation remediation, not code/runtime acceptance. FSA-01A: CHANGES_REQUIRED. FSA-00 LOCKED preserved; FSA-01B not started; no copy, feature implementation, tests/builds, publish or merge.

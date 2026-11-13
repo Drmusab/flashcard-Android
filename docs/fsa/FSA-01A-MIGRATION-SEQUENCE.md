@@ -1,34 +1,71 @@
-# FSA-01A migration sequence — R2 corrected scope
+# FSA-01A migration sequence — R2 roadmap reconciliation
 
-**FSA-01A: CHANGES_REQUIRED. FSA-01B: NOT STARTED.** Documentation remediation 2026-11-13, Asia/Baghdad. This replaces the implementation scheduling proposed at 1128b1e; that prior version remains in Git history and the preserved R1 bundle.
+**FSA-01A: CHANGES_REQUIRED. FSA-01B: NOT STARTED.** Owner-supplied roadmap inspected 2026-11-13, Asia/Baghdad. This corrects the missing-roadmap limitation recorded at 0dff170; that prior documentation/bundle remains preserved.
 
-## Roadmap authority and unresolved evidence
+## Authoritative roadmap evidence
 
-FSA-01 remains Source Audit & Migration Inventory. FSA-01B is documentation-only. The former implementation labels 01C–G are withdrawn; no replacement gates are inserted into the original 33-Gate roadmap. Historical [FSA-00A section3](FSA-00A_Baseline_Discovery_Report.md) places native voice Reviewer contracts at **FSA-06 onward**. The owner specifically identifies FSA-06/07/08 as the later integration track.
+The owner supplied `D:/flashcard-Android-main/flashcard-Android-main/docs/Anki_Studio_Agent_Fork_Gates_Roadmap.md`. Its exact SHA-256 is `34ac42269c91c61d3a7c618c886e254c92ac8079c8e353a5061a9f5bd01ef4d1` (142,719 bytes). The file describes a proposed architecture/implementation plan, not executed evidence. All 33 index entries,33 detailed gates and 99 A/B/C prompts were checked. The original file is unchanged; no gate or prerequisite is added, removed or reordered. A verbatim reference copy is included only in the owner review bundle, not the application source.
 
-The standalone Anki_Studio_Agent_Fork_Gates_Roadmap.md is still unavailable. R2 searched the existing workspaces and the public main tree at 4bfadceba7d91abec270c4b45e95e26dbc294d15 (complete tree response, no roadmap path). No 33-Gate schedule, titles or acceptance criteria were reconstructed. Exact allocation across FSA-06/07/08 and all predecessor requirements must be confirmed against the original before implementation. **R1-001 remains OPEN for full roadmap reconciliation and owner review**, although the invalid FSA-01 implementation proposal is removed from every current discovery document.
+FSA-01B's specific prompt (lines186-187) requires file-by-file migration inventory and says not to port production code. Its generic IMPLEMENTATION label/boilerplate does not authorize a production guard; the current owner instruction reinforces this. FSA-01C remains the existing inventory verification/audit phase; retired provisional implementation labels do not replace it.
 
-## Current documentation work and proposed FSA-01B
+## Original33-Gate index — unchanged reference
 
-This R2 task only corrects FSA-01A findings, source metadata, audio ownership, rights holds and future test specifications. It does not activate FSA-01B. The [FSA-01B proposal](FSA-01B-APPROVED-SCOPE-PROPOSAL.md) remains PROPOSED, NOT APPROVED; its scope is review of the bounded inventory/dependency/contracts and remaining architecture evidence. No native intent guard, fake harness, test source, playback/recognition code or feature flag may be implemented in that gate.
+| Gate | Phase | Exact roadmap title | Exact prerequisites |
+|---|---|---|---|
+| FSA-00 | A | Fork Baseline & Reproducible Build | None |
+| FSA-01 | A | Source Audit & Migration Inventory | FSA-00 |
+| FSA-02 | A | Fork Product Identity & Installation Isolation | FSA-00 |
+| FSA-03 | A | Target Architecture Contract Lock | FSA-01,FSA-02 |
+| FSA-04 | A | Quality Gates & CI Infrastructure | FSA-00,FSA-03 |
+| FSA-05 | B | Extension Module Skeleton & Feature Flags | FSA-03,FSA-04 |
+| FSA-06 | B | Reviewer Integration Surface | FSA-05 |
+| FSA-07 | B | Turn Identity & Reveal-State Contract | FSA-06 |
+| FSA-08 | B | Single-Authority Rating Gateway | FSA-06,FSA-07 |
+| FSA-09 | B | Non-Rating Reviewer Actions | FSA-06,FSA-07 |
+| FSA-10 | C | TTS Reuse & Speech Output | FSA-07,FSA-05 |
+| FSA-11 | C | STT Engine & Microphone Permissions | FSA-07,FSA-05 |
+| FSA-12 | C | Voice Command Grammar & Disambiguation | FSA-09,FSA-11 |
+| FSA-13 | C | Voice Session Coordinator & Echo Protection | FSA-10,FSA-11,FSA-12 |
+| FSA-14 | C | Hands-Free Study MVP | FSA-08,FSA-10,FSA-11,FSA-12,FSA-13 |
+| FSA-15 | C | Audio Routing, Bluetooth & Interruptions | FSA-14 |
+| FSA-16 | C | Background & Lock-Screen Voice Study | FSA-14,FSA-15 |
+| FSA-17 | D | AI Provider Architecture — No PC Adapter | FSA-03,FSA-05 |
+| FSA-18 | D | AI Context Privacy & Reveal Security | FSA-07,FSA-17 |
+| FSA-19 | D | Typed & Spoken Answer Submission | FSA-11,FSA-18 |
+| FSA-20 | D | AI Answer Evaluation & Validation | FSA-18,FSA-19 |
+| FSA-21 | D | AI Explanations, Hints & Feedback | FSA-20 |
+| FSA-22 | D | Constrained AI Tutor Conversation | FSA-21 |
+| FSA-23 | D | Integrated AI Study UI | FSA-20,FSA-21,FSA-22 |
+| FSA-24 | E | Evidence-Based Learning Insights | FSA-20,FSA-23 |
+| FSA-25 | E | AI-Assisted Notes & Card Suggestions | FSA-21,FSA-23 |
+| FSA-26 | E | Library & Navigation Integration | FSA-23,FSA-25 |
+| FSA-27 | E | Voice/AI Settings & Personalization | FSA-16,FSA-17,FSA-23 |
+| FSA-28 | F | Offline Degradation & Session Recovery | FSA-16,FSA-17,FSA-27 |
+| FSA-29 | F | Security, Privacy, Backup & Licensing | FSA-02,FSA-18,FSA-25,FSA-28 |
+| FSA-30 | F | UX, Arabic/English & Accessibility Lock | FSA-23,FSA-26,FSA-27 |
+| FSA-31 | F | Performance, Endurance & Fault Injection | FSA-28,FSA-29,FSA-30 |
+| FSA-32 | F | Release, Upstream Maintenance & Future Gates | FSA-31 |
 
-A future Native Reviewer Intent Guard is a **design requirement for the FSA-06-onward integration track**, subject to the original roadmap and separate owner authorization. Its interface must identify profile/collection/card/presentation/side and request generation, revalidate at native dispatch, reject stale/pre-reveal/duplicate actions, observe asynchronous native outcomes, and preserve undoableOp/libanki. No direct scheduler writes, second queue, replayable rating store or answer commit coordinator.
+## Correct implementation allocation, not authorization
 
-## Dependency ordering — work packages, not new gates
-
-| Order / package | Architectural prerequisite | Future acceptance allocation |
+| Work / safety boundary | Original gate and source evidence | Existing prerequisite / scope |
 |---|---|---|
-| D1: inventory/rights/contracts | Existing pinned source and native boundary inspection. Separate technical category from copying rights. | FSA-01A remediation and any separately authorized documentation-only FSA-01B; no code transfer. |
-| D2: native Reviewer boundary | Approved roadmap entry, licensing for any copied expression, native identity/side/operation semantics. | Future FSA-06-onward integration; exact stage allocation OPEN. Validate reveal/four-rating dispatch and native Undo without parallel persistence. |
-| D3: native media/focus/mic ownership | D2 contract; [audio ownership contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md) includes native tags, legacy ReadText, video/JS and existing recording. | Before any automatic handoff; physical/engine acceptance belongs to the roadmap's actual audio/integration stages, not an invented FSA-01 subgate. |
-| D4: foreground recognition/grammar/UI | D2 and supported D3 readiness, explicit permission/privacy/offline policy, generation-bound callbacks/owned retries. | Later authorized voice integration, including FSA-07/08 where prescribed by the original. No voice on unverified native surfaces/paths. |
-| D5: automatic handoff/routing | D3+D4 proven on supported engines/devices; acoustic and exclusive mic readiness. | Later whole-loop acceptance; identity/route/lifecycle changes invalidate work. Availability does not prove Bluetooth capture route. |
-| D6: optional background/advisory AI/lexicon | D2–D5 as applicable, explicit product/provider/privacy/FGS/key/service-rights scope. Local optional lexicon is independent of cloud routing. | Existing roadmap gates only, exact assignment pending original. No background or provider acceptance from source existence. |
+| Native read-only events and narrow Reviewer action seam | FSA-06 — Reviewer Integration Surface, lines354-387 | FSA-05. Native action path only; if a safe callback is unclear, stop the rating portion rather than inventing one. |
+| Native turn generation, exact reveal side, stale/recreated/Undo identity | FSA-07 — Turn Identity & Reveal-State Contract, lines391-425 | FSA-06. Tests include A-B-A and late callbacks; no pre-reveal answer leak. |
+| Rating admission/one-shot guard and delegation to native rating | FSA-08 — Single-Authority Rating Gateway, lines429-462 | FSA-06,FSA-07. This is the proper production rating-guard stage, not FSA-01B. No ledger, direct scheduler call or fabricated interval. |
+| Native TTS/readiness/queue cancellation | FSA-10 — TTS Reuse & Speech Output, lines509-540 | FSA-07,FSA-05. Reuse existing native owners; no competing source manager. |
+| Foreground recognizer and mic/permission/callback safety | FSA-11 — STT Engine & Microphone Permissions, lines544-579 | FSA-07,FSA-05. Initially explicit tap-to-speak; transcripts are data, not commands. |
+| EN/AR intent grammar/ambiguity | FSA-12 — Voice Command Grammar & Disambiguation, lines583-616 | FSA-09,FSA-11. Closed intent policy and current command/answer mode. |
+| Audio-state/echo/generation coordination | FSA-13 — Voice Session Coordinator & Echo Protection, lines620-657 | FSA-10,FSA-11,FSA-12. This owns the future audio state machine, not FSA-01B. |
+| First end-to-end native voice loop | FSA-14 — Hands-Free Study MVP, lines661-698 | FSA-08,FSA-10,FSA-11,FSA-12,FSA-13. Real disposable-deck device evidence. |
+| Extended routing/Bluetooth/interruptions | FSA-15 — Audio Routing, Bluetooth & Interruptions, lines702-737 | FSA-14. Physical-device route matrix; unsupported hardware remains blocked, not a new prerequisite edge delaying all foreground STT. |
+| Background/screen-off | FSA-16 — Background & Lock-Screen Voice Study, lines741-773 | FSA-14,FSA-15. Explicit start/notification/platform restrictions. |
+| Advisory provider/privacy, settings, recovery and distribution | FSA-17/18,27,28,29,32 respectively | Exact prerequisites are in the unchanged index. Rights clearance is required before copying; FSA-29 does not postpone that obligation. |
 
-Native prerequisites retain their logical order; the table is not approval to reorder the33-Gate roadmap. Independent release identity/signing/storage/licensing obligations remain at the existing FSA-02 boundary documented in the FSA-00 handoff. No release, PR merge or production migration is authorized here.
+FSA-10 and FSA-11 share FSA-07/FSA-05 prerequisites; neither is silently made a prerequisite of the other. Their supported readiness joins at FSA-13. Phone MVP acceptance is FSA-14; extended Bluetooth/route certification remains FSA-15. Unknown audio paths cannot enable automatic listening, but that safety restriction does not rewrite the 33-Gate dependency graph. Source DEFER/provider/local-lexicon ideas remain scope/rights-dependent, not automatic feature approval.
 
-## Architecture-decision rule and stop
+## Current scope and stop
 
-**R2 boundary clarification: no roadmap amendment is proposed or enacted.** If any future task needs to move a feature/gate, first submit a named architecture decision showing the original 33-Gate revision/hash, old/new scope and prerequisites, evidence impacts, risks and explicit owner decision. No silent change or inferred approval is valid.
+This task only reconciles FSA-01A documentation. [FSA-01B proposal](FSA-01B-APPROVED-SCOPE-PROPOSAL.md) remains PROPOSED, NOT APPROVED. The [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md) and [V01-V12 test allocation](FSA-01A-VERIFICATION-PLAN.md) specify later work; no harness, source copy or implementation is started. Existing native Reviewer -> libanki -> native scheduler/FSRS and all architectural exclusions remain mandatory.
 
-[Findings register](FSA-01A-FINDINGS-REGISTER.md) records actual closure and residual holds. Source copying remains BLOCKED FOR COPYING where rights are unresolved. Preserve native Reviewer -> libanki -> native scheduler/FSRS and every permanent exclusion. Stop after R2 documentation review; no prototype or FSA-01B work follows automatically.
+**R1-001:** roadmap/scope reconciliation is now verified; owner review of the correction is still pending, so its complete original acceptance remains OPEN. **R1-002:** no license grant was found in the supplied folder; copying remains BLOCKED FOR COPYING. **R1-006:** exact test-stage mapping now follows the original roadmap and is RESOLVED as documentation; all future tests stay NOT EXECUTED. No roadmap amendment is proposed. Any future boundary change requires an explicit architecture decision and owner approval. Stop at this report/bundle; do not begin FSA-01B or merge/publish.

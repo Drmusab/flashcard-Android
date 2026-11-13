@@ -74,3 +74,7 @@ Source coordinates come from app/build.gradle.kts/root plugins, not a newly reso
 ## Verification and unresolved acceptance
 
 The inventory copy-status field must cover every C and S row; exactly one technical category remains separate. Seven source-history entries/three contributor identities are evidence with limits, not rights clearance. Source/target pins, inspected license URLs and missing grants are independently recorded. R1-002 remains OPEN until applicable first-party permission and third-party obligations clear each proposed transfer; no additional prose, contributor count or inferred owner approval can close it. Documentation remediation can finish with that explicit blocker.
+
+## Supplied roadmap is not a source license grant
+
+The owner-supplied roadmap in the D: docs folder requires preservation of copyright/license/source obligations and places security/privacy/licensing review at FSA-29 (with distribution at FSA-32). It does not contain an applicable first-party source redistribution grant or establish rights to every Study-Agent contribution/asset. No separate rights grant was found in the supplied folder. R1-002 remains OPEN; a later compliance gate cannot postpone permission needed before copying. The file itself is retained verbatim only as a review reference.

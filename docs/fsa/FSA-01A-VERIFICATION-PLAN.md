@@ -52,11 +52,11 @@ Cover minimum API 24 and31/33/34/35/36 plus physical hardware. Official referenc
 
 Verify 382 unique production paths, one allowed primary category per file, resolvable source/test/target references and the documentation-only files explicitly listed in the current R2 remediation receipt changed. Confirm original recovery HEAD/worktree and FSA-00A hash unchanged; application/build source still equals accepted APK source. Run git diff --check and retain existing documentation-only precommit hook. These are document/metadata checks, not foundation test reruns. At discovery 1128b1e, the metadata checks found 382 unique classified production paths, one category each and 429 resolvable Markdown links; referenced test paths exist. Authoritative recovery and source worktrees remained clean, the original report digest matched, and application/build diff against accepted APK source was empty.
 
-**FSA-01A: CHANGES_REQUIRED. No feature-test PASS asserted. FSA-01B remains unstarted. Exact original-roadmap allocation is OPEN.**
+**FSA-01A: CHANGES_REQUIRED. No feature-test PASS asserted. FSA-01B remains unstarted. Original-roadmap allocation is now verified; owner review and copying rights remain OPEN.**
 
 ## R2 concrete future acceptance scenarios
 
-The following are **specified tests, NOT EXECUTED**, not new test code or an altered33-Gate schedule. The original roadmap must assign their precise stages; native command behavior belongs to FSA-06 onward, and the owner identifies FSA-07/08 as the related integration track. Exact assignment remains OPEN under R1-001/R1-006. FSA-01B may review these requirements only.
+The following are **specified tests, NOT EXECUTED**, not new test code or an altered33-Gate schedule. The original roadmap is now supplied and verified; the precise acceptance stages and unchanged prerequisites are recorded below. R1-006 is resolved as documentation; owner review under R1-001 and copying rights under R1-002 remain OPEN. FSA-01B may review these requirements only.
 
 A01-A13 refer to the [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md). Proposed checks need both native Reviewer surfaces or an explicit voice-disabled surface; native source/FSA-00 runtime acceptance is not a substitute for voice tests. Existing source assertions below remain inspection evidence only; any later copied test implementation needs license clearance.
 
@@ -79,4 +79,25 @@ A01-A13 refer to the [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md). Prop
 
 Inspected source examples: SttReliabilityChaosTest125-145 delivers already-labelled fake request IDs after cancel; StudyVoiceTurnGateTest100-115 changes stillValid during the gap; SpeechOrchestratorTest188-202 asserts typed route-loss failure; VoiceCommandInterpreterTest checks command words remain answer text and confidence/context rules. These bodies justify reusable **test ideas**, not executed target results or copying permission. Existing FullDebug/PlayDebug/Reviewer/isolation/sync PASS records remain unchanged in their original FSA-00 artifacts.
 
-All V01-V12, physical routes, background behavior and provider failure fixtures remain NOT EXECUTED. No new Android/unit/provider suite or build ran in R2. Documentation checks verify source references, contract/transition coverage and unchanged application/build/evidence bytes only. R1-006's concrete failure scenarios are remediated here; its precise original-roadmap gate assignment remains OPEN until that artifact/owner decision is available.
+All V01-V12, physical routes, background behavior and provider failure fixtures remain NOT EXECUTED. No new Android/unit/provider suite or build ran in R2. Documentation checks verify source references, contract/transition coverage and unchanged application/build/evidence bytes only. R1-006's concrete scenarios and exact original-roadmap stage assignment are now verified. This closes its documentation acceptance; executing/locking any later gate still requires separate authorization and actual evidence.
+
+## Verified original-roadmap test allocation
+
+Roadmap SHA-256 `34ac42269c91c61d3a7c618c886e254c92ac8079c8e353a5061a9f5bd01ef4d1`; exact 33-Gate index/prerequisites are reproduced in the sequence. The stage suffix C is the roadmap's existing acceptance/audit phase, not a new gate or a PASS. Source/component work belongs only to a separately authorized A/B phase of that stage. Every entry below is NOT EXECUTED; all original prerequisites apply.
+
+| Case | Actual original acceptance stage(s) | Status |
+|---|---|---|
+| V01 | FSA-06C/FSA-07C/FSA-08C; integrated regression FSA-14C/FSA-31C | NOT EXECUTED |
+| V02 | FSA-07C; integration/recovery FSA-14C/FSA-28C/FSA-31C | NOT EXECUTED |
+| V03 | FSA-10C/FSA-13C; integrated FSA-14C | NOT EXECUTED |
+| V04 | FSA-10C/FSA-13C; endurance FSA-31C | NOT EXECUTED |
+| V05 | Supported foreground FSA-10C/FSA-11C/FSA-13C; extended focus/routes FSA-15C; background FSA-16C | NOT EXECUTED |
+| V06 | Echo/non-overlap FSA-13C/FSA-14C; hardware routes FSA-15C; regression FSA-31C | NOT EXECUTED |
+| V07 | FSA-11C/FSA-13C; fault injection FSA-31C | NOT EXECUTED |
+| V08 | FSA-11C/FSA-13C/FSA-14C; accessibility FSA-30C | NOT EXECUTED |
+| V09 | Foreground permission FSA-11C; extended Bluetooth FSA-15C; background FSA-16C; recovery FSA-28C | NOT EXECUTED |
+| V10 | Provider/privacy FSA-17C/FSA-18C; degraded mode FSA-28C; fault injection FSA-31C | NOT EXECUTED |
+| V11 | Native gateway FSA-08C; recovery FSA-28C; fault injection FSA-31C | NOT EXECUTED |
+| V12 | Privacy FSA-18C; settings FSA-27C; compliance FSA-29C; release FSA-32C | NOT EXECUTED |
+
+This allocation does not require future extended Bluetooth/background acceptance before the supported phone MVP or foreground STT: FSA-10 and11 both depend on07/05; FSA-13 joins10/11/12; FSA-14 joins08/10/11/12/13; FSA-15 follows14; FSA-16 follows14/15. Recovery/privacy/release regressions retain their later original prerequisites. No roadmap edge is added or bypassed.
