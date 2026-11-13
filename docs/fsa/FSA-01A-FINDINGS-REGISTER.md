@@ -5,7 +5,7 @@
 | Original finding | Severity | R2 status | Exact residual acceptance |
 |---|---|---|---|
 | R1-001 | HIGH | RESOLVED | Original33-Gate reconciliation verified; owner explicitly approved corrected scope only on 2026-11-13. FSA-01B execution remains unauthorized. |
-| R1-002 | HIGH | OPEN | Provenance/dependency matrix completed; applicable first-party grants and component obligations still do not clear copying. |
+| R1-002 | HIGH | OPEN | Unsigned owner attestation and exact candidate ledger added; 74 core/60 test references are OWNER_ATTESTED_CANDIDATE, zero cleared. Arena applicability, origin/dependency exceptions and owner acceptance remain incomplete. |
 | R1-003 | HIGH | RESOLVED | Source-supported ownership/transition specification and future acceptance cases consistently documented; implementation/runtime acceptance remains later. |
 | R1-004 | MEDIUM | RESOLVED | Cited high-risk metadata repaired; all 74 retained/deferred candidates have explicit owner/missing-seam and keep/drop boundaries. |
 | R1-005 | MEDIUM | RESOLVED | All19 server files plus 15 manifest/resource/build/doc adjuncts explicitly classified, with pinned identities/scope and dependency edges. |
@@ -42,13 +42,13 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 **R2 status: OPEN.**
 
-**Precise correction:** Added distinct BLOCKED FOR COPYING field to every 382 C/34 S entry and source/test/asset coverage; produced component/dependency provenance matrix with seven historical file queries and contributor evidence.
+**Precise correction:** Original R2 added separate BLOCKED FOR COPYING fields and sampled history. The 2026-11-13 owner-attestation follow-up now records the exact unsigned statement and “Arena” answer, checks the 275-commit reachable history, and adds per-file evidence for 74 candidates/60 selected tests plus 52 POM records. Those items are OWNER_ATTESTED_CANDIDATE for planning; zero are cleared and all copying holds stay in force.
 
-**Supporting source/verification:** License/provenance matrix links actual commits/POM/license records; GitHub license metadata null, no first-party grant found, bot/anonymous contributor signals explicitly not ownership proof. See [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md), [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md), [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) and affected discovery documents.
+**Supporting source/verification:** [Unsigned attestation](FSA-01A-OWNER-ATTESTATION.md), [candidate rights ledger](FSA-01A-CANDIDATE-RIGHTS-LEDGER.md), [dependency addendum](FSA-01A-DEPENDENCY-RIGHTS-ADDENDUM.md) and [targeted clearance report](FSA-01A-R1-002-CLEARANCE-REPORT.md) distinguish positive owner-controlled-expression evidence from unverified passages, AI terms, assets and dependencies. The [license matrix](FSA-01A-LICENSE-PROVENANCE-MATRIX.md) preserves the dated R2 baseline; its earlier absence-of-attestation observation is historical. Bot attribution alone is not a separate human rightsholder or a copying prohibition.
 
 **Specific verification criterion:** Before any copy, establish applicable rightsholder/origin/grant and actual retained artifact notices/obligations for each transferred item. No unresolved entry can be treated as cleared.
 
-**Residual risk / remaining acceptance:** No first-party grant or complete component obligation clearance supplied; copying remains blocked regardless of technical suitability.
+**Residual risk / remaining acceptance:** Owner authorship is now attested, not independently established for all expression. No blanket third-party license or signed/public grant is demanded merely for expression the owner actually controls. However Arena product/account/historical terms, passage/data origins, retained artifact obligations and owner acceptance of the resulting exceptions remain incomplete. The current task requires exit conditions (a) adequate specific owner-controlled scope, (b) third-party/AI terms identified or excluded, (c) target/dependency obligations preserved and (d) owner acceptance of resulting exceptions, plus separate exit review. R1-002 stays OPEN; no item is CLEARED_FOR_PRIVATE_SOURCE_REUSE. The original R1 evidence and closure below are unchanged.
 
 ### Original R1 evidence and acceptance (preserved)
 

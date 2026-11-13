@@ -1,5 +1,25 @@
 # FSA-01A license and provenance matrix
 
+## Current owner-attestation disposition — 2026-11-13
+
+**R1-002 OPEN; FSA-01A: CHANGES_REQUIRED. Zero source items cleared for copying.** Entry review commit `86da66f35411fe6ecb835a877c79afb9764cc25c` is verified, clean at entry. The exact [unsigned owner statement](FSA-01A-OWNER-ATTESTATION.md) is new evidence beyond the historical R2 record below; no signature/public source license or exclusive-ownership finding is invented. Private use is considered separately from redistribution.
+
+| Material / precise evidence scope | Current evidence-led disposition | Copying or redistribution boundary |
+|---|---|---|
+| Claimed first-party expression in 74 inspected core candidates and 60 selected tests/helpers at source 0976d1c | OWNER_ATTESTED_CANDIDATE; exact paths/blob identities/history/imports in [per-file ledger](FSA-01A-CANDIDATE-RIGHTS-LEDGER.md). Owner-controlled code does not need a blanket third-party license solely to move into the owner's private project. | No CLEARED_FOR_PRIVATE_SOURCE_REUSE items: specific expression/origin/AI and dependency exceptions remain; no copy is authorized here. |
+| AI-assisted/agent-attributed material | Owner named Arena. Complete reachable 275-commit metadata distinguishes merges from content history; seven core candidates have non-merge agent-attributed history. Platform terms identified as references, not proven applicable. | REVIEW_REQUIRED under X01/X02. Bot attribution does not itself establish third-party ownership; D-only author metadata does not prove AI-free origin. |
+| Imported snippets, samples, tests or generated material not separately identified | No explicit borrowed-code marker found in the134 inspected bodies, which is not proof of original authorship or an exhaustive similarity search. | BLOCKED FOR COPYING where origin is unresolved; selected tests are reference-only, and228 other test files are not audited/cleared by this pass. |
+| Third-party dependencies / tooling | [Addendum](FSA-01A-DEPENDENCY-RIGHTS-ADDENDUM.md) records 37 source declaration entries, 52 exact POMs and 226 declared dependency edges with Apache/EPL/BSD/public-domain evidence and limits. | DEPENDENCY_REVIEW_REQUIRED. No resolved target variant graph, binaries, corresponding source or complete notices clearance; source Gradle/toolchain versions not transferred. |
+| Source icons/XML, fonts/speech/media, wrapper and harness/upstream tools | Ten XML resources inspected; 67-path harness subtree references external Android/coroutines material. Source assets/tools explicitly excluded; no tracked font/audio/image binary found in 907-path pin. | BLOCKED FOR COPYING / excluded from transfer. Tracked-tree absence is not permission for runtime voices/downloads or generated media. |
+| Existing native AnkiDroid/libanki/Reviewer/FSRS | Existing target license basis and notices remain as documented below; native owners unchanged. | NATIVE_REUSE under documented terms, with existing notice/attribution obligations preserved. No source change or new dependency transfer. |
+| Abstract behavior, architecture/interface requirements | Reading and documenting within this authorized audit remains permitted. | DOCUMENTATION_ALLOWED. Independent implementation still requires later authorization; no claim of clean-room expression review. |
+
+The owner's earlier approval closes only R1-001 scope review; it does not accept this newly resulting rights ledger. R1-002 remains OPEN until specific scope/exception/obligation checks and owner acceptance/separate review are complete. Not-for-sale intent does not waive third-party rights or replace distribution review before sharing copies. [Targeted report](FSA-01A-R1-002-CLEARANCE-REPORT.md) gives commands/results and precise residual inputs. All 416 inventory C/S copying holds remain unchanged; historical R1/R2 evidence is not silently rewritten.
+
+## Historical R2 evidence at 86da66f — retained verbatim
+
+The following records the earlier evidence state. Its no-first-party-grant/limited-history observations describe that snapshot; the current unsigned attestation and full reachable metadata above supplement it. Its original limits and sampling claims are preserved.
+
 **R2 evidence review, 2026-11-13, Asia/Baghdad. R1-002 remains OPEN. All unresolved Study-Agent code/tests/assets are BLOCKED FOR COPYING.** No component, test, asset or server implementation was copied/adapted/reimplemented into the target. Primary technical categories in the inventory are not rights clearances.
 
 ## Evidence basis and ownership categories
