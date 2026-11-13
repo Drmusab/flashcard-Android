@@ -1,6 +1,6 @@
 # FSA-01B approved-scope proposal — R2 documentation boundary
 
-**PROPOSED, NOT APPROVED. FSA-01B NOT STARTED.** 2026-11-13, Asia/Baghdad. The filename is owner-requested; it is not an approval. Current verdict is **FSA-01A: CHANGES_REQUIRED**, with R1-001 owner review and R1-002 copying rights still OPEN; roadmap reconciliation and R1-006 test allocation are now evidenced. R2 is authorized FSA-01A remediation, not execution of this next gate.
+**CORRECTED SCOPE APPROVED ONLY; FSA-01B EXECUTION NOT AUTHORIZED. FSA-01B NOT STARTED.** 2026-11-13, Asia/Baghdad. The owner explicitly answered **“Approve corrected scope only”** for the correction documented in commit 037fb25. This closes R1-001 only. Current verdict remains **FSA-01A: CHANGES_REQUIRED**, with R1-002 OPEN / BLOCKED FOR COPYING. Roadmap reconciliation and R1-006 test allocation remain evidenced. The decision does not authorize source copying, implementation, testing, publishing or merging.
 
 ## Fixed scope
 
@@ -10,7 +10,7 @@ The original 33-Gate roadmap remains controlling. The owner-supplied file is now
 
 ## Entry and possible documentation outputs
 
-Owner must review R2 and separately authorize this bounded scope. Copying holds are independent of technical classifications; documentation can be reviewed while rights remain unresolved, but no hold is waived. FSA-00 LOCKED evidence is reused without Android test reruns.
+Owner review of the corrected scope is completed; authorization to begin FSA-01B remains separate and has not been given. Copying holds are independent of technical classifications; documentation can be reviewed while rights remain unresolved, but no hold is waived. FSA-00 LOCKED evidence is reused without Android test reruns.
 
 Potential outputs, if later authorized:
 

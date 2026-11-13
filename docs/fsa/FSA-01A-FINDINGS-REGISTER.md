@@ -1,10 +1,10 @@
 # FSA-01A findings register — R2 disposition
 
-**Current R2 verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. The seven original identifiers and severities are unchanged: three HIGH, three MEDIUM, one LOW. **Five RESOLVED as source-verified documentation findings; two OPEN.** No runtime defect is declared fixed; no voice feature is implemented. R1 evidence and acceptance requirements below are preserved from 5faa9f3, with their old statuses explicitly labelled historical. [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md) records current verification and residual holds.
+**Current R2 verdict: FSA-01A: CHANGES_REQUIRED.** 2026-11-13, Asia/Baghdad. The seven original identifiers and severities are unchanged: three HIGH, three MEDIUM, one LOW. **Six RESOLVED as documentation findings, including explicit owner scope review; one OPEN (R1-002).** No runtime defect is declared fixed; no voice feature is implemented. R1 evidence and acceptance requirements below are preserved from 5faa9f3, with their old statuses explicitly labelled historical. [R2 report](FSA-01A-R2-REMEDIATION-REPORT.md) records current verification and residual holds.
 
 | Original finding | Severity | R2 status | Exact residual acceptance |
 |---|---|---|---|
-| R1-001 | HIGH | OPEN | Original33-Gate reconciliation now verified; owner review of the correction remains pending. |
+| R1-001 | HIGH | RESOLVED | Original33-Gate reconciliation verified; owner explicitly approved corrected scope only on 2026-11-13. FSA-01B execution remains unauthorized. |
 | R1-002 | HIGH | OPEN | Provenance/dependency matrix completed; applicable first-party grants and component obligations still do not clear copying. |
 | R1-003 | HIGH | RESOLVED | Source-supported ownership/transition specification and future acceptance cases consistently documented; implementation/runtime acceptance remains later. |
 | R1-004 | MEDIUM | RESOLVED | Cited high-risk metadata repaired; all 74 retained/deferred candidates have explicit owner/missing-seam and keep/drop boundaries. |
@@ -16,15 +16,15 @@ Source paths S below are exact paths below `app/src/main/java/com/studyagent/cli
 
 ## R1-001 — HIGH — Gate numbering silently advances implementation into source audit
 
-**R2 status: OPEN.**
+**R2 status: RESOLVED.**
 
 **Precise correction:** The supplied original 33-Gate roadmap is now verified, all 33 index/detail entries and 99 prompts checked, and all current mappings corrected: FSA-01B documentation only; FSA-06 surface; FSA-07 identity/reveal; FSA-08 rating gateway; FSA-10-16 speech/voice. No gate or prerequisite changed.
 
 **Supporting source/verification:** Owner path D:/flashcard-Android-main/flashcard-Android-main/docs/Anki_Studio_Agent_Fork_Gates_Roadmap.md; SHA-256 `34ac42269c91c61d3a7c618c886e254c92ac8079c8e353a5061a9f5bd01ef4d1`. Roadmap lines186-187 prohibit production porting in FSA-01B. Sequence contains the unchanged full index; scope, candidate and test mappings use actual stages. Prior missing-file observations remain historical in the 0dff170 snapshot.
 
-**Specific verification criterion:** Compare current mappings to the exact supplied33-Gate artifact/hash (completed); obtain owner review of the corrected scope (pending). No production guard or source copy in FSA-01B.
+**Specific verification criterion:** Compare current mappings to the exact supplied33-Gate artifact/hash (completed); obtain owner review of the corrected scope (completed on 2026-11-13: exact owner answer **“Approve corrected scope only”** to the question expressly limited to commit 037fb25 and closure of R1-001). No production guard or source copy in FSA-01B.
 
-**Residual risk / remaining acceptance:** Providing a path is not approval of the correction. Original R1 owner-review criterion remains unmet, so the finding stays OPEN; there is no remaining missing-roadmap claim.
+**Residual risk / remaining acceptance:** The explicit scope-only decision now completes the original owner-review criterion; it is separate from the earlier path reply. It authorizes neither starting FSA-01B nor copying, implementation, testing, publishing or merging. R1-002 remains OPEN; rights are not granted by this decision. No roadmap boundary or prerequisite changes.
 
 ### Original R1 evidence and acceptance (preserved)
 
@@ -186,4 +186,4 @@ No proposed architecture intentionally adds a second scheduler/FSRS or ledger; t
 
 ## R2 current stop decision
 
-R1-001/R1-002 remain OPEN. R1-006 is now RESOLVED after roadmap receipt. Other closures are source-verified documentation remediation, not code/runtime acceptance. FSA-01A: CHANGES_REQUIRED. FSA-00 LOCKED preserved; FSA-01B not started; no copy, feature implementation, tests/builds, publish or merge.
+R1-001 is RESOLVED after explicit owner scope-only approval; R1-002 alone remains OPEN / BLOCKED FOR COPYING. R1-006 remains RESOLVED after roadmap receipt. Other closures are source-verified documentation remediation, not code/runtime acceptance. FSA-01A: CHANGES_REQUIRED. FSA-00 LOCKED preserved; FSA-01B not started; no copy, feature implementation, tests/builds, publish or merge.

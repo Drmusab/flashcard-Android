@@ -52,11 +52,11 @@ Cover minimum API 24 and31/33/34/35/36 plus physical hardware. Official referenc
 
 Verify 382 unique production paths, one allowed primary category per file, resolvable source/test/target references and the documentation-only files explicitly listed in the current R2 remediation receipt changed. Confirm original recovery HEAD/worktree and FSA-00A hash unchanged; application/build source still equals accepted APK source. Run git diff --check and retain existing documentation-only precommit hook. These are document/metadata checks, not foundation test reruns. At discovery 1128b1e, the metadata checks found 382 unique classified production paths, one category each and 429 resolvable Markdown links; referenced test paths exist. Authoritative recovery and source worktrees remained clean, the original report digest matched, and application/build diff against accepted APK source was empty.
 
-**FSA-01A: CHANGES_REQUIRED. No feature-test PASS asserted. FSA-01B remains unstarted. Original-roadmap allocation is now verified; owner review and copying rights remain OPEN.**
+**FSA-01A: CHANGES_REQUIRED. No feature-test PASS asserted. FSA-01B remains unstarted. Original-roadmap allocation is now verified; owner scope review is complete; R1-002 copying rights remain OPEN.**
 
 ## R2 concrete future acceptance scenarios
 
-The following are **specified tests, NOT EXECUTED**, not new test code or an altered33-Gate schedule. The original roadmap is now supplied and verified; the precise acceptance stages and unchanged prerequisites are recorded below. R1-006 is resolved as documentation; owner review under R1-001 and copying rights under R1-002 remain OPEN. FSA-01B may review these requirements only.
+The following are **specified tests, NOT EXECUTED**, not new test code or an altered33-Gate schedule. The original roadmap is now supplied and verified; the precise acceptance stages and unchanged prerequisites are recorded below. R1-006 is resolved as documentation; R1-001 is RESOLVED by explicit owner scope-only approval; R1-002 copying rights remain OPEN. No tests or next-gate execution are authorized. FSA-01B may review these requirements only.
 
 A01-A13 refer to the [audio contract](FSA-01A-AUDIO-OWNERSHIP-CONTRACT.md). Proposed checks need both native Reviewer surfaces or an explicit voice-disabled surface; native source/FSA-00 runtime acceptance is not a substitute for voice tests. Existing source assertions below remain inspection evidence only; any later copied test implementation needs license clearance.
 
