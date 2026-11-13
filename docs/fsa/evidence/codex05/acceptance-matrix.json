@@ -1,0 +1,125 @@
+{
+    "gate": "LOCKED",
+    "decisionDate": "2026-11-13",
+    "timezone": "Asia/Baghdad",
+    "scope": "Debug-only native Android foundation with isolated disposable collection/account",
+    "requirements": [
+        {
+            "evidence": "closure.json",
+            "result": "PASS",
+            "requirement": "FSA-00A provenance",
+            "reason": "Owner-supplied original matches exact SHA-256; discovery date verified; preserved verbatim",
+            "mandatory": true,
+            "basis": "New byte/hash/date verification"
+        },
+        {
+            "evidence": "closure.json",
+            "result": "PASS",
+            "requirement": "Source integrity",
+            "mandatory": true,
+            "basis": "Current Git tree comparison; historical source-only findings remain date-scoped",
+            "reason": "Application/build tree equivalent to tested APK; every historical source difference documented"
+        },
+        {
+            "evidence": "../codex01/codex01-assemble.log",
+            "result": "PASS",
+            "requirement": "Local build evidence",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex01/codex01-reused-checks.json",
+            "result": "PASS",
+            "requirement": "Unit tests and lint",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-source-integrity.json",
+            "result": "PASS",
+            "requirement": "Debug APK verification",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-runtime-summary.json",
+            "result": "PASS",
+            "requirement": "Modern Android runtime",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-native-scheduler.json",
+            "result": "PASS",
+            "requirement": "Native Reviewer",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-lifecycle-process-death.json",
+            "result": "PASS",
+            "requirement": "Process-death recovery",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-coexistence-routing.json",
+            "result": "PASS",
+            "requirement": "Official/Debug coexistence",
+            "scope": "Configured separate app-internal directories; not shared public-directory defaults",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex02/codex02-isolation.json",
+            "result": "PASS",
+            "requirement": "Collection isolation",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "evidence": "../codex04/codex04-sync-acceptance.json",
+            "result": "PASS",
+            "requirement": "Sync requirement disposition",
+            "reason": "Owner-authorized disposable account; native upload/download, logical scheduling/review equivalence and cold restart passed; cleanup verified",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "requirement": "Local backup/restore",
+            "result": "PASS",
+            "evidence": "../codex02/codex02-backup-restore.json",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "requirement": "Disposable credentials and temporary trust cleanup",
+            "result": "PASS",
+            "evidence": "../codex04/codex04-sync-cleanup.json",
+            "mandatory": true,
+            "basis": "Reused executed evidence; source-equivalent application/build inputs"
+        },
+        {
+            "requirement": "Historical FSA-00A/B/C and CODEX-01–04 reconciliation",
+            "mandatory": true,
+            "result": "PASS",
+            "evidence": "../../CODEX-05-HISTORICAL-EVIDENCE-CLOSURE.md",
+            "basis": "New documented historical-versus-executed comparison"
+        },
+        {
+            "requirement": "Native scheduling/FSRS authority and architectural exclusions",
+            "mandatory": true,
+            "result": "PASS",
+            "evidence": "closure.json",
+            "basis": "Historical source audit plus current complete source diff; protected native paths unchanged"
+        },
+        {
+            "requirement": "Authorized isolated Git workflow; no automatic upstream merge",
+            "mandatory": true,
+            "result": "PASS",
+            "evidence": "closure.json",
+            "basis": "Later owner CODEX-01 permits isolated development branch; main unchanged by recovery"
+        }
+    ],
+    "testsOrBuildsRerun": false
+}

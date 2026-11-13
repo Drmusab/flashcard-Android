@@ -1,0 +1,219 @@
+{
+    "entryCommit": "7fba71641e6791402b5cebbbb32053e32ab1da52",
+    "originalReportSha256": "4b9d7fef3c3166eede26b3e753d892d54f81f61959e0e606747e7d315935935b",
+    "reusedArtifacts": [
+        {
+            "path": "docs/fsa/CODEX-00-RECOVERY.md",
+            "workingCopySha256": "7c31f4cc95c773b5a5fec4482ced0584fd3dd43017d1c80556f52321872c6325",
+            "entryGitBlobSha256": "7c31f4cc95c773b5a5fec4482ced0584fd3dd43017d1c80556f52321872c6325",
+            "workingCopyBytes": 9346,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/CODEX-01-LOCAL-FOUNDATION.md",
+            "workingCopySha256": "24a9f331f28130a1e90539cb8a0d16dd5658f7fd7e18aea3b23173a2ccb7f309",
+            "entryGitBlobSha256": "24a9f331f28130a1e90539cb8a0d16dd5658f7fd7e18aea3b23173a2ccb7f309",
+            "workingCopyBytes": 10197,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/CODEX-02-FINAL-ACCEPTANCE.md",
+            "workingCopySha256": "4466890b6f546dfdb647c442fee809506156ae85a35b93e1b86fd76e3b5c6b54",
+            "entryGitBlobSha256": "4466890b6f546dfdb647c442fee809506156ae85a35b93e1b86fd76e3b5c6b54",
+            "workingCopyBytes": 9075,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/CODEX-03-EVIDENCE-CLOSURE.md",
+            "workingCopySha256": "176d20681744a8859492812dde455e20d966ca8f3c40f51211b6e03b63eb6d83",
+            "entryGitBlobSha256": "176d20681744a8859492812dde455e20d966ca8f3c40f51211b6e03b63eb6d83",
+            "workingCopyBytes": 4476,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/CODEX-04-FINAL-BLOCKER-RESOLUTION.md",
+            "workingCopySha256": "9291dbb82be76e967b905964760802cf739c89ecec82f0c81442b5002d2ac1a0",
+            "entryGitBlobSha256": "9291dbb82be76e967b905964760802cf739c89ecec82f0c81442b5002d2ac1a0",
+            "workingCopyBytes": 7750,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex01/codex01-assemble.log",
+            "workingCopySha256": "deea79b57248cbf7730cb381753dc3cb36b7e53b34f29463b07d1641960278c5",
+            "entryGitBlobSha256": "deea79b57248cbf7730cb381753dc3cb36b7e53b34f29463b07d1641960278c5",
+            "workingCopyBytes": 15636,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex01/codex01-reused-checks.json",
+            "workingCopySha256": "75398d138ef28d84a90b8a98b8728d94912a8df447c5e4270af20f21d7732200",
+            "entryGitBlobSha256": "cf8db61d230501d460b68b911f914c4b20773a71e6077517822709d8458d0efe",
+            "workingCopyBytes": 2790,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-backup-restore.json",
+            "workingCopySha256": "2940e88023be603b6d01921951b549d8eee17ecb9f110b2f96f3836bf3980bef",
+            "entryGitBlobSha256": "723f25b5ab6614f6e18833fcd7fcdaf4088fb08308411669f4f7499d581f0ed7",
+            "workingCopyBytes": 933,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-coexistence-routing.json",
+            "workingCopySha256": "ad40bb9069f98977adfdd7c8894e5333df6099297be774ff0ab146a857e25692",
+            "entryGitBlobSha256": "d093a7d14814ae3cd20e69c66e7a90d866239873d041e465b260583e83b6be1a",
+            "workingCopyBytes": 332,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-isolation.json",
+            "workingCopySha256": "d3fb378be87938507e8f91bc54502fb78a290f34d111fa1188307ecc239b5ee3",
+            "entryGitBlobSha256": "568678fad751818cc273e463e101d926cb5823874cc787f6bf222603479e96ec",
+            "workingCopyBytes": 1004,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-lifecycle-process-death.json",
+            "workingCopySha256": "d5f7e388339ef39b7e2eb823df582eecbdbedb1d4376a012b9afd43cdf44caf8",
+            "entryGitBlobSha256": "ac3fca674ab5ed49a2524257feef5af18f71c89f54c383e3bafddbeaee19c631",
+            "workingCopyBytes": 659,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-native-scheduler.json",
+            "workingCopySha256": "6e5c5f7dff859e3ffe48c8db26a07e52e816391a7abea76cb616ef4d0f81906d",
+            "entryGitBlobSha256": "33bc02ed658ec7f0819bbfb5ab7e20eddc9b8b3126d2ef2dab548703c3628122",
+            "workingCopyBytes": 795,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-runtime-summary.json",
+            "workingCopySha256": "ef94ffd76f0c8ff37a048d7b78f18f67905c2ce9b103cf27bf3fe7d33d51e2e9",
+            "entryGitBlobSha256": "79583fae27c622df33124daafa27a092e980eaaa4f57fb5ab247f7bc23d92943",
+            "workingCopyBytes": 339,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex02/codex02-source-integrity.json",
+            "workingCopySha256": "0cd84130f5eda6355a641a139672ee4206c624f971a7477644e33460bd1bddff",
+            "entryGitBlobSha256": "104bc29cb1d8d79ea7421d218e601c400c983f7dac378a066befd91d5fe7f839",
+            "workingCopyBytes": 2045,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex03/closure.json",
+            "workingCopySha256": "349244e75da5091399290af437d2ba524a96efd1f5f5686c9b1e23747a4a5ea3",
+            "entryGitBlobSha256": "b784c339dd50acb6ca3cdecb507b6ca5cd23f02de40be7fa90c3891f292d9362",
+            "workingCopyBytes": 1830,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/closure.json",
+            "workingCopySha256": "65cebc39c29a91293c53bd3274ece19f1d6499252d1b29a2ced130831df05af1",
+            "entryGitBlobSha256": "65cebc39c29a91293c53bd3274ece19f1d6499252d1b29a2ced130831df05af1",
+            "workingCopyBytes": 2723,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-state-replica-after-restart.json",
+            "workingCopySha256": "cf576cc222b17f4f3cde5d43f2c6676613734502307d19c53e76092123b11808",
+            "entryGitBlobSha256": "cf576cc222b17f4f3cde5d43f2c6676613734502307d19c53e76092123b11808",
+            "workingCopyBytes": 3589,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-state-replica-downloaded.json",
+            "workingCopySha256": "71d571c0ae663399b727fbcfc081d72d19406759615a1ba248132da38564b2d3",
+            "entryGitBlobSha256": "71d571c0ae663399b727fbcfc081d72d19406759615a1ba248132da38564b2d3",
+            "workingCopyBytes": 3589,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-state-source-post-sync.json",
+            "workingCopySha256": "6bd592f432059148c96d9becc920fcef79325fbdff9b46fe9ea6100347d84fdc",
+            "entryGitBlobSha256": "6bd592f432059148c96d9becc920fcef79325fbdff9b46fe9ea6100347d84fdc",
+            "workingCopyBytes": 3588,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-state-source-pre-sync.json",
+            "workingCopySha256": "6c61e28fe3a6f612d448a0f404e764772b198ae588609ea79808e0ad713b9613",
+            "entryGitBlobSha256": "6c61e28fe3a6f612d448a0f404e764772b198ae588609ea79808e0ad713b9613",
+            "workingCopyBytes": 3588,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-sync-acceptance.json",
+            "workingCopySha256": "73bba6c9b806a8529fd93f64783002fd016f3027c8144a346127d65f2779bf09",
+            "entryGitBlobSha256": "73bba6c9b806a8529fd93f64783002fd016f3027c8144a346127d65f2779bf09",
+            "workingCopyBytes": 472,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/codex04-sync-cleanup.json",
+            "workingCopySha256": "4b7ca83d57aebe8663837dea31efed9374dbb6df52b2c86603e1b17808897d68",
+            "entryGitBlobSha256": "4b7ca83d57aebe8663837dea31efed9374dbb6df52b2c86603e1b17808897d68",
+            "workingCopyBytes": 582,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/evidence/codex04/evidence-manifest.json",
+            "workingCopySha256": "86f15a2cdde9deeb049264060188d1fa3a8943667c209a545637ae8b23afb2c7",
+            "entryGitBlobSha256": "86f15a2cdde9deeb049264060188d1fa3a8943667c209a545637ae8b23afb2c7",
+            "workingCopyBytes": 9391,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00B-fork-baseline-build-verification.md",
+            "workingCopySha256": "d8718e21d7860e7c393ce5f15a8f47a79bb43323ed340039f6db0dde38bdcd64",
+            "entryGitBlobSha256": "d8718e21d7860e7c393ce5f15a8f47a79bb43323ed340039f6db0dde38bdcd64",
+            "workingCopyBytes": 29604,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00C-ARCHITECTURE-AUDIT.md",
+            "workingCopySha256": "efd2bfcbe65dfdbd8c52bdd7f2a9eabeffefb25145dc06c94b13bf4ff4a1479f",
+            "entryGitBlobSha256": "efd2bfcbe65dfdbd8c52bdd7f2a9eabeffefb25145dc06c94b13bf4ff4a1479f",
+            "workingCopyBytes": 13185,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00C-BUILD-VERIFICATION.md",
+            "workingCopySha256": "73fb0d835701e2872e7ecff642ee5793fc66a63224ef36730282b630985bd31e",
+            "entryGitBlobSha256": "73fb0d835701e2872e7ecff642ee5793fc66a63224ef36730282b630985bd31e",
+            "workingCopyBytes": 11560,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00C-DEVICE-VERIFICATION.md",
+            "workingCopySha256": "caca5241ce48f1e724538fd7e5b673bb089b9a919b0c5e76a954ff7d6058cdaa",
+            "entryGitBlobSha256": "caca5241ce48f1e724538fd7e5b673bb089b9a919b0c5e76a954ff7d6058cdaa",
+            "workingCopyBytes": 9691,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00C-ENTRY-AND-EVIDENCE.md",
+            "workingCopySha256": "d2f709d07abeaf1aeaa5e6f0a9afc63e6695da7f8bb35d6685c236c1326fbc78",
+            "entryGitBlobSha256": "d2f709d07abeaf1aeaa5e6f0a9afc63e6695da7f8bb35d6685c236c1326fbc78",
+            "workingCopyBytes": 12230,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-00C-RESIDUAL-RISKS.md",
+            "workingCopySha256": "3484f229e7efae09da9475cac912c99dc38fd761b572c94c263ba6fbf1a2e845",
+            "entryGitBlobSha256": "3484f229e7efae09da9475cac912c99dc38fd761b572c94c263ba6fbf1a2e845",
+            "workingCopyBytes": 11507,
+            "unchangedWithConfiguredGitLineEndings": true
+        },
+        {
+            "path": "docs/fsa/FSA-01-HANDOFF.md",
+            "workingCopySha256": "f9ca919dfa0cc8496a1bf7ef308f6d29f392726ebd2cf6e22eb920da7f56cc05",
+            "entryGitBlobSha256": "f9ca919dfa0cc8496a1bf7ef308f6d29f392726ebd2cf6e22eb920da7f56cc05",
+            "workingCopyBytes": 4688,
+            "unchangedWithConfiguredGitLineEndings": true
+        }
+    ],
+    "codex04ManifestAllEntriesHashVerified": true,
+    "priorReportsOrEvidenceModified": false,
+    "lineEndingNote": "Existing Windows worktree text can use CRLF while Git stores LF; both byte hashes are recorded and only the configured CRLF-to-LF conversion is allowed for the comparison. The original FSA-00A already has LF and is preserved byte-for-byte."
+}

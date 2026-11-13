@@ -1,0 +1,145 @@
+{
+    "decision": "FSA-00: LOCKED",
+    "decisionDate": "2026-11-13",
+    "timezone": "Asia/Baghdad",
+    "observedUtc": "2026-11-13T00:11:41.510720+00:00",
+    "entryHead": "7fba71641e6791402b5cebbbb32053e32ab1da52",
+    "original": {
+        "suppliedPath": "C:\\Users\\Pro\\Documents\\flashcard-Android-main\\flashcard-Android-main\\docs\\fsa\\FSA-00A — Baseline Discovery & Architecture Contract.md",
+        "suppliedFilename": "FSA-00A — Baseline Discovery & Architecture Contract.md",
+        "canonicalPath": "docs/fsa/FSA-00A_Baseline_Discovery_Report.md",
+        "bytes": 13483,
+        "sha256": "4b9d7fef3c3166eede26b3e753d892d54f81f61959e0e606747e7d315935935b",
+        "discoveryDate": "2026-10-25",
+        "dateVerifiedFromContents": true,
+        "sourceAndCanonicalBytesEqual": true,
+        "preservedVerbatim": true,
+        "reconstructed": false,
+        "provenanceBasis": "Owner-supplied expected SHA-256; exact byte match, not independent author authentication"
+    },
+    "reconciliation": {
+        "report": "../../CODEX-05-HISTORICAL-EVIDENCE-CLOSURE.md",
+        "completed": true,
+        "historicalSourceCommit": "a7121c11c6e11d9c6ba34518784156fba1701e29",
+        "recoveryMain": "4bfadceba7d91abec270c4b45e95e26dbc294d15",
+        "testedCodeCommit": "1ca8fcc1c631c4000ae63ed53ee949a6cce78b33",
+        "apkSourceCommit": "7653676c30374b8270f9be57871dacae0cc41d9a",
+        "currentApplicationBuildTreeEquivalent": true,
+        "historicalNonDocumentationDifferences": [
+            {
+                "status": "A",
+                "path": ".github/fsa/apk_identity.sh",
+                "explanation": "Later fork CI/helper change"
+            },
+            {
+                "status": "A",
+                "path": ".github/fsa/run_evidence_command.sh",
+                "explanation": "Later fork CI/helper change"
+            },
+            {
+                "status": "A",
+                "path": ".github/fsa/tests/evidence_helpers_test.sh",
+                "explanation": "Later fork CI/helper change"
+            },
+            {
+                "status": "M",
+                "path": ".github/workflows/README.md",
+                "explanation": "Later fork CI/helper change"
+            },
+            {
+                "status": "A",
+                "path": ".github/workflows/fsa-foundation-ci.yml",
+                "explanation": "Later fork CI/helper change"
+            },
+            {
+                "status": "M",
+                "path": "AnkiDroid/src/main/java/com/ichi2/utils/ImportUtils.kt",
+                "explanation": "Executed CODEX-00 targeted recovery; see recovery report"
+            },
+            {
+                "status": "M",
+                "path": "AnkiDroid/src/test/java/com/ichi2/anki/DeckPickerImportTest.kt",
+                "explanation": "Executed CODEX-00 targeted recovery; see recovery report"
+            },
+            {
+                "status": "M",
+                "path": "AnkiDroid/src/test/java/com/ichi2/utils/ImportUtilsTest.kt",
+                "explanation": "Executed CODEX-00 targeted recovery; see recovery report"
+            },
+            {
+                "status": "M",
+                "path": "buildSrc/build.gradle.kts",
+                "explanation": "Executed CODEX-00 targeted recovery; see recovery report"
+            },
+            {
+                "status": "M",
+                "path": "buildSrc/src/test/kotlin/com/ichi2/anki/gradle/VersionCatalogsTest.kt",
+                "explanation": "Executed CODEX-00 targeted recovery; see recovery report"
+            }
+        ],
+        "protectedNativeAndToolchainPathsUnchangedSinceOriginal": [
+            "AnkiDroid/src/main/java/com/ichi2/anki/Reviewer.kt",
+            "AnkiDroid/src/main/java/com/ichi2/anki/reviewer/AnswerButtons.kt",
+            "AnkiDroid/src/main/java/com/ichi2/anki/ui/windows/reviewer/ReviewerViewModel.kt",
+            "libanki",
+            "anki-common",
+            "AnkiDroid/src/main/java/com/ichi2/anki/sync",
+            "AnkiDroid/src/main/java/com/ichi2/anki/scheduling",
+            "gradle/libs.versions.toml",
+            "gradle/wrapper/gradle-wrapper.properties",
+            "gradle/gradle-daemon-jvm.properties",
+            "AnkiDroid/build.gradle.kts"
+        ],
+        "historicalCommitFetchedWithoutMerge": true,
+        "checkoutShallow": true,
+        "currentUpstreamDivergenceClaimed": false
+    },
+    "gitWorkflow": {
+        "branch": "codex/fsa00-recovery",
+        "mainUnchangedByTask": true,
+        "recoveryMergeCommits": [],
+        "laterOwnerAuthority": "CODEX-01 owner request, Actual Checkout section",
+        "authorityExcerpt": "Use an isolated development branch where appropriate.",
+        "ownerRequestAttachmentSha256": "b56bb1572abba050654b3045baf8c188ce561bb52311e1fa1d209598d798de05",
+        "earlierBranchName": "feature/fsa-foundation",
+        "earlierNameContext": "Proposed checkpoint in original FSA-00A; later owner explicitly authorizes isolated development branch"
+    },
+    "reusedEvidence": {
+        "priorCodex04ManifestEntriesVerified": 21,
+        "syncLogicalStatesEquivalent": true,
+        "controlledSyncStatus": "PASS",
+        "disposableCredentialAndTrustCleanup": "PASS",
+        "originalOfficialTestCollectionUnchanged": true,
+        "loginOrAccountDataAccessedInThisTask": false,
+        "mandatoryRequirementsPassed": 16,
+        "failures": 0,
+        "blocked": 0,
+        "buildsRerun": 0,
+        "testSuitesRerun": 0,
+        "androidSessionsStarted": 0
+    },
+    "handoff": {
+        "path": "../../FSA-01A-DISCOVERY-HANDOFF.md",
+        "prepared": true,
+        "discoveryInventoryExecuted": false,
+        "productionMigrationStarted": false,
+        "upstreamMergePerformed": false,
+        "releaseIdentityOrSigningChanged": false
+    },
+    "nonBlockingLimits": [
+        "Independent release identity/signing/storage/routing/telemetry and license review belong to FSA-02",
+        "No shared public-directory or production collection certification",
+        "No physical-device, exhaustive note-type/media or future voice acceptance",
+        "Controlled sync used a text-only sample and approved temporary inspected TLS path; normal TLS validation retained and app-only trust removed",
+        "Optional connected instrumentation not executed; clean-machine and bit-identical APK reproducibility not claimed",
+        "GitHub Actions availability not repaired; authorized local execution used",
+        "Older BLOCKED reports remain unchanged historical snapshots"
+    ],
+    "permanentExclusions": [
+        "PC Anki Adapter",
+        "AnkiConnect scheduling",
+        "second FSRS implementation",
+        "remote PC review queue",
+        "parallel rating persistence"
+    ]
+}
